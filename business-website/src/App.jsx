@@ -3,6 +3,7 @@ import { useState } from 'react'
 import NavBar from './components/NavBar/NavBar'
 import './App.css'
 import heroVideo from './assets/hero_video.mp4'
+import aboutImage from './assets/about_image.jpg'
 
 function App() {
 
@@ -12,6 +13,8 @@ function App() {
       <div className="bg-white">
         <NavBar />
       </div>
+
+      {/* Hero */}
       <section id="center">
 
         {/* Background Video */}
@@ -41,7 +44,30 @@ function App() {
 
       </section>
 
-      <section id="spacer"></section>
+
+      {/* About */}
+      <section id="about-section">
+        {/* Left Side */}
+        <div className="about-text">
+
+          <h2>About Indro Labs</h2>
+
+          <p>
+            Indro Labs is building the next generation of intelligent radon mitigation systems through integrated hardware, cloud monitoring, and AI-powered automation. 
+          </p>
+          <p>
+            Our mission is to modernize indoor air safety with smarter environmental technology that protects homes and simplifies operations for radon professionals.
+          </p>
+
+        </div>
+
+        {/* Right Side */}
+        <div className="about-image-container">
+          <img src={aboutImage} alt="About Indro Labs" />
+          <div className="about-image-overlay"></div>
+        </div>
+
+      </section>
 
     </>
   )

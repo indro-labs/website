@@ -69,6 +69,11 @@ function App() {
 
       </section>
 
+      <section id="services-section"></section>
+
+      <section id="technology-section"></section>
+
+      <section id="contact-section"></section>
     </>
   )
 }

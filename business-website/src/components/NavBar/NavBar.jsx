@@ -12,10 +12,10 @@ function NavBar() {
         </div>
 
         <div className="navbar-links">
-          <a href="#about">About</a>
-          <a href="#services">Services</a>
-          <a href="#technology">Technology</a>
-          <a href="#contact">Contact</a>
+          <a href="#about-section">About</a>
+          <a href="#services-section">Services</a>
+          <a href="#technology-section">Technology</a>
+          <a href="#contact-section">Contact</a>
         </div>
 
         <button
@@ -29,10 +29,10 @@ function NavBar() {
 
       {menuOpen && (
         <div className="navbar-mobile-menu">
-          <a href="#about">About</a>
-          <a href="#services">Services</a>
-          <a href="#technology">Technology</a>
-          <a href="#contact">Contact</a>
+          <a href="#about-section">About</a>
+          <a href="#services-section">Services</a>
+          <a href="#technology-section">Technology</a>
+          <a href="#contact-section">Contact</a>
         </div>
       )}
     </header>

@@ -225,22 +225,33 @@ useEffect(() => {
             Join the waitlist or contact us to discuss partnership opportunities.
           </p>
 
+          {/* Waitlist */}
           <div className="contact-grid">
-            <form className="contact-card">
+            <form
+                className="contact-card"
+                action={import.meta.env.VITE_FORMSPREE_WAITLIST_URL}
+                method="POST"
+                onSubmit={(e) => {
+                  if (!selectedOption) {
+                    e.preventDefault()
+                    alert('Please select whether you are a Homeowner or Radon professional.')
+                  }
+                }}
+              >
               <h3>Join the Waitlist</h3>
               <p>Be the first to know when we launch.</p>
 
               <div className="form-group">
                 <label>Name *</label>
-                <input type="text"/>
+                <input name="name" type="text" required/>
               </div>
               <div className="form-group">
                 <label>Email *</label>
-                <input type="email"  />
+                <input name="email" type="email" required/>
               </div>
               <div className="form-group">
                 <label>City/Province (optional)</label>
-                <input type="text"  />
+                <input name="cityProvince" type="text"  />
               </div>
               
               <div className="form-group">
@@ -274,29 +285,40 @@ useEffect(() => {
 
                   </div>
                 </Listbox>
+                {/* Hidden input for Formspree */}
+                <input
+                  type="hidden"
+                  name="userType"
+                  value={selectedOption}
+                />
               </div>
 
               <button className="submit-button waitlist-submit-button" type="submit">Join Waitlist</button>
             </form>
 
-            <form className="contact-card">
+            {/* Partner */}
+            <form
+                className="contact-card"
+                action={import.meta.env.VITE_FORMSPREE_PARTNER_URL}
+                method="POST"
+              >
               <h3>Partner with Us</h3>
               <p>For industry professionals and organizations.</p>
               <div className="form-group">
                 <label>Company (optional)</label>
-                <input type="text"/>
+                <input name="company" type="text"/>
               </div>
               <div className="form-group">
                 <label>Name *</label>
-                <input type="text"/>
+                <input name="name" type="text" required/>
               </div>
               <div className="form-group">
                 <label>Email *</label>
-                <input type="email"/>
+                <input name="email" type="email" required/>
               </div>
               <div className="form-group">
                 <label>Message *</label>
-                <textarea
+                <textarea name="message" required
                 ></textarea>
               </div>
               <button className="submit-button partner-submit-button" type="submit">Send Message</button>

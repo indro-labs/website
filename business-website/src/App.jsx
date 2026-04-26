@@ -28,9 +28,6 @@ function App() {
           <source src={heroVideo} type="video/mp4" />
         </video>
 
-        {/* Overlay */}
-        <div className="hero-overlay"></div>
-
         {/* Hero Content */}
         <div className="hero-content">
           <div className="hero-pill">
@@ -43,15 +40,16 @@ function App() {
         </div>
 
       </section>
-
-
+    
+      <div id="padding-top"></div>
       {/* About */}
       <section id="about-section">
         {/* Left Side */}
         <div className="about-text">
 
-          <h2>About Indro Labs</h2>
-
+          <h2>
+            About <span className="accent-text">Indro Labs</span>
+          </h2>
           <p>
             Indro Labs is building the next generation of intelligent radon mitigation systems through integrated hardware, cloud monitoring, and AI-powered automation. 
           </p>
@@ -63,8 +61,12 @@ function App() {
 
         {/* Right Side */}
         <div className="about-image-container">
-          <img src={aboutImage} alt="About Indro Labs" />
-          <div className="about-image-overlay"></div>
+
+          <div className="about-image-card">
+            <img src={aboutImage} alt="About Indro Labs" />
+            <div className="about-image-overlay"></div>
+          </div>
+
         </div>
 
       </section>

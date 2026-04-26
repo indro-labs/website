@@ -255,7 +255,6 @@ useEffect(() => {
                   <option>Radon professional</option>
                 </select>
               </div>
-    
 
               <button type="submit">Join Waitlist</button>
             </form>
@@ -285,6 +284,33 @@ useEffect(() => {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer id="footer">
+        <div className="footer-container">
+
+          <div className="footer-column">
+            <h4>Indro Labs</h4>
+            <p>Continuous radon protection monitoring</p>
+          </div>
+
+          <div className="footer-column">
+            <h4>Contact</h4>
+            <p>info@indrolabs.ca</p>
+          </div>
+
+          <div className="footer-column">
+            <h4>Location</h4>
+            <p>Alberta, Canada</p>
+          </div>
+
+        </div>
+
+        <div className="footer-bottom">
+          Copyright © 2026 Indro labs - All Rights Reserved.
+        </div>
+
+      </footer>
     </>
   )
 }

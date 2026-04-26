@@ -35,16 +35,12 @@
 /* Hero Text */
 .hero-content {
   position: relative;
-
   z-index: 2;
-
   max-width: 900px;
-
   padding: 0 24px;
-
   text-align: center;
-
   color: white;
+  animation: fadeUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .hero-content h1 {
@@ -52,6 +48,7 @@
   line-height: 1.1;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 24px;
+  font-weight: 600;
 }
 
 .hero-content p {
@@ -84,6 +81,37 @@
   letter-spacing: 0.3px;
 }
 
+.hero-features {
+  display: flex;
+  justify-content: center;
+  gap: 64px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 32px;
+  padding-top: 28px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-feature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.hero-feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+
 /* Mobile */
 @media (max-width: 768px) {
 
@@ -91,12 +119,28 @@
     min-height: 75vh;
   }
 
+  .hero-content{
+    padding-top: 100px;
+    padding-bottom: 20px;
+  }
   .hero-content h1 {
     font-size: 40px;
   }
 
   .hero-content p {
     font-size: 18px;
+  }
+
+  .hero-features {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    border-top: 0px;
+    padding-top: 0px;
+  }
+
+  .hero-feature {
+    font-size: 15px;
   }
 }
 
@@ -107,9 +151,7 @@
 #about-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
-
   min-height: 700px;
-
   background: white;
 }
 
@@ -233,4 +275,35 @@
   @media (max-width: 1024px) {
     height: 48px;
   }
+}
+
+/* ========================= */
+/* Animation                 */
+/* ========================= */
+@keyframes fadeUp {
+
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(100px);
+
+  transition:
+  opacity 2.2s cubic-bezier(0.22, 1, 0.36, 1),
+  transform 2.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
 }

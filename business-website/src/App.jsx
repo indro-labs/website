@@ -129,6 +129,7 @@ useEffect(() => {
         <NavBar />
       </div>
 
+
       {/* Hero */}
       <section id="center">
 

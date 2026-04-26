@@ -7,9 +7,9 @@ function NavBar() {
   return (
     <header className="navbar">
       <nav className="navbar-container">
-        <div className="navbar-logo">
+        <a href="#center" className="navbar-logo">
           Indro Labs
-        </div>
+        </a>
 
         <div className="navbar-links">
           <a href="#about-section">About</a>

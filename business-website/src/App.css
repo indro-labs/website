@@ -558,7 +558,7 @@
 }
 
 .contact-card {
-  background: #f5f7fb;
+  background: white;
   border: 1px solid var(--border);
   border-radius: 28px;
   padding: 40px;
@@ -586,7 +586,7 @@
   margin-bottom: 16px;
 
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 5px;
 
   font-family: inherit;
   font-size: 15px;
@@ -607,7 +607,7 @@
   box-shadow: 0 0 0 3px rgba(25, 74, 213, 0.12);
 }
 
-.contact-card button {
+.submit-button {
   width: 100%;
   padding: 15px 20px;
 
@@ -621,6 +621,11 @@
   font-weight: 700;
 
   cursor: pointer;
+}
+
+.submit-button.partner-submit-button {
+  background: #081028;
+
 }
 
 .contact-card button:hover {
@@ -640,6 +645,72 @@
  
   color: var(--text-h);
 }
+
+.custom-select {
+  position: relative;
+  width: 100%;
+  margin-bottom: 29px;
+}
+
+.custom-select-button {
+  width: 100%;
+
+  padding: 14px 16px;
+
+  border: 1px solid var(--border);
+  border-radius: 5px;
+
+  background: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  cursor: pointer;
+
+  font-size: 15px;
+  font-family: inherit;
+
+  color: var(--text-h);
+
+  box-sizing: border-box;
+}
+
+.custom-select-options {
+  position: absolute;
+
+  top: calc(100% );
+  left: 0;
+  font-size: 15px;
+  width: 100%;
+
+  background: white;
+
+  border: 1px solid var(--border);
+  border-radius: 5px;
+
+  overflow: hidden;
+
+  box-shadow: var(--shadow);
+
+  z-index: 100;
+}
+
+.custom-select-option {
+  padding: 14px 16px;
+
+  cursor: pointer;
+
+  background: white;
+
+  transition: background 0.2s ease;
+}
+
+.custom-select-option:hover {
+  background: rgba(25, 74, 213, 0.08);
+}
+
+
 /* Mobile */
 @media (max-width: 900px) {
   .contact-grid {

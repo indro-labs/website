@@ -17,10 +17,10 @@ const pilotRef = useRef(null)
 
 const options = [
   'Homeowner',
-  'Radon professional',
+  'Radon professional'
 ]
 
-const [selected, setSelected] = useState(options[0])
+const [selectedOption, setSelectedOption] = useState('')
 
 useEffect(() => {
   const observer = new IntersectionObserver(
@@ -246,17 +246,37 @@ useEffect(() => {
               <div className="form-group">
                 <label>I am a *</label>
 
-                <select defaultValue="">
-                  <option value="" disabled hidden>
-                    Select an option
-                  </option>
+                <Listbox
+                  value={selectedOption}
+                  onChange={setSelectedOption}
+                >
+                  <div className="custom-select">
 
-                  <option>Homeowner</option>
-                  <option>Radon professional</option>
-                </select>
+                    <Listbox.Button className="custom-select-button">
+                      {selectedOption || 'Select an option'}
+
+                      <ChevronDown size={18} />
+                    </Listbox.Button>
+
+                    <Listbox.Options className="custom-select-options">
+
+                      {options.map((option) => (
+                        <Listbox.Option
+                          key={option}
+                          value={option}
+                          className="custom-select-option"
+                        >
+                          {option}
+                        </Listbox.Option>
+                      ))}
+
+                    </Listbox.Options>
+
+                  </div>
+                </Listbox>
               </div>
 
-              <button type="submit">Join Waitlist</button>
+              <button className="submit-button waitlist-submit-button" type="submit">Join Waitlist</button>
             </form>
 
             <form className="contact-card">
@@ -279,7 +299,7 @@ useEffect(() => {
                 <textarea
                 ></textarea>
               </div>
-              <button type="submit">Send Message</button>
+              <button className="submit-button partner-submit-button" type="submit">Send Message</button>
             </form>
           </div>
         </div>

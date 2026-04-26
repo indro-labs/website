@@ -1,11 +1,12 @@
 
-import { useState } from 'react'
 import NavBar from './components/NavBar/NavBar'
 import './App.css'
 import heroVideo from './assets/hero_video.mp4'
 import aboutImage from './assets/about_image.jpg'
-import { Activity, Bell, BarChart3, Gauge, TriangleAlert, BriefcaseBusiness, House } from 'lucide-react'
-import { useEffect, useRef } from 'react'
+import { Activity, Bell, BarChart3, Gauge, TriangleAlert, BriefcaseBusiness, House,ChevronDown } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { Listbox } from '@headlessui/react'
+
 
 function App() {
 
@@ -13,6 +14,13 @@ const aboutRef = useRef(null)
 const missionRef = useRef(null)
 const solutionsRef = useRef(null)
 const pilotRef = useRef(null)
+
+const options = [
+  'Homeowner',
+  'Radon professional',
+]
+
+const [selected, setSelected] = useState(options[0])
 
 useEffect(() => {
   const observer = new IntersectionObserver(
@@ -209,7 +217,74 @@ useEffect(() => {
       </section>
 
 
-      <section id="contact-section"></section>
+      {/* Contact */}
+      <section id="contact-section">
+        <div className="contact-container">
+          <h2>Get updates</h2>
+          <p className="contact-intro">
+            Join the waitlist or contact us to discuss partnership opportunities.
+          </p>
+
+          <div className="contact-grid">
+            <form className="contact-card">
+              <h3>Join the Waitlist</h3>
+              <p>Be the first to know when we launch.</p>
+
+              <div className="form-group">
+                <label>Name *</label>
+                <input type="text"/>
+              </div>
+              <div className="form-group">
+                <label>Email *</label>
+                <input type="email"  />
+              </div>
+              <div className="form-group">
+                <label>City/Province (optional)</label>
+                <input type="text"  />
+              </div>
+              
+              <div className="form-group">
+                <label>I am a *</label>
+
+                <select defaultValue="">
+                  <option value="" disabled hidden>
+                    Select an option
+                  </option>
+
+                  <option>Homeowner</option>
+                  <option>Radon professional</option>
+                </select>
+              </div>
+    
+
+              <button type="submit">Join Waitlist</button>
+            </form>
+
+            <form className="contact-card">
+              <h3>Partner with Us</h3>
+              <p>For industry professionals and organizations.</p>
+              <div className="form-group">
+                <label>Company (optional)</label>
+                <input type="text"/>
+              </div>
+              <div className="form-group">
+                <label>Name *</label>
+                <input type="text"/>
+              </div>
+              <div className="form-group">
+                <label>Email *</label>
+                <input type="email"/>
+              </div>
+              <div className="form-group">
+                <label>Message *</label>
+                <textarea
+                ></textarea>
+              </div>
+              <button type="submit">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </section>
     </>
   )
 }

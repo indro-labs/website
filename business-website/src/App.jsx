@@ -21,13 +21,18 @@ const options = [
 ]
 
 const [selectedOption, setSelectedOption] = useState('')
+const [formStatus, setFormStatus] = useState(null)
+
 const handleWaitlistSubmit = async (e) => {
   e.preventDefault()
 
   const form = e.currentTarget
 
   if (!selectedOption) {
-    alert("Please select whether you are a Homeowner or Radon professional.")
+    setFormStatus({
+        type: "error",
+        message: "Please selet an option."
+      })
     return
   }
 
@@ -43,11 +48,17 @@ const handleWaitlistSubmit = async (e) => {
   })
 
   if (response.ok) {
-    alert("Thank you! Your form has been submitted.")
+    setFormStatus({
+      type: "success",
+      message: "Thank you! Your form has been submitted."
+    })
     form.reset()
     setSelectedOption("")
   } else {
-    alert("Something went wrong. Please try again.")
+    setFormStatus({
+      type: "error",
+      message: "Something went wrong. Please try again."
+    })
   }
 }
 const handlePartnerSubmit = async (e) => {
@@ -65,10 +76,16 @@ const handlePartnerSubmit = async (e) => {
   })
 
   if (response.ok) {
-    alert("Thank you! Your message has been submitted.")
+    setFormStatus({
+      type: "success",
+      message: "Thank you! Your form has been submitted."
+    })
     form.reset()
   } else {
-    alert("Something went wrong. Please try again.")
+    setFormStatus({
+      type: "error",
+      message: "Something went wrong. Please try again."
+    })
   }
 }
 
@@ -98,6 +115,15 @@ useEffect(() => {
 }, [])
   return (
     <>
+      {formStatus && (
+        <div className={`toast ${formStatus.type}`}>
+          <p>{formStatus.message}</p>
+
+          <button onClick={() => setFormStatus(null)}>
+            ×
+          </button>
+        </div>
+      )}
       {/* Navbar */}
       <div className="bg-white">
         <NavBar />

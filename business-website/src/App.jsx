@@ -21,6 +21,56 @@ const options = [
 ]
 
 const [selectedOption, setSelectedOption] = useState('')
+const handleWaitlistSubmit = async (e) => {
+  e.preventDefault()
+
+  const form = e.currentTarget
+
+  if (!selectedOption) {
+    alert("Please select whether you are a Homeowner or Radon professional.")
+    return
+  }
+
+  const formData = new FormData(form)
+  formData.set("userType", selectedOption)
+
+  const response = await fetch(import.meta.env.VITE_FORMSPREE_WAITLIST_URL, {
+    method: "POST",
+    body: formData,
+    headers: {
+      Accept: "application/json",
+    },
+  })
+
+  if (response.ok) {
+    alert("Thank you! Your form has been submitted.")
+    form.reset()
+    setSelectedOption("")
+  } else {
+    alert("Something went wrong. Please try again.")
+  }
+}
+const handlePartnerSubmit = async (e) => {
+  e.preventDefault()
+
+  const form = e.currentTarget
+  const formData = new FormData(form)
+
+  const response = await fetch(import.meta.env.VITE_FORMSPREE_PARTNER_URL, {
+    method: "POST",
+    body: formData,
+    headers: {
+      Accept: "application/json",
+    },
+  })
+
+  if (response.ok) {
+    alert("Thank you! Your message has been submitted.")
+    form.reset()
+  } else {
+    alert("Something went wrong. Please try again.")
+  }
+}
 
 useEffect(() => {
   const observer = new IntersectionObserver(
@@ -229,14 +279,7 @@ useEffect(() => {
           <div className="contact-grid">
             <form
                 className="contact-card"
-                action={import.meta.env.VITE_FORMSPREE_WAITLIST_URL}
-                method="POST"
-                onSubmit={(e) => {
-                  if (!selectedOption) {
-                    e.preventDefault()
-                    alert('Please select whether you are a Homeowner or Radon professional.')
-                  }
-                }}
+                onSubmit={handleWaitlistSubmit}
               >
               <h3>Join the Waitlist</h3>
               <p>Be the first to know when we launch.</p>
@@ -285,12 +328,7 @@ useEffect(() => {
 
                   </div>
                 </Listbox>
-                {/* Hidden input for Formspree */}
-                <input
-                  type="hidden"
-                  name="userType"
-                  value={selectedOption}
-                />
+               
               </div>
 
               <button className="submit-button waitlist-submit-button" type="submit">Join Waitlist</button>
@@ -299,8 +337,7 @@ useEffect(() => {
             {/* Partner */}
             <form
                 className="contact-card"
-                action={import.meta.env.VITE_FORMSPREE_PARTNER_URL}
-                method="POST"
+                onSubmit={handlePartnerSubmit}
               >
               <h3>Partner with Us</h3>
               <p>For industry professionals and organizations.</p>

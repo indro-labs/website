@@ -124,9 +124,7 @@
   }
 
   .hero-pill {
-    font-size: 13px;
-    padding: 8px 14px;
-    margin-bottom: 18px;
+    visibility: hidden;
   }
 
   .hero-content h1 {

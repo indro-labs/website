@@ -2,6 +2,7 @@
 import NavBar from './components/NavBar/NavBar'
 import './App.css'
 import heroVideo from './assets/hero_video.mp4'
+import heroPoster from './assets/hero_poster.jpg'
 import aboutImage from './assets/about_image.jpg'
 import { Activity, Bell, BarChart3, Gauge, TriangleAlert, BriefcaseBusiness, House,ChevronDown } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
@@ -140,10 +141,11 @@ useEffect(() => {
           muted
           loop
           playsInline
+          preload="metadata"
+          poster={heroPoster}
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
-        
 
         {/* Hero Content */}
         <div className="hero-content">

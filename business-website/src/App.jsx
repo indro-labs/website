@@ -143,6 +143,7 @@ useEffect(() => {
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
+        
 
         {/* Hero Content */}
         <div className="hero-content">

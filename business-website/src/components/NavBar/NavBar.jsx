@@ -7,32 +7,83 @@ function NavBar() {
   return (
     <header className="navbar">
       <nav className="navbar-container">
-        <a href="#center" className="navbar-logo">
-          Indro Labs
+
+        {/* Logo */}
+        <a href="#hero" className="navbar-logo">
+          <img src="/WhiteName.png" alt="Indro Labs" className="logo-img" />
         </a>
 
+        {/* Desktop nav links — right-aligned */}
         <div className="navbar-links">
-          <a href="#about-section">About</a>
-          <a href="#mission-section">Mission</a>
-          <a href="#solutions-section">Solutions</a>
-          <a href="#contact-section">Contact</a>
+
+          {/* Product */}
+          <div className="nav-item">
+            <span className="nav-link">Product</span>
+            <div className="nav-dropdown">
+              <a href="#" className="dropdown-row">
+                <div className="dropdown-row-title">Indro Smart</div>
+                <div className="dropdown-row-desc">Smart radon for everyone</div>
+              </a>
+              <a href="#" className="dropdown-row">
+                <div className="dropdown-row-title">
+                  Indro Reception
+                  <span className="coming-badge">Coming soon</span>
+                </div>
+                <div className="dropdown-row-desc">Next-generation radon detection</div>
+              </a>
+            </div>
+          </div>
+
+          {/* Solutions */}
+          <div className="nav-item">
+            <span className="nav-link">Solutions</span>
+            <div className="nav-dropdown">
+              <a href="#" className="dropdown-row">
+                <div className="dropdown-row-title">For Homeowners</div>
+                <div className="dropdown-row-desc">Radon safety for your home</div>
+              </a>
+              <a href="#" className="dropdown-row">
+                <div className="dropdown-row-title">For Radon Businesses</div>
+                <div className="dropdown-row-desc">Transform your radon business with smart systems</div>
+              </a>
+            </div>
+          </div>
+
+          <a href="#about-section" className="nav-link standalone">About</a>
+          <a href="#contact-section" className="nav-link standalone">Contact us</a>
         </div>
 
+        {/* CTA buttons */}
+        <div className="navbar-actions">
+          <button className="btn-signin">Sign in</button>
+          <button className="btn-bookdemo">Book demo</button>
+        </div>
+
+        {/* Mobile toggle */}
         <button
           className="navbar-menu-button"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle navigation menu"
         >
-          ☰
+          {menuOpen ? '✕' : '☰'}
         </button>
       </nav>
 
+      {/* Mobile menu */}
       {menuOpen && (
         <div className="navbar-mobile-menu">
-          <a href="#about-section">About</a>
-          <a href="#mission-section">Mission</a>
-          <a href="#solutions-section">Solutions</a>
-          <a href="#contact-section">Contact</a>
+          <div className="mobile-group-label">Product</div>
+          <a href="#" onClick={() => setMenuOpen(false)}>Indro Smart</a>
+          <a href="#" onClick={() => setMenuOpen(false)}>Indro Reception</a>
+          <div className="mobile-group-label">Solutions</div>
+          <a href="#" onClick={() => setMenuOpen(false)}>For Homeowners</a>
+          <a href="#" onClick={() => setMenuOpen(false)}>For Radon Businesses</a>
+          <a href="#about-section" onClick={() => setMenuOpen(false)}>About</a>
+          <a href="#contact-section" onClick={() => setMenuOpen(false)}>Contact us</a>
+          <div className="mobile-ctas">
+            <button className="btn-signin">Sign in</button>
+            <button className="btn-bookdemo">Book demo</button>
+          </div>
         </div>
       )}
     </header>

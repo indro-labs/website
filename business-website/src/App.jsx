@@ -1,424 +1,389 @@
-
 import NavBar from './components/NavBar/NavBar'
 import './App.css'
-import heroVideo from './assets/hero_video.mp4'
-import heroPoster from './assets/hero_poster.jpg'
-import aboutImage from './assets/about_image.jpg'
-import { Activity, Bell, BarChart3, Gauge, TriangleAlert, BriefcaseBusiness, House,ChevronDown } from 'lucide-react'
-import { useEffect, useRef, useState } from 'react'
+import { ChevronDown } from 'lucide-react'
+import { useState } from 'react'
 import { Listbox } from '@headlessui/react'
+import homeownerPhoto from './assets/ForHomeowner.jpg'
+import businessPhoto from './assets/ForRadonBuisnesses.jpg'
 
+/* ── Radon Gauge Widget ── */
+function RadonGauge() {
+  const cx = 150, cy = 150, r = 108
+  const circumference = 2 * Math.PI * r        // 678.6
+  const trackLength = (270 / 360) * circumference // 508.9 — 270° sweep
+  const valueLength = trackLength * 0.38          // ~38% filled for 0.8 pCi/L aesthetic
 
-function App() {
+  return (
+    <div className="gauge-wrapper">
+      {/* Main circle */}
+      <div className="gauge-circle">
+        <svg viewBox="0 0 300 300" className="gauge-svg" aria-hidden="true">
+          {/* Lavender background fill */}
+          <circle cx={cx} cy={cy} r={r + 28} fill="#eaedff" />
+          {/* Track (grey arc, 270°, gap at bottom-left) */}
+          <circle
+            cx={cx} cy={cy} r={r}
+            fill="none"
+            stroke="#c8d0f0"
+            strokeWidth="11"
+            strokeLinecap="round"
+            strokeDasharray={`${trackLength} ${circumference}`}
+            transform={`rotate(135 ${cx} ${cy})`}
+          />
+          {/* Value arc (blue, partial) */}
+          <circle
+            cx={cx} cy={cy} r={r}
+            fill="none"
+            stroke="#2b5ce6"
+            strokeWidth="11"
+            strokeLinecap="round"
+            strokeDasharray={`${valueLength} ${circumference}`}
+            transform={`rotate(135 ${cx} ${cy})`}
+          />
+        </svg>
 
-const aboutRef = useRef(null)
-const missionRef = useRef(null)
-const solutionsRef = useRef(null)
-const pilotRef = useRef(null)
+        {/* Center text */}
+        <div className="gauge-center">
+          <span className="gauge-live">RADON · LIVE</span>
+          <span className="gauge-reading">0.8</span>
+          <span className="gauge-unit">pCi / L</span>
+          <div className="gauge-status">
+            <span className="status-dot green"></span>
+            <span>Healthy · trending stable</span>
+          </div>
+        </div>
+      </div>
 
-const options = [
-  'Homeowner',
-  'Radon professional'
-]
+      {/* Floating reading pills */}
+      <div className="reading-pill pill-voc">
+        <span className="pill-label">VOC</span>
+        <div className="pill-value">
+          <span className="pill-dot amber"></span>
+          <strong>142</strong>
+          <span className="pill-unit">ppb</span>
+        </div>
+      </div>
 
-const [selectedOption, setSelectedOption] = useState('')
-const [formStatus, setFormStatus] = useState(null)
+      <div className="reading-pill pill-pm">
+        <span className="pill-label">PM 2.5</span>
+        <div className="pill-value">
+          <span className="pill-dot green"></span>
+          <strong>9</strong>
+          <span className="pill-unit">μg/m³</span>
+        </div>
+      </div>
 
-const handleWaitlistSubmit = async (e) => {
-  e.preventDefault()
-
-  const form = e.currentTarget
-
-  if (!selectedOption) {
-    setFormStatus({
-        type: "error",
-        message: "Please selet an option."
-      })
-    return
-  }
-
-  const formData = new FormData(form)
-  formData.set("userType", selectedOption)
-
-  const response = await fetch(import.meta.env.VITE_FORMSPREE_WAITLIST_URL, {
-    method: "POST",
-    body: formData,
-    headers: {
-      Accept: "application/json",
-    },
-  })
-
-  if (response.ok) {
-    setFormStatus({
-      type: "success",
-      message: "Thank you! Your form has been submitted."
-    })
-    form.reset()
-    setSelectedOption("")
-  } else {
-    setFormStatus({
-      type: "error",
-      message: "Something went wrong. Please try again."
-    })
-  }
-}
-const handlePartnerSubmit = async (e) => {
-  e.preventDefault()
-
-  const form = e.currentTarget
-  const formData = new FormData(form)
-
-  const response = await fetch(import.meta.env.VITE_FORMSPREE_PARTNER_URL, {
-    method: "POST",
-    body: formData,
-    headers: {
-      Accept: "application/json",
-    },
-  })
-
-  if (response.ok) {
-    setFormStatus({
-      type: "success",
-      message: "Thank you! Your form has been submitted."
-    })
-    form.reset()
-  } else {
-    setFormStatus({
-      type: "error",
-      message: "Something went wrong. Please try again."
-    })
-  }
-}
-
-useEffect(() => {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show')
-        }
-      })
-    },
-    { threshold: 0.2 }
+      <div className="reading-pill pill-co2">
+        <span className="pill-label">CO₂</span>
+        <div className="pill-value">
+          <span className="pill-dot blue"></span>
+          <strong>612</strong>
+          <span className="pill-unit">ppm</span>
+        </div>
+      </div>
+    </div>
   )
+}
 
-  if (aboutRef.current) observer.observe(aboutRef.current)
-  if (missionRef.current) observer.observe(missionRef.current)
-  if (solutionsRef.current) observer.observe(solutionsRef.current)
-  if (pilotRef.current) observer.observe(pilotRef.current)
+/* ── Main App ── */
+function App() {
+  const options = ['Homeowner', 'Radon professional']
+  const [selectedOption, setSelectedOption] = useState('')
+  const [formStatus, setFormStatus] = useState(null)
 
-  return () => {
-    if (aboutRef.current) observer.unobserve(aboutRef.current)
-    if (missionRef.current) observer.unobserve(missionRef.current)
-    if (solutionsRef.current) observer.unobserve(solutionsRef.current)
-    if (pilotRef.current) observer.unobserve(pilotRef.current)
+  const handleWaitlistSubmit = async (e) => {
+    e.preventDefault()
+    const form = e.currentTarget
+    if (!selectedOption) {
+      setFormStatus({ type: 'error', message: 'Please select an option.' })
+      return
+    }
+    const formData = new FormData(form)
+    formData.set('userType', selectedOption)
+    const response = await fetch(import.meta.env.VITE_FORMSPREE_WAITLIST_URL, {
+      method: 'POST',
+      body: formData,
+      headers: { Accept: 'application/json' },
+    })
+    if (response.ok) {
+      setFormStatus({ type: 'success', message: 'Thank you! Your form has been submitted.' })
+      form.reset()
+      setSelectedOption('')
+    } else {
+      setFormStatus({ type: 'error', message: 'Something went wrong. Please try again.' })
+    }
   }
-}, [])
+
+  const handlePartnerSubmit = async (e) => {
+    e.preventDefault()
+    const form = e.currentTarget
+    const formData = new FormData(form)
+    const response = await fetch(import.meta.env.VITE_FORMSPREE_PARTNER_URL, {
+      method: 'POST',
+      body: formData,
+      headers: { Accept: 'application/json' },
+    })
+    if (response.ok) {
+      setFormStatus({ type: 'success', message: 'Thank you! Your form has been submitted.' })
+      form.reset()
+    } else {
+      setFormStatus({ type: 'error', message: 'Something went wrong. Please try again.' })
+    }
+  }
+
   return (
     <>
+      {/* Toast */}
       {formStatus && (
         <div className={`toast ${formStatus.type}`}>
           <p>{formStatus.message}</p>
-
-          <button onClick={() => setFormStatus(null)}>
-            ×
-          </button>
+          <button onClick={() => setFormStatus(null)}>×</button>
         </div>
       )}
+
       {/* Navbar */}
-      <div className="bg-white">
-        <NavBar />
-      </div>
+      <NavBar />
 
+      {/* ── Hero ── */}
+      <section id="hero">
+        <div className="hero-container">
+          {/* Left — headline + body + CTAs */}
+          <div className="hero-left">
+            <h1 className="hero-headline">
+              <span>Breathe without <em>worry.</em></span>
+              <span>Breathe without <em>radon.</em></span>
+            </h1>
 
-      {/* Hero */}
-      <section id="center">
+            <p className="hero-body">
+              Indro Labs builds intelligent indoor environmental monitoring technology designed to make indoor spaces more proactive, data-driven, and easier to manage.
+            </p>
 
-        {/* Background Video */}
-        <video
-          className="hero-video"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster={heroPoster}
-        >
-          <source src={heroVideo} type="video/mp4" />
-        </video>
-
-        {/* Hero Content */}
-        <div className="hero-content">
-          <div className="hero-pill">
-            Radon Mitigation Technology
+            <div className="hero-actions">
+              <button className="hero-btn-primary">Book a demo →</button>
+              <a href="#how-it-works" className="hero-btn-link">See how it works</a>
+            </div>
           </div>
-          <h1>The Future of Radon Mitigation Systems</h1>
-          <p>
-            Indro Labs delivers integrated hardware and software solutions for continuous radon monitoring, automated mitigation, and compliance management.
-          </p>
-          <div className="hero-features">
-            <div className="hero-feature">
-              <Activity className="hero-feature-icon" />
-              <span>Continuous monitoring</span>
-            </div>
 
-            <div className="hero-feature">
-              <Bell className="hero-feature-icon" />
-              <span>Early alerts</span>
-            </div>
-
-            <div className="hero-feature">
-              <BarChart3 className="hero-feature-icon" />
-              <span>Clear reporting</span>
+          {/* Right — gauge widget */}
+          <div className="hero-right">
+            <div className="hero-gauge-bg">
+              <RadonGauge />
             </div>
           </div>
         </div>
-      </section>
-    
-      <div id="padding-top"></div>
 
-      {/* About */}
-      <section
-          id="about-section"
-          ref={aboutRef}
-          className="fade-up"
-        >
-        {/* Left Side */}
-        <div className="about-text">
-          <h2>
-            About <span className="accent-text">Indro Labs</span>
+      </section>
+
+      {/* Gradient bridge: hero → dark */}
+      <div className="grad-to-dark" />
+
+      {/* ── Dark Stats Section ── */}
+      <section id="stats-section">
+        <div className="stats-inner">
+          <h2 className="stats-headline">
+            The leading environmental cause of lung cancer is{' '}
+            <em>invisible,</em> odorless,{' '}
+            and <em>everywhere indoors.</em>
           </h2>
-          <p>
-            Indro Labs is building the next generation of intelligent radon mitigation systems through integrated hardware, cloud monitoring, and AI-powered automation. 
-          </p>
-          <p>
-            Our mission is to modernize indoor air safety with smarter environmental technology that protects homes and simplifies operations for radon professionals.
-          </p>
-        </div>
 
-        {/* Right Side */}
-        <div className="about-image-container">
-          <div className="about-image-card">
-            <img src={aboutImage} alt="About Indro Labs" />
-            <div className="about-image-overlay"></div>
-          </div>
-        </div>
-      </section>
-
-      <div id="padding-top"></div>
-
-      {/* Mission */}
-      <section
-          id="mission-section"
-          ref={missionRef}
-          className="fade-up"
-        >
-        <div className="mission-container">
-          <h2>Why monitoring matters</h2>
-          <div className="mission-grid">
-            <div className="mission-card">
-              <div className="mission-icon">
-                <Activity size={22} />
-              </div>
-              <h3>Radon levels can change</h3>
-              <p>
-                Environmental factors, weather patterns, and home modifications can drastically affect radon levels over time.
-              </p>
+          <div className="stats-card">
+            <div className="stat-item">
+              <div className="stat-number">21k</div>
+              <div className="stat-label">DEATHS / YR</div>
+              <div className="stat-desc">In the U.S. attributed to radon-induced lung cancer.</div>
             </div>
-
-            <div className="mission-card">
-              <div className="mission-icon">
-                <Gauge size={22} />
-              </div>
-              <h3>Systems can drift</h3>
-              <p>
-                Mitigation fans and systems may lose effectiveness or fail completely without regular monitoring and maintenance.
-              </p>
+            <div className="stat-divider" />
+            <div className="stat-item">
+              <div className="stat-number">1 in 15</div>
+              <div className="stat-label">HOMES</div>
+              <div className="stat-desc">In the U.S. exceed actionable radon levels.</div>
             </div>
-
-            <div className="mission-card">
-              <div className="mission-icon">
-                <TriangleAlert size={22} />
-              </div>
-              <h3>Issues found late</h3>
-              <p>
-                Without continuous monitoring, dangerous exposure levels may go undetected for months until the next manual test.
-              </p>
+            <div className="stat-divider" />
+            <div className="stat-item">
+              <div className="stat-number">&lt;1%</div>
+              <div className="stat-label">TESTED</div>
+              <div className="stat-desc">Of homes are continuously monitored for indoor air quality.</div>
             </div>
           </div>
         </div>
+
       </section>
 
-      {/* Solutions */}
-      <section
-          id="solutions-section"
-          ref={solutionsRef}
-          className="fade-up"
-        >
-        <div className="solutions-container">
-          <h2>Who it's for</h2>
+      {/* Gradient bridge: dark → light */}
+      <div className="grad-to-light" />
 
-          <div className="solutions-grid">
-            <div className="solutions-card">
-              <div className="solutions-title">
-                <BriefcaseBusiness className="solutions-title-icon" />
-                <h3>Radon professionals</h3>
-              </div>
-              <ul>
-                <li>Faster diagnostics with real-time system visibility</li>
-                <li>Fewer reactive calls through early warnings</li>
-                <li>Client-ready reports that are easy to understand</li>
-              </ul>
+      {/* ── Solutions ── */}
+      <section id="solutions-section">
+        <div className="solutions-header">
+          <h2 className="section-title">Radon safety for everyone.</h2>
+        </div>
+
+        <div className="solutions-grid">
+          {/* Homeowners card */}
+          <div className="sol-card">
+            <div className="sol-photo" style={{ backgroundImage: `url(${homeownerPhoto})` }} />
+            <div className="sol-overlay">
+              <h3 className="sol-title">For Homeowners.</h3>
+              <p className="sol-desc">
+                Protect your home and family with real-time radon monitoring, instant alerts, and smart automation.
+              </p>
+              <button className="sol-cta">Learn more →</button>
             </div>
+          </div>
 
-            <div className="solutions-card">
-              <div className="solutions-title">
-                <House className="solutions-title-icon" />
-                <h3>Homeowners</h3>
-              </div>
-              <ul>
-                <li>Peace of mind your home stays protected</li>
-                <li>Clear radon status, trends, and system performance</li>
-                <li>Instant alerts when something changes</li>
-              </ul>
+          {/* Business card */}
+          <div className="sol-card">
+            <div className="sol-photo" style={{ backgroundImage: `url(${businessPhoto})` }} />
+            <div className="sol-overlay">
+              <h3 className="sol-title">For Radon Businesses.</h3>
+              <p className="sol-desc">
+                Run a smarter mitigation business. Monitor client systems remotely, track fan health, and diagnose virtually.
+              </p>
+              <button className="sol-cta">Learn more →</button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Pilot Section */}
-      <section id="pilot-section" ref={pilotRef} className="fade-up">
-        <div className="pilot-container">
-          <h2>Currently in pilot</h2>
-          <p>
-            Indro Labs is currently in pilot development and actively exploring partnerships with industry professionals interested in collaborating on early deployments and validation.
-          </p>
+      {/* ── How It Works ── */}
+      <section id="how-it-works">
+        <div className="hiw-header">
+          <h2 className="section-title">Up and running in three steps.</h2>
+        </div>
+
+        <div className="hiw-grid">
+          {[
+            {
+              n: 1,
+              label: 'INSTALL PHOTO',
+              title: 'Buy Indro Smart',
+              desc: 'Purchase for your home or your business. Plugs into existing radon mitigation systems with no complexity.',
+            },
+            {
+              n: 2,
+              label: 'APP SCREENSHOT',
+              title: 'Monitor radon levels',
+              desc: 'Live readings from home or anywhere. Real-time data, trends, and alerts — all in the Indro app.',
+            },
+            {
+              n: 3,
+              label: 'DASHBOARD PHOTO',
+              title: 'Sense. Control. Stay safe.',
+              desc: 'Set thresholds and let Indro act — automated fan control, smart alerts, and intelligent mitigation.',
+            },
+          ].map(({ n, label, title, desc }) => (
+            <div className="hiw-card" key={n}>
+              <div className="hiw-photo-box">
+                <span className="hiw-photo-label">{label}</span>
+                <div className="hiw-hover-grad" />
+              </div>
+              <div className="hiw-step-num">{n}</div>
+              <h4 className="hiw-title">{title}</h4>
+              <p className="hiw-desc">{desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-
-      {/* Contact */}
+      {/* ── Contact / Waitlist ── */}
       <section id="contact-section">
         <div className="contact-container">
-          <h2>Get updates</h2>
+          <h2 className="contact-heading">Get updates</h2>
           <p className="contact-intro">
             Join the waitlist or contact us to discuss partnership opportunities.
           </p>
 
-          {/* Waitlist */}
           <div className="contact-grid">
-            <form
-                className="contact-card"
-                onSubmit={handleWaitlistSubmit}
-              >
+            {/* Waitlist form */}
+            <form className="contact-card" onSubmit={handleWaitlistSubmit}>
               <h3>Join the Waitlist</h3>
               <p>Be the first to know when we launch.</p>
 
               <div className="form-group">
                 <label>Name *</label>
-                <input name="name" type="text" required/>
+                <input name="name" type="text" required />
               </div>
               <div className="form-group">
                 <label>Email *</label>
-                <input name="email" type="email" required/>
+                <input name="email" type="email" required />
               </div>
               <div className="form-group">
                 <label>City/Province (optional)</label>
-                <input name="cityProvince" type="text"  />
+                <input name="cityProvince" type="text" />
               </div>
-              
               <div className="form-group">
                 <label>I am a *</label>
-
-                <Listbox
-                  value={selectedOption}
-                  onChange={setSelectedOption}
-                >
+                <Listbox value={selectedOption} onChange={setSelectedOption}>
                   <div className="custom-select">
-
                     <Listbox.Button className="custom-select-button">
                       {selectedOption || 'Select an option'}
-
                       <ChevronDown size={18} />
                     </Listbox.Button>
-
                     <Listbox.Options className="custom-select-options">
-
                       {options.map((option) => (
-                        <Listbox.Option
-                          key={option}
-                          value={option}
-                          className="custom-select-option"
-                        >
+                        <Listbox.Option key={option} value={option} className="custom-select-option">
                           {option}
                         </Listbox.Option>
                       ))}
-
                     </Listbox.Options>
-
                   </div>
                 </Listbox>
-               
               </div>
 
-              <button className="submit-button waitlist-submit-button" type="submit">Join Waitlist</button>
+              <button className="submit-button waitlist-submit-button" type="submit">
+                Join Waitlist
+              </button>
             </form>
 
-            {/* Partner */}
-            <form
-                className="contact-card"
-                onSubmit={handlePartnerSubmit}
-              >
+            {/* Partner form */}
+            <form className="contact-card" onSubmit={handlePartnerSubmit}>
               <h3>Partner with Us</h3>
               <p>For industry professionals and organizations.</p>
+
               <div className="form-group">
                 <label>Company (optional)</label>
-                <input name="company" type="text"/>
+                <input name="company" type="text" />
               </div>
               <div className="form-group">
                 <label>Name *</label>
-                <input name="name" type="text" required/>
+                <input name="name" type="text" required />
               </div>
               <div className="form-group">
                 <label>Email *</label>
-                <input name="email" type="email" required/>
+                <input name="email" type="email" required />
               </div>
               <div className="form-group">
                 <label>Message *</label>
-                <textarea name="message" required
-                ></textarea>
+                <textarea name="message" required></textarea>
               </div>
-              <button className="submit-button partner-submit-button" type="submit">Send Message</button>
+
+              <button className="submit-button partner-submit-button" type="submit">
+                Send Message
+              </button>
             </form>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
+      {/* ── Footer ── */}
       <footer id="footer">
         <div className="footer-container">
-
           <div className="footer-column">
             <h4>Indro Labs</h4>
             <p>Continuous radon protection monitoring</p>
           </div>
-
           <div className="footer-column">
             <h4>Contact</h4>
             <p>info@indrolabs.ca</p>
           </div>
-
           <div className="footer-column">
             <h4>Location</h4>
             <p>Alberta, Canada</p>
           </div>
-
         </div>
-
         <div className="footer-bottom">
-          Copyright © 2026 Indro labs - All Rights Reserved.
+          Copyright © 2026 Indro Labs — All Rights Reserved.
         </div>
-
       </footer>
     </>
   )

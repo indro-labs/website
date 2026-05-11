@@ -1,103 +1,268 @@
+/* ========================= */
+/* Navbar                    */
+/* ========================= */
+
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
-
-  width: 100%;
-
-  background: rgba(255, 255, 255, 0.95);
-
-  backdrop-filter: blur(12px);
-
-  border-bottom: 1px solid var(--border);
-
-  z-index: 1000;
+  right: 0;
+  z-index: 200;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid #eaecf0;
 }
 
 .navbar-container {
-  max-width: 1280px;
+  max-width: 1320px;
   margin: 0 auto;
-
-  padding: 20px 24px;
-
+  padding: 0 48px;
+  height: 80px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 0;
 }
 
+/* ---- Logo ---- */
 .navbar-logo {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--accent);
+  display: flex;
+  align-items: center;
   text-decoration: none;
+  flex-shrink: 0;
+  margin-right: auto; /* pushes everything else to the right */
 }
 
+.logo-img {
+  height: 46px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* ---- Nav links (right side) ---- */
 .navbar-links {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 4px;
+  margin-right: 24px;
 }
 
-.navbar-links a,
-.navbar-mobile-menu a {
-  text-decoration: none;
-  color: var(--text-h);
+.nav-item {
+  position: relative;
+}
+
+/* Invisible bridge so mouse can reach dropdown without it closing */
+.nav-item::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 14px;
+}
+
+.nav-link {
+  display: block;
+  padding: 9px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
   font-weight: 500;
-  transition: color 0.2s ease;
+  color: #374151;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 9px;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+  user-select: none;
 }
 
-.navbar-links a:hover,
-.navbar-mobile-menu a:hover {
-  color: var(--accent);
+.nav-item:hover > .nav-link,
+.nav-link.standalone:hover {
+  background: #f3f4f6;
+  color: #0b1020;
 }
 
-/* Hamburger button */
+/* ---- Dropdown ---- */
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  min-width: 290px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04), 0 20px 50px rgba(0, 0, 0, 0.11);
+  padding: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-5px);
+  transition: opacity 0.16s ease, transform 0.16s ease;
+}
+
+.nav-item:hover .nav-dropdown {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.dropdown-row {
+  display: block;
+  padding: 13px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.12s;
+}
+
+.dropdown-row:not(:last-child) {
+  margin-bottom: 2px;
+}
+
+.dropdown-row:hover {
+  background: #f5f7ff;
+}
+
+.dropdown-row-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0b1020;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.dropdown-row-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+.coming-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: #6b7280;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+
+/* ---- CTA buttons ---- */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.btn-signin {
+  padding: 9px 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  background: transparent;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.btn-signin:hover {
+  border-color: #9ca3af;
+  color: #0b1020;
+}
+
+.btn-bookdemo {
+  padding: 9px 22px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  background: #0b1020;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.btn-bookdemo:hover {
+  background: #2b5ce6;
+}
+
+/* ---- Mobile toggle ---- */
 .navbar-menu-button {
   display: none;
-
   background: none;
   border: none;
-
-  font-size: 32px;
+  font-size: 22px;
   cursor: pointer;
-
-  color: var(--text-h);
+  padding: 8px;
+  color: #374151;
 }
 
-/* Mobile dropdown */
 .navbar-mobile-menu {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 24px 20px;
+  gap: 0;
+  border-top: 1px solid #eaecf0;
+  background: white;
 }
 
-/* Mobile responsive styles */
-@media (max-width: 768px) {
+.navbar-mobile-menu a {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #374151;
+  text-decoration: none;
+  padding: 12px 4px;
+  border-bottom: 1px solid #f3f4f6;
+}
 
-  /* Hide desktop links */
-  .navbar-links {
+.navbar-mobile-menu a:last-child {
+  border-bottom: none;
+}
+
+.mobile-group-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  padding: 16px 4px 6px;
+}
+
+.mobile-ctas {
+  display: flex;
+  gap: 10px;
+  padding: 16px 4px 4px;
+}
+
+.mobile-ctas .btn-signin,
+.mobile-ctas .btn-bookdemo {
+  flex: 1;
+}
+
+@media (max-width: 960px) {
+  .navbar-links,
+  .navbar-actions {
     display: none;
   }
 
-  /* Show hamburger */
   .navbar-menu-button {
     display: block;
   }
 
-  /* Mobile dropdown menu */
-  .navbar-mobile-menu {
-    display: flex;
-    flex-direction: column;
-
-    gap: 18px;
-
-    padding: 20px 24px;
-
-    background: var(--bg);
-
-    border-top: 1px solid var(--border);
-  }
-
-  .navbar-logo {
-    font-size: 20px;
-    text-decoration: none;
+  .navbar-container {
+    padding: 0 24px;
   }
 }

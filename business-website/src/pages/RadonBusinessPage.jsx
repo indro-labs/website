@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import NavBar from '../components/NavBar/NavBar'
 import '../App.css'
@@ -116,26 +116,6 @@ function WhyCarousel() {
   )
 }
 
-/* ── Feature Cards ── */
-const FEATURES = [
-  {
-    title: 'Remote monitoring',
-    desc: 'Live radon levels and fan status for every client property — visible from anywhere.',
-  },
-  {
-    title: 'Proactive alerts',
-    desc: 'Get notified the moment something changes, before your client even notices.',
-  },
-  {
-    title: 'Virtual diagnostics',
-    desc: 'Identify and troubleshoot system issues remotely using live sensor data.',
-  },
-  {
-    title: 'Unified dashboard',
-    desc: 'Every client, every reading, every alert — managed from one central view.',
-  },
-]
-
 /* ── Steps data ── */
 const STEPS = [
   {
@@ -163,6 +143,23 @@ const STEPS = [
 /* ── Main Page ── */
 function RadonBusinessPage() {
   const [formStatus, setFormStatus] = useState(null)
+  const impactRef = useRef(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.impact-stat').forEach((el, i) => {
+            setTimeout(() => el.classList.add('impact-stat--visible'), i * 220)
+          })
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.25 }
+    )
+    if (impactRef.current) observer.observe(impactRef.current)
+    return () => observer.disconnect()
+  }, [])
 
   const handlePartnerSubmit = async (e) => {
     e.preventDefault()
@@ -211,21 +208,6 @@ function RadonBusinessPage() {
           </div>
           <div className="biz-hero-right">
             <ClientPortfolio />
-          </div>
-        </div>
-      </section>
-
-      {/* ── Feature Cards ── */}
-      <section id="biz-features">
-        <div className="biz-features-container">
-          <div className="biz-features-grid">
-            {FEATURES.map(({ title, desc }) => (
-              <div className="biz-feature-card" key={title}>
-                <div className="biz-feature-bar" />
-                <h4 className="biz-feature-title">{title}</h4>
-                <p className="biz-feature-desc">{desc}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -295,7 +277,7 @@ function RadonBusinessPage() {
         <div className="biz-impact-container">
           <p className="biz-eyebrow light">THE IMPACT</p>
           <h2 className="biz-impact-headline">What Indro means for your business.</h2>
-          <div className="biz-impact-card">
+          <div className="biz-impact-card" ref={impactRef}>
             <div className="impact-stat">
               <div className="impact-number">↓ 60%</div>
               <div className="impact-label">UNNECESSARY SITE VISITS</div>

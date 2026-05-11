@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import './NavBar.css'
 
 function NavBar() {
@@ -9,21 +10,21 @@ function NavBar() {
       <nav className="navbar-container">
 
         {/* Logo */}
-        <a href="#hero" className="navbar-logo">
+        <Link to="/" className="navbar-logo">
           <img src="/WhiteName.png" alt="Indro Labs" className="logo-img" />
-        </a>
+        </Link>
 
-        {/* Desktop nav links — right-aligned */}
+        {/* Desktop nav links */}
         <div className="navbar-links">
 
           {/* Product */}
           <div className="nav-item">
             <span className="nav-link">Product</span>
             <div className="nav-dropdown">
-              <a href="#" className="dropdown-row">
+              <Link to="/" className="dropdown-row">
                 <div className="dropdown-row-title">Indro Smart</div>
                 <div className="dropdown-row-desc">Smart radon for everyone</div>
-              </a>
+              </Link>
               <a href="#" className="dropdown-row">
                 <div className="dropdown-row-title">
                   Indro Reception
@@ -38,19 +39,19 @@ function NavBar() {
           <div className="nav-item">
             <span className="nav-link">Solutions</span>
             <div className="nav-dropdown">
-              <a href="#" className="dropdown-row">
+              <Link to="/homeowners" className="dropdown-row">
                 <div className="dropdown-row-title">For Homeowners</div>
                 <div className="dropdown-row-desc">Radon safety for your home</div>
-              </a>
-              <a href="#" className="dropdown-row">
+              </Link>
+              <Link to="/businesses" className="dropdown-row">
                 <div className="dropdown-row-title">For Radon Businesses</div>
                 <div className="dropdown-row-desc">Transform your radon business with smart systems</div>
-              </a>
+              </Link>
             </div>
           </div>
 
-          <a href="#about-section" className="nav-link standalone">About</a>
-          <a href="#contact-section" className="nav-link standalone">Contact us</a>
+          <a href="/#about-section" className="nav-link standalone">About</a>
+          <a href="/#contact-section" className="nav-link standalone">Contact us</a>
         </div>
 
         {/* CTA buttons */}
@@ -73,13 +74,13 @@ function NavBar() {
       {menuOpen && (
         <div className="navbar-mobile-menu">
           <div className="mobile-group-label">Product</div>
-          <a href="#" onClick={() => setMenuOpen(false)}>Indro Smart</a>
+          <Link to="/" onClick={() => setMenuOpen(false)}>Indro Smart</Link>
           <a href="#" onClick={() => setMenuOpen(false)}>Indro Reception</a>
           <div className="mobile-group-label">Solutions</div>
-          <a href="#" onClick={() => setMenuOpen(false)}>For Homeowners</a>
-          <a href="#" onClick={() => setMenuOpen(false)}>For Radon Businesses</a>
-          <a href="#about-section" onClick={() => setMenuOpen(false)}>About</a>
-          <a href="#contact-section" onClick={() => setMenuOpen(false)}>Contact us</a>
+          <Link to="/homeowners" onClick={() => setMenuOpen(false)}>For Homeowners</Link>
+          <Link to="/businesses" onClick={() => setMenuOpen(false)}>For Radon Businesses</Link>
+          <a href="/#about-section" onClick={() => setMenuOpen(false)}>About</a>
+          <a href="/#contact-section" onClick={() => setMenuOpen(false)}>Contact us</a>
           <div className="mobile-ctas">
             <button className="btn-signin">Sign in</button>
             <button className="btn-bookdemo">Book demo</button>

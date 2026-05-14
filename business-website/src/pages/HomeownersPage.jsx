@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 import { ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react'
 import { Listbox } from '@headlessui/react'
+import { useParams, Link } from 'react-router-dom'
 import NavBar from '../components/NavBar/NavBar'
+const familyPhoto = '/FamilyHome.png'
 import '../App.css'
 import './HomeownersPage.css'
 
@@ -10,7 +12,6 @@ function AirQualityWidget() {
   const bars = [20, 35, 25, 45, 30, 80, 55, 40, 65, 35, 50, 45]
   return (
     <div className="ho-widget-wrap">
-      {/* Main dashboard card */}
       <div className="ho-dash-card">
         <div className="ho-dash-header">
           <span className="ho-dash-title">Air Quality — Home</span>
@@ -37,7 +38,6 @@ function AirQualityWidget() {
         </div>
       </div>
 
-      {/* Phone card */}
       <div className="ho-phone-card">
         <span className="ho-phone-brand">Indro Labs</span>
         <div className="ho-phone-score-ring">
@@ -79,12 +79,13 @@ function WhyAccordion() {
           onClick={() => setOpen(i)}
         >
           <div className="ho-acc-header">
-            <span className="ho-acc-num">{n}</span>
             <h4 className="ho-acc-title">{title}</h4>
             <span className="ho-acc-icon">{open === i ? '−' : '+'}</span>
           </div>
           <div className="ho-acc-body">
-            <p className="ho-acc-desc">{desc}</p>
+            <div className="ho-acc-body-inner">
+              <p className="ho-acc-desc">{desc}</p>
+            </div>
           </div>
         </div>
       ))}
@@ -96,8 +97,8 @@ function WhyAccordion() {
 const CAROUSEL_CARDS = [
   {
     n: '01',
-    title: 'Radon is invisible — until it isn\'t',
-    desc: 'You can\'t smell, see, or feel radon. The only way to know your family\'s exposure is continuous, real-time measurement.',
+    title: "Radon is invisible — until it isn't",
+    desc: "You can't smell, see, or feel radon. The only way to know your family's exposure is continuous, real-time measurement.",
   },
   {
     n: '02',
@@ -106,12 +107,12 @@ const CAROUSEL_CARDS = [
   },
   {
     n: '03',
-    title: 'Mitigation isn\'t a one-time fix',
+    title: "Mitigation isn't a one-time fix",
     desc: 'Even after a mitigation system is installed, you need ongoing confirmation that it\'s still working. Indro gives you that daily.',
   },
   {
     n: '04',
-    title: 'Peace of mind shouldn\'t be passive',
+    title: "Peace of mind shouldn't be passive",
     desc: 'Know the moment your air quality changes — not months later when a lab test returns. Real-time alerts keep your family ahead of risk.',
   },
 ]
@@ -120,19 +121,19 @@ function HomeCarousel() {
   const [active, setActive] = useState(0)
   const [dir, setDir]       = useState('right')
 
-  const go   = (next) => { setDir(next > active ? 'right' : 'left'); setActive(next) }
-  const prev = () => { if (active > 0) go(active - 1) }
-  const next = () => { if (active < CAROUSEL_CARDS.length - 1) go(active + 1) }
+  const total = CAROUSEL_CARDS.length
+  const go    = (next) => { setDir(next > active ? 'right' : 'left'); setActive(next) }
+  const prev  = () => go((active - 1 + total) % total)
+  const next  = () => go((active + 1) % total)
 
   return (
     <div className="ho-carousel">
       <div className="ho-card" key={active} data-dir={dir}>
-        <span className="ho-card-num">{CAROUSEL_CARDS[active].n}</span>
         <h3 className="ho-card-title">{CAROUSEL_CARDS[active].title}</h3>
         <p className="ho-card-desc">{CAROUSEL_CARDS[active].desc}</p>
       </div>
       <div className="ho-controls">
-        <button className={`ho-arrow ${active === 0 ? 'disabled' : ''}`} onClick={prev} aria-label="Previous">
+        <button className="ho-arrow" onClick={prev} aria-label="Previous">
           <ChevronLeft size={20} />
         </button>
         <div className="ho-dots">
@@ -140,7 +141,7 @@ function HomeCarousel() {
             <button key={i} className={`ho-dot ${i === active ? 'active' : ''}`} onClick={() => go(i)} aria-label={`Card ${i + 1}`} />
           ))}
         </div>
-        <button className={`ho-arrow ${active === CAROUSEL_CARDS.length - 1 ? 'disabled' : ''}`} onClick={next} aria-label="Next">
+        <button className="ho-arrow" onClick={next} aria-label="Next">
           <ChevronRight size={20} />
         </button>
       </div>
@@ -153,7 +154,7 @@ const WHY_CARDS = [
   {
     n: '01',
     title: 'Passive tests can take 90+ days',
-    desc: 'By the time your lab results arrive, months of exposure have already happened. Indro monitors 24/7 so you\'re never behind.',
+    desc: "By the time your lab results arrive, months of exposure have already happened. Indro monitors 24/7 so you're never behind.",
   },
   {
     n: '02',
@@ -168,7 +169,7 @@ const WHY_CARDS = [
   {
     n: '04',
     title: 'Mitigation needs ongoing verification',
-    desc: 'Even after a mitigation system is installed, you need to confirm it\'s still working. Indro Smart gives you that confirmation daily.',
+    desc: "Even after a mitigation system is installed, you need to confirm it's still working. Indro Smart gives you that confirmation daily.",
   },
 ]
 
@@ -198,10 +199,22 @@ const STEPS = [
 
 /* ── Main Page ── */
 function HomeownersPage() {
+  const { section } = useParams()
   const [selectedOption, setSelectedOption] = useState('')
   const [formStatus, setFormStatus]         = useState(null)
   const impactRef = useRef(null)
   const options   = ['Homeowner', 'Radon professional']
+
+  // Scroll to section on path-based navigation
+  // Supports both clean URL anchors (data-anchor) and legacy IDs
+  useEffect(() => {
+    if (section) {
+      setTimeout(() => {
+        const el = document.querySelector(`[data-anchor="${section}"]`) || document.getElementById(section)
+        el?.scrollIntoView({ behavior: 'smooth' })
+      }, 150)
+    }
+  }, [section])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -253,7 +266,9 @@ function HomeownersPage() {
       {/* ── Hero ── */}
       <section id="ho-hero">
         <div className="ho-hero-container">
-          <div className="ho-hero-left">
+
+          {/* Text — ORDER 2 on mobile (photo goes first) */}
+          <div className="ho-hero-text-col">
             <p className="ho-eyebrow">FOR HOMEOWNERS</p>
             <h1 className="ho-hero-headline">
               Your home deserves<br />
@@ -263,34 +278,21 @@ function HomeownersPage() {
               Indro Smart monitors radon continuously — giving your family real-time peace of mind without the guesswork of passive testing.
             </p>
             <div className="ho-hero-actions">
-              <a href="#ho-waitlist" className="ho-btn-primary">Join the waitlist →</a>
-              <a href="#ho-steps" className="ho-btn-link">See how it works</a>
+              <Link to="/homeowners/waitlist" className="ho-btn-primary">Join waitlist</Link>
+              <Link to="/homeowners/how-it-works" className="ho-btn-link">See how it works</Link>
             </div>
           </div>
-          <div className="ho-hero-right">
-            <AirQualityWidget />
-          </div>
-        </div>
-      </section>
 
-      {/* ── About Indro Labs ── */}
-      <section id="ho-about">
-        <div className="ho-about-container">
-          <div className="ho-about-text">
-            <p className="ho-eyebrow">ABOUT INDRO LABS</p>
-            <h2 className="ho-about-headline">
-              We built this for your family, not for <em>laboratories.</em>
-            </h2>
-            <p className="ho-about-body">
-              Most radon testing is slow, passive, and confusing — designed for professionals, not homeowners. Indro Labs changes that. We make continuous, intelligent air monitoring accessible to anyone who cares about the air they breathe at home.
-            </p>
-            <p className="ho-about-body">
-              No lab wait times. No confusing reports. Just clear, live data — and peace of mind.
-            </p>
+          {/* Photo — ORDER 1 on mobile */}
+          <div className="ho-hero-photo-col">
+            <div className="ho-hero-photo-wrap">
+              <img src={familyPhoto} alt="Family enjoying a safe home" className="ho-hero-photo" />
+              <div className="ho-hero-widget-overlay">
+                <AirQualityWidget />
+              </div>
+            </div>
           </div>
-          <div className="ho-about-photo">
-            <span className="ho-photo-label">PHOTO — FAMILY AT HOME</span>
-          </div>
+
         </div>
       </section>
 
@@ -298,7 +300,7 @@ function HomeownersPage() {
       <section id="ho-why">
         <div className="ho-why-container">
           <div className="ho-why-left">
-            <p className="ho-eyebrow">WHY IT MATTERS</p>
+            <p className="ho-eyebrow light">WHY IT MATTERS</p>
             <h2 className="ho-why-headline">Radon doesn't announce itself.</h2>
             <p className="ho-why-sub">
               It's colourless, odourless, and the second leading cause of lung cancer. The only way to know is to measure it — continuously.
@@ -313,10 +315,7 @@ function HomeownersPage() {
       {/* ── Carousel ── */}
       <section id="ho-carousel">
         <div className="ho-carousel-container">
-          <div className="ho-carousel-left">
-            <HomeCarousel />
-          </div>
-          <div className="ho-carousel-right">
+          <div className="ho-carousel-text">
             <p className="ho-eyebrow light">CONTINUOUS PROTECTION</p>
             <h2 className="ho-carousel-headline">
               One device. Always watching. <em>Always on.</em>
@@ -325,11 +324,14 @@ function HomeownersPage() {
               Passive radon tests give you a snapshot. Indro gives you the full picture — every hour, every day, automatically.
             </p>
           </div>
+          <div className="ho-carousel-card-wrap">
+            <HomeCarousel />
+          </div>
         </div>
       </section>
 
       {/* ── How It Works ── */}
-      <section id="ho-steps">
+      <section id="ho-steps" data-anchor="how-it-works">
         <div className="ho-steps-container">
           <p className="ho-eyebrow blue">HOW IT WORKS</p>
           <h2 className="ho-steps-headline">Set up in minutes. Peace of mind in hours.</h2>
@@ -377,14 +379,17 @@ function HomeownersPage() {
       </section>
 
       {/* ── Join Waitlist ── */}
-      <section id="ho-waitlist">
-        <div className="contact-container">
-          <h2 className="contact-heading">Join the waitlist</h2>
-          <p className="contact-intro">Be the first to know when Indro Smart is available in your area.</p>
-          <div className="biz-form-wrap">
-            <form className="contact-card biz-partner-form" onSubmit={handleWaitlistSubmit}>
-              <h3>Reserve your spot</h3>
-              <p>We'll reach out as soon as we launch in your region.</p>
+      <section id="ho-waitlist" data-anchor="waitlist">
+        <div className="ho-waitlist-container">
+          <div className="ho-waitlist-left">
+            <p className="ho-eyebrow">JOIN THE WAITLIST</p>
+            <h2 className="ho-waitlist-headline">Reserve your spot</h2>
+            <p className="ho-waitlist-body">
+              Be the first to know when Indro Smart is available in your area. We'll reach out as soon as we launch in your region.
+            </p>
+          </div>
+          <div className="ho-waitlist-right">
+            <form className="contact-card" onSubmit={handleWaitlistSubmit}>
               <div className="form-group"><label>Name *</label><input name="name" type="text" required /></div>
               <div className="form-group"><label>Email *</label><input name="email" type="email" required /></div>
               <div className="form-group"><label>City / Province (optional)</label><input name="cityProvince" type="text" /></div>
@@ -403,7 +408,7 @@ function HomeownersPage() {
                   </div>
                 </Listbox>
               </div>
-              <button className="submit-button waitlist-submit-button" type="submit">Join Waitlist</button>
+              <button className="submit-button waitlist-submit-button" type="submit">Join waitlist</button>
             </form>
           </div>
         </div>
@@ -415,6 +420,15 @@ function HomeownersPage() {
           <div className="footer-column"><h4>Indro Labs</h4><p>Continuous radon protection monitoring</p></div>
           <div className="footer-column"><h4>Contact</h4><p>info@indrolabs.ca</p></div>
           <div className="footer-column"><h4>Location</h4><p>Alberta, Canada</p></div>
+          <div className="footer-column">
+            <h4>Follow us</h4>
+            <a href="https://www.linkedin.com/company/indrolabs" target="_blank" rel="noopener noreferrer" className="footer-social-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+              LinkedIn
+            </a>
+          </div>
         </div>
         <div className="footer-bottom">Copyright © 2026 Indro Labs — All Rights Reserved.</div>
       </footer>

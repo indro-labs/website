@@ -40,24 +40,23 @@ function NavBar() {
             <span className="nav-link">Solutions</span>
             <div className="nav-dropdown">
               <Link to="/homeowners" className="dropdown-row">
-                <div className="dropdown-row-title">For Homeowners</div>
+                <div className="dropdown-row-title">For homeowners</div>
                 <div className="dropdown-row-desc">Radon safety for your home</div>
               </Link>
               <Link to="/businesses" className="dropdown-row">
-                <div className="dropdown-row-title">For Radon Businesses</div>
+                <div className="dropdown-row-title">For radon businesses</div>
                 <div className="dropdown-row-desc">Transform your radon business with smart systems</div>
               </Link>
             </div>
           </div>
 
-          <a href="/#about-section" className="nav-link standalone">About</a>
-          <a href="/#contact-section" className="nav-link standalone">Contact us</a>
+          <Link to="/about" className="nav-link standalone">About</Link>
+          <Link to="/contact-us" className="nav-link standalone">Contact us</Link>
         </div>
 
-        {/* CTA buttons */}
+        {/* CTA button */}
         <div className="navbar-actions">
-          <button className="btn-signin">Sign in</button>
-          <button className="btn-bookdemo">Book demo</button>
+          <Link to="/contact" className="btn-bookdemo">Join waitlist</Link>
         </div>
 
         {/* Mobile toggle */}
@@ -75,15 +74,17 @@ function NavBar() {
         <div className="navbar-mobile-menu">
           <div className="mobile-group-label">Product</div>
           <Link to="/" onClick={() => setMenuOpen(false)}>Indro Smart</Link>
-          <a href="#" onClick={() => setMenuOpen(false)}>Indro Reception</a>
+          <a href="#" onClick={() => setMenuOpen(false)} className="mobile-link-row">
+            Indro Reception
+            <span className="mobile-coming-badge">Coming soon</span>
+          </a>
           <div className="mobile-group-label">Solutions</div>
-          <Link to="/homeowners" onClick={() => setMenuOpen(false)}>For Homeowners</Link>
-          <Link to="/businesses" onClick={() => setMenuOpen(false)}>For Radon Businesses</Link>
-          <a href="/#about-section" onClick={() => setMenuOpen(false)}>About</a>
-          <a href="/#contact-section" onClick={() => setMenuOpen(false)}>Contact us</a>
+          <Link to="/homeowners" onClick={() => setMenuOpen(false)}>For homeowners</Link>
+          <Link to="/businesses" onClick={() => setMenuOpen(false)}>For radon businesses</Link>
+          <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
+          <Link to="/contact-us" onClick={() => setMenuOpen(false)}>Contact us</Link>
           <div className="mobile-ctas">
-            <button className="btn-signin">Sign in</button>
-            <button className="btn-bookdemo">Book demo</button>
+            <Link to="/contact" className="btn-bookdemo" style={{ flex: 1, textAlign: 'center', textDecoration: 'none' }} onClick={() => setMenuOpen(false)}>Join waitlist</Link>
           </div>
         </div>
       )}

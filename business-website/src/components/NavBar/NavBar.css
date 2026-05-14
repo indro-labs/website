@@ -12,13 +12,14 @@
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid #eaecf0;
+  overflow: visible;
 }
 
 .navbar-container {
   max-width: 1320px;
   margin: 0 auto;
   padding: 0 48px;
-  height: 80px;
+  height: 110px;
   display: flex;
   align-items: center;
   gap: 0;
@@ -34,7 +35,7 @@
 }
 
 .logo-img {
-  height: 46px;
+  height: 210px;
   width: auto;
   display: block;
   object-fit: contain;
@@ -45,6 +46,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
+  margin-left: auto;
   margin-right: 24px;
 }
 
@@ -191,6 +193,8 @@
   cursor: pointer;
   transition: background 0.15s;
   white-space: nowrap;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .btn-bookdemo:hover {
@@ -241,6 +245,24 @@
   padding: 16px 4px 6px;
 }
 
+.mobile-link-row {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobile-coming-badge {
+  font-size: 10px;
+  font-weight: 600;
+  color: #6b7280;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 2px 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 .mobile-ctas {
   display: flex;
   gap: 10px;
@@ -263,6 +285,21 @@
   }
 
   .navbar-container {
-    padding: 0 24px;
+    padding: 0 20px;
+    height: 80px;
+  }
+
+  .logo-img {
+    height: 160px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-container {
+    height: 72px;
+  }
+
+  .logo-img {
+    height: 140px;
   }
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { useParams, Link } from 'react-router-dom'
 import NavBar from '../components/NavBar/NavBar'
 import '../App.css'
 import './RadonBusinessPage.css'
@@ -55,25 +56,21 @@ function ClientPortfolio() {
   )
 }
 
-/* ── Why Monitoring Carousel ── */
+/* ── Why Monitoring Carousel — looping, no numbers ── */
 const WHY_CARDS = [
   {
-    n: '01',
     title: 'Know before your client does',
     desc: 'Real-time alerts when radon levels rise at any client property — before they call you, or before they start looking for someone else.',
   },
   {
-    n: '02',
     title: 'Fan health at a glance',
     desc: 'Monitor every mitigation fan remotely. Detect failures and performance drops without a single site visit.',
   },
   {
-    n: '03',
     title: 'Virtual diagnostics',
     desc: 'Troubleshoot client systems remotely using live sensor data — reducing unnecessary truck rolls and saving hours each week.',
   },
   {
-    n: '04',
     title: 'Full system visibility',
     desc: 'Every client, every property, every reading — in one dashboard. Nothing falls through the cracks.',
   },
@@ -83,24 +80,20 @@ function WhyCarousel() {
   const [active, setActive] = useState(0)
   const [dir, setDir] = useState('right')
 
-  const go = (next) => {
-    setDir(next > active ? 'right' : 'left')
-    setActive(next)
-  }
-
-  const prev = () => { if (active > 0) go(active - 1) }
-  const next = () => { if (active < WHY_CARDS.length - 1) go(active + 1) }
+  const total = WHY_CARDS.length
+  const go = (next) => { setDir(next > active ? 'right' : 'left'); setActive(next) }
+  const prev = () => go((active - 1 + total) % total)
+  const next = () => go((active + 1) % total)
 
   return (
     <div className="why-carousel">
       <div className="why-card" key={active} data-dir={dir}>
-        <span className="why-card-num">{WHY_CARDS[active].n}</span>
         <h3 className="why-card-title">{WHY_CARDS[active].title}</h3>
         <p className="why-card-desc">{WHY_CARDS[active].desc}</p>
       </div>
 
       <div className="why-controls">
-        <button className={`why-arrow ${active === 0 ? 'disabled' : ''}`} onClick={prev} aria-label="Previous">
+        <button className="why-arrow" onClick={prev} aria-label="Previous">
           <ChevronLeft size={20} />
         </button>
         <div className="why-dots">
@@ -108,7 +101,7 @@ function WhyCarousel() {
             <button key={i} className={`why-dot ${i === active ? 'active' : ''}`} onClick={() => go(i)} aria-label={`Card ${i + 1}`} />
           ))}
         </div>
-        <button className={`why-arrow ${active === WHY_CARDS.length - 1 ? 'disabled' : ''}`} onClick={next} aria-label="Next">
+        <button className="why-arrow" onClick={next} aria-label="Next">
           <ChevronRight size={20} />
         </button>
       </div>
@@ -142,8 +135,18 @@ const STEPS = [
 
 /* ── Main Page ── */
 function RadonBusinessPage() {
+  const { section } = useParams()
   const [formStatus, setFormStatus] = useState(null)
   const impactRef = useRef(null)
+
+  useEffect(() => {
+    if (section) {
+      setTimeout(() => {
+        const el = document.querySelector(`[data-anchor="${section}"]`) || document.getElementById(section)
+        el?.scrollIntoView({ behavior: 'smooth' })
+      }, 150)
+    }
+  }, [section])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -202,8 +205,8 @@ function RadonBusinessPage() {
               Monitor every client system remotely. Get call-back alerts before clients do. Know your fans are working — without driving out.
             </p>
             <div className="biz-hero-actions">
-              <button className="biz-btn-primary">Book a demo →</button>
-              <a href="#biz-steps" className="biz-btn-link">See how it works</a>
+              <Link to="/businesses/contact" className="biz-btn-primary">Become partner</Link>
+              <Link to="/businesses/how-it-works" className="biz-btn-link">See how it works</Link>
             </div>
           </div>
           <div className="biz-hero-right">
@@ -212,31 +215,13 @@ function RadonBusinessPage() {
         </div>
       </section>
 
-      {/* ── About Indro Labs ── */}
-      <section id="biz-about">
-        <div className="biz-about-container">
-          <div className="biz-about-photo">
-            <span className="biz-photo-label">PHOTO — TECHNICIAN AT WORK</span>
-          </div>
-          <div className="biz-about-text">
-            <p className="biz-eyebrow light">ABOUT INDRO LABS</p>
-            <h2 className="biz-about-headline">
-              Built for the people<br />who <em>do the work.</em>
-            </h2>
-            <p className="biz-about-body">
-              Indro Labs gives radon mitigation businesses a platform to remotely monitor every client system — replacing reactive service calls with proactive, data-driven care.
-            </p>
-            <p className="biz-about-body">
-              Your clients get peace of mind. You get visibility, efficiency, and a competitive edge that sets your business apart.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Why Monitoring Matters ── */}
+      {/* ── Why Monitoring Matters — carousel LEFT, text RIGHT ── */}
       <section id="biz-why">
         <div className="biz-why-container">
           <div className="biz-why-left">
+            <WhyCarousel />
+          </div>
+          <div className="biz-why-right">
             <p className="biz-eyebrow light">WHY MONITORING MATTERS</p>
             <h2 className="biz-why-headline">
               Your business runs on trust. Indro makes that <em>visible.</em>
@@ -245,14 +230,12 @@ function RadonBusinessPage() {
               Every call-back costs you time. Every undetected fan failure costs you a client. Continuous remote monitoring changes the economics of your business.
             </p>
           </div>
-          <div className="biz-why-right">
-            <WhyCarousel />
-          </div>
         </div>
+
       </section>
 
       {/* ── How It Works ── */}
-      <section id="biz-steps">
+      <section id="biz-steps" data-anchor="how-it-works">
         <div className="biz-steps-container">
           <p className="biz-eyebrow blue">HOW IT WORKS</p>
           <h2 className="biz-steps-headline">From installation to insight in four steps.</h2>
@@ -300,21 +283,24 @@ function RadonBusinessPage() {
       </section>
 
       {/* ── Become a Partner ── */}
-      <section id="biz-contact">
-        <div className="contact-container">
-          <h2 className="contact-heading">Become a partner</h2>
-          <p className="contact-intro">
-            We're actively partnering with radon professionals for early deployments. Let's build something together.
-          </p>
-          <div className="biz-form-wrap">
-            <form className="contact-card biz-partner-form" onSubmit={handlePartnerSubmit}>
+      <section id="biz-contact" data-anchor="contact">
+        <div className="biz-contact-container">
+          <div className="biz-contact-left">
+            <p className="biz-eyebrow blue">BECOME A PARTNER</p>
+            <h2 className="biz-contact-headline">Partner with Indro Labs.</h2>
+            <p className="biz-contact-body">
+              We're actively partnering with radon professionals for early deployments. Let's build something together.
+            </p>
+          </div>
+          <div className="biz-contact-right">
+            <form className="contact-card" onSubmit={handlePartnerSubmit}>
               <h3>Get in touch</h3>
               <p>Tell us about your business and we'll reach out within 48 hours.</p>
               <div className="form-group"><label>Company (optional)</label><input name="company" type="text" /></div>
               <div className="form-group"><label>Name *</label><input name="name" type="text" required /></div>
               <div className="form-group"><label>Email *</label><input name="email" type="email" required /></div>
               <div className="form-group"><label>Message *</label><textarea name="message" required></textarea></div>
-              <button className="submit-button partner-submit-button" type="submit">Send Message</button>
+              <button className="submit-button partner-submit-button" type="submit">Send message</button>
             </form>
           </div>
         </div>
@@ -326,6 +312,15 @@ function RadonBusinessPage() {
           <div className="footer-column"><h4>Indro Labs</h4><p>Continuous radon protection monitoring</p></div>
           <div className="footer-column"><h4>Contact</h4><p>info@indrolabs.ca</p></div>
           <div className="footer-column"><h4>Location</h4><p>Alberta, Canada</p></div>
+          <div className="footer-column">
+            <h4>Follow us</h4>
+            <a href="https://www.linkedin.com/company/indrolabs" target="_blank" rel="noopener noreferrer" className="footer-social-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+              LinkedIn
+            </a>
+          </div>
         </div>
         <div className="footer-bottom">Copyright © 2026 Indro Labs — All Rights Reserved.</div>
       </footer>

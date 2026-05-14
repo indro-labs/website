@@ -26,7 +26,7 @@
 
 #biz-hero {
   background: #0b1635;
-  padding-top: 80px;
+  padding-top: 110px;
   min-height: 100svh;
   display: flex;
   align-items: center;
@@ -100,6 +100,8 @@
   border-radius: 12px;
   cursor: pointer;
   transition: background 0.18s, color 0.18s;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .biz-btn-primary:hover {
@@ -264,7 +266,7 @@
 /* ========================= */
 
 #biz-about {
-  background: #0f1d42;
+  background: #f6f9fc;
   padding: 110px 64px;
 }
 
@@ -278,13 +280,14 @@
 }
 
 .biz-about-photo {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #e8eef8;
+  border: 1px solid #d8e2f3;
   border-radius: 20px;
   aspect-ratio: 4/5;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 8px 40px rgba(11, 22, 53, 0.08);
 }
 
 .biz-photo-label {
@@ -292,7 +295,7 @@
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.25);
+  color: #94a3b8;
   text-transform: uppercase;
 }
 
@@ -300,7 +303,7 @@
   font-family: 'DM Serif Display', Georgia, serif;
   font-weight: 400;
   font-size: clamp(36px, 3.8vw, 56px);
-  color: #ffffff;
+  color: #0b1020;
   line-height: 1.15;
   margin-bottom: 28px;
   letter-spacing: -0.3px;
@@ -308,14 +311,14 @@
 
 .biz-about-headline em {
   font-style: italic;
-  color: #7db3ff;
+  color: #2b5ce6;
 }
 
 .biz-about-body {
   font-family: 'DM Sans', sans-serif;
   font-size: 18px;
   line-height: 1.78;
-  color: rgba(255, 255, 255, 0.6);
+  color: #64748b;
   margin-bottom: 18px;
 }
 
@@ -324,8 +327,8 @@
 /* ========================= */
 
 #biz-why {
-  background: linear-gradient(160deg, #1a2d6e 0%, #0b1635 60%, #0d1f55 100%);
-  padding: 110px 64px;
+  background: linear-gradient(160deg, #1e3580 0%, #0c1a3e 55%, #0f2260 100%);
+  padding: 110px 64px 80px;
 }
 
 .biz-why-container {
@@ -468,7 +471,7 @@
 /* ========================= */
 
 #biz-steps {
-  background: #f5f7ff;
+  background: #f6f9fc;
   padding: 110px 64px;
 }
 
@@ -505,7 +508,7 @@
   position: relative;
   padding: 40px 36px;
   border-right: 1px solid #dde5f4;
-  background: white;
+  background: #edf1f9;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: default;
@@ -516,7 +519,8 @@
 
 .biz-step-card:hover {
   transform: translateY(-7px);
-  box-shadow: 0 20px 48px rgba(43, 92, 230, 0.15);
+  box-shadow: 0 20px 48px rgba(43, 92, 230, 0.13);
+  background: #ffffff;
   z-index: 1;
 }
 
@@ -587,20 +591,20 @@
 /* ========================= */
 
 #biz-impact {
-  background: linear-gradient(160deg, #1a2d6e 0%, #0b1635 60%, #0d1f55 100%);
+  background: linear-gradient(160deg, #1e3580 0%, #0c1a3e 55%, #0f2260 100%);
   padding: 110px 64px;
   position: relative;
   overflow: hidden;
 }
 
-/* Subtle ambient glow in background */
 #biz-impact::before {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 15% 50%, rgba(43, 92, 230, 0.18) 0%, transparent 55%),
-    radial-gradient(ellipse at 85% 50%, rgba(43, 92, 230, 0.14) 0%, transparent 55%);
+    radial-gradient(ellipse at 15% 50%, rgba(43, 92, 230, 0.3) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 50%, rgba(43, 92, 230, 0.22) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 0%, rgba(125, 179, 255, 0.12) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -689,20 +693,48 @@
 }
 
 /* ========================= */
-/* Partner Form              */
+/* Partner Form — 2-col      */
 /* ========================= */
 
 #biz-contact {
-  background: white;
-  padding: 110px 24px;
+  background: #f6f9fc;
+  padding: 120px 64px;
 }
 
-.biz-form-wrap {
-  max-width: 620px;
+.biz-contact-container {
+  max-width: 1200px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 100px;
+  align-items: center;
 }
 
-.biz-partner-form { width: 100%; }
+.biz-contact-left .biz-eyebrow { color: #2b5ce6; }
+
+.biz-contact-headline {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(32px, 3.5vw, 50px);
+  color: #0b1020;
+  line-height: 1.15;
+  letter-spacing: -0.3px;
+  margin: 0 0 20px;
+}
+
+.biz-contact-body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 17px;
+  line-height: 1.75;
+  color: #64748b;
+}
+
+#biz-contact .contact-card {
+  background: #ffffff;
+  border: 1px solid #d8e2f3;
+  box-shadow: 0 8px 40px rgba(43, 92, 230, 0.08), 0 1px 4px rgba(0,0,0,0.03);
+  margin: 0;
+}
 
 /* ========================= */
 /* Responsive — 1100px       */
@@ -720,10 +752,20 @@
   #biz-steps,
   #biz-impact,
   #biz-about,
-  #biz-why,
+  #biz-why {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .biz-contact-container {
+    gap: 60px;
+  }
+
   #biz-contact {
     padding-left: 40px;
     padding-right: 40px;
+    padding-top: 100px;
+    padding-bottom: 100px;
   }
 
   .biz-features-grid {
@@ -755,7 +797,7 @@
 
   .biz-hero-container {
     flex-direction: column;
-    padding: 56px 24px 48px;
+    padding: 80px 24px 56px;
     gap: 48px;
     text-align: center;
   }
@@ -778,22 +820,46 @@
 
   .portfolio-card { max-width: 100%; }
 
-  .biz-about-container,
+  /* Why section — text on top, carousel below on mobile */
   .biz-why-container {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 0 24px;
+  }
+
+  .biz-why-left  { order: 2; }
+  .biz-why-right { order: 1; }
+
+  .biz-about-container {
     grid-template-columns: 1fr;
     gap: 48px;
     padding: 72px 24px;
   }
 
   #biz-about,
-  #biz-why,
   #biz-steps,
-  #biz-impact,
-  #biz-contact {
+  #biz-impact {
     padding-left: 24px;
     padding-right: 24px;
     padding-top: 72px;
     padding-bottom: 72px;
+  }
+
+  #biz-why {
+    padding: 88px 24px 80px;
+  }
+
+  /* Contact 2-col → 1-col */
+  .biz-contact-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  #biz-contact {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 80px;
+    padding-bottom: 80px;
   }
 
   .biz-about-photo { aspect-ratio: 16/9; }
@@ -817,7 +883,6 @@
 
   .impact-stat {
     padding: 24px 0;
-    /* Override translate so mobile stagger is vertical */
     transform: translateY(28px);
   }
 
@@ -845,5 +910,45 @@
 /* ========================= */
 
 @media (max-width: 480px) {
-  .why-card { padding: 28px 24px; }
+  .why-card { padding: 28px 20px; }
+
+  .biz-hero-container { padding: 60px 20px 48px; }
+
+  .biz-hero-headline { font-size: clamp(34px, 9vw, 48px); }
+
+  .biz-steps-grid { grid-template-columns: 1fr; }
+
+  .biz-step-card { padding: 28px 20px; }
+
+  .biz-impact-card { padding: 24px 20px; }
+
+  #biz-steps,
+  #biz-impact,
+  #biz-about {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  #biz-why {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  #biz-contact {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+}
+
+@media (max-width: 960px) {
+  #biz-hero { padding-top: 80px; }
+}
+@media (max-width: 480px) {
+  #biz-hero { padding-top: 72px; }
 }

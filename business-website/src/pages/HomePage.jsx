@@ -1,11 +1,54 @@
 import NavBar from '../components/NavBar/NavBar'
 import '../App.css'
 import { ChevronDown } from 'lucide-react'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { useNavigate, useParams, Link } from 'react-router-dom'
 import { Listbox } from '@headlessui/react'
-import homeownerPhoto from '../assets/ForHomeowner.jpg'
-import businessPhoto from '../assets/ForRadonBuisnesses.jpg'
+import homeownerPhoto  from '../assets/ForHomeowner.jpg'
+import businessPhoto   from '../assets/ForRadonBuisnesses.jpg'
+import heroVideo       from '../assets/hero_video.mp4'
+import step1Photo      from '../assets/Mainpagestep1.jpg'
+import step2Photo      from '../assets/Mainpagestep2.jpg'
+import step3Photo      from '../assets/Mainpagestep3.jpg'
+
+/* ── Stats Slider ── */
+const STAT_SLIDES = [
+  { number: '21k',      label: 'DEATHS / YR', desc: 'In the U.S. attributed to radon-induced lung cancer.' },
+  { number: '1 in 15',  label: 'HOMES',        desc: 'In the U.S. exceed actionable radon levels.' },
+  { number: '<1%',      label: 'TESTED',       desc: 'Of homes are continuously monitored for indoor air quality.' },
+]
+
+function StatsSlider() {
+  const [active, setActive] = useState(0)
+  const [dir, setDir]       = useState('right')
+
+  const go = (i) => { setDir(i > active ? 'right' : 'left'); setActive(i) }
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      setDir('right')
+      setActive(p => (p + 1) % STAT_SLIDES.length)
+    }, 3200)
+    return () => clearInterval(t)
+  }, [])
+
+  const s = STAT_SLIDES[active]
+
+  return (
+    <div className="stats-slider-card">
+      <div className="stats-slide" key={active} data-dir={dir}>
+        <div className="stat-number">{s.number}</div>
+        <div className="stat-label">{s.label}</div>
+        <div className="stat-desc">{s.desc}</div>
+      </div>
+      <div className="stats-slider-dots">
+        {STAT_SLIDES.map((_, i) => (
+          <button key={i} className={`stat-dot ${i === active ? 'active' : ''}`} onClick={() => go(i)} />
+        ))}
+      </div>
+    </div>
+  )
+}
 
 /* ── Radon Gauge Widget ── */
 function RadonGauge() {
@@ -18,16 +61,16 @@ function RadonGauge() {
     <div className="gauge-wrapper">
       <div className="gauge-circle">
         <svg viewBox="0 0 300 300" className="gauge-svg" aria-hidden="true">
-          <circle cx={cx} cy={cy} r={r + 28} fill="#eaedff" />
+          <circle cx={cx} cy={cy} r={r + 28} fill="rgba(255,255,255,0.07)" />
           <circle
             cx={cx} cy={cy} r={r}
-            fill="none" stroke="#c8d0f0" strokeWidth="11" strokeLinecap="round"
+            fill="none" stroke="rgba(255,255,255,0.14)" strokeWidth="11" strokeLinecap="round"
             strokeDasharray={`${trackLength} ${circumference}`}
             transform={`rotate(135 ${cx} ${cy})`}
           />
           <circle
             cx={cx} cy={cy} r={r}
-            fill="none" stroke="#2b5ce6" strokeWidth="11" strokeLinecap="round"
+            fill="none" stroke="#7db3ff" strokeWidth="11" strokeLinecap="round"
             strokeDasharray={`${valueLength} ${circumference}`}
             transform={`rotate(135 ${cx} ${cy})`}
           />
@@ -71,12 +114,58 @@ function RadonGauge() {
   )
 }
 
+/* ── Mobile Hero Card ── */
+function HeroMobileCard() {
+  return (
+    <div className="hero-mobile-card">
+      <div className="hmc-top">
+        <div className="hmc-label-row">
+          <span className="hmc-label">RADON · LIVE</span>
+          <span className="hmc-safe"><span className="hmc-dot" />Safe</span>
+        </div>
+        <div className="hmc-reading">
+          <span className="hmc-num">0.8</span>
+          <span className="hmc-unit">pCi / L</span>
+        </div>
+        <div className="hmc-status">Healthy · trending stable</div>
+      </div>
+      <div className="hmc-divider" />
+      <div className="hmc-metrics">
+        <div className="hmc-metric">
+          <span className="hmc-metric-label">PM 2.5</span>
+          <span className="hmc-metric-val green">9 <span className="hmc-metric-unit">μg/m³</span></span>
+        </div>
+        <div className="hmc-metric-sep" />
+        <div className="hmc-metric">
+          <span className="hmc-metric-label">VOC</span>
+          <span className="hmc-metric-val amber">142 <span className="hmc-metric-unit">ppb</span></span>
+        </div>
+        <div className="hmc-metric-sep" />
+        <div className="hmc-metric">
+          <span className="hmc-metric-label">CO₂</span>
+          <span className="hmc-metric-val blue">612 <span className="hmc-metric-unit">ppm</span></span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 /* ── Home Page ── */
 function HomePage() {
   const navigate = useNavigate()
+  const { section } = useParams()
   const options = ['Homeowner', 'Radon professional']
   const [selectedOption, setSelectedOption] = useState('')
   const [formStatus, setFormStatus] = useState(null)
+
+  // Scroll to section when navigated via /section-id path
+  useEffect(() => {
+    if (section) {
+      setTimeout(() => {
+        document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' })
+      }, 150)
+    }
+  }, [section])
 
   const handleWaitlistSubmit = async (e) => {
     e.preventDefault()
@@ -126,6 +215,11 @@ function HomePage() {
 
       {/* Hero */}
       <section id="hero">
+        <video className="hero-video-bg" autoPlay muted loop playsInline>
+          <source src={heroVideo} type="video/mp4" />
+        </video>
+        <div className="hero-video-overlay" />
+
         <div className="hero-container">
           <div className="hero-left">
             <h1 className="hero-headline">
@@ -136,19 +230,18 @@ function HomePage() {
               Indro Labs builds intelligent indoor environmental monitoring technology designed to make indoor spaces more proactive, data-driven, and easier to manage.
             </p>
             <div className="hero-actions">
-              <button className="hero-btn-primary">Book a demo →</button>
-              <a href="#how-it-works" className="hero-btn-link">See how it works</a>
+              <Link to="/contact" className="hero-btn-primary">Join waitlist</Link>
+              <Link to="/how-it-works" className="hero-btn-link">See how it works</Link>
             </div>
           </div>
           <div className="hero-right">
-            <div className="hero-gauge-bg">
+            <div className="hero-gauge-panel hero-desktop-only">
               <RadonGauge />
             </div>
+            <HeroMobileCard />
           </div>
         </div>
       </section>
-
-      <div className="grad-to-dark" />
 
       {/* Stats */}
       <section id="stats-section">
@@ -157,29 +250,9 @@ function HomePage() {
             The leading environmental cause of lung cancer is{' '}
             <em>invisible,</em> odorless, and <em>everywhere indoors.</em>
           </h2>
-          <div className="stats-card">
-            <div className="stat-item">
-              <div className="stat-number">21k</div>
-              <div className="stat-label">DEATHS / YR</div>
-              <div className="stat-desc">In the U.S. attributed to radon-induced lung cancer.</div>
-            </div>
-            <div className="stat-divider" />
-            <div className="stat-item">
-              <div className="stat-number">1 in 15</div>
-              <div className="stat-label">HOMES</div>
-              <div className="stat-desc">In the U.S. exceed actionable radon levels.</div>
-            </div>
-            <div className="stat-divider" />
-            <div className="stat-item">
-              <div className="stat-number">&lt;1%</div>
-              <div className="stat-label">TESTED</div>
-              <div className="stat-desc">Of homes are continuously monitored for indoor air quality.</div>
-            </div>
-          </div>
+          <StatsSlider />
         </div>
       </section>
-
-      <div className="grad-to-light" />
 
       {/* Solutions */}
       <section id="solutions-section">
@@ -190,17 +263,17 @@ function HomePage() {
           <div className="sol-card">
             <div className="sol-photo" style={{ backgroundImage: `url(${homeownerPhoto})` }} />
             <div className="sol-overlay">
-              <h3 className="sol-title">For Homeowners.</h3>
+              <h3 className="sol-title">For homeowners.</h3>
               <p className="sol-desc">Protect your home and family with real-time radon monitoring, instant alerts, and smart automation.</p>
-              <button className="sol-cta" onClick={() => navigate('/homeowners')}>Learn more →</button>
+              <button className="sol-cta" onClick={() => navigate('/homeowners')}>Learn more</button>
             </div>
           </div>
           <div className="sol-card">
             <div className="sol-photo" style={{ backgroundImage: `url(${businessPhoto})` }} />
             <div className="sol-overlay">
-              <h3 className="sol-title">For Radon Businesses.</h3>
+              <h3 className="sol-title">For radon businesses.</h3>
               <p className="sol-desc">Run a smarter mitigation business. Monitor client systems remotely, track fan health, and diagnose virtually.</p>
-              <button className="sol-cta" onClick={() => navigate('/businesses')}>Learn more →</button>
+              <button className="sol-cta" onClick={() => navigate('/businesses')}>Learn more</button>
             </div>
           </div>
         </div>
@@ -213,13 +286,13 @@ function HomePage() {
         </div>
         <div className="hiw-grid">
           {[
-            { n: 1, label: 'INSTALL PHOTO', title: 'Buy Indro Smart', desc: 'Purchase for your home or your business. Plugs into existing radon mitigation systems with no complexity.' },
-            { n: 2, label: 'APP SCREENSHOT', title: 'Monitor radon levels', desc: 'Live readings from home or anywhere. Real-time data, trends, and alerts — all in the Indro app.' },
-            { n: 3, label: 'DASHBOARD PHOTO', title: 'Sense. Control. Stay safe.', desc: 'Set thresholds and let Indro act — automated fan control, smart alerts, and intelligent mitigation.' },
-          ].map(({ n, label, title, desc }) => (
+            { n: 1, img: step1Photo, title: 'Buy Indro Smart', desc: 'Purchase for your home or your business. Plugs into existing radon mitigation systems with no complexity.' },
+            { n: 2, img: step2Photo, title: 'Monitor radon levels', desc: 'Live readings from home or anywhere. Real-time data, trends, and alerts — all in the Indro app.' },
+            { n: 3, img: step3Photo, title: 'Sense. Control. Stay safe.', desc: 'Set thresholds and let Indro act — automated fan control, smart alerts, and intelligent mitigation.' },
+          ].map(({ n, img, title, desc }) => (
             <div className="hiw-card" key={n}>
               <div className="hiw-photo-box">
-                <span className="hiw-photo-label">{label}</span>
+                <img src={img} alt={title} className="hiw-photo-img" />
                 <div className="hiw-hover-grad" />
               </div>
               <div className="hiw-step-num">{n}</div>
@@ -231,13 +304,13 @@ function HomePage() {
       </section>
 
       {/* Contact */}
-      <section id="contact-section">
+      <section id="contact">
         <div className="contact-container">
           <h2 className="contact-heading">Get updates</h2>
           <p className="contact-intro">Join the waitlist or contact us to discuss partnership opportunities.</p>
           <div className="contact-grid">
             <form className="contact-card" onSubmit={handleWaitlistSubmit}>
-              <h3>Join the Waitlist</h3>
+              <h3>Join the waitlist</h3>
               <p>Be the first to know when we launch.</p>
               <div className="form-group"><label>Name *</label><input name="name" type="text" required /></div>
               <div className="form-group"><label>Email *</label><input name="email" type="email" required /></div>
@@ -255,17 +328,17 @@ function HomePage() {
                   </div>
                 </Listbox>
               </div>
-              <button className="submit-button waitlist-submit-button" type="submit">Join Waitlist</button>
+              <button className="submit-button waitlist-submit-button" type="submit">Join waitlist</button>
             </form>
 
             <form className="contact-card" onSubmit={handlePartnerSubmit}>
-              <h3>Partner with Us</h3>
+              <h3>Partner with us</h3>
               <p>For industry professionals and organizations.</p>
               <div className="form-group"><label>Company (optional)</label><input name="company" type="text" /></div>
               <div className="form-group"><label>Name *</label><input name="name" type="text" required /></div>
               <div className="form-group"><label>Email *</label><input name="email" type="email" required /></div>
               <div className="form-group"><label>Message *</label><textarea name="message" required></textarea></div>
-              <button className="submit-button partner-submit-button" type="submit">Send Message</button>
+              <button className="submit-button partner-submit-button" type="submit">Send message</button>
             </form>
           </div>
         </div>
@@ -277,6 +350,15 @@ function HomePage() {
           <div className="footer-column"><h4>Indro Labs</h4><p>Continuous radon protection monitoring</p></div>
           <div className="footer-column"><h4>Contact</h4><p>info@indrolabs.ca</p></div>
           <div className="footer-column"><h4>Location</h4><p>Alberta, Canada</p></div>
+          <div className="footer-column">
+            <h4>Follow us</h4>
+            <a href="https://www.linkedin.com/company/indrolabs" target="_blank" rel="noopener noreferrer" className="footer-social-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+              LinkedIn
+            </a>
+          </div>
         </div>
         <div className="footer-bottom">Copyright © 2026 Indro Labs — All Rights Reserved.</div>
       </footer>

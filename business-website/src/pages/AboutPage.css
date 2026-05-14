@@ -1,0 +1,519 @@
+/* ================================================ */
+/*  AboutPage.css                                   */
+/* ================================================ */
+
+/* Off-white to match business page palette */
+:root {
+  --ab-offwhite: #f6f9fc;
+  --ab-border:   #d8e2f3;
+}
+
+.ab-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 24px;
+  display: block;
+}
+
+.ab-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #2b5ce6;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.ab-label-blue   { color: #2b5ce6; }
+.ab-label-center { text-align: center; }
+
+/* ========================= */
+/* Hero Banner               */
+/* ========================= */
+
+#ab-hero {
+  background: linear-gradient(160deg, #0f1d4a 0%, #0b1635 55%, #0d1f55 100%);
+  padding: 160px 64px 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+#ab-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 80% 15%, rgba(43, 92, 230, 0.28) 0%, transparent 50%),
+    radial-gradient(ellipse at 10% 80%, rgba(43, 92, 230, 0.2) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 50%, rgba(125, 179, 255, 0.1) 0%, transparent 60%),
+    radial-gradient(ellipse at 92% 75%, rgba(80, 40, 200, 0.14) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.ab-hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.ab-hero-headline {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(40px, 5vw, 72px);
+  line-height: 1.1;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+.ab-hero-headline em {
+  font-style: italic;
+  color: #7db3ff;
+}
+
+/* ========================= */
+/* Fade Bridge (hidden — kept for flex ordering only) */
+/* ========================= */
+
+.ab-fade-bridge {
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* ========================= */
+/* Page body flex (desktop + mobile ordering) */
+/* ========================= */
+
+.ab-page-body {
+  display: flex;
+  flex-direction: column;
+  background: var(--ab-offwhite);
+}
+
+/* Desktop order: fade-bridge → mission → photo → principles */
+.ab-fade-bridge     { order: 1; }
+.ab-mission-section { order: 2; }
+.ab-photo-section   { order: 3; }
+#ab-principles      { order: 4; }
+
+/* ========================= */
+/* Mission                   */
+/* ========================= */
+
+#ab-mission {
+  background: var(--ab-offwhite);
+  padding: 80px 64px 110px;
+}
+
+.ab-mission-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 100px;
+  align-items: start;
+}
+
+.ab-mission-headline {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(28px, 3vw, 42px);
+  color: #0b1020;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  margin: 0;
+  position: sticky;
+  top: 100px;
+}
+
+.ab-body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 17px;
+  line-height: 1.82;
+  color: #64748b;
+  margin-bottom: 22px;
+}
+
+.ab-body-dark { color: #334155; }
+
+.ab-body:last-child { margin-bottom: 0; }
+
+/* ========================= */
+/* Photo Break               */
+/* ========================= */
+
+#ab-photo-break,
+.ab-photo-section {
+  background: var(--ab-offwhite);
+  padding: 0 64px 64px;
+}
+
+.ab-photo-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.ab-photo {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+  box-shadow: 0 16px 60px rgba(11, 22, 53, 0.12);
+}
+
+.ab-photo-caption {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: #94a3b8;
+  margin-top: 14px;
+}
+
+/* ========================= */
+/* How We Think — Carousel   */
+/* ========================= */
+
+#ab-principles {
+  background: linear-gradient(to bottom, var(--ab-offwhite) 0%, #dce8f7 25%, #dce8f7 100%);
+  padding: 80px 64px 110px;
+}
+
+.ab-principles-container {
+  max-width: 880px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ab-principles-header {
+  margin-bottom: 56px;
+}
+
+.ab-principles-headline {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(28px, 3vw, 44px);
+  color: #0b1020;
+  letter-spacing: -0.3px;
+  margin: 0;
+}
+
+/* Carousel */
+.ab-carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+}
+
+/* Horizontal slide — left to right */
+.ab-carousel-card {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid var(--ab-border);
+  border-radius: 20px;
+  padding: 64px 72px;
+  box-shadow: 0 8px 48px rgba(43, 92, 230, 0.08);
+  animation: abCardSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  text-align: center;
+  overflow: hidden;
+}
+
+@keyframes abCardSlideIn {
+  from { opacity: 0; transform: translateX(36px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.ab-carousel-card[data-dir='left'] {
+  animation: abCardSlideInLeft 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes abCardSlideInLeft {
+  from { opacity: 0; transform: translateX(-36px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.ab-carousel-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 700;
+  color: #0b1020;
+  margin-bottom: 20px;
+  line-height: 1.25;
+}
+
+.ab-carousel-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  line-height: 1.8;
+  color: #64748b;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Controls row: arrow · dots · arrow */
+.ab-carousel-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.ab-carousel-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ab-border);
+  background: #ffffff;
+  color: #2b5ce6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.ab-carousel-arrow:hover {
+  background: #2b5ce6;
+  border-color: #2b5ce6;
+  color: #ffffff;
+}
+
+.ab-carousel-dots {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.ab-carousel-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: none;
+  background: #c8d8f0;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.ab-carousel-dot.active {
+  background: #2b5ce6;
+  transform: scale(1.4);
+}
+
+/* ========================= */
+/* Where We Are — Half Divide*/
+/* ========================= */
+
+#ab-location {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 540px;
+}
+
+/* Left — lighter blue shade */
+.ab-location-left {
+  background: #dce8f7;
+  display: flex;
+  align-items: center;
+  padding: 100px 80px;
+}
+
+.ab-location-left-inner {
+  max-width: 480px;
+}
+
+.ab-location-headline {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(30px, 3.2vw, 48px);
+  color: #0b1020;
+  line-height: 1.18;
+  letter-spacing: -0.3px;
+  margin: 12px 0 28px;
+}
+
+/* Right — darker navy */
+.ab-location-right {
+  background: linear-gradient(160deg, #1e3580 0%, #0b1635 60%, #0f2260 100%);
+  display: flex;
+  align-items: center;
+  padding: 100px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ab-location-right::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 70% 40%, rgba(43, 92, 230, 0.22) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.ab-location-right-inner {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.ab-stat {
+  padding: 28px 0;
+}
+
+.ab-stat-num {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(60px, 6.5vw, 92px);
+  color: #ffffff;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.ab-stat-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(220, 232, 247, 0.6);
+}
+
+.ab-stat-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.1);
+}
+
+/* ========================= */
+/* Contact Forms             */
+/* ========================= */
+
+#ab-contact {
+  background: var(--ab-offwhite);
+  padding: 140px 64px;
+  border-top: 1px solid var(--ab-border);
+}
+
+#ab-contact .contact-heading { color: #0b1020; }
+#ab-contact .contact-intro   { color: #64748b; }
+
+#ab-contact .contact-card {
+  background: #ffffff;
+  border: 1px solid var(--ab-border);
+  box-shadow: 0 8px 40px rgba(43, 92, 230, 0.07), 0 1px 4px rgba(0,0,0,0.03);
+}
+
+/* ========================= */
+/* Responsive — 1100px       */
+/* ========================= */
+
+@media (max-width: 1100px) {
+  .ab-location-left  { padding: 80px 52px; }
+  .ab-location-right { padding: 80px 52px; }
+}
+
+/* ========================= */
+/* Responsive — 900px        */
+/* ========================= */
+
+@media (max-width: 900px) {
+  #ab-hero { padding: 140px 24px 72px; }
+
+  .ab-hero-headline { font-size: clamp(32px, 7vw, 52px); }
+
+  .ab-fade-bridge { height: 60px; }
+
+  /* Mobile: photo between hero and mission, no fade bridge */
+  .ab-fade-bridge     { order: 0; height: 0; overflow: hidden; margin: 0; }
+  .ab-photo-section   { order: 1; }
+  .ab-mission-section { order: 2; }
+  #ab-principles      { order: 3; }
+
+  .ab-mission-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .ab-mission-headline { position: static; }
+
+  #ab-mission { padding: 40px 24px 72px; }
+
+  .ab-photo-section { padding: 0 24px 48px; }
+  .ab-photo { height: 260px; border-radius: 16px; }
+
+  #ab-principles { padding: 64px 24px; }
+
+  .ab-carousel-card { padding: 44px 36px; }
+
+  #ab-location { grid-template-columns: 1fr; }
+
+  .ab-location-left  { padding: 72px 24px; }
+  .ab-location-right { padding: 72px 24px; }
+
+  .ab-location-left-inner { max-width: 100%; }
+
+  #ab-contact {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  #ab-contact .contact-grid { grid-template-columns: 1fr; }
+
+  .ab-stat-num { font-size: clamp(52px, 11vw, 72px); }
+}
+
+/* ========================= */
+/* Responsive — 480px        */
+/* ========================= */
+
+@media (max-width: 480px) {
+  #ab-hero { padding: 120px 20px 56px; }
+
+  .ab-hero-headline { font-size: clamp(28px, 9vw, 42px); }
+
+  .ab-fade-bridge { height: 40px; }
+
+  #ab-mission { padding: 32px 20px 56px; }
+
+  .ab-photo-section { padding: 0 20px 40px; }
+  .ab-photo { height: 200px; }
+
+  #ab-principles { padding: 52px 20px; }
+
+  .ab-carousel-card { padding: 36px 24px; }
+
+  .ab-carousel-title { font-size: clamp(20px, 6vw, 26px); }
+  .ab-carousel-desc  { font-size: 16px; }
+
+  .ab-location-left  { padding: 56px 20px; }
+  .ab-location-right { padding: 56px 20px; }
+
+  .ab-stat-num { font-size: clamp(46px, 12vw, 64px); }
+
+  #ab-contact {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+}
+
+/* ========================= */
+/* Navbar mobile offset fix  */
+/* ========================= */
+
+@media (max-width: 960px) {
+  #ab-hero { padding-top: 150px; }
+}
+
+@media (max-width: 480px) {
+  #ab-hero { padding-top: 140px; }
+}

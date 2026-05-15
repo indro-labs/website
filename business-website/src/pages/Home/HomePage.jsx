@@ -1,21 +1,22 @@
-import NavBar from '../components/NavBar/NavBar'
-import '../App.css'
+import NavBar from '../../components/NavBar/NavBar'
+import '../../App.css'
 import { ChevronDown } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams, Link } from 'react-router-dom'
 import { Listbox } from '@headlessui/react'
-import homeownerPhoto  from '../assets/ForHomeowner.jpg'
-import businessPhoto   from '../assets/ForRadonBuisnesses.jpg'
-import heroVideo       from '../assets/hero_video.mp4'
-import step1Photo      from '../assets/Mainpagestep1.jpg'
-import step2Photo      from '../assets/Mainpagestep2.jpg'
-import step3Photo      from '../assets/Mainpagestep3.jpg'
+import homeownerPhoto  from '../../assets/ForHomeowner.jpg'
+import businessPhoto   from '../../assets/ForRadonBuisnesses.jpg'
+import heroVideo       from '../../assets/hero_video.mp4'
+import step1Photo      from '../../assets/Mainpagestep1.jpg'
+import step2Photo      from '../../assets/Mainpagestep2.jpg'
+import step3Photo      from '../../assets/Mainpagestep3.jpg'
 
 /* ── Stats Slider ── */
 const STAT_SLIDES = [
-  { number: '21k',      label: 'DEATHS / YR', desc: 'In the U.S. attributed to radon-induced lung cancer.' },
-  { number: '1 in 15',  label: 'HOMES',        desc: 'In the U.S. exceed actionable radon levels.' },
-  { number: '<1%',      label: 'TESTED',       desc: 'Of homes are continuously monitored for indoor air quality.' },
+  { number: '3.2k+',      label: 'DEATHS / YR', desc: 'In Canada attributed to radon-induced lung cancer.' },
+  { number: '#1',      label: 'CAUSE', desc: 'Of lung cancer among non-smokers.' },
+  { number: '1 in 6',  label: 'HOMES',        desc: 'In Canada exceed Health Canada radon guidelines.' },
+  { number: '<1%',      label: 'MONITORED',       desc: 'Of homes are continuously monitored for changing radon levels.' },
 ]
 
 function StatsSlider() {
@@ -227,7 +228,7 @@ function HomePage() {
               <span>Breathe without <em>radon.</em></span>
             </h1>
             <p className="hero-body">
-              Indro Labs builds intelligent indoor environmental monitoring technology designed to make indoor spaces more proactive, data-driven, and easier to manage.
+               Indro Labs builds intelligent radon monitoring and mitigation technology designed to create safer, healthier, and smarter indoor spaces.
             </p>
             <div className="hero-actions">
               <Link to="/contact" className="hero-btn-primary">Join waitlist</Link>
@@ -264,7 +265,7 @@ function HomePage() {
             <div className="sol-photo" style={{ backgroundImage: `url(${homeownerPhoto})` }} />
             <div className="sol-overlay">
               <h3 className="sol-title">For homeowners.</h3>
-              <p className="sol-desc">Protect your home and family with real-time radon monitoring, instant alerts, and smart automation.</p>
+              <p className="sol-desc">Protect your home and family with continuous radon monitoring, instant alerts, and intelligent automation.</p>
               <button className="sol-cta" onClick={() => navigate('/homeowners')}>Learn more</button>
             </div>
           </div>
@@ -287,8 +288,8 @@ function HomePage() {
         <div className="hiw-grid">
           {[
             { n: 1, img: step1Photo, title: 'Buy Indro Smart', desc: 'Purchase for your home or your business. Plugs into existing radon mitigation systems with no complexity.' },
-            { n: 2, img: step2Photo, title: 'Monitor radon levels', desc: 'Live readings from home or anywhere. Real-time data, trends, and alerts — all in the Indro app.' },
-            { n: 3, img: step3Photo, title: 'Sense. Control. Stay safe.', desc: 'Set thresholds and let Indro act — automated fan control, smart alerts, and intelligent mitigation.' },
+            { n: 2, img: step2Photo, title: 'Monitor radon levels', desc: 'Track radon levels from home or anywhere with real-time readings, trends, and instant alerts in the Indro app.' },
+            { n: 3, img: step3Photo, title: 'Sense. Control. Stay safe.', desc: 'Set custom thresholds and let Indro respond automatically with intelligent fan control, smart alerts, and adaptive mitigation.' },
           ].map(({ n, img, title, desc }) => (
             <div className="hiw-card" key={n}>
               <div className="hiw-photo-box">

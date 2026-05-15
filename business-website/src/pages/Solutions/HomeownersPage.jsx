@@ -2,9 +2,9 @@ import { useState, useEffect, useRef } from 'react'
 import { ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react'
 import { Listbox } from '@headlessui/react'
 import { useParams, Link } from 'react-router-dom'
-import NavBar from '../components/NavBar/NavBar'
+import NavBar from '../../components/NavBar/NavBar'
 const familyPhoto = '/FamilyHome.png'
-import '../App.css'
+import '../../App.css'
 import './HomeownersPage.css'
 
 /* ── Air Quality Hero Widget ── */

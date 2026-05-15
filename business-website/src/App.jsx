@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import HomePage from './pages/Home/HomePage'
-import RadonBusinessPage from './pages/RadonBusinessPage'
-import HomeownersPage from './pages/HomeownersPage'
+import RadonBusinessPage from './pages/Solutions/RadonBusinessPage'
+import HomeownersPage from './pages/Solutions/HomeownersPage'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
 

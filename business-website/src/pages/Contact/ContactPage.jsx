@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import NavBar from '../components/NavBar/NavBar'
-import '../App.css'
+import '../../App.css'
 import './ContactPage.css'
 
 function ContactPage() {

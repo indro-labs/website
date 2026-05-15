@@ -4,7 +4,7 @@ import { Listbox } from '@headlessui/react'
 import { useParams } from 'react-router-dom'
 import NavBar from '../components/NavBar/NavBar'
 import aboutPhoto from '../assets/about_image.jpg'
-import '../App.css'
+import '../../App.css'
 import './AboutPage.css'
 
 /* ── Principles Carousel — arrows, looping, horizontal slide ── */

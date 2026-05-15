@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useParams, Link } from 'react-router-dom'
-import NavBar from '../components/NavBar/NavBar'
-import '../App.css'
+import NavBar from '../../components/NavBar/NavBar'
+import '../../App.css'
 import './RadonBusinessPage.css'
 
 /* ── Client Portfolio Dashboard Widget ── */

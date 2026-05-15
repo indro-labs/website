@@ -25,13 +25,15 @@ function NavBar() {
                 <div className="dropdown-row-title">Indro Smart</div>
                 <div className="dropdown-row-desc">Smart radon for everyone</div>
               </Link>
-              <a href="#" className="dropdown-row">
+              <div className="dropdown-row dropdown-disabled">
                 <div className="dropdown-row-title">
                   Indro Reception
                   <span className="coming-badge">Coming soon</span>
                 </div>
-                <div className="dropdown-row-desc">Next-generation radon detection</div>
-              </a>
+                <div className="dropdown-row-desc">
+                  Next-generation radon detection
+                </div>
+              </div>
             </div>
           </div>
 

@@ -97,23 +97,23 @@ function WhyAccordion() {
 const CAROUSEL_CARDS = [
   {
     n: '01',
-    title: "Radon is invisible — until it isn't",
-    desc: "You can't smell, see, or feel radon. The only way to know your family's exposure is continuous, real-time measurement.",
+    title: "No waiting for lab results",
+    desc: "Indro Smart monitors radon continuously, giving you real-time visibility instead of waiting weeks or months for passive test results.",
   },
   {
     n: '02',
-    title: 'Levels change every single day',
-    desc: 'Radon shifts with seasons, weather, and ventilation. A single annual test gives you one data point — Indro gives you thousands.',
+    title: 'See changes as they happen',
+    desc: 'Because radon levels shift with seasons, weather, pressure, and ventilation, Indro Smart tracks changes over time so you see the full picture.',
   },
   {
     n: '03',
-    title: "Mitigation isn't a one-time fix",
-    desc: 'Even after a mitigation system is installed, you need ongoing confirmation that it\'s still working. Indro gives you that daily.',
+    title: "Know when levels rise",
+    desc: 'Indro Smart turns invisible radon risk into clear, actionable data with live readings, trends, and alerts when levels need attention.',
   },
   {
     n: '04',
-    title: "Peace of mind shouldn't be passive",
-    desc: 'Know the moment your air quality changes — not months later when a lab test returns. Real-time alerts keep your family ahead of risk.',
+    title: "Verify your system every day",
+    desc: 'After mitigation is installed, Indro Smart helps confirm your system is still working properly with continuous monitoring and intelligent alerts.',
   },
 ]
 
@@ -153,7 +153,7 @@ function HomeCarousel() {
 const WHY_CARDS = [
   {
     n: '01',
-    title: 'Passive tests can take 90+ days',
+    title: 'Passive tests can take months',
     desc: "By the time your lab results arrive, months of exposure have already happened. Indro monitors 24/7 so you're never behind.",
   },
   {
@@ -163,13 +163,13 @@ const WHY_CARDS = [
   },
   {
     n: '03',
-    title: '1 in 15 homes exceed safe thresholds',
-    desc: 'Most homeowners have no idea where they stand. Continuous monitoring turns uncertainty into clear, actionable data.',
+    title: '1 in 6 Canadian homes exceed guidelines',
+    desc: 'Many homeowners have no idea their home may contain elevated radon levels. Continuous monitoring replaces uncertainty with real-time visibility.',
   },
   {
     n: '04',
-    title: 'Mitigation needs ongoing verification',
-    desc: "Even after a mitigation system is installed, you need to confirm it's still working. Indro Smart gives you that confirmation daily.",
+    title: 'Mitigation systems should be continuously verified',
+    desc: "Radon mitigation is not a one-time fix. Continuous monitoring helps confirm your system is working properly over time.",
   },
 ]
 
@@ -178,22 +178,22 @@ const STEPS = [
   {
     n: 1,
     title: 'Install Indro Smart',
-    desc: 'Plug into your existing radon mitigation system. No tools, no contractor, no complexity.',
+    desc: 'Plug into your existing radon mitigation system. No complexity.',
   },
   {
     n: 2,
     title: 'Download the app',
-    desc: 'Connect in seconds. Your air quality score and live radon reading appear immediately.',
+    desc: 'Pair your device instantly and view live radon levels, air quality insights, and system status.',
   },
   {
     n: 3,
     title: 'Get alerts and insights',
-    desc: 'Receive instant notifications if levels rise. Track trends and see how your home performs over time.',
+    desc: 'Receive instant notifications if radon levels rise. Track trends and see how your home performs over time.',
   },
   {
     n: 4,
     title: 'Let smart control take over',
-    desc: 'Indro intelligently manages your mitigation system — adjusting automatically to keep levels safe.',
+    desc: 'Indro Smart intelligently manages your mitigation system — adjusting automatically to keep levels safe.',
   },
 ]
 
@@ -304,7 +304,7 @@ function HomeownersPage() {
               <p className="ho-eyebrow light">WHY IT MATTERS</p>
               <h2 className="ho-why-headline">Radon doesn't announce itself.</h2>
               <p className="ho-why-sub">
-                It's colourless, odourless, and the second leading cause of lung cancer. The only way to know is to measure it — continuously.
+                It's colourless, odourless, and the leading cause of lung cancer among non-smokers.  The only way to know is to measure it — continuously.
               </p>
             </div>
             <div className="ho-why-right">
@@ -336,9 +336,9 @@ function HomeownersPage() {
       <section id="ho-steps" data-anchor="how-it-works">
         <div className="ho-steps-container">
           <p className="ho-eyebrow blue">HOW IT WORKS</p>
-          <h2 className="ho-steps-headline">Set up in minutes. Peace of mind in hours.</h2>
+          <h2 className="ho-steps-headline">Set up in minutes. Protected continuously.</h2>
           <p className="ho-steps-sub">
-            Plug in, connect, and let Indro do the rest. No professional installation required.
+            Plug in, connect, and let Indro Smart do the rest. 
           </p>
           <div className="ho-steps-grid">
             {STEPS.map(({ n, title, desc }) => (

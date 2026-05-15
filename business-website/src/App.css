@@ -586,9 +586,9 @@
 
 #stats-section {
   background:
-    radial-gradient(ellipse at 8% 70%,  rgba(43, 92, 230, 0.22) 0%, transparent 45%),
-    radial-gradient(ellipse at 92% 15%, rgba(43, 92, 230, 0.14) 0%, transparent 38%),
-    #0b1635;
+    radial-gradient(ellipse at 8% 70%, rgba(43, 92, 230, 0.18) 0%, transparent 50%),
+    radial-gradient(ellipse at 92% 15%, rgba(43, 92, 230, 0.12) 0%, transparent 42%),
+    #0c1530;
   padding: 80px 24px 90px;
 }
 

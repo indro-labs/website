@@ -150,7 +150,7 @@
   display: inline-block;
 }
 
-.ho-btn-primary:hover { background: #2b5ce6; }
+.ho-btn-primary:hover{ background: #2b5ce6; }
 
 .ho-btn-link {
   font-family: 'DM Sans', sans-serif;
@@ -161,6 +161,8 @@
   text-underline-offset: 3px;
   cursor: pointer;
 }
+
+.ho-btn-link:hover{ color: #2b5ce6; }
 
 /* ========================= */
 /* Air Quality Widget        */
@@ -401,35 +403,58 @@
 /* Why It Matters            */
 /* ========================= */
 
-#ho-why {
-  background: linear-gradient(160deg, #1e3580 0%, #0c1a3e 55%, #0f2260 100%);
-  padding: 140px 64px;
+#ho-flow {
+  background:
+    radial-gradient(
+      ellipse at top,
+      #24449f 0%,
+      #1a2d6e 28%,
+      #0c1a3e 55%,
+      #0b1635 78%,
+      #0d1f55 100%
+    ),
+
+    radial-gradient(
+      ellipse at 10% 25%,
+      rgba(43, 92, 230, 0.25) 0%,
+      transparent 42%
+    ),
+
+    radial-gradient(
+      ellipse at 90% 35%,
+      rgba(43, 92, 230, 0.15) 0%,
+      transparent 40%
+    ),
+
+    radial-gradient(
+      ellipse at 50% 82%,
+      rgba(43, 92, 230, 0.16) 0%,
+      transparent 45%
+    );
+
   position: relative;
   overflow: hidden;
 }
 
-#ho-why::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 10% 50%, rgba(43, 92, 230, 0.25) 0%, transparent 55%),
-    radial-gradient(ellipse at 90% 50%, rgba(43, 92, 230, 0.15) 0%, transparent 50%);
-  pointer-events: none;
+#ho-why {
+  padding: 140px 64px;
+  position: relative;
 }
 
+.ho-why-left {
+  padding-top: 24px;
+}
 .ho-why-container {
   max-width: 1280px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 80px;
-  align-items: center;
+  align-items: start;
   position: relative;
   z-index: 1;
 }
 
-.ho-why-left {}
 
 .ho-why-headline {
   font-family: 'DM Serif Display', Georgia, serif;
@@ -559,8 +584,8 @@
 /* ========================= */
 
 #ho-carousel {
-  background: linear-gradient(160deg, #1a2d6e 0%, #0b1635 60%, #0d1f55 100%);
   padding: 110px 64px;
+  position: relative;
 }
 
 .ho-carousel-container {
@@ -1081,16 +1106,7 @@
     overflow: visible;
   }
 
-  /* Mobile fade from Why → Carousel (dark to dark blend) */
-  #ho-why::after {
-    content: '';
-    display: block;
-    height: 60px;
-    background: linear-gradient(to bottom, #0c1a3e 0%, #1a2d6e 100%);
-    margin: 60px -24px -1px;
-    position: relative;
-    z-index: 0;
-  }
+
 
   #ho-carousel {
     padding-left: 24px;

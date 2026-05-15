@@ -275,7 +275,7 @@ function HomeownersPage() {
               <em className="ho-hero-big">cleaner air.</em>
             </h1>
             <p className="ho-hero-body">
-              Indro Smart monitors radon continuously — giving your family real-time peace of mind without the guesswork of passive testing.
+              Indro Smart continuously monitors radon levels, giving your family real-time insights and peace of mind beyond passive testing.
             </p>
             <div className="ho-hero-actions">
               <Link to="/homeowners/waitlist" className="ho-btn-primary">Join waitlist</Link>
@@ -297,39 +297,41 @@ function HomeownersPage() {
       </section>
 
       {/* ── Why It Matters ── */}
-      <section id="ho-why">
-        <div className="ho-why-container">
-          <div className="ho-why-left">
-            <p className="ho-eyebrow light">WHY IT MATTERS</p>
-            <h2 className="ho-why-headline">Radon doesn't announce itself.</h2>
-            <p className="ho-why-sub">
-              It's colourless, odourless, and the second leading cause of lung cancer. The only way to know is to measure it — continuously.
-            </p>
+      <section id="ho-flow">
+        <section id="ho-why">
+          <div className="ho-why-container">
+            <div className="ho-why-left">
+              <p className="ho-eyebrow light">WHY IT MATTERS</p>
+              <h2 className="ho-why-headline">Radon doesn't announce itself.</h2>
+              <p className="ho-why-sub">
+                It's colourless, odourless, and the second leading cause of lung cancer. The only way to know is to measure it — continuously.
+              </p>
+            </div>
+            <div className="ho-why-right">
+              <WhyAccordion />
+            </div>
           </div>
-          <div className="ho-why-right">
-            <WhyAccordion />
-          </div>
-        </div>
-      </section>
+          
+        </section>
 
-      {/* ── Carousel ── */}
-      <section id="ho-carousel">
-        <div className="ho-carousel-container">
-          <div className="ho-carousel-text">
-            <p className="ho-eyebrow light">CONTINUOUS PROTECTION</p>
-            <h2 className="ho-carousel-headline">
-              One device. Always watching. <em>Always on.</em>
-            </h2>
-            <p className="ho-carousel-body">
-              Passive radon tests give you a snapshot. Indro gives you the full picture — every hour, every day, automatically.
-            </p>
+        {/* ── Carousel ── */}
+        <section id="ho-carousel">
+          <div className="ho-carousel-container">
+            <div className="ho-carousel-text">
+              <p className="ho-eyebrow light">CONTINUOUS PROTECTION</p>
+              <h2 className="ho-carousel-headline">
+                One device. Always watching. <em>Always on.</em>
+              </h2>
+              <p className="ho-carousel-body">
+                Passive radon tests give you a snapshot. Indro gives you the full picture — every hour, every day, automatically.
+              </p>
+            </div>
+            <div className="ho-carousel-card-wrap">
+              <HomeCarousel />
+            </div>
           </div>
-          <div className="ho-carousel-card-wrap">
-            <HomeCarousel />
-          </div>
-        </div>
+        </section>
       </section>
-
       {/* ── How It Works ── */}
       <section id="ho-steps" data-anchor="how-it-works">
         <div className="ho-steps-container">

@@ -232,10 +232,10 @@ function RadonBusinessPage() {
           <div className="biz-why-right">
             <p className="biz-eyebrow light">WHY MONITORING MATTERS</p>
             <h2 className="biz-why-headline">
-              Your business runs on trust. Indro makes that <em>visible.</em>
+              Your business runs on trust. Indro Smart makes that <em>visible.</em>
             </h2>
             <p className="biz-why-body">
-              Every call-back costs you time. Every undetected fan failure costs you a client. Continuous remote monitoring changes the economics of your business.
+              Every call-back costs you time. Every undetected fan failure costs you a client. Intelligent remote monitoring changes the economics of your business.
             </p>
           </div>
         </div>

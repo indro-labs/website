@@ -50,7 +50,7 @@ function NavBar() {
                   <span className="coming-badge">Coming soon</span>
                 </div>
                 <div className="dropdown-row-desc">
-                  Next-generation radon detection
+                 AI reception for utility businesses
                 </div>
               </div>
             </div>

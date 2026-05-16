@@ -15,11 +15,11 @@ const PRINCIPLES = [
   },
   {
     title: 'Data that drives action',
-    desc: "A reading is only valuable if it leads somewhere. Indro turns raw sensor data into clear insights, real-time alerts, and automated responses — so people and professionals can act, not just observe.",
+    desc: "A reading is only valuable if it leads somewhere. Indro Smart turns raw sensor data into clear insights, real-time alerts, and automated responses — so people and professionals can act, not just observe.",
   },
   {
     title: 'Built for the real world',
-    desc: "Whether you're a homeowner or a professional managing dozens of properties, Indro fits your existing workflow. No new complexity — just smarter monitoring on top of what's already there.",
+    desc: "Whether you're a homeowner or a professional managing dozens of properties, Indro Smart fits into your existing workflow. No new complexity — just smarter monitoring on top of what's already there.",
   },
 ]
 
@@ -172,10 +172,10 @@ function AboutPage() {
             </div>
             <div className="ab-mission-right">
               <p className="ab-body">
-                Radon is the second leading cause of lung cancer after smoking — yet most buildings have never been continuously monitored for it. Existing detection methods were designed for a world before real-time data: passive, slow, and reactive by design.
+                Radon is the leading cause of lung cancer among non-smokers — yet most buildings have never been continuously monitored for it. Existing detection methods were designed for a world before real-time data: passive, slow, and reactive by design.
               </p>
               <p className="ab-body">
-                Indro Labs is changing this. We're building a smarter standard for continuous radon protection — from individual homes to large property portfolios.
+                Indro Labs is changing this. We're building a new standard for continuous and intelligent radon protection — from individual homes to large property portfolios.
               </p>
               <p className="ab-body">
                 We believe the buildings people live and work in should be intelligent enough to protect them. Not occasionally. Continuously.
@@ -221,7 +221,7 @@ function AboutPage() {
             <div className="ab-stat-divider" />
 
             <div className="ab-stat">
-              <div className="ab-stat-num">1 in 6</div>
+              <div className="ab-stat-num">1 in 5</div>
               <div className="ab-stat-label">
                 Canadian homes exceed Health Canada radon guidelines
               </div>

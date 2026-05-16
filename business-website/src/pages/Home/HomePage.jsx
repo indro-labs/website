@@ -15,7 +15,7 @@ import step3Photo      from '../../assets/Mainpagestep3.jpg'
 const STAT_SLIDES = [
   { number: '3.2k+',      label: 'DEATHS / YR', desc: 'In Canada attributed to radon-induced lung cancer.' },
   { number: '#1',      label: 'CAUSE', desc: 'Of lung cancer among non-smokers.' },
-  { number: '1 in 6',  label: 'HOMES',        desc: 'In Canada exceed Health Canada radon guidelines.' },
+  { number: '1 in 5',  label: 'HOMES',        desc: 'In Canada exceed Health Canada radon guidelines.' },
   { number: '<1%',      label: 'MONITORED',       desc: 'Of homes are continuously monitored for changing radon levels.' },
 ]
 
@@ -282,13 +282,12 @@ const handlePartnerSubmit = async (e) => {
           </div>
         </div>
       </section>
-
       {/* Stats */}
       <section id="stats-section">
         <div className="stats-inner">
           <h2 className="stats-headline">
-            The leading environmental cause of lung cancer is{' '}
-            <em>invisible,</em> odorless, and <em>everywhere indoors.</em> <span className="radon-break">It's Radon.</span>
+            The leading environmental cause of lung cancer hides in plain sight — {' '}
+          <span className="radon-break">invisible, odorless <em>radon</em> gas.</span>
           </h2>
           <StatsSlider />
         </div>
@@ -327,8 +326,8 @@ const handlePartnerSubmit = async (e) => {
         <div className="hiw-grid">
           {[
             { n: 1, img: step1Photo, title: 'Buy Indro Smart', desc: 'Purchase for your home or your business. Plugs into existing radon mitigation systems with no complexity.' },
-            { n: 2, img: step2Photo, title: 'Monitor radon levels', desc: 'Track radon levels from home or anywhere with real-time readings, trends, and instant alerts in the Indro app.' },
-            { n: 3, img: step3Photo, title: 'Sense. Control. Stay safe.', desc: 'Set custom thresholds and let Indro respond automatically with intelligent fan control, smart alerts, and adaptive mitigation.' },
+            { n: 2, img: step2Photo, title: 'Control radon levels', desc: 'Track radon levels from home or anywhere with real-time readings, trends, and instant alerts in the Indro app.' },
+            { n: 3, img: step3Photo, title: 'Sense. Control. Stay safe.', desc: 'Set custom thresholds and let Indro Smart respond automatically with intelligent fan control, smart alerts, and adaptive mitigation.' },
           ].map(({ n, img, title, desc }) => (
             <div className="hiw-card" key={n}>
               <div className="hiw-photo-box">

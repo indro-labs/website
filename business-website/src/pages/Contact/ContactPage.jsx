@@ -56,7 +56,7 @@ function ContactPage() {
             <div className="ct-info-group">
               <h4 className="ct-info-label">Connect with us</h4>
               <a
-                href="https://www.linkedin.com/company/indrolabs"
+                href="https://www.linkedin.com/company/indro-labs"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ct-social-link"

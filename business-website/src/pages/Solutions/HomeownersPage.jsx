@@ -113,7 +113,7 @@ const CAROUSEL_CARDS = [
   {
     n: '04',
     title: "Verify your system every day",
-    desc: 'After mitigation is installed, Indro Smart helps confirm your system is still working properly with continuous monitoring and intelligent alerts.',
+    desc: 'After mitigation is installed, Indro Smart helps confirm your system is still working properly with intelligent control and alerts.',
   },
 ]
 
@@ -154,7 +154,7 @@ const WHY_CARDS = [
   {
     n: '01',
     title: 'Passive tests can take months',
-    desc: "By the time your lab results arrive, months of exposure have already happened. Indro monitors 24/7 so you're never behind.",
+    desc: "By the time your lab results arrive, months of exposure have already happened. Indro Smart monitors 24/7 so you're never behind.",
   },
   {
     n: '02',
@@ -163,13 +163,13 @@ const WHY_CARDS = [
   },
   {
     n: '03',
-    title: '1 in 6 Canadian homes exceed guidelines',
+    title: '1 in 5 Canadian homes exceed guidelines',
     desc: 'Many homeowners have no idea their home may contain elevated radon levels. Continuous monitoring replaces uncertainty with real-time visibility.',
   },
   {
     n: '04',
-    title: 'Mitigation systems should be continuously verified',
-    desc: "Radon mitigation is not a one-time fix. Continuous monitoring helps confirm your system is working properly over time.",
+    title: 'Mitigation systems should be intelligently controlled',
+    desc: "Radon mitigation is not a one-time fix. Intelligent control ensures your family is protected over time.",
   },
 ]
 
@@ -182,7 +182,7 @@ const STEPS = [
   },
   {
     n: 2,
-    title: 'Download the app',
+    title: 'Download the Indro app',
     desc: 'Pair your device instantly and view live radon levels, air quality insights, and system status.',
   },
   {
@@ -282,7 +282,7 @@ function HomeownersPage() {
               <em className="ho-hero-big">cleaner air.</em>
             </h1>
             <p className="ho-hero-body">
-              Indro Smart continuously monitors radon levels, giving your family real-time insights and peace of mind beyond passive testing.
+              Indro Smart continuously controls radon levels, giving your family real-time insights and peace of mind beyond passive testing.
             </p>
             <div className="ho-hero-actions">
               <button onClick={() => scrollToSection('waitlist')} className="ho-btn-primary">Join waitlist</button>
@@ -330,7 +330,7 @@ function HomeownersPage() {
                 One device. Always watching. <em>Always on.</em>
               </h2>
               <p className="ho-carousel-body">
-                Passive radon tests give you a snapshot. Indro gives you the full picture — every hour, every day, automatically.
+                Passive radon tests give you a snapshot. Indro Smart gives you the full picture — every hour, every day, automatically.
               </p>
             </div>
             <div className="ho-carousel-card-wrap">

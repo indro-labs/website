@@ -204,7 +204,6 @@ function HomeownersPage() {
   const [formStatus, setFormStatus]         = useState(null)
   const impactRef = useRef(null)
 
-
   // Scroll to section on path-based navigation
   // Supports both clean URL anchors (data-anchor) and legacy IDs
   useEffect(() => {
@@ -215,6 +214,14 @@ function HomeownersPage() {
       }, 150)
     }
   }, [section])
+
+  // Direct scroll handler for click events (works every time, no route dependency)
+  const scrollToSection = (id) => {
+    requestAnimationFrame(() => {
+      const el = document.querySelector(`[data-anchor="${id}"]`) || document.getElementById(id)
+      el?.scrollIntoView({ behavior: 'smooth' })
+    })
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -278,8 +285,8 @@ function HomeownersPage() {
               Indro Smart continuously monitors radon levels, giving your family real-time insights and peace of mind beyond passive testing.
             </p>
             <div className="ho-hero-actions">
-              <Link to="/homeowners/waitlist" className="ho-btn-primary">Join waitlist</Link>
-              <Link to="/homeowners/how-it-works" className="ho-btn-link">See how it works</Link>
+              <button onClick={() => scrollToSection('waitlist')} className="ho-btn-primary">Join waitlist</button>
+              <a href="#" onClick={(e) => { e.preventDefault(); scrollToSection('how-it-works'); }} className="ho-btn-link">See how it works</a>
             </div>
           </div>
 

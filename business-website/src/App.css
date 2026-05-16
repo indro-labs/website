@@ -272,6 +272,14 @@
   margin: 0 22px;
 }
 
+@media (max-width: 768px) {
+  .radon-break {
+    display: block;
+    margin-top: 4px;
+  }
+}
+
+
 .hmc-metrics {
   display: flex;
   align-items: center;

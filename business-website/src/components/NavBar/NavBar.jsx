@@ -1,9 +1,28 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import './NavBar.css'
 
 function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const { pathname } = useLocation()
+
+  // Scroll to section on home page, or navigate if on different page
+  const handleScrollToContact = (e) => {
+    e.preventDefault()
+    
+    const isOnHomePage = pathname === '/' || pathname.startsWith('/')
+    
+    if (isOnHomePage) {
+      // We're on the home page, so scroll directly
+      requestAnimationFrame(() => {
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+      })
+      setMenuOpen(false)
+    } else {
+      // We're on a different page, navigate and let HomePage handle scrolling
+      window.location.href = '/contact'
+    }
+  }
 
   return (
     <header className="navbar">
@@ -58,7 +77,7 @@ function NavBar() {
 
         {/* CTA button */}
         <div className="navbar-actions">
-          <Link to="/contact" className="btn-bookdemo">Join waitlist</Link>
+          <button onClick={handleScrollToContact} className="btn-bookdemo">Join waitlist</button>
         </div>
 
         {/* Mobile toggle */}
@@ -86,7 +105,7 @@ function NavBar() {
           <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
           <Link to="/contact-us" onClick={() => setMenuOpen(false)}>Contact us</Link>
           <div className="mobile-ctas">
-            <Link to="/contact" className="btn-bookdemo" style={{ flex: 1, textAlign: 'center', textDecoration: 'none' }} onClick={() => setMenuOpen(false)}>Join waitlist</Link>
+            <button onClick={handleScrollToContact} className="btn-bookdemo" style={{ flex: 1, textAlign: 'center', textDecoration: 'none', border: 'none', cursor: 'pointer' }}>Join waitlist</button>
           </div>
         </div>
       )}

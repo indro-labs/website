@@ -148,6 +148,14 @@ function RadonBusinessPage() {
     }
   }, [section])
 
+  // Direct scroll handler for click events (works every time, no route dependency)
+  const scrollToSection = (id) => {
+    requestAnimationFrame(() => {
+      const el = document.querySelector(`[data-anchor="${id}"]`) || document.getElementById(id)
+      el?.scrollIntoView({ behavior: 'smooth' })
+    })
+  }
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -205,8 +213,8 @@ function RadonBusinessPage() {
               Monitor every client system remotely. Get call-back alerts before clients do. Know your fans are working — without driving out.
             </p>
             <div className="biz-hero-actions">
-              <Link to="/businesses/contact" className="biz-btn-primary">Become partner</Link>
-              <Link to="/businesses/how-it-works" className="biz-btn-link">See how it works</Link>
+              <button onClick={() => scrollToSection('contact')} className="biz-btn-primary">Become partner</button>
+              <a href="#" onClick={(e) => { e.preventDefault(); scrollToSection('how-it-works'); }} className="biz-btn-link">See how it works</a>
             </div>
           </div>
           <div className="biz-hero-right">

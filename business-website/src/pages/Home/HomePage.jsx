@@ -168,6 +168,13 @@ function HomePage() {
     }
   }, [section])
 
+  // Direct scroll handler for click events (works every time, no route dependency)
+  const scrollToSection = (id) => {
+    requestAnimationFrame(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    })
+  }
+
 
 const handleWaitlistSubmit = async (e) => {
   e.preventDefault()
@@ -263,8 +270,8 @@ const handlePartnerSubmit = async (e) => {
                Indro Labs builds intelligent radon monitoring and mitigation technology designed to create safer, healthier, and smarter indoor spaces.
             </p>
             <div className="hero-actions">
-              <Link to="/contact" className="hero-btn-primary">Join waitlist</Link>
-              <Link to="/how-it-works" className="hero-btn-link">See how it works</Link>
+              <button onClick={() => scrollToSection('contact')} className="hero-btn-primary">Join waitlist</button>
+              <a href="#" onClick={(e) => { e.preventDefault(); scrollToSection('how-it-works'); }} className="hero-btn-link">See how it works</a>
             </div>
           </div>
           <div className="hero-right">
@@ -281,7 +288,7 @@ const handlePartnerSubmit = async (e) => {
         <div className="stats-inner">
           <h2 className="stats-headline">
             The leading environmental cause of lung cancer is{' '}
-            <em>invisible,</em> odorless, and <em>everywhere indoors.</em>
+            <em>invisible,</em> odorless, and <em>everywhere indoors.</em> <span className="radon-break">It's Radon.</span>
           </h2>
           <StatsSlider />
         </div>

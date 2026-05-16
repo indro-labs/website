@@ -59,7 +59,7 @@ function ClientPortfolio() {
 /* ── Why Monitoring Carousel — looping, no numbers ── */
 const WHY_CARDS = [
   {
-    title: 'Know before your client does',
+    title: 'Know before your client',
     desc: 'Real-time alerts when radon levels rise at any client property — before they call you, or before they start looking for someone else.',
   },
   {
@@ -68,11 +68,11 @@ const WHY_CARDS = [
   },
   {
     title: 'Virtual diagnostics',
-    desc: 'Troubleshoot client systems remotely using live sensor data — reducing unnecessary truck rolls and saving hours each week.',
+    desc: 'Troubleshoot client systems remotely, reducing unnecessary truck rolls and saving valuable technician time.',
   },
   {
     title: 'Full system visibility',
-    desc: 'Every client, every property, every reading — in one dashboard. Nothing falls through the cracks.',
+    desc: 'Track every client, property, and radon reading from one centralized dashboard designed for growing mitigation businesses.',
   },
 ]
 
@@ -240,7 +240,7 @@ function RadonBusinessPage() {
           <p className="biz-eyebrow blue">HOW IT WORKS</p>
           <h2 className="biz-steps-headline">From installation to insight in four steps.</h2>
           <p className="biz-steps-sub">
-            Designed for professional radon businesses. Indro Smart fits into your existing workflow from day one.
+            Designed for professional radon businesses. 
           </p>
           <div className="biz-steps-grid">
             {STEPS.map(({ n, title, desc }) => (
@@ -261,10 +261,12 @@ function RadonBusinessPage() {
           <p className="biz-eyebrow light">THE IMPACT</p>
           <h2 className="biz-impact-headline">What Indro means for your business.</h2>
           <div className="biz-impact-card" ref={impactRef}>
-            <div className="impact-stat">
-              <div className="impact-number">↓ 60%</div>
-              <div className="impact-label">UNNECESSARY SITE VISITS</div>
-              <div className="impact-desc">Resolve more issues remotely before they ever need a truck roll.</div>
+                  <div className="impact-stat">
+              <div className="impact-number">1</div>
+              <div className="impact-label">CENTRALIZED DASHBOARD</div>
+              <div className="impact-desc">
+                Diagnose issues remotely and manage every client system from one unified platform.
+              </div>
             </div>
             <div className="impact-divider" />
             <div className="impact-stat">
@@ -273,10 +275,13 @@ function RadonBusinessPage() {
               <div className="impact-desc">Every client system watched continuously — not just on service days.</div>
             </div>
             <div className="impact-divider" />
+        
             <div className="impact-stat">
-              <div className="impact-number">+NPS</div>
-              <div className="impact-label">CLIENT TRUST</div>
-              <div className="impact-desc">Proactive outreach before problems escalate builds lasting loyalty.</div>
+              <div className="impact-number">+30%</div>
+              <div className="impact-label">HIGHER PROFIT MARGINS</div>
+              <div className="impact-desc">
+                Fewer unnecessary site visits and smarter diagnostics can help improve operational efficiency and profitability.
+              </div>
             </div>
           </div>
         </div>

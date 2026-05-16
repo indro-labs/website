@@ -21,10 +21,6 @@ const PRINCIPLES = [
     title: 'Built for the real world',
     desc: "Whether you're a homeowner or a professional managing dozens of properties, Indro fits your existing workflow. No new complexity — just smarter monitoring on top of what's already there.",
   },
-  {
-    title: 'Accessible without compromise',
-    desc: "Protecting indoor air quality has historically required specialist knowledge and expensive equipment. We're building technology that removes those barriers without sacrificing accuracy or reliability.",
-  },
 ]
 
 function PrinciplesCarousel() {
@@ -171,15 +167,15 @@ function AboutPage() {
             <div className="ab-mission-left">
               <p className="ab-label">OUR MISSION</p>
               <h2 className="ab-mission-headline">
-                Indoor air quality has a data problem. We're fixing it.
+                Radon protection hasn't evolved in decades. We're changing that.
               </h2>
             </div>
             <div className="ab-mission-right">
               <p className="ab-body">
-                Radon is the second leading cause of lung cancer — yet most buildings have never been continuously monitored for it. Existing detection methods were designed for a world before real-time data: passive, slow, and reactive by design.
+                Radon is the second leading cause of lung cancer after smoking — yet most buildings have never been continuously monitored for it. Existing detection methods were designed for a world before real-time data: passive, slow, and reactive by design.
               </p>
               <p className="ab-body">
-                Indro Labs is building intelligent indoor environmental monitoring technology that changes this. We make continuous, proactive air quality management accessible — to the homeowner protecting their family, and the professional managing dozens of properties.
+                Indro Labs is changing this. We're building a smarter standard for continuous radon protection — from individual homes to large property portfolios.
               </p>
               <p className="ab-body">
                 We believe the buildings people live and work in should be intelligent enough to protect them. Not occasionally. Continuously.
@@ -208,26 +204,38 @@ function AboutPage() {
             <p className="ab-label ab-label-blue">WHERE WE ARE</p>
             <h2 className="ab-location-headline">Based in Alberta.<br />Building for everywhere.</h2>
             <p className="ab-body ab-body-dark">
-              Radon is a global problem. Canada has some of the highest radon exposure rates in the world — Alberta especially. We started here because the problem is acute and personal. We're building for a world where every building, everywhere, can be continuously protected.
+                    Radon is a global problem, and Canada has some of the highest exposure rates in the world. We started in Alberta because the issue is real, urgent, and close to home. We're building for a future where every building can be continuously monitored and intelligently protected.
             </p>
           </div>
         </div>
-        <div className="ab-location-right">
+       <div className="ab-location-right">
           <div className="ab-location-right-inner">
+
             <div className="ab-stat">
-              <div className="ab-stat-num">21k</div>
-              <div className="ab-stat-label">Deaths per year in the U.S. from radon-induced lung cancer</div>
+              <div className="ab-stat-num">3.2k+</div>
+              <div className="ab-stat-label">
+                Deaths per year in Canada linked to radon-induced lung cancer
+              </div>
             </div>
+
             <div className="ab-stat-divider" />
+
             <div className="ab-stat">
-              <div className="ab-stat-num">1 in 15</div>
-              <div className="ab-stat-label">Homes in the U.S. exceed actionable radon levels</div>
+              <div className="ab-stat-num">1 in 6</div>
+              <div className="ab-stat-label">
+                Canadian homes exceed Health Canada radon guidelines
+              </div>
             </div>
+
             <div className="ab-stat-divider" />
+
             <div className="ab-stat">
               <div className="ab-stat-num">&lt;1%</div>
-              <div className="ab-stat-label">Of homes are continuously monitored for indoor air quality</div>
+              <div className="ab-stat-label">
+                Of homes are continuously monitored for changing radon levels
+              </div>
             </div>
+
           </div>
         </div>
       </section>

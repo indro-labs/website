@@ -10,7 +10,7 @@ function ContactPage() {
     e.preventDefault()
     const form = e.currentTarget
     const formData = new FormData(form)
-    const response = await fetch(import.meta.env.VITE_FORMSPREE_PARTNER_URL, {
+    const response = await fetch(import.meta.env.VITE_FORMSPREE_GENERAL_URL, {
       method: 'POST', body: formData, headers: { Accept: 'application/json' },
     })
     if (response.ok) {

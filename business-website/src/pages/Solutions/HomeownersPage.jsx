@@ -200,10 +200,10 @@ const STEPS = [
 /* ── Main Page ── */
 function HomeownersPage() {
   const { section } = useParams()
-  const [selectedOption, setSelectedOption] = useState('')
+  const [selectedOption, setSelectedOption] = useState('Homeowner')
   const [formStatus, setFormStatus]         = useState(null)
   const impactRef = useRef(null)
-  const options   = ['Homeowner', 'Radon professional']
+
 
   // Scroll to section on path-based navigation
   // Supports both clean URL anchors (data-anchor) and legacy IDs
@@ -397,18 +397,12 @@ function HomeownersPage() {
               <div className="form-group"><label>City / Province (optional)</label><input name="cityProvince" type="text" /></div>
               <div className="form-group">
                 <label>I am a *</label>
-                <Listbox value={selectedOption} onChange={setSelectedOption}>
-                  <div className="custom-select">
-                    <Listbox.Button className="custom-select-button">
-                      {selectedOption || 'Select an option'}<ChevronDown size={18} />
-                    </Listbox.Button>
-                    <Listbox.Options className="custom-select-options">
-                      {options.map((o) => (
-                        <Listbox.Option key={o} value={o} className="custom-select-option">{o}</Listbox.Option>
-                      ))}
-                    </Listbox.Options>
-                  </div>
-                </Listbox>
+
+                <div className="custom-select-button custom-select-static">
+                  Homeowner
+                </div>
+
+                <input type="hidden" name="userType" value="Homeowner" />
               </div>
               <button className="submit-button waitlist-submit-button" type="submit">Join waitlist</button>
             </form>

@@ -168,40 +168,72 @@ function HomePage() {
     }
   }, [section])
 
-  const handleWaitlistSubmit = async (e) => {
-    e.preventDefault()
-    const form = e.currentTarget
-    if (!selectedOption) {
-      setFormStatus({ type: 'error', message: 'Please select an option.' })
-      return
-    }
-    const formData = new FormData(form)
-    formData.set('userType', selectedOption)
-    const response = await fetch(import.meta.env.VITE_FORMSPREE_WAITLIST_URL, {
-      method: 'POST', body: formData, headers: { Accept: 'application/json' },
-    })
-    if (response.ok) {
-      setFormStatus({ type: 'success', message: 'Thank you! Your form has been submitted.' })
-      form.reset(); setSelectedOption('')
-    } else {
-      setFormStatus({ type: 'error', message: 'Something went wrong. Please try again.' })
-    }
+
+const handleWaitlistSubmit = async (e) => {
+  e.preventDefault()
+
+  const form = e.currentTarget
+
+  if (!selectedOption) {
+    setFormStatus({
+        type: "error",
+        message: "Please select an option."
+      })
+    return
   }
 
-  const handlePartnerSubmit = async (e) => {
-    e.preventDefault()
-    const form = e.currentTarget
-    const formData = new FormData(form)
-    const response = await fetch(import.meta.env.VITE_FORMSPREE_PARTNER_URL, {
-      method: 'POST', body: formData, headers: { Accept: 'application/json' },
+  const formData = new FormData(form)
+  formData.set("userType", selectedOption)
+
+  const response = await fetch(import.meta.env.VITE_FORMSPREE_WAITLIST_URL, {
+    method: "POST",
+    body: formData,
+    headers: {
+      Accept: "application/json",
+    },
+  })
+
+  if (response.ok) {
+    setFormStatus({
+      type: "success",
+      message: "Thank you! Your form has been submitted."
     })
-    if (response.ok) {
-      setFormStatus({ type: 'success', message: 'Thank you! Your form has been submitted.' })
-      form.reset()
-    } else {
-      setFormStatus({ type: 'error', message: 'Something went wrong. Please try again.' })
-    }
+    form.reset()
+    setSelectedOption("")
+  } else {
+    setFormStatus({
+      type: "error",
+      message: "Something went wrong. Please try again."
+    })
   }
+}
+const handlePartnerSubmit = async (e) => {
+  e.preventDefault()
+
+  const form = e.currentTarget
+  const formData = new FormData(form)
+
+  const response = await fetch(import.meta.env.VITE_FORMSPREE_PARTNER_URL, {
+    method: "POST",
+    body: formData,
+    headers: {
+      Accept: "application/json",
+    },
+  })
+
+  if (response.ok) {
+    setFormStatus({
+      type: "success",
+      message: "Thank you! Your form has been submitted."
+    })
+    form.reset()
+  } else {
+    setFormStatus({
+      type: "error",
+      message: "Something went wrong. Please try again."
+    })
+  }
+}
 
   return (
     <>

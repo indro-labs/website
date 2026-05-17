@@ -37,7 +37,7 @@ function PrinciplesCarousel() {
     const t = setInterval(() => {
       setDir('right')
       setActive(p => (p + 1) % total)
-    }, 3600)
+    }, 15000)
     return () => clearInterval(t)
   }, [])
 

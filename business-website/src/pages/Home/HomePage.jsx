@@ -29,7 +29,7 @@ function StatsSlider() {
     const t = setInterval(() => {
       setDir('right')
       setActive(p => (p + 1) % STAT_SLIDES.length)
-    }, 3200)
+    }, 5000)
     return () => clearInterval(t)
   }, [])
 

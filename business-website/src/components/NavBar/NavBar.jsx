@@ -102,6 +102,7 @@ function NavBar() {
           <div className="mobile-group-label">Solutions</div>
           <Link to="/homeowners" onClick={() => setMenuOpen(false)}>For homeowners</Link>
           <Link to="/businesses" onClick={() => setMenuOpen(false)}>For radon businesses</Link>
+          <div className="mobile-group-label">Discover</div>
           <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
           <Link to="/contact-us" onClick={() => setMenuOpen(false)}>Contact us</Link>
           <div className="mobile-ctas">

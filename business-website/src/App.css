@@ -769,6 +769,7 @@
   background-size: cover;
   background-position: center;
   background-color: #1a2d5a; /* fallback */
+  border-radius: inherit;
   transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -783,6 +784,7 @@
   left: 0;
   right: 0;
   padding: 40px 36px;
+  border-radius: inherit;
   background: linear-gradient(
     to top,
     rgba(0, 0, 0, 0.92) 0%,

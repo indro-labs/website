@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "indrolabs.ca"
+        }
+      ],
+      "destination": "https://www.indrolabs.ca/$1",
+      "permanent": true
+    }
+  ]
+}

@@ -1,26 +1,26 @@
 import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import './NavBar.css'
 
 function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const { pathname } = useLocation()
+  const navigate = useNavigate()
 
-  // Scroll to section on home page, or navigate if on different page
+  // Scroll to section on home page, or navigate to the home page contact anchor otherwise
   const handleScrollToContact = (e) => {
     e.preventDefault()
-    
-    const isOnHomePage = pathname === '/' || pathname.startsWith('/')
-    
+
+    const isOnHomePage = pathname === '/' || pathname === '/contact'
+
     if (isOnHomePage) {
-      // We're on the home page, so scroll directly
       requestAnimationFrame(() => {
         document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
       })
       setMenuOpen(false)
     } else {
-      // We're on a different page, navigate and let HomePage handle scrolling
-      window.location.href = '/contact'
+      navigate('/contact')
+      setMenuOpen(false)
     }
   }
 

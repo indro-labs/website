@@ -1,7 +1,7 @@
 import NavBar from '../../components/NavBar/NavBar'
 import '../../App.css'
 import { ChevronDown } from 'lucide-react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate, useParams, Link } from 'react-router-dom'
 import { Listbox } from '@headlessui/react'
 import homeownerPhoto  from '../../assets/ForHomeowner.jpg'
@@ -11,6 +11,8 @@ import heroPoster       from '../../assets/hero_poster.jpg'
 import step1Photo      from '../../assets/Mainpagestep1.jpg'
 import step2Photo      from '../../assets/Mainpagestep2.jpg'
 import step3Photo      from '../../assets/Mainpagestep3.jpg'
+
+
 
 /* ── Stats Slider ── */
 const STAT_SLIDES = [
@@ -160,6 +162,24 @@ function HomePage() {
   const [selectedOption, setSelectedOption] = useState('')
   const [formStatus, setFormStatus] = useState(null)
 
+  /*Low power mode*/
+  const [isLowPowerMode, setIsLowPowerMode] = useState(false)
+  const heroVideoRef = useRef(null)
+
+  const ensureVideoPlays = async (video) => {
+    if (!video) return
+
+    try {
+      await video.play()
+    } catch (error) {
+      setIsLowPowerMode(true)
+    }
+  }
+
+  useEffect(() => {
+    ensureVideoPlays(heroVideoRef.current)
+  }, [])
+
   // Scroll to section when navigated via /section-id path
   useEffect(() => {
     if (section) {
@@ -256,23 +276,24 @@ const handlePartnerSubmit = async (e) => {
 
       {/* Hero */}
       <section id="hero">
-                {window.matchMedia('(prefers-reduced-motion: reduce)').matches ? (
-          <img
-            src={heroPoster}
-            alt="Indro Labs hero background"
-            className="hero-video-bg"
-          />
-        ) : (
-          <video
-            className="hero-video-bg"
-            autoPlay
-            muted
-            loop
-            playsInline
-          >
-            <source src={heroVideo} type="video/mp4" />
-          </video>
-        )}
+             {isLowPowerMode ? (
+              <img
+                src={heroPoster}
+                alt="Indro Labs hero background"
+                className="hero-video-bg"
+              />
+            ) : (
+              <video
+                ref={heroVideoRef}
+                className="hero-video-bg"
+                autoPlay
+                muted
+                loop
+                playsInline
+              >
+                <source src={heroVideo} type="video/mp4" />
+              </video>
+            )}
 
 
         <div className="hero-video-overlay" />

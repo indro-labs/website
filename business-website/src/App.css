@@ -63,7 +63,10 @@
   opacity: 1;
 }
 
-
+/* Poster fades OUT only when video is ready */
+.poster-fade {
+  opacity: 0;
+}
 /* Gradient overlay — darker at edges, readable center */
 .hero-video-overlay {
   position: absolute;

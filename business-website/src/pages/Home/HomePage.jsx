@@ -164,21 +164,30 @@ function HomePage() {
 
   /*Low power mode*/
   const [isLowPowerMode, setIsLowPowerMode] = useState(false)
+  const [videoLoaded, setVideoLoaded] = useState(false)
   const heroVideoRef = useRef(null)
 
-  const ensureVideoPlays = async (video) => {
-    if (!video) return
+  const ensureVideoPlays = async () => {
+  const video = heroVideoRef.current
 
-    try {
-      await video.play()
-    } catch (error) {
-      setIsLowPowerMode(true)
-    }
+  if (!video) return
+
+  try {
+    await video.play()
+
+    setTimeout(() => {
+      if (video.paused || video.currentTime === 0) {
+        setIsLowPowerMode(true)
+      }
+    }, 1200)
+  } catch {
+    setIsLowPowerMode(true)
   }
+}
 
-  useEffect(() => {
-    ensureVideoPlays(heroVideoRef.current)
-  }, [])
+useEffect(() => {
+  ensureVideoPlays()
+}, [])
 
   // Scroll to section when navigated via /section-id path
   useEffect(() => {
@@ -274,26 +283,38 @@ const handlePartnerSubmit = async (e) => {
 
       <NavBar />
 
-      {/* Hero */}
-      <section id="hero">
-             {isLowPowerMode ? (
-              <img
-                src={heroPoster}
-                alt="Indro Labs hero background"
-                className="hero-video-bg"
-              />
-            ) : (
-              <video
-                ref={heroVideoRef}
-                className="hero-video-bg"
-                autoPlay
-                muted
-                loop
-                playsInline
-              >
-                <source src={heroVideo} type="video/mp4" />
-              </video>
-            )}
+  {/* Hero */}
+<section id="hero">
+
+  {/* Poster (base layer) */}
+  <img
+    src={heroPoster}
+    alt="Indro Labs hero background"
+    className={`hero-video-bg hero-poster ${
+      videoLoaded ? 'poster-fade' : ''
+    }`}
+  />
+
+  {/* Video (only appears when ready) */}
+  {!isLowPowerMode && (
+    <video
+      ref={heroVideoRef}
+      className={`hero-video-bg hero-video ${
+        videoLoaded ? 'video-visible' : ''
+      }`}
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="auto"
+      onPlaying={() => setVideoLoaded(true)}
+    >
+      <source src={heroVideo} type="video/mp4" />
+    </video>
+  )}
+
+  {/* 🔥 YOUR EXISTING OVERLAY (UNCHANGED) */}
+  <div className="hero-video-overlay" />
 
 
         <div className="hero-video-overlay" />

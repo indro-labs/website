@@ -7,6 +7,7 @@ import { Listbox } from '@headlessui/react'
 import homeownerPhoto  from '../../assets/ForHomeowner.jpg'
 import businessPhoto   from '../../assets/ForRadonBuisnesses.jpg'
 import heroVideo       from '../../assets/hero_video.mp4'
+import heroPoster       from '../../assets/hero_poster.jpg'
 import step1Photo      from '../../assets/Mainpagestep1.jpg'
 import step2Photo      from '../../assets/Mainpagestep2.jpg'
 import step3Photo      from '../../assets/Mainpagestep3.jpg'
@@ -255,9 +256,25 @@ const handlePartnerSubmit = async (e) => {
 
       {/* Hero */}
       <section id="hero">
-        <video className="hero-video-bg" autoPlay muted loop playsInline>
-          <source src={heroVideo} type="video/mp4" />
-        </video>
+                {window.matchMedia('(prefers-reduced-motion: reduce)').matches ? (
+          <img
+            src={heroPoster}
+            alt="Indro Labs hero background"
+            className="hero-video-bg"
+          />
+        ) : (
+          <video
+            className="hero-video-bg"
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            <source src={heroVideo} type="video/mp4" />
+          </video>
+        )}
+
+
         <div className="hero-video-overlay" />
 
         <div className="hero-container">

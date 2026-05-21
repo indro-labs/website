@@ -6,46 +6,83 @@ import './IndroManagerPage.css'
 
 /* ── Property Hub Widget ── */
 function ManagerWidget() {
-  const PROPS = [
-    { addr: '4521 Birch Cres', tech: 'J. Patel', status: 'active', note: 'Serviced May 12' },
-    { addr: '238 Oakwood Dr',  tech: 'M. Torres', status: 'followup', note: 'Report pending' },
-    { addr: '91 Lakeview Blvd', tech: 'J. Patel', status: 'active', note: 'Serviced May 8' },
+  const SIDEBAR_PROPS = [
+    { addr: '91 Lakeview Blvd', status: 'active',   selected: true },
+    { addr: '4521 Birch Cres',  status: 'active' },
+    { addr: '238 Oakwood Dr',   status: 'followup' },
+    { addr: '17 Maple Lane',    status: 'active' },
   ]
-  const bars = [40, 65, 35, 80, 55, 70, 45, 90, 60, 75, 50, 85]
+
+  const TIMELINE = [
+    { date: 'May 12, 2026', event: 'Annual inspection',    tag: 'Inspection' },
+    { date: 'Mar 4, 2026',  event: 'Fan motor replacement', tag: 'Service' },
+    { date: 'Jan 17, 2026', event: 'Initial installation',  tag: 'Install' },
+  ]
 
   return (
-    <div className="im-widget">
-      <div className="im-widget-header">
-        <div>
-          <div className="im-widget-title">Property Hub</div>
-          <div className="im-widget-sub">47 active properties</div>
+    <div className="im-widget-wrap">
+      <div className="im-widget">
+        {/* App top bar */}
+        <div className="im-widget-topbar">
+          <div className="im-widget-app-icon">IM</div>
+          <div className="im-widget-app-name">Indro Manager</div>
+          <span className="im-widget-badge">● Live</span>
         </div>
-        <span className="im-widget-badge">● All tracked</span>
-      </div>
 
-      <div className="im-prop-list">
-        {PROPS.map((p, i) => (
-          <div key={i} className="im-prop-row">
-            <div className="im-prop-left">
-              <div className="im-prop-addr">{p.addr}</div>
-              <div className="im-prop-tech">{p.tech}</div>
+        {/* Split body */}
+        <div className="im-widget-body">
+          {/* Sidebar — property list */}
+          <div className="im-widget-sidebar">
+            <div className="im-sidebar-header">
+              <span className="im-sidebar-label">Properties</span>
+              <span className="im-sidebar-count">47</span>
             </div>
-            <div className="im-prop-right">
-              <span className={`im-status-badge ${p.status}`}>
-                {p.status === 'active' ? '● Active' : '● Follow-up'}
-              </span>
-              <span className="im-prop-note">{p.note}</span>
+            <div className="im-sidebar-list">
+              {SIDEBAR_PROPS.map(({ addr, status, selected }) => (
+                <div key={addr} className={`im-sidebar-item ${selected ? 'selected' : ''}`}>
+                  <span className={`im-sidebar-dot ${status}`} />
+                  <span className="im-sidebar-addr">{addr}</span>
+                </div>
+              ))}
+              <div className="im-sidebar-more">+43 more</div>
             </div>
           </div>
-        ))}
+
+          {/* Main — selected property detail */}
+          <div className="im-widget-main">
+            <div className="im-main-prop-name">91 Lakeview Blvd</div>
+            <div className="im-main-prop-meta">J. Patel · Radon Technician</div>
+
+            <div className="im-timeline-heading">Service History</div>
+            <div className="im-timeline">
+              {TIMELINE.map(({ date, event, tag }, i) => (
+                <div key={i} className="im-timeline-row">
+                  <div className="im-timeline-track">
+                    <div className="im-timeline-node" />
+                    {i < TIMELINE.length - 1 && <div className="im-timeline-line" />}
+                  </div>
+                  <div className="im-timeline-content">
+                    <div className="im-timeline-event">{event}</div>
+                    <div className="im-timeline-date">{date}</div>
+                  </div>
+                  <span className="im-timeline-tag">{tag}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="im-widget-action-btn">Generate Report →</div>
+          </div>
+        </div>
       </div>
 
-      <div className="im-chart-wrap">
-        {bars.map((h, i) => (
-          <div key={i} className={`im-bar ${i >= 9 ? 'im-bar-accent' : ''}`} style={{ height: `${h}%` }} />
-        ))}
+      {/* Floating report notification */}
+      <div className="im-widget-float">
+        <div className="im-widget-float-icon">✓</div>
+        <div>
+          <div className="im-widget-float-title">Homeowner report ready</div>
+          <div className="im-widget-float-sub">91 Lakeview · Generated May 12</div>
+        </div>
       </div>
-      <div className="im-chart-label">Service activity — last 30 days</div>
     </div>
   )
 }
@@ -155,6 +192,7 @@ const FOCUS_AREAS = [
 function IndroManagerPage() {
   const { section } = useParams()
   const [formStatus, setFormStatus] = useState(null)
+  const [focusTab, setFocusTab] = useState(0)
   const focusRef = useRef(null)
 
   useEffect(() => {
@@ -173,21 +211,6 @@ function IndroManagerPage() {
     })
   }
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.querySelectorAll('.im-focus-card').forEach((el, i) => {
-            setTimeout(() => el.classList.add('im-focus-card--visible'), i * 120)
-          })
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.2 }
-    )
-    if (focusRef.current) observer.observe(focusRef.current)
-    return () => observer.disconnect()
-  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -278,16 +301,28 @@ function IndroManagerPage() {
       {/* ── Core Focus ── */}
       <section id="im-focus">
         <div className="im-focus-container">
-          <p className="im-eyebrow light">CORE FOCUS</p>
-          <h2 className="im-focus-headline">What Indro Manager is built for.</h2>
-          <div className="im-focus-grid" ref={focusRef}>
-            {FOCUS_AREAS.map(({ title, desc }) => (
-              <div className="im-focus-card" key={title}>
-                <div className="im-focus-accent" />
-                <h4 className="im-focus-title">{title}</h4>
-                <p className="im-focus-desc">{desc}</p>
-              </div>
-            ))}
+          <div className="im-focus-header">
+            <p className="im-eyebrow">CORE FOCUS</p>
+            <h2 className="im-focus-headline">What Indro Manager is built for.</h2>
+            <p className="im-focus-subhead">Every feature exists to solve a real operational problem — nothing more, nothing less.</p>
+          </div>
+          <div className="im-focus-tabs-layout" ref={focusRef}>
+            <div className="im-focus-tab-list">
+              {FOCUS_AREAS.map(({ title }, i) => (
+                <button
+                  key={title}
+                  className={`im-focus-tab ${focusTab === i ? 'active' : ''}`}
+                  onClick={() => setFocusTab(i)}
+                >
+                  <span className="im-focus-tab-label">{title}</span>
+                </button>
+              ))}
+            </div>
+            <div className="im-focus-tab-panel" key={focusTab}>
+              <div className="im-focus-panel-accent" />
+              <h3 className="im-focus-panel-title">{FOCUS_AREAS[focusTab].title}</h3>
+              <p className="im-focus-panel-desc">{FOCUS_AREAS[focusTab].desc}</p>
+            </div>
           </div>
         </div>
       </section>

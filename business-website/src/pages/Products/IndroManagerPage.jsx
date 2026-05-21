@@ -193,7 +193,7 @@ function IndroManagerPage() {
     e.preventDefault()
     const form = e.currentTarget
     const formData = new FormData(form)
-    const response = await fetch(import.meta.env.VITE_FORMSPREE_WAITLIST_URL, {
+    const response = await fetch(import.meta.env.VITE_FORMSPREE_MANAGER_URL, {
       method: 'POST',
       body: formData,
       headers: { Accept: 'application/json' },

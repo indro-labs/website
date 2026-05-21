@@ -42,17 +42,16 @@ function NavBar() {
             <div className="nav-dropdown">
               <Link to="/" className="dropdown-row">
                 <div className="dropdown-row-title">Indro Smart</div>
-                <div className="dropdown-row-desc">Smart radon for everyone</div>
+                <div className="dropdown-row-desc">Smart radon monitoring for everyone</div>
               </Link>
-              <div className="dropdown-row dropdown-disabled">
-                <div className="dropdown-row-title">
-                  Indro Reception
-                  <span className="coming-badge">Coming soon</span>
-                </div>
-                <div className="dropdown-row-desc">
-                 AI reception for utility businesses
-                </div>
-              </div>
+              <Link to="/reception" className="dropdown-row">
+                <div className="dropdown-row-title">Indro Reception</div>
+                <div className="dropdown-row-desc">AI front desk for field service companies</div>
+              </Link>
+              <Link to="/manager" className="dropdown-row">
+                <div className="dropdown-row-title">Indro Manager</div>
+                <div className="dropdown-row-desc">Property and operations management</div>
+              </Link>
             </div>
           </div>
 
@@ -95,10 +94,8 @@ function NavBar() {
         <div className="navbar-mobile-menu">
           <div className="mobile-group-label">Product</div>
           <Link to="/" onClick={() => setMenuOpen(false)}>Indro Smart</Link>
-          <a href="#" onClick={() => setMenuOpen(false)} className="mobile-link-row">
-            Indro Reception
-            <span className="mobile-coming-badge">Coming soon</span>
-          </a>
+          <Link to="/reception" onClick={() => setMenuOpen(false)}>Indro Reception</Link>
+          <Link to="/manager" onClick={() => setMenuOpen(false)}>Indro Manager</Link>
           <div className="mobile-group-label">Solutions</div>
           <Link to="/homeowners" onClick={() => setMenuOpen(false)}>For homeowners</Link>
           <Link to="/businesses" onClick={() => setMenuOpen(false)}>For radon businesses</Link>

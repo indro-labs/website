@@ -5,8 +5,10 @@ import RadonBusinessPage from './pages/Solutions/RadonBusinessPage'
 import HomeownersPage from './pages/Solutions/HomeownersPage'
 import AboutPage from './pages/About/AboutPage'
 import ContactPage from './pages/Contact/ContactPage'
+import IndroReceptionPage from './pages/Products/IndroReceptionPage'
+import IndroManagerPage from './pages/Products/IndroManagerPage'
 
-const PAGE_BASES = new Set(['businesses', 'homeowners', 'about', 'contact-us'])
+const PAGE_BASES = new Set(['businesses', 'homeowners', 'about', 'contact-us', 'reception', 'manager'])
 
 /**
  * Scroll to top only when the *base* page changes.
@@ -55,6 +57,12 @@ function App() {
 
         {/* Contact */}
         <Route path="/contact-us" element={<ContactPage />} />
+
+        {/* Products */}
+        <Route path="/reception"           element={<IndroReceptionPage />} />
+        <Route path="/reception/:section"  element={<IndroReceptionPage />} />
+        <Route path="/manager"             element={<IndroManagerPage />} />
+        <Route path="/manager/:section"    element={<IndroManagerPage />} />
       </Routes>
     </>
   )

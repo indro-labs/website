@@ -60,7 +60,7 @@
 
 /* Video fades in */
 .video-visible {
-  opacity: 1;
+  opacity: 1.1;
 }
 
 /* Poster fades OUT only when video is ready */

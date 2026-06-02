@@ -1,5 +1,6 @@
 
 import NavBar from './components/NavBar/NavBar'
+import Footer from './components/Footer/Footer'
 import './App.css'
 import heroVideo from './assets/hero_video.mp4'
 import heroPoster from './assets/hero_poster.jpg'
@@ -394,32 +395,7 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer id="footer">
-        <div className="footer-container">
-
-          <div className="footer-column">
-            <h4>Indro Labs</h4>
-            <p>Continuous radon protection monitoring</p>
-          </div>
-
-          <div className="footer-column">
-            <h4>Contact</h4>
-            <p>info@indrolabs.ca</p>
-          </div>
-
-          <div className="footer-column">
-            <h4>Location</h4>
-            <p>Alberta, Canada</p>
-          </div>
-
-        </div>
-
-        <div className="footer-bottom">
-          Copyright © 2026 Indro labs - All Rights Reserved.
-        </div>
-
-      </footer>
+      <Footer />
     </>
   )
 }

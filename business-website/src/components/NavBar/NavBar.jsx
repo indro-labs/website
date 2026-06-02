@@ -67,6 +67,10 @@ function NavBar() {
                 <div className="dropdown-row-title">For radon businesses</div>
                 <div className="dropdown-row-desc">Transform your radon business with smart systems</div>
               </Link>
+              <Link to="/radon-quiz" className="dropdown-row">
+                <div className="dropdown-row-title">Radon Risk Quiz</div>
+                <div className="dropdown-row-desc">Find out if testing should be a priority</div>
+              </Link>
             </div>
           </div>
 
@@ -99,6 +103,9 @@ function NavBar() {
           <div className="mobile-group-label">Solutions</div>
           <Link to="/homeowners" onClick={() => setMenuOpen(false)}>For homeowners</Link>
           <Link to="/businesses" onClick={() => setMenuOpen(false)}>For radon businesses</Link>
+          <Link to="/radon-quiz" onClick={() => setMenuOpen(false)}>
+            Radon Risk Quiz
+          </Link>
           <div className="mobile-group-label">Discover</div>
           <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
           <Link to="/contact-us" onClick={() => setMenuOpen(false)}>Contact us</Link>

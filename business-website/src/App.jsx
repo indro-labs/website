@@ -514,7 +514,7 @@ function Quiz() {
       Your home profile is ready
     </p>
 
-    <h3 className="qz-h3">We'd look into these for your home.</h3>
+    <h3 className="qz-h3">We'd look into these for your home & connect you to liscensed professionals.</h3>
 
     <div className="result-cats">
       {cats.map(c => (

@@ -750,6 +750,83 @@ export default function App() {
   </div>
 </section>
 
+{/* ── QUICK PROJECT REQUEST ───────────────────── */}
+<section id="quick-project" className="quick-project-section">
+  <div className="wrap quick-project-wrap">
+    <div className="quick-project-left">
+      <p className="eyebrow-green">NO ACCOUNT NEEDED</p>
+      <h2 className="signup-h2">
+        Just need help<br/><em>with one home issue?</em>
+      </h2>
+      <p className="signup-sub">
+        Skip the full setup. Tell us what is going on, create a quick project,
+        and we’ll help connect you with qualified local technicians.
+      </p>
+
+      <div className="quick-project-points">
+        {[
+          'No account required to start',
+          'Create a project in under 2 minutes',
+          'Get matched by service type, location, and availability',
+          'Create account later for a more personalized home profile',
+          'Completely free',
+        ].map(item => (
+          <div className="quick-point" key={item}>
+            <CheckCircle size={18}/>
+            <span>{item}</span>
+          </div>
+        ))}
+      </div>
+
+
+    </div>
+
+    <div className="quick-project-right">
+      <div className="quick-project-card">
+        <p className="quick-card-label">QUICK PROJECT</p>
+
+        <div className="quick-field">
+          <span className="quick-field-label">Issue</span>
+          <span className="quick-field-value">Musty smell in basement</span>
+        </div>
+
+        <div className="quick-field">
+          <span className="quick-field-label">Service needed</span>
+          <span className="quick-field-value">Moisture & Mold Inspection</span>
+        </div>
+
+        <div className="quick-field">
+          <span className="quick-field-label">Location</span>
+          <span className="quick-field-value">Calgary, AB</span>
+        </div>
+
+        <div className="quick-match-preview">
+          <p className="quick-match-title">3 technician matches found</p>
+          <p className="quick-match-sub">
+            Based on your project type, location, and availability.
+          </p>
+        </div>
+
+       <div className="quick-actions">
+        <button type="button" className="quick-see-btn">
+          See matches
+        </button>
+
+        <button type="button" className="quick-unlock-btn">
+          Unlock more matches
+        </button>
+      </div>
+
+      <p className="quick-note">
+        Create a free home profile to unlock additional matches, personalized recommendations, maintenance reminders, and project history.
+      </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
       {/* ── HOME HEALTH QUIZ ────────────── */}
       <section id="home-health-quiz" className="hh-quiz-section">
         <div className="wrap">

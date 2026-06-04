@@ -1,7 +1,13 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import NavBar from './components/NavBar/NavBar'
 import './App.css'
 import { ArrowRight, ChevronRight, ChevronLeft, CheckCircle } from 'lucide-react'
+import whoLivesThere from './assets/whoLivesThere.jpeg'
+import petsImg from './assets/pets.jpeg'
+import localWeather from './assets/localWeather.jpeg'
+import maintenanceImg from './assets/maintenance.jpeg'
+import homeAgeImg from './assets/ForyourHomesAge.jpeg'
+import yourPriority from './assets/YourPriority.jpeg'
 
 /* ─────────────────────────────────────────────────
    HERO LANDSCAPE
@@ -9,7 +15,7 @@ import { ArrowRight, ChevronRight, ChevronLeft, CheckCircle } from 'lucide-react
 function HeroLandscape() {
   return (
     <div className="landscape-wrap">
-      <img src="/houses-hills-v2.png" alt="Canadian neighbourhood" className="landscape-img"/>
+      <img src="/houses-hills-v3.png" alt="Canadian neighbourhood" className="landscape-img"/>
     </div>
   )
 }
@@ -212,58 +218,72 @@ function DashboardMockup() {
 const features = [
   {
     title: 'Who lives here',
-    desc: 'Children, seniors, pets, and household health needs can all influence what your home should prioritize.'
+    desc: 'Children, seniors, pets, and household health needs can all influence what your home should prioritize.',
+    img: whoLivesThere,
   },
   {
     title: 'Pets in the mix',
-    desc: 'Pets can affect air quality, cleaning needs, and seasonal maintenance around the home.'
+    desc: 'Pets can affect air quality, cleaning needs, and seasonal maintenance around the home.',
+    img: petsImg,
   },
   {
     title: 'Local weather',
-    desc: 'Your climate affects everything from HVAC maintenance to winter preparation and outdoor upkeep.'
+    desc: 'Your climate affects everything from HVAC maintenance to winter preparation and outdoor upkeep.',
+    img: localWeather,
   },
   {
     title: "Your home's age",
-    desc: 'Older homes and newer builds often have different maintenance, safety, and inspection priorities.'
+    desc: 'Older homes and newer builds often have different maintenance, safety, and inspection priorities.',
+    img: homeAgeImg,
   },
   {
     title: 'Maintenance history',
-    desc: 'Past inspections, repairs, and upgrades help us understand what may need attention next.'
+    desc: 'Past inspections, repairs, and upgrades help us understand what may need attention next.',
+    img: maintenanceImg,
   },
   {
     title: 'Your priorities',
-    desc: 'Whether you care most about health, comfort, efficiency, or prevention, your plan adapts to your goals.'
+    desc: 'Whether you care most about health, comfort, efficiency, or prevention, your plan adapts to your goals.',
+    img: yourPriority,
   },
 ]
 
 function FeaturesCarousel() {
-  const [start, setStart] = useState(0)
-  const perPage = 3
-  const totalPages = Math.ceil(features.length / perPage)
-  const currentPage = Math.floor(start / perPage)
-  const visible = features.slice(start, start + perPage)
+  const [active, setActive] = useState(0)
+  const timerRef = useRef(null)
 
-  const prev = () => setStart(((currentPage - 1 + totalPages) % totalPages) * perPage)
-  const next = () => setStart(((currentPage + 1) % totalPages) * perPage)
+  const go = (i) => {
+    setActive(i)
+    clearInterval(timerRef.current)
+    timerRef.current = setInterval(() => setActive(a => (a + 1) % features.length), 3500)
+  }
+
+  useEffect(() => {
+    timerRef.current = setInterval(() => setActive(a => (a + 1) % features.length), 3500)
+    return () => clearInterval(timerRef.current)
+  }, [])
+
+  const f = features[active]
 
   return (
-    <div className="carousel-wrap">
-      <div className="features-grid">
-        {visible.map(f => (
-          <div className="feature-card" key={f.title}>
-            <h3 className="feature-title">{f.title}</h3>
-            <p className="feature-desc">{f.desc}</p>
-          </div>
-        ))}
-      </div>
-      <div className="carousel-controls">
-        <button className="carousel-btn" onClick={prev} aria-label="Previous"><ChevronLeft size={18}/></button>
-        <div className="carousel-dots">
-          {Array.from({ length: totalPages }).map((_, i) => (
-            <span key={i} className={`cdot${currentPage === i ? ' cdot-active' : ''}`} onClick={() => setStart(i * perPage)}/>
-          ))}
+    <div className="bau-carousel">
+      <div className="bau-slide">
+        <img src={f.img} alt={f.title} className="bau-slide-img"/>
+        <div className="bau-slide-overlay"/>
+        <div className="bau-slide-content">
+          <h3 className="bau-slide-title">{f.title}</h3>
+          <p className="bau-slide-desc">{f.desc}</p>
         </div>
-        <button className="carousel-btn" onClick={next} aria-label="Next"><ChevronRight size={18}/></button>
+      </div>
+      <div className="bau-dots">
+        {features.map((_, i) => (
+          <button
+            key={i}
+            className={`bau-dot${active === i ? ' bau-dot-active' : ''}`}
+            onClick={() => go(i)}
+            aria-label={`Feature ${i + 1}`}
+          />
+        ))}
       </div>
     </div>
   )
@@ -654,19 +674,26 @@ export default function App() {
       {/* ── BUILT AROUND YOU ────────────── */}
       <section id="home-health" className="built-section">
         <div className="wrap">
-          <p className="eyebrow-green">BUILT AROUND YOU</p>
-          <h2 className="built-h2">
-              Every home is different.<br/>
-              <em>Your plan should be too.</em>
-          </h2>
-          <p className="built-sub">
-            Your home's <span className="built-highlight">age</span>,{' '}
-            <span className="built-highlight">location</span>,{' '}
-            <span className="built-highlight">household</span>, and{' '}
-            <span className="built-highlight">maintenance history</span> all influence what deserves attention.
-            We help you understand what matters most and connect you with the right professionals when it's time to take action.
-          </p>
-          <FeaturesCarousel/>
+          <div className="bau-box">
+            <div className="bau-box-bg"/>
+            <div className="bau-box-overlay"/>
+            <div className="bau-box-inner">
+              <div className="bau-left">
+                <p className="eyebrow-white">BUILT AROUND YOU</p>
+                <h2 className="bau-h2">
+                  Every home is different.<br/>
+                  <em>Your plan should be too.</em>
+                </h2>
+                <p className="bau-sub">
+                  Your home's age, location, household, and maintenance history all influence what deserves attention.
+                  We help you understand what matters most.
+                </p>
+              </div>
+              <div className="bau-right">
+                <FeaturesCarousel/>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

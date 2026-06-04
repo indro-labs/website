@@ -21,7 +21,7 @@ export default function NavBar() {
 
         <div className="nav-right">
           <a href="#quiz-section" className="nav-signin">Join Waitlist</a>
-          <a href="#quiz-section" className="nav-pill">Take the quiz</a>
+          <a href="#home-health-quiz" className="nav-pill">Take the quiz</a>
         </div>
 
         <button className="nav-hamburger" onClick={() => setOpen(!open)} aria-label="Menu">

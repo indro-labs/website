@@ -481,6 +481,86 @@ export default function App() {
         </div>
       </section>
 
+{/* ── GET MATCHED ───────────────────── */}
+<section id="get-matched" className="match-section">
+  <div className="wrap match-wrap">
+    <div className="match-left">
+      <p className="eyebrow-green">GET MATCHED</p>
+      <h2 className="signup-h2">
+        From home concern<br/><em>to trusted help.</em>
+      </h2>
+      <p className="signup-sub">
+        Indro Labs helps homeowners understand what their home may need,
+        then connects them with vetted local professionals who fit the job.
+      </p>
+
+      <div className="match-steps">
+        {[
+          {
+            step: '01',
+            title: 'Tell us what is going on',
+            desc: 'Take the home health quiz or tell us about a specific issue, like radon, moisture, HVAC, or ventilation.',
+          },
+          {
+            step: '02',
+            title: 'We identify the right service',
+            desc: 'We turn your answers into clear next steps so you know whether to test, inspect, repair, or monitor.',
+          },
+          {
+            step: '03',
+            title: 'Get matched with local pros',
+            desc: 'We connect you with qualified contractors in your area based on service type, location, and availability.',
+          },
+        ].map(item => (
+          <div className="match-step" key={item.step}>
+            <span className="match-num">{item.step}</span>
+            <div>
+              <p className="match-title">{item.title}</p>
+              <p className="match-desc">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <a href="#home-health-quiz" className="pill-dark">
+        Start with the quiz <ArrowRight size={15}/>
+      </a>
+    </div>
+
+    <div className="match-right">
+      <div className="match-phone-card">
+        <p className="match-card-label">RECOMMENDED MATCH</p>
+
+        <div className="match-service-card">
+          <div className="match-icon">🏠</div>
+          <div>
+            <p className="match-service-title">Radon Testing</p>
+            <p className="match-service-sub">Based on: basement · not tested · Calgary, AB</p>
+          </div>
+        </div>
+
+        <div className="match-pro-card">
+          <div className="match-avatar">SR</div>
+          <div className="match-pro-info">
+            <p className="match-pro-name">Sarah Reynolds</p>
+            <p className="match-pro-role">Radon & Indoor Air Quality</p>
+            <p className="match-pro-meta">⭐ 4.8 · C-NRPP Certified · Available this week</p>
+          </div>
+        </div>
+
+        <div className="match-actions">
+          <button className="match-action-primary">Request intro</button>
+          <button className="match-action-secondary">View profile</button>
+        </div>
+
+        <p className="match-note">
+          No pressure. Compare options, ask questions, and choose who feels right for your home.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
       {/* ── HOME HEALTH QUIZ ────────────── */}
       <section id="home-health-quiz" className="hh-quiz-section">
         <div className="wrap">

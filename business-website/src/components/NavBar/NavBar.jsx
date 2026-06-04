@@ -16,7 +16,7 @@ export default function NavBar() {
         <nav className="nav-links">
           <a href="#how-it-works">How it works</a>
           <a href="#home-health">Home health</a>
-          <a href="#quiz-section">Get matched</a>
+          <a href="#get-matched">Get matched</a>
         </nav>
 
         <div className="nav-right">
@@ -33,7 +33,7 @@ export default function NavBar() {
         <nav className="nav-mobile">
           <a href="#how-it-works" onClick={close}>How it works</a>
           <a href="#home-health" onClick={close}>Home health</a>
-          <a href="#quiz-section" onClick={close}>Get matched</a>
+          <a href="#get-matched" onClick={close}>Get matched</a>
           <a href="#quiz-section" className="nav-mobile-cta" onClick={close}>Take the quiz →</a>
         </nav>
       )}

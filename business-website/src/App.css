@@ -507,7 +507,7 @@
   background: white;
   border-radius: 20px; overflow: hidden;
   width: 100%;
-  box-shadow: 0 6px 28px rgba(0,0,0,0.10);
+  box-shadow: none;
 }
 
 /* Quiz UI */
@@ -628,7 +628,7 @@
 .signup-form-card {
   background: white; border: 1px solid var(--border);
   border-radius: 20px; padding: 36px 32px;
-  box-shadow: 0 4px 32px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 .signup-section-alt .signup-form-card { background: var(--bg-soft); border-color: var(--border); box-shadow: none; }
 .sfc-eyebrow { font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 2.2px; text-transform: uppercase; color: var(--green); margin-bottom: 10px; }
@@ -683,6 +683,7 @@
 .footer-col-head { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 2px; }
 .footer-col a { font-size: 14px; color: rgba(255,255,255,0.62); transition: color 0.18s; }
 .footer-col a:hover { color: white; }
+.footer-linkedin { display: inline-flex; align-items: center; gap: 6px; }
 .footer-base { border-top: 1px solid rgba(255,255,255,0.1); padding: 20px 0; font-size: 12px; color: rgba(255,255,255,0.38); text-align: center; }
 
 @media (max-width: 768px) {
@@ -709,7 +710,7 @@
    GET MATCHED
 ───────────────────────────────────────────────── */
 .match-section {
-  background: var(--bg-soft);
+  background: #FBF8F0;
   padding: 96px 20px;
 }
 
@@ -736,10 +737,10 @@
   gap: 18px;
   align-items: start;
   padding: 20px;
-  border: 1px solid rgba(20, 20, 15, 0.08);
+  border: 1px solid var(--border);
   border-radius: 22px;
-  background: rgba(255, 255, 255, 0.62);
-  box-shadow: 0 14px 36px rgba(20, 20, 15, 0.05);
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 .match-num {
@@ -780,9 +781,9 @@
   max-width: 430px;
   border-radius: 34px;
   padding: 26px;
-  background: #fff;
-  border: 1px solid rgba(20, 20, 15, 0.08);
-  box-shadow: 0 12px 40px rgba(20,20,15,0.07);
+  background: white;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 .match-card-label {
@@ -800,7 +801,7 @@
   align-items: center;
   padding: 18px;
   border-radius: 24px;
-  background: var(--bg-soft);
+  background: #FBF8F0;
   border: 1px solid var(--border);
   margin-bottom: 14px;
 }
@@ -874,7 +875,8 @@
   border-radius: 999px;
   padding: 13px 14px;
   font-weight: 800;
-  cursor: pointer;
+  cursor: default;
+  pointer-events: none;
 }
 
 .match-action-primary {
@@ -997,11 +999,11 @@
 .quick-project-card {
   width: 100%;
   max-width: 430px;
-  background: #fff;
-  border: 1px solid rgba(20, 20, 15, 0.08);
+  background: white;
+  border: 1px solid var(--border);
   border-radius: 34px;
   padding: 26px;
-  box-shadow: 0 28px 80px rgba(20, 20, 15, 0.12);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 .quick-card-label {
@@ -1119,8 +1121,8 @@
   padding: 13px 14px;
   font-size: 14px;
   font-weight: 800;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  cursor: default;
+  pointer-events: none;
 }
 
 .quick-see-btn {
@@ -1129,16 +1131,8 @@
   color: #14140F;
 }
 
-.quick-see-btn:hover {
-  background: #DDD9CF;
-}
-
 .quick-unlock-btn {
   background: #14140F;
   border: none;
   color: white;
-}
-
-.quick-unlock-btn:hover {
-  opacity: 0.92;
 }

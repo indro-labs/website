@@ -34,7 +34,7 @@ export default function NavBar() {
           <a href="#how-it-works" onClick={close}>How it works</a>
           <a href="#home-health" onClick={close}>Home health</a>
           <a href="#get-matched" onClick={close}>Get matched</a>
-          <a href="#quiz-section" className="nav-mobile-cta" onClick={close}>Take the quiz →</a>
+          <a href="#home-health-quiz" className="nav-mobile-cta" onClick={close}>Take the quiz →</a>
         </nav>
       )}
     </header>

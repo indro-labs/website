@@ -1,42 +1,44 @@
 import { useState } from 'react'
 import './NavBar.css'
 
-function NavBar() {
-  const [menuOpen, setMenuOpen] = useState(false)
+export default function NavBar() {
+  const [open, setOpen] = useState(false)
+  const close = () => setOpen(false)
 
   return (
     <header className="navbar">
-      <nav className="navbar-container">
-        <a href="#center" className="navbar-logo">
-          Indro Labs
+      <div className="navbar-inner">
+        <a href="#hero" className="navbar-logo" onClick={close}>
+          <span className="logo-icon">
+            <img src="/indro-logo.png" alt="Indro Labs" className="logo-img"/>
+          </span>
+          <span className="logo-wordmark">Indro <em>Labs</em></span>
         </a>
 
-        <div className="navbar-links">
-          <a href="#about-section">About</a>
-          <a href="#mission-section">Mission</a>
-          <a href="#solutions-section">Solutions</a>
-          <a href="#contact-section">Contact</a>
+        <nav className="nav-links">
+          <a href="#how-it-works">How it works</a>
+          <a href="#home-health">Home health</a>
+          <a href="#contact-section">Get matched</a>
+        </nav>
+
+        <div className="nav-right">
+          <a href="#contact-section" className="nav-signin">Sign in</a>
+          <a href="#quiz-section" className="nav-pill">Take the quiz</a>
         </div>
 
-        <button
-          className="navbar-menu-button"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle navigation menu"
-        >
-          ☰
+        <button className="nav-hamburger" onClick={() => setOpen(!open)} aria-label="Menu">
+          {open ? '✕' : '☰'}
         </button>
-      </nav>
+      </div>
 
-      {menuOpen && (
-        <div className="navbar-mobile-menu">
-          <a href="#about-section">About</a>
-          <a href="#mission-section">Mission</a>
-          <a href="#solutions-section">Solutions</a>
-          <a href="#contact-section">Contact</a>
-        </div>
+      {open && (
+        <nav className="nav-mobile">
+          <a href="#how-it-works" onClick={close}>How it works</a>
+          <a href="#home-health" onClick={close}>Home health</a>
+          <a href="#contact-section" onClick={close}>Get matched</a>
+          <a href="#quiz-section" className="nav-mobile-cta" onClick={close}>Take the quiz →</a>
+        </nav>
       )}
     </header>
   )
 }
-
-export default NavBar

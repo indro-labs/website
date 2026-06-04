@@ -810,12 +810,12 @@ export default function App() {
 
             {/* Timeline */}
             <div className="signup-timeline">
-              {[
-                { step:'01', title:'Track your home health',  desc:'We build a living profile of your home — age, systems, household, and climate.' },
-                { step:'02', title:'Get reminded on time',    desc:'Seasonal alerts before anything becomes an expensive surprise.' },
-                { step:'03', title:'Book a professional',     desc:'One tap to connect with a vetted, licensed Canadian contractor.' },
-                { step:'04', title:'Earn rewards',            desc:'Points for every task completed, redeemable for services and perks.' },
-              ].map((item, idx, arr) => (
+                {[
+                  { step:'01', title:'Track your home health',  desc:'We build a living profile of your home — age, systems, household, and maintenance history.' },
+                  { step:'02', title:'Get reminded on time',    desc:'Seasonal alerts help you stay ahead of routine maintenance and potential issues.' },
+                  { step:'03', title:'Connect with a professional', desc:'Get introduced to qualified local contractors who fit the service you need.' },
+                  { step:'04', title:'Earn rewards',            desc:'Earn points for completing home tasks, redeemable for future services and perks.' },
+                ].map((item, idx, arr) => (
                 <div className="tl-item" key={item.step}>
                   <div className="tl-step-col">
                     <div className="tl-dot">
@@ -859,7 +859,7 @@ export default function App() {
                     Join Waitlist <ArrowRight size={15}/>
                   </button>
                   {hwErr && <p className="sfc-err">Something went wrong — please try again.</p>}
-                  <p className="sfc-fine">No spam. Early access only. Cancel any time.</p>
+                  <p className="sfc-fine">Early access only. Cancel any time.</p>
                 </form>
               )}
             </div>
@@ -879,16 +879,22 @@ export default function App() {
               Become a partner.<br/><em>Reach the right homes.</em>
             </h2>
             <p className="signup-sub">
-              Connect with homeowners who are already invested in maintaining their properties.
-              No cold outreach. No bidding wars. Just the right job at the right time.
+              Reach homeowners who are already thinking about their homes. Indro Labs helps connect qualified professionals with homeowners seeking testing, maintenance, inspections, and other home services.
             </p>
 
             <div className="ct-trades">
               <p className="ct-trades-label">TRADES WE WORK WITH</p>
               <div className="ct-trades-grid">
-                {['HVAC & Mechanical','Plumbing & Waterproofing','Electrical','Roofing & Eavestroughs',
-                  'Radon & Indoor Air Quality','General Contractors','Landscaping & Snow Removal',
-                  'Insulation & Energy Efficiency'].map(t => (
+                {[
+                    'Radon & Indoor Air Quality',
+                    'HVAC & Mechanical',
+                    'Plumbing, Drainage & Waterproofing',
+                    'Insulation & Energy Efficiency',
+                    'Roofing & Eavestroughs',
+                    'Electrical',
+                    'Landscaping & Snow Removal',
+                    'General Contractors'
+                  ].map(t => (
                   <span className="ct-trade-tag" key={t}>{t}</span>
                 ))}
               </div>
@@ -924,7 +930,7 @@ export default function App() {
                     Apply to Partner <ArrowRight size={15}/>
                   </button>
                   {ctErr && <p className="sfc-err">Something went wrong — please try again.</p>}
-                  <p className="sfc-fine">We review every application. No spam, ever.</p>
+                  <p className="sfc-fine">We review every application.</p>
                 </form>
               )}
             </div>
@@ -938,7 +944,7 @@ export default function App() {
         <div className="wrap footer-inner">
           <div className="footer-brand">
             <a href="#hero" className="footer-logo">
-              <img src="/indro-logo.png" alt="Indro Labs" className="footer-logo-img"/>
+              <img src="/white-indro-logo.png" alt="Indro Labs" className="footer-logo-img"/>
               Indro Labs
             </a>
             <p>Building the network behind healthier homes in Canada.</p>

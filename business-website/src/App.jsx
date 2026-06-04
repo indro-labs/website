@@ -408,7 +408,7 @@ export default function App() {
     e.preventDefault(); setHwErr(false)
     const data = Object.fromEntries(new FormData(e.currentTarget))
     try {
-      const r = await fetch(import.meta.env.VITE_FORMSPREE_WAITLIST_URL, {
+      const r = await fetch(import.meta.env.VITE_FORMSPREE_HOMEOWNER_URL, {
         method:'POST', body:JSON.stringify(data),
         headers:{ Accept:'application/json', 'Content-Type':'application/json' },
       })

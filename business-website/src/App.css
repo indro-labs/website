@@ -321,17 +321,18 @@
 }
 .bau-box-bg {
   position: absolute; inset: 0;
-  background-image: url('/houses-hills.png');
+  background-image: url('/househills3.png');
   background-size: cover; background-position: center 80%;
   pointer-events: none;
+  opacity: 0.45;
 }
 .bau-box-overlay {
   position: absolute; inset: 0;
   background: linear-gradient(
     110deg,
     rgba(8,20,6,0.88) 0%,
-    rgba(8,20,6,0.74) 45%,
-    rgba(8,20,6,0.46) 100%
+    rgba(8,20,6,0.66) 45%,
+    rgba(8,20,6,0.30) 100%
   );
   pointer-events: none;
 }
@@ -349,10 +350,15 @@
   letter-spacing: -1.8px; line-height: 1.05;
   color: white; margin-bottom: 20px;
 }
-.bau-h2 em { font-style: italic; color: rgba(255,255,255,0.52); }
+.bau-h2 em {
+  color: #F5EBDD;
+  opacity: 1;
+  font-style: italic;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.2);
+}
 .bau-sub {
   font-size: 16px; line-height: 1.72;
-  color: rgba(255,255,255,0.72);
+  color: white;
 }
 
 /* Right carousel */

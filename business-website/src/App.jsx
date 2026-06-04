@@ -210,12 +210,30 @@ function DashboardMockup() {
    FEATURES CAROUSEL
 ───────────────────────────────────────────────── */
 const features = [
-  { title:'Who lives here',   desc:'Kids, partners, parents — we flag risks like radon near nurseries or accessibility needs after 65.' },
-  { title:'Pets in the mix',  desc:'Allergen filters, fence checks, and salt-free de-icing because Maple licks her paws.' },
-  { title:'Local weather',    desc:'We watch the forecast for you. Ice storm Tuesday? We move your eaves cleaning.' },
-  { title:'Your home\'s age', desc:'A 1962 bungalow has different needs than a 2018 build. We know both.' },
-  { title:'Your schedule',    desc:'Tell us you travel Tuesdays. We won\'t book a plumber on Tuesday.' },
-  { title:'Your budget',      desc:'Pace big-ticket work over the year. Skip nothing critical.' },
+  {
+    title: 'Who lives here',
+    desc: 'Children, seniors, pets, and household health needs can all influence what your home should prioritize.'
+  },
+  {
+    title: 'Pets in the mix',
+    desc: 'Pets can affect air quality, cleaning needs, and seasonal maintenance around the home.'
+  },
+  {
+    title: 'Local weather',
+    desc: 'Your climate affects everything from HVAC maintenance to winter preparation and outdoor upkeep.'
+  },
+  {
+    title: "Your home's age",
+    desc: 'Older homes and newer builds often have different maintenance, safety, and inspection priorities.'
+  },
+  {
+    title: 'Maintenance history',
+    desc: 'Past inspections, repairs, and upgrades help us understand what may need attention next.'
+  },
+  {
+    title: 'Your priorities',
+    desc: 'Whether you care most about health, comfort, efficiency, or prevention, your plan adapts to your goals.'
+  },
 ]
 
 function FeaturesCarousel() {
@@ -254,34 +272,158 @@ function FeaturesCarousel() {
 /* ─────────────────────────────────────────────────
    QUIZ  (home health assessment)
 ───────────────────────────────────────────────── */
+
 const newQuestions = [
-  { q:'What type of home do you live in?', multi:false,
-    options:['Detached house','Semi-detached / duplex','Townhouse','Condo / apartment'] },
-  { q:'Does your home have a basement?', multi:false,
-    options:['Yes — finished basement','Yes — unfinished basement','Crawl space','No basement / slab'] },
-  { q:'Who lives in your home? (select all that apply)', multi:true,
-    options:['Children under 12','Adults 65 or older','Pets','None of these'] },
-  { q:'Any hobbies that happen at home? (select all that apply)', multi:true,
-    options:['Woodworking or DIY','Painting / art projects','Heavy cooking','Home gym or workshop','None of these'] },
-  { q:'Where in Canada is your home?', multi:false,
-    options:['Prairies — AB / SK / MB','Ontario or Quebec','British Columbia','Atlantic Canada / North'] },
-  { q:'Has your home been tested for any of these? (select all that apply)', multi:true,
-    options:['Radon gas','Mold or moisture','HVAC / furnace efficiency','None of these'] },
+  {
+    q:'What type of home do you live in?',
+    multi:false,
+    options:[
+      'Detached house',
+      'Semi-detached / duplex',
+      'Townhouse',
+      'Condo / apartment'
+    ]
+  },
+
+  {
+    q:'Does your home have a basement?',
+    multi:false,
+    options:[
+      'Yes — finished basement',
+      'Yes — unfinished basement',
+      'Crawl space',
+      'No basement / slab'
+    ]
+  },
+
+  {
+    q:'Who lives in your home? (select all that apply)',
+    multi:true,
+    options:[
+      'Children under 12',
+      'Adults 65 or older',
+      'Pets',
+      'None of these'
+    ]
+  },
+
+  {
+    q:'Any hobbies that happen at home? (select all that apply)',
+    multi:true,
+    options:[
+      'Woodworking or DIY',
+      'Painting / art projects',
+      'Heavy cooking',
+      'Home gym or workshop',
+      'None of these'
+    ]
+  },
+
+  {
+    q:'Has your home been tested for any of these? (select all that apply)',
+    multi:true,
+    options:[
+      'Radon gas',
+      'Mold or moisture',
+      'HVAC / furnace efficiency',
+      'None of these'
+    ]
+  },
+
+  {
+    q:'Have you experienced any of these in your home? (select all that apply)',
+    multi:true,
+    options:[
+      'Water leak',
+      'Flooding',
+      'Condensation on windows',
+      'Musty smell',
+      'Visible mold',
+      'None of these'
+    ]
+  }
 ]
 
 function getCategories(answers) {
   const cats = []
   const a = answers
-  const hasBasement = ['Yes — finished basement','Yes — unfinished basement','Crawl space'].includes(a[1]?.[0])
-  const testedRadon = a[5]?.includes('Radon gas')
-  if (hasBasement && !testedRadon) cats.push({ label:'Radon Testing', desc:'Basement homes in your region often have elevated radon. A simple test takes 3 months.' })
-  const testedMold = a[5]?.includes('Mold or moisture')
-  if (hasBasement && !testedMold) cats.push({ label:'Moisture & Mold Inspection', desc:'Unfinished basements in Canada commonly develop moisture issues.' })
-  const testedHVAC = a[5]?.includes('HVAC / furnace efficiency')
-  if (!testedHVAC) cats.push({ label:'HVAC & Furnace Service', desc:'Annual furnace servicing is the single highest-value maintenance most Canadian homes skip.' })
-  const vulnPeople = a[2]?.some(x => ['Children under 12','Adults 65 or older','Pets'].includes(x))
-  if (vulnPeople) cats.push({ label:'Indoor Air Quality Check', desc:'Kids, seniors, and pets are more sensitive to air quality issues.' })
-  cats.push({ label:'Seasonal Maintenance Plan', desc:'Every Canadian home benefits from a structured spring/fall service schedule.' })
+
+  const hasBasement = [
+    'Yes — finished basement',
+    'Yes — unfinished basement',
+    'Crawl space'
+  ].includes(a[1]?.[0])
+
+  const testedRadon = a[4]?.includes('Radon gas')
+  const testedMold = a[4]?.includes('Mold or moisture')
+  const testedHVAC = a[4]?.includes('HVAC / furnace efficiency')
+
+  const hasMoistureIssues = a[5]?.some(x =>
+    [
+      'Water leak',
+      'Flooding',
+      'Condensation on windows',
+      'Musty smell',
+      'Visible mold'
+    ].includes(x)
+  )
+
+  const vulnPeople = a[2]?.some(x =>
+    [
+      'Children under 12',
+      'Adults 65 or older',
+      'Pets'
+    ].includes(x)
+  )
+
+  const riskyHobbies = a[3]?.some(x =>
+    [
+      'Woodworking or DIY',
+      'Painting / art projects',
+      'Heavy cooking'
+    ].includes(x)
+  )
+
+  if (hasBasement && !testedRadon) {
+    cats.push({
+      label: 'Radon Testing',
+      desc: 'Radon can enter homes from the ground, especially through foundations, basements, and crawl spaces. A long-term test is the only way to know your level.'
+    })
+  }
+
+  if ((hasBasement || hasMoistureIssues) && !testedMold) {
+    cats.push({
+      label: 'Moisture & Mold Inspection',
+      desc: 'Basements, crawl spaces, leaks, condensation, and musty smells can point to moisture issues worth investigating.'
+    })
+  }
+
+  if (!testedHVAC) {
+    cats.push({
+      label: 'HVAC & Furnace Service',
+      desc: 'Regular HVAC maintenance can help your system run efficiently and support better indoor air circulation.'
+    })
+  }
+
+  if (vulnPeople) {
+    cats.push({
+      label: 'Indoor Air Quality Check',
+      desc: 'Children, seniors, and pets can all benefit from a healthy indoor environment with good ventilation and air quality.'
+    })
+  }
+
+  if (riskyHobbies) {
+    cats.push({
+      label: 'Ventilation Assessment',
+      desc: 'Activities like cooking, painting, and DIY projects can add particles, dust, or airborne chemicals to indoor air.'
+    })
+  }
+
+  cats.push({
+    label: 'Seasonal Maintenance Plan',
+    desc: 'A simple seasonal plan can help you stay ahead of routine home maintenance.'
+  })
+
   return cats.slice(0, 4)
 }
 
@@ -293,6 +435,15 @@ function Quiz() {
   const [email, setEmail]     = useState('')
   const [done, setDone]       = useState(false)
   const [err, setErr]         = useState(false)
+  const resetQuiz = () => {
+  setStep(0)
+  setAnswers({})
+  setSelected([])
+  setName('')
+  setEmail('')
+  setDone(false)
+  setErr(false)
+}
 
   const total = newQuestions.length
   const onResult = step > total
@@ -316,7 +467,7 @@ function Quiz() {
   const submit = async (e) => {
     e.preventDefault(); setErr(false)
     try {
-      const r = await fetch(import.meta.env.VITE_FORMSPREE_WAITLIST_URL, {
+      const r = await fetch(import.meta.env.VITE_FORMSPREE_HOMEOWNER_URL, {
         method: 'POST',
         body: JSON.stringify({ name, email, categories: cats.map(c => c.label), answers }),
         headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
@@ -336,42 +487,76 @@ function Quiz() {
     </div>
   )
 
+ 
   if (onResult) return (
-    <div className="qz-panel">
-      <p className="qz-meta" style={{ color:'#4A7820', fontWeight:700 }}>Your home profile is ready</p>
-      <h3 className="qz-h3">We'd look into these for your home.</h3>
-      <div className="result-cats">
-        {cats.map(c => (
-          <div className="result-cat" key={c.label}>
-            <div>
-              <p className="rc-label">{c.label}</p>
-              <p className="rc-desc">{c.desc}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-      {!done ? (
-        <form onSubmit={submit} className="qz-form">
-          <p className="qz-form-title">Join early access — be first when we launch.</p>
-          <input type="text"  placeholder="Your name"     value={name}  onChange={e => setName(e.target.value)}  required/>
-          <input type="email" placeholder="Email address" value={email} onChange={e => setEmail(e.target.value)} required/>
-          <button type="submit" className="pill-dark" style={{ width:'100%', justifyContent:'center' }}>
-            Join Waitlist <ArrowRight size={15}/>
-          </button>
-          {err && <p className="qz-err">Something went wrong — please try again.</p>}
-          <p className="qz-fine">No spam. Unsubscribe any time.</p>
-        </form>
-      ) : (
-        <div className="qz-success-inline">
-          <CheckCircle size={22} color="#4A7820"/>
+  <div className="qz-panel">
+    <p className="qz-meta" style={{ color:'#4A7820', fontWeight:700 }}>
+      Your home profile is ready
+    </p>
+
+    <h3 className="qz-h3">We'd look into these for your home.</h3>
+
+    <div className="result-cats">
+      {cats.map(c => (
+        <div className="result-cat" key={c.label}>
           <div>
-            <p style={{ fontWeight:600, color:'var(--ink)', marginBottom:4 }}>You're on the list.</p>
-            <p style={{ fontSize:13, color:'var(--muted)' }}>We'll keep you posted as Indro Labs launches in your area.</p>
+            <p className="rc-label">{c.label}</p>
+            <p className="rc-desc">{c.desc}</p>
           </div>
         </div>
-      )}
+      ))}
     </div>
-  )
+
+    {!done ? (
+      <form onSubmit={submit} className="qz-form">
+        <p className="qz-form-title">Join early access — be first when we launch.</p>
+        <input
+          type="text"
+          placeholder="Your name"
+          value={name}
+          onChange={e => setName(e.target.value)}
+          required
+        />
+        <input
+          type="email"
+          placeholder="Email address"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          required
+        />
+        <button
+          type="submit"
+          className="pill-dark"
+          style={{ width:'100%', justifyContent:'center' }}
+        >
+          Join Waitlist <ArrowRight size={15}/>
+        </button>
+        {err && <p className="qz-err">Something went wrong — please try again.</p>}
+
+      </form>
+    ) : (
+      <div className="qz-success-inline">
+        <CheckCircle size={22} color="#4A7820"/>
+        <div>
+          <p style={{ fontWeight:600, color:'var(--ink)', marginBottom:4 }}>
+            You're on the list.
+          </p>
+          <p style={{ fontSize:13, color:'var(--muted)' }}>
+            We'll keep you posted as Indro Labs launches in your area.
+          </p>
+        </div>
+      </div>
+    )}
+
+    <button
+      type="button"
+      className="qz-retry-btn"
+      onClick={resetQuiz}
+    >
+      Take the quiz again
+    </button>
+  </div>
+)
 
   const q = newQuestions[step - 1]
   return (
@@ -440,8 +625,8 @@ export default function App() {
             <em>Your home shouldn't be.</em>
           </h1>
           <p className="hero-sub">
-            Indro Labs is the home management platform built for Canada. We learn your house,
-            your people, your climate — then handle everything with vetted local contractors.
+            Indro Labs helps Canadian homeowners understand what their home needs,
+            stay ahead of maintenance, and connect with trusted local professionals.
           </p>
           <div className="hero-ctas">
             <a href="#home-health-quiz" className="pill-dark">Take the 2-min quiz <ArrowRight size={15}/></a>
@@ -471,11 +656,15 @@ export default function App() {
         <div className="wrap">
           <p className="eyebrow-green">BUILT AROUND YOU</p>
           <h2 className="built-h2">
-            We take your <em>whole life</em> into account.
+              Every home is different.<br/>
+              <em>Your plan should be too.</em>
           </h2>
           <p className="built-sub">
-            Not just your square footage. Indro Labs tunes your home plan to the people, pets,
-            and weather that actually live there.
+            Your home's <span className="built-highlight">age</span>,{' '}
+            <span className="built-highlight">location</span>,{' '}
+            <span className="built-highlight">household</span>, and{' '}
+            <span className="built-highlight">maintenance history</span> all influence what deserves attention.
+            We help you understand what matters most and connect you with the right professionals when it's time to take action.
           </p>
           <FeaturesCarousel/>
         </div>
@@ -491,7 +680,7 @@ export default function App() {
       </h2>
       <p className="signup-sub">
         Indro Labs helps homeowners understand what their home may need,
-        then connects them with vetted local professionals who fit the job.
+        then connects them with qualified local professionals who fit the job.
       </p>
 
       <div className="match-steps">
@@ -503,13 +692,13 @@ export default function App() {
           },
           {
             step: '02',
-            title: 'We identify the right service',
-            desc: 'We turn your answers into clear next steps so you know whether to test, inspect, repair, or monitor.',
+            title: 'See your next steps',
+            desc: 'We help organize your answers into clear options, such as testing, inspection, maintenance, or monitoring.',
           },
           {
             step: '03',
-            title: 'Get matched with local pros',
-            desc: 'We connect you with qualified contractors in your area based on service type, location, and availability.',
+            title: 'Connect with local pros',
+            desc: 'We help connect you with professionals in your area based on service type, location, and availability.',
           },
         ].map(item => (
           <div className="match-step" key={item.step}>
@@ -540,9 +729,9 @@ export default function App() {
         </div>
 
         <div className="match-pro-card">
-          <div className="match-avatar">SR</div>
+          <div className="match-avatar">JS</div>
           <div className="match-pro-info">
-            <p className="match-pro-name">Sarah Reynolds</p>
+            <p className="match-pro-name">John Smith</p>
             <p className="match-pro-role">Radon & Indoor Air Quality</p>
             <p className="match-pro-meta">⭐ 4.8 · C-NRPP Certified · Available this week</p>
           </div>
@@ -554,7 +743,7 @@ export default function App() {
         </div>
 
         <p className="match-note">
-          No pressure. Compare options, ask questions, and choose who feels right for your home.
+            Explore your options, ask questions, and choose the professional that's right for your home.
         </p>
       </div>
     </div>
@@ -574,7 +763,7 @@ export default function App() {
                   Find out how<br/>healthy your<br/><em>home is today.</em>
                 </h2>
                 <p className="hh-quiz-sub">
-                  Six questions. Two minutes.<br/>
+                  6 questions · 2 minutes<br/>
                   Know exactly what your home needs.
                 </p>
                 <div className="hh-quiz-stats">

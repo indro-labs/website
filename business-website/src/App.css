@@ -56,7 +56,7 @@
 /* ========================
    HERO
 ======================== */
-.hero-section { padding-top: 62px; background: var(--bg); overflow: hidden; }
+.hero-section { padding-top: 85px; background: var(--bg); overflow: hidden; }
 
 .hero-text {
   max-width: 1160px; margin: 0 auto;
@@ -319,7 +319,7 @@
   white-space: nowrap;
 }
 .built-h2 em { font-style: italic; }
-.built-sub { font-size: 17px; line-height: 1.72; color: var(--muted); max-width: 520px; margin-bottom: 44px; }
+.built-sub { font-size: 17px; line-height: 1.72; color: var(--muted); max-width: 900px; margin-bottom: 44px; }
 
 /* Carousel */
 .carousel-wrap { display: flex; flex-direction: column; gap: 28px; }
@@ -461,7 +461,8 @@
 .qz-opt.sel .qz-radio { background: var(--ink); border-color: var(--ink); }
 .result-cats { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
 .result-cat { padding: 12px 14px; background: var(--bg); border-radius: 10px; border: 1px solid var(--border); }
-.rc-label { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+
+.rc-label { font-size: 13px; font-weight: 600; color: #A56A00;; margin-bottom: 2px; }
 .rc-desc  { font-size: 12px; line-height: 1.55; color: var(--muted); }
 .qz-form { display: flex; flex-direction: column; gap: 9px; border-top: 1px solid var(--border); padding-top: 18px; margin-top: 4px; }
 .qz-form-title { font-size: 13px; font-weight: 600; color: var(--ink); }
@@ -539,7 +540,7 @@
 .ct-point-desc  { font-size: 13px; line-height: 1.6; color: var(--muted); }
 
 /* Trades tags */
-.ct-trades { }
+
 .ct-trades-label { font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
 .ct-trades-grid { display: flex; flex-wrap: wrap; gap: 8px; }
 .ct-trade-tag {
@@ -550,7 +551,7 @@
 .signup-section-alt .ct-trade-tag { background: var(--bg); }
 
 /* Form card */
-.signup-right { }
+
 .signup-form-card {
   background: white; border: 1px solid var(--border);
   border-radius: 20px; padding: 36px 32px;
@@ -844,4 +845,34 @@
   .match-actions {
     grid-template-columns: 1fr;
   }
+}
+
+.built-highlight {
+  color: var(--green, #4A7820);
+
+}
+.qz-success-block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.qz-retry-btn {
+  margin-top:4px;
+  background: transparent;
+  border: 1px solid #D6D3C8;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.qz-retry-btn {
+  width: 100%;
+  justify-content: center;
+}
+.qz-retry-btn:hover {
+  background: #F5F2E8;
 }

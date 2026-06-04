@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import NavBar from './components/NavBar/NavBar'
 import './App.css'
-import { ArrowRight, ArrowLeft, CheckCircle, ChevronRight, ChevronLeft, Star, Bell, Shield } from 'lucide-react'
+import { ArrowRight, ChevronRight, ChevronLeft, CheckCircle } from 'lucide-react'
 
 /* ─────────────────────────────────────────────────
    HERO LANDSCAPE
@@ -22,7 +22,7 @@ function CityTicker() {
   const doubled = [...cities, ...cities]
   return (
     <div className="city-ticker">
-      <p className="city-ticker-label">TRUSTED BY HOMES IN</p>
+      <p className="city-ticker-label">COMING SOON TO HOMES IN</p>
       <div className="city-ticker-scroll">
         <div className="city-ticker-track">
           {doubled.map((c, i) => (
@@ -35,57 +35,51 @@ function CityTicker() {
 }
 
 /* ─────────────────────────────────────────────────
-   DASHBOARD PHONE OVERLAY
+   HEALTH SCORE CARD (dashboard overview)
 ───────────────────────────────────────────────── */
-function DashPhone() {
-  const r = 32, circ = 2 * Math.PI * r
+function HealthScoreCard() {
+  const r = 38, circ = 2 * Math.PI * r
   const fill = (82 / 100) * circ
   return (
-    <div className="dash-phone-wrap">
-      <div className="dash-phone-frame">
-        <div className="dp-notch"/>
-        <div className="dp-screen">
-          <div className="dp-hdr">
-            <p className="dp-hdr-label">Home Score</p>
-            <span className="dp-bell"><Bell size={11}/></span>
+    <div className="health-score-card">
+      <div className="hsc-left">
+        <p className="hsc-label">HOME SCORE</p>
+        <svg viewBox="0 0 90 90" className="hsc-gauge">
+          <circle cx="45" cy="45" r={r} fill="none" stroke="#E8E6DE" strokeWidth="8"/>
+          <circle cx="45" cy="45" r={r} fill="none" stroke="#4A7820" strokeWidth="8"
+            strokeDasharray={`${fill} ${circ}`} strokeLinecap="round" transform="rotate(-90 45 45)"/>
+          <text x="45" y="42" textAnchor="middle" fontSize="18" fontWeight="800" fill="#14140F" fontFamily="DM Sans,sans-serif">82</text>
+          <text x="45" y="55" textAnchor="middle" fontSize="7" fontWeight="700" fill="#4A7820" fontFamily="DM Sans,sans-serif" letterSpacing="1">GOOD</text>
+        </svg>
+        <p className="hsc-caption">Your home is on track</p>
+      </div>
+      <div className="hsc-right">
+        {[
+          { label:'HVAC',    status:'Serviced', ok:true  },
+          { label:'Radon',   status:'Tested',   ok:true  },
+          { label:'Eaves',   status:'Due soon', ok:false },
+          { label:'Furnace', status:'Booked',   ok:true  },
+        ].map(item => (
+          <div className="hsc-item" key={item.label}>
+            <span className="hsc-dot" style={{ background: item.ok ? '#4A7820' : '#D97020' }}/>
+            <span className="hsc-item-label">{item.label}</span>
+            <span className="hsc-item-status" style={{ color: item.ok ? '#4A7820' : '#D97020' }}>{item.status}</span>
           </div>
-          <div className="dp-gauge-wrap">
-            <svg viewBox="0 0 80 80" className="dp-gauge-svg">
-              <circle cx="40" cy="40" r={r} fill="none" stroke="#E8E6DE" strokeWidth="7"/>
-              <circle cx="40" cy="40" r={r} fill="none" stroke="#4A7820" strokeWidth="7"
-                strokeDasharray={`${fill} ${circ}`} strokeLinecap="round" transform="rotate(-90 40 40)"/>
-              <text x="40" y="37" textAnchor="middle" fontSize="15" fontWeight="800" fill="#14140F" fontFamily="DM Sans,sans-serif">82</text>
-              <text x="40" y="48" textAnchor="middle" fontSize="6" fontWeight="700" fill="#4A7820" fontFamily="DM Sans,sans-serif" letterSpacing="0.8">GOOD</text>
-            </svg>
-            <p className="dp-score-cap">Your home is on track</p>
-          </div>
-          <div className="dp-items">
-            {[
-              { label:'HVAC',    status:'Serviced', ok:true  },
-              { label:'Radon',   status:'Tested',   ok:true  },
-              { label:'Eaves',   status:'Due soon', ok:false },
-            ].map(i => (
-              <div className="dp-item" key={i.label}>
-                <span className="dp-dot" style={{background: i.ok ? '#4A7820' : '#D97020'}}/>
-                <span className="dp-item-label">{i.label}</span>
-                <span className="dp-item-status" style={{color: i.ok ? '#4A7820' : '#D97020'}}>{i.status}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   )
 }
 
 /* ─────────────────────────────────────────────────
-   DASHBOARD MOCKUP — INTERACTIVE
+   DASHBOARD MOCKUP
 ───────────────────────────────────────────────── */
 const dashTabs = ['Overview','Seasonal plan','Contractors','Household','Warranties','Receipts']
 
 const dashContent = {
   0: () => (
     <>
+      <HealthScoreCard/>
       <div className="dash-info-row">
         <div className="dash-info-card">
           <p className="dic-label">HOUSEHOLD</p>
@@ -102,23 +96,6 @@ const dashContent = {
           <p className="dic-val">6A</p>
           <p className="dic-sub">Avg 18 freeze cycles</p>
         </div>
-      </div>
-      <div className="dash-season-row">
-        {[
-          { s:'SPRING', cls:'ss-spring', icon:'🌿', task:'Eaves & roof',    date:'Apr 12 · Booked' },
-          { s:'SUMMER', cls:'ss-summer', icon:'☀️', task:'A/C tune-up',     date:'Jun 02' },
-          { s:'AUTUMN', cls:'ss-autumn', icon:'🍂', task:'Furnace check',   date:'Sep 18' },
-          { s:'WINTER', cls:'ss-winter', icon:'❄️', task:'Pipe insulation', date:'Nov 24' },
-        ].map(item => (
-          <div className="dash-season-card" key={item.s}>
-            <div className={`season-swatch ${item.cls}`}>
-              <span className="season-swatch-icon">{item.icon}</span>
-            </div>
-            <p className="season-label">{item.s}</p>
-            <p className="season-task">{item.task}</p>
-            <p className="season-date">{item.date}</p>
-          </div>
-        ))}
       </div>
     </>
   ),
@@ -144,8 +121,8 @@ const dashContent = {
     <div className="dash-contractors">
       {[
         { initials:'JK', name:'James Kowalski', role:'HVAC Specialist',        rating:'4.9', loc:'Calgary, AB',    avail:'Available this week' },
-        { initials:'SR', name:'Sarah Reynolds', role:'Radon & Indoor Air',     rating:'4.8', loc:'Edmonton, AB',   avail:'Available tomorrow' },
-        { initials:'MT', name:'Mike Tremblay',  role:'Roofing & Eavestroughs', rating:'5.0', loc:'Airdrie, AB',    avail:'Booked to May 8' },
+        { initials:'SR', name:'Sarah Reynolds', role:'Radon & Indoor Air',     rating:'4.8', loc:'Edmonton, AB',   avail:'Available tomorrow'  },
+        { initials:'MT', name:'Mike Tremblay',  role:'Roofing & Eavestroughs', rating:'5.0', loc:'Airdrie, AB',    avail:'Booked to May 8'     },
       ].map(c => (
         <div className="contractor-row" key={c.name}>
           <div className="c-avatar">{c.initials}</div>
@@ -225,7 +202,6 @@ function DashboardMockup() {
           <Content/>
         </div>
       </div>
-      <DashPhone/>
     </div>
   )
 }
@@ -234,20 +210,23 @@ function DashboardMockup() {
    FEATURES CAROUSEL
 ───────────────────────────────────────────────── */
 const features = [
-  { title:'Who lives here',      desc:'Kids, partners, parents — we flag risks like radon near nurseries or accessibility needs after 65.' },
-  { title:'Pets in the mix',     desc:'Allergen filters, fence checks, and salt-free de-icing because Maple licks her paws.' },
-  { title:'Local weather',       desc:'We watch the forecast for you. Ice storm Tuesday? We move your eaves cleaning.' },
-  { title:'Your home\'s age',    desc:'A 1962 bungalow has different needs than a 2018 build. We know both.' },
-  { title:'Your schedule',       desc:'Tell us you travel Tuesdays. We won\'t book a plumber on Tuesday.' },
-  { title:'Your budget',         desc:'Pace big-ticket work over the year. Skip nothing critical.' },
+  { title:'Who lives here',   desc:'Kids, partners, parents — we flag risks like radon near nurseries or accessibility needs after 65.' },
+  { title:'Pets in the mix',  desc:'Allergen filters, fence checks, and salt-free de-icing because Maple licks her paws.' },
+  { title:'Local weather',    desc:'We watch the forecast for you. Ice storm Tuesday? We move your eaves cleaning.' },
+  { title:'Your home\'s age', desc:'A 1962 bungalow has different needs than a 2018 build. We know both.' },
+  { title:'Your schedule',    desc:'Tell us you travel Tuesdays. We won\'t book a plumber on Tuesday.' },
+  { title:'Your budget',      desc:'Pace big-ticket work over the year. Skip nothing critical.' },
 ]
 
 function FeaturesCarousel() {
   const [start, setStart] = useState(0)
   const perPage = 3
-  const canPrev = start > 0
-  const canNext = start + perPage < features.length
+  const totalPages = Math.ceil(features.length / perPage)
+  const currentPage = Math.floor(start / perPage)
   const visible = features.slice(start, start + perPage)
+
+  const prev = () => setStart(((currentPage - 1 + totalPages) % totalPages) * perPage)
+  const next = () => setStart(((currentPage + 1) % totalPages) * perPage)
 
   return (
     <div className="carousel-wrap">
@@ -260,99 +239,60 @@ function FeaturesCarousel() {
         ))}
       </div>
       <div className="carousel-controls">
-        <button className={`carousel-btn${canPrev ? '' : ' disabled'}`} onClick={() => canPrev && setStart(start - perPage)} aria-label="Previous">
-          <ChevronLeft size={18}/>
-        </button>
+        <button className="carousel-btn" onClick={prev} aria-label="Previous"><ChevronLeft size={18}/></button>
         <div className="carousel-dots">
-          {Array.from({ length: Math.ceil(features.length / perPage) }).map((_, i) => (
-            <span key={i} className={`cdot${Math.floor(start / perPage) === i ? ' cdot-active' : ''}`} onClick={() => setStart(i * perPage)}/>
+          {Array.from({ length: totalPages }).map((_, i) => (
+            <span key={i} className={`cdot${currentPage === i ? ' cdot-active' : ''}`} onClick={() => setStart(i * perPage)}/>
           ))}
         </div>
-        <button className={`carousel-btn${canNext ? '' : ' disabled'}`} onClick={() => canNext && setStart(start + perPage)} aria-label="Next">
-          <ChevronRight size={18}/>
-        </button>
+        <button className="carousel-btn" onClick={next} aria-label="Next"><ChevronRight size={18}/></button>
       </div>
     </div>
   )
 }
 
 /* ─────────────────────────────────────────────────
-   QUIZ  (new category-based version)
+   QUIZ  (home health assessment)
 ───────────────────────────────────────────────── */
 const newQuestions = [
-  {
-    q: 'What type of home do you live in?',
-    multi: false,
-    options: ['Detached house','Semi-detached / duplex','Townhouse','Condo / apartment'],
-  },
-  {
-    q: 'Does your home have a basement?',
-    multi: false,
-    options: ['Yes — finished basement','Yes — unfinished basement','Crawl space','No basement / slab'],
-  },
-  {
-    q: 'Who lives in your home? (select all that apply)',
-    multi: true,
-    options: ['Children under 12','Adults 65 or older','Pets','None of these'],
-  },
-  {
-    q: 'Any hobbies that happen at home? (select all that apply)',
-    multi: true,
-    options: ['Woodworking or DIY','Painting / art projects','Heavy cooking','Home gym or workshop','None of these'],
-  },
-  {
-    q: 'Where in Canada is your home?',
-    multi: false,
-    options: ['Prairies — AB / SK / MB','Ontario or Quebec','British Columbia','Atlantic Canada / North'],
-  },
-  {
-    q: 'Has your home been tested for any of these? (select all that apply)',
-    multi: true,
-    options: ['Radon gas','Mold or moisture','HVAC / furnace efficiency','None of these'],
-  },
+  { q:'What type of home do you live in?', multi:false,
+    options:['Detached house','Semi-detached / duplex','Townhouse','Condo / apartment'] },
+  { q:'Does your home have a basement?', multi:false,
+    options:['Yes — finished basement','Yes — unfinished basement','Crawl space','No basement / slab'] },
+  { q:'Who lives in your home? (select all that apply)', multi:true,
+    options:['Children under 12','Adults 65 or older','Pets','None of these'] },
+  { q:'Any hobbies that happen at home? (select all that apply)', multi:true,
+    options:['Woodworking or DIY','Painting / art projects','Heavy cooking','Home gym or workshop','None of these'] },
+  { q:'Where in Canada is your home?', multi:false,
+    options:['Prairies — AB / SK / MB','Ontario or Quebec','British Columbia','Atlantic Canada / North'] },
+  { q:'Has your home been tested for any of these? (select all that apply)', multi:true,
+    options:['Radon gas','Mold or moisture','HVAC / furnace efficiency','None of these'] },
 ]
 
 function getCategories(answers) {
   const cats = []
   const a = answers
-
-  // Radon: basement + prairies/ontario + not tested
   const hasBasement = ['Yes — finished basement','Yes — unfinished basement','Crawl space'].includes(a[1]?.[0])
-  const prairies = ['Prairies — AB / SK / MB','Ontario or Quebec'].includes(a[4]?.[0])
   const testedRadon = a[5]?.includes('Radon gas')
-  if (hasBasement && !testedRadon) cats.push({ icon:'🔬', label:'Radon Testing', desc:'Basement homes in your region often have elevated radon. A simple test takes 3 months.' })
-
-  // Mold: basement or older home
-  const hasOldHome = ['10 – 30 years','Over 30 years'].includes(a[2]?.[0])
+  if (hasBasement && !testedRadon) cats.push({ label:'Radon Testing', desc:'Basement homes in your region often have elevated radon. A simple test takes 3 months.' })
   const testedMold = a[5]?.includes('Mold or moisture')
-  if (hasBasement && !testedMold) cats.push({ icon:'💧', label:'Moisture & Mold Inspection', desc:'Unfinished basements and crawl spaces in Canada commonly develop moisture issues.' })
-
-  // HVAC
+  if (hasBasement && !testedMold) cats.push({ label:'Moisture & Mold Inspection', desc:'Unfinished basements in Canada commonly develop moisture issues.' })
   const testedHVAC = a[5]?.includes('HVAC / furnace efficiency')
-  if (!testedHVAC) cats.push({ icon:'🌡️', label:'HVAC & Furnace Service', desc:'Annual furnace servicing is the single highest-value maintenance most Canadian homes skip.' })
-
-  // Kids/elderly/pets: air quality
+  if (!testedHVAC) cats.push({ label:'HVAC & Furnace Service', desc:'Annual furnace servicing is the single highest-value maintenance most Canadian homes skip.' })
   const vulnPeople = a[2]?.some(x => ['Children under 12','Adults 65 or older','Pets'].includes(x))
-  if (vulnPeople) cats.push({ icon:'💨', label:'Indoor Air Quality Check', desc:'Kids, seniors, and pets are more sensitive to air quality issues. Worth checking VOCs and allergens.' })
-
-  // Hobbies: air/VOC risk
-  const riskyHobbies = a[3]?.some(x => ['Woodworking or DIY','Painting / art projects','Heavy cooking'].includes(x))
-  if (riskyHobbies) cats.push({ icon:'🪵', label:'Ventilation Assessment', desc:'Your hobbies can introduce VOCs, dust, and particulates. Proper ventilation makes a big difference.' })
-
-  // Seasonal
-  cats.push({ icon:'📅', label:'Seasonal Maintenance Plan', desc:'Every Canadian home benefits from a structured spring/fall service schedule.' })
-
-  return cats.slice(0, 4) // cap at 4
+  if (vulnPeople) cats.push({ label:'Indoor Air Quality Check', desc:'Kids, seniors, and pets are more sensitive to air quality issues.' })
+  cats.push({ label:'Seasonal Maintenance Plan', desc:'Every Canadian home benefits from a structured spring/fall service schedule.' })
+  return cats.slice(0, 4)
 }
 
 function Quiz() {
-  const [step, setStep]         = useState(0)
-  const [answers, setAnswers]   = useState({})    // { stepIndex: [selected labels] }
+  const [step, setStep]       = useState(0)
+  const [answers, setAnswers] = useState({})
   const [selected, setSelected] = useState([])
-  const [name, setName]         = useState('')
-  const [email, setEmail]       = useState('')
-  const [done, setDone]         = useState(false)
-  const [err, setErr]           = useState(false)
+  const [name, setName]       = useState('')
+  const [email, setEmail]     = useState('')
+  const [done, setDone]       = useState(false)
+  const [err, setErr]         = useState(false)
 
   const total = newQuestions.length
   const onResult = step > total
@@ -360,16 +300,10 @@ function Quiz() {
 
   const toggleOption = (label) => {
     const q = newQuestions[step - 1]
-    if (!q.multi) {
-      setSelected([label])
-    } else {
-      if (label === 'None of these') {
-        setSelected(['None of these'])
-      } else {
-        const without = selected.filter(x => x !== 'None of these')
-        setSelected(without.includes(label) ? without.filter(x => x !== label) : [...without, label])
-      }
-    }
+    if (!q.multi) { setSelected([label]); return }
+    if (label === 'None of these') { setSelected(['None of these']); return }
+    const without = selected.filter(x => x !== 'None of these')
+    setSelected(without.includes(label) ? without.filter(x => x !== label) : [...without, label])
   }
 
   const next = () => {
@@ -397,19 +331,18 @@ function Quiz() {
     <div className="qz-panel">
       <p className="qz-meta">6 questions · 2 minutes</p>
       <h3 className="qz-h3">What does your home actually need?</h3>
-      <p className="qz-desc">Tell us about your home and family. We'll build a personalized list of services and seasonal tasks — no fluff.</p>
-      <button className="pill-dark" onClick={() => setStep(1)}>Start the quiz <ArrowRight size={15}/></button>
+      <p className="qz-desc">Tell us about your home and family. We'll build a personalized list of services and seasonal tasks.</p>
+      <button className="pill-dark" onClick={() => setStep(1)}>Start the assessment <ArrowRight size={15}/></button>
     </div>
   )
 
   if (onResult) return (
     <div className="qz-panel">
-      <p className="qz-meta" style={{ color: '#4A7820', fontWeight: 700 }}>Your home profile is ready</p>
+      <p className="qz-meta" style={{ color:'#4A7820', fontWeight:700 }}>Your home profile is ready</p>
       <h3 className="qz-h3">We'd look into these for your home.</h3>
       <div className="result-cats">
         {cats.map(c => (
           <div className="result-cat" key={c.label}>
-            <span className="rc-icon">{c.icon}</span>
             <div>
               <p className="rc-label">{c.label}</p>
               <p className="rc-desc">{c.desc}</p>
@@ -419,20 +352,22 @@ function Quiz() {
       </div>
       {!done ? (
         <form onSubmit={submit} className="qz-form">
-          <p className="qz-form-title">Get your full personalized home plan — free.</p>
+          <p className="qz-form-title">Join early access — be first when we launch.</p>
           <input type="text"  placeholder="Your name"     value={name}  onChange={e => setName(e.target.value)}  required/>
           <input type="email" placeholder="Email address" value={email} onChange={e => setEmail(e.target.value)} required/>
           <button type="submit" className="pill-dark" style={{ width:'100%', justifyContent:'center' }}>
-            Send My Home Plan <ArrowRight size={15}/>
+            Join Waitlist <ArrowRight size={15}/>
           </button>
           {err && <p className="qz-err">Something went wrong — please try again.</p>}
           <p className="qz-fine">No spam. Unsubscribe any time.</p>
         </form>
       ) : (
-        <div className="qz-success">
-          <CheckCircle size={28} className="qz-check-icon"/>
-          <h4>You're on the list.</h4>
-          <p>We'll send your personalized home plan and keep you posted as Indro Labs launches in your area.</p>
+        <div className="qz-success-inline">
+          <CheckCircle size={22} color="#4A7820"/>
+          <div>
+            <p style={{ fontWeight:600, color:'var(--ink)', marginBottom:4 }}>You're on the list.</p>
+            <p style={{ fontSize:13, color:'var(--muted)' }}>We'll keep you posted as Indro Labs launches in your area.</p>
+          </div>
         </div>
       )}
     </div>
@@ -464,28 +399,38 @@ function Quiz() {
    APP
 ───────────────────────────────────────────────── */
 export default function App() {
-  const [status, setStatus] = useState(null)
+  const [hwDone, setHwDone] = useState(false)
+  const [hwErr, setHwErr]   = useState(false)
+  const [ctDone, setCtDone] = useState(false)
+  const [ctErr, setCtErr]   = useState(false)
 
-  const handleContact = async (e) => {
-    e.preventDefault()
-    const form = e.currentTarget
-    const r = await fetch(import.meta.env.VITE_FORMSPREE_PARTNER_URL, {
-      method:'POST', body: new FormData(form), headers:{ Accept:'application/json' },
-    })
-    if (r.ok) { setStatus({ ok:true, msg:"Thank you — we'll be in touch soon." }); form.reset() }
-    else setStatus({ ok:false, msg:'Something went wrong. Please try again.' })
+  const submitHomeowner = async (e) => {
+    e.preventDefault(); setHwErr(false)
+    const data = Object.fromEntries(new FormData(e.currentTarget))
+    try {
+      const r = await fetch(import.meta.env.VITE_FORMSPREE_WAITLIST_URL, {
+        method:'POST', body:JSON.stringify(data),
+        headers:{ Accept:'application/json', 'Content-Type':'application/json' },
+      })
+      r.ok ? setHwDone(true) : setHwErr(true)
+    } catch { setHwErr(true) }
+  }
+
+  const submitContractor = async (e) => {
+    e.preventDefault(); setCtErr(false)
+    const data = Object.fromEntries(new FormData(e.currentTarget))
+    try {
+      const r = await fetch(import.meta.env.VITE_FORMSPREE_PARTNER_URL, {
+        method:'POST', body:JSON.stringify(data),
+        headers:{ Accept:'application/json', 'Content-Type':'application/json' },
+      })
+      r.ok ? setCtDone(true) : setCtErr(true)
+    } catch { setCtErr(true) }
   }
 
   return (
     <>
-      {status && (
-        <div className={`toast ${status.ok ? 'toast-ok':'toast-err'}`}>
-          <p>{status.msg}</p>
-          <button onClick={() => setStatus(null)}>×</button>
-        </div>
-      )}
-
-      <NavBar />
+      <NavBar/>
 
       {/* ── HERO ──────────────────────────── */}
       <section id="hero" className="hero-section">
@@ -499,7 +444,7 @@ export default function App() {
             your people, your climate — then handle everything with vetted local contractors.
           </p>
           <div className="hero-ctas">
-            <a href="#quiz-section" className="pill-dark">Take the 2-min quiz <ArrowRight size={15}/></a>
+            <a href="#home-health-quiz" className="pill-dark">Take the 2-min quiz <ArrowRight size={15}/></a>
             <a href="#how-it-works" className="pill-outline">See how it works</a>
           </div>
         </div>
@@ -536,82 +481,186 @@ export default function App() {
         </div>
       </section>
 
-      {/* ── QUIZ SECTION ────────────────── */}
-      <section id="quiz-section" className="quiz-section">
-        <div className="wrap quiz-wrap">
-
-          {/* Left: rewards / help vibe */}
-          <div className="quiz-left">
-            <p className="eyebrow-green">HOME HEALTH QUIZ</p>
-            <h2 className="quiz-h2">
-              Earn as you<br/><em>maintain.</em>
-            </h2>
-            <p className="quiz-left-sub">
-              Keep your home in shape and earn points along the way.
-              Redeem them for contractor discounts, seasonal tune-up packages, and member perks.
-            </p>
-
-            <div className="quiz-perks">
-              <div className="quiz-perk">
-                <div className="perk-icon"><Star size={16}/></div>
-                <div>
-                  <p className="perk-title">Earn rewards</p>
-                  <p className="perk-desc">Points for every task completed — annual radon test, furnace service, and more.</p>
+      {/* ── HOME HEALTH QUIZ ────────────── */}
+      <section id="home-health-quiz" className="hh-quiz-section">
+        <div className="wrap">
+          <div className="hh-quiz-box">
+            <div className="hh-quiz-box-bg"/>
+            <div className="hh-quiz-box-overlay"/>
+            <div className="hh-quiz-box-inner">
+              <div className="hh-quiz-left">
+                <p className="eyebrow-white">HOME HEALTH ASSESSMENT</p>
+                <h2 className="hh-quiz-h2">
+                  Find out how<br/>healthy your<br/><em>home is today.</em>
+                </h2>
+                <p className="hh-quiz-sub">
+                  Six questions. Two minutes.<br/>
+                  Know exactly what your home needs.
+                </p>
+                <div className="hh-quiz-stats">
+                  <div className="hqs-stat">
+                    <p className="hqs-num">6</p>
+                    <p className="hqs-cap">questions</p>
+                  </div>
+                  <div className="hqs-divider"/>
+                  <div className="hqs-stat">
+                    <p className="hqs-num">2 min</p>
+                    <p className="hqs-cap">to complete</p>
+                  </div>
+                  <div className="hqs-divider"/>
+                  <div className="hqs-stat">
+                    <p className="hqs-num">Free</p>
+                    <p className="hqs-cap">no sign-up needed</p>
+                  </div>
                 </div>
               </div>
-              <div className="quiz-perk">
-                <div className="perk-icon"><Bell size={16}/></div>
-                <div>
-                  <p className="perk-title">Get reminded, not surprised</p>
-                  <p className="perk-desc">Seasonal alerts before things become expensive emergencies.</p>
-                </div>
-              </div>
-              <div className="quiz-perk">
-                <div className="perk-icon"><Shield size={16}/></div>
-                <div>
-                  <p className="perk-title">Seek help easily</p>
-                  <p className="perk-desc">One tap to book a vetted Canadian professional for any service your home needs.</p>
+              <div className="hh-quiz-right">
+                <div className="hh-quiz-card">
+                  <Quiz/>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Right: contractor CTA + quiz */}
-          <div className="quiz-right">
-            <div className="quiz-contractor-card">
-              <p className="qcc-eyebrow">FIND TRUSTED CONTRACTORS</p>
-              <h3 className="qcc-title">For every corner<br/>of your home.</h3>
-              <p className="qcc-sub">
-                Indro Labs matches you with certified, vetted Canadian professionals — based on your home,
-                your climate, and your actual needs.
-              </p>
+      {/* ── FOR HOMEOWNERS ──────────────── */}
+      <section id="quiz-section" className="signup-section">
+        <div className="wrap signup-wrap">
+
+          {/* Left info */}
+          <div className="signup-left">
+            <p className="eyebrow-green">FOR HOMEOWNERS</p>
+            <h2 className="signup-h2">
+              Your home,<br/><em>always one step ahead.</em>
+            </h2>
+            <p className="signup-sub">
+              Indro Labs takes the guesswork out of home ownership.
+              Know what needs attention, when — and who to call.
+            </p>
+
+            {/* Timeline */}
+            <div className="signup-timeline">
+              {[
+                { step:'01', title:'Track your home health',  desc:'We build a living profile of your home — age, systems, household, and climate.' },
+                { step:'02', title:'Get reminded on time',    desc:'Seasonal alerts before anything becomes an expensive surprise.' },
+                { step:'03', title:'Book a professional',     desc:'One tap to connect with a vetted, licensed Canadian contractor.' },
+                { step:'04', title:'Earn rewards',            desc:'Points for every task completed, redeemable for services and perks.' },
+              ].map((item, idx, arr) => (
+                <div className="tl-item" key={item.step}>
+                  <div className="tl-step-col">
+                    <div className="tl-dot">
+                      <span className="tl-num">{item.step}</span>
+                    </div>
+                    {idx < arr.length - 1 && <div className="tl-line"/>}
+                  </div>
+                  <div className="tl-content">
+                    <p className="tl-title">{item.title}</p>
+                    <p className="tl-desc">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-            <div className="quiz-card">
-              <Quiz/>
+          </div>
+
+          {/* Right form */}
+          <div className="signup-right">
+            <div className="signup-form-card">
+              <p className="sfc-eyebrow">JOIN THE WAITLIST</p>
+              <h3 className="sfc-title">Be first in your neighbourhood.</h3>
+              <p className="sfc-sub">We're launching city by city across Canada. Join early access and be first in your neighbourhood.</p>
+              {hwDone ? (
+                <div className="sfc-success">
+                  <CheckCircle size={22} color="#4A7820"/>
+                  <div>
+                    <p className="sfc-s-title">You're on the list.</p>
+                    <p className="sfc-s-desc">We'll be in touch as Indro Labs launches in your area.</p>
+                  </div>
+                </div>
+              ) : (
+                <form onSubmit={submitHomeowner} className="sfc-form">
+                  <div className="sfc-row">
+                    <input name="first_name" type="text"  placeholder="First name" required/>
+                    <input name="last_name"  type="text"  placeholder="Last name"  required/>
+                  </div>
+                  <input name="email"    type="email" placeholder="Email address" required/>
+                  <input name="city"     type="text"  placeholder="Your city (e.g. Calgary, AB)" required/>
+                  <input name="home_type" type="text" placeholder="Home type (e.g. Detached, Condo)"/>
+                  <button type="submit" className="pill-dark" style={{ width:'100%', justifyContent:'center' }}>
+                    Join Waitlist <ArrowRight size={15}/>
+                  </button>
+                  {hwErr && <p className="sfc-err">Something went wrong — please try again.</p>}
+                  <p className="sfc-fine">No spam. Early access only. Cancel any time.</p>
+                </form>
+              )}
             </div>
           </div>
 
         </div>
       </section>
 
-      {/* ── DARK CTA ────────────────────── */}
-      <section className="dark-cta-section">
-        <div className="wrap">
-          <div className="dark-cta-box">
-            <div className="dark-cta-bg"/>
-            <div className="dark-cta-left">
-              <h2 className="dark-cta-h2">
-                Stop remembering.<br/><em>Start living.</em>
-              </h2>
-              <p className="dark-cta-sub">
-                Two minutes to set up. A lifetime of forgetting about your furnace filter.
-              </p>
-              <div className="dark-cta-btns">
-                <a href="#quiz-section" className="pill-white">Take the quiz</a>
-                <a href="#contact-section" className="pill-outline-white">Browse contractors</a>
+      {/* ── FOR CONTRACTORS ─────────────── */}
+      <section id="contractors" className="signup-section signup-section-alt">
+        <div className="wrap signup-wrap">
+
+          {/* Left info */}
+          <div className="signup-left">
+            <p className="eyebrow-green">FOR CONTRACTORS</p>
+            <h2 className="signup-h2">
+              Become a partner.<br/><em>Reach the right homes.</em>
+            </h2>
+            <p className="signup-sub">
+              Connect with homeowners who are already invested in maintaining their properties.
+              No cold outreach. No bidding wars. Just the right job at the right time.
+            </p>
+
+            <div className="ct-trades">
+              <p className="ct-trades-label">TRADES WE WORK WITH</p>
+              <div className="ct-trades-grid">
+                {['HVAC & Mechanical','Plumbing & Waterproofing','Electrical','Roofing & Eavestroughs',
+                  'Radon & Indoor Air Quality','General Contractors','Landscaping & Snow Removal',
+                  'Insulation & Energy Efficiency'].map(t => (
+                  <span className="ct-trade-tag" key={t}>{t}</span>
+                ))}
               </div>
             </div>
           </div>
+
+          {/* Right form */}
+          <div className="signup-right">
+            <div className="signup-form-card">
+              <p className="sfc-eyebrow">PARTNER APPLICATION</p>
+              <h3 className="sfc-title">Join our contractor network.</h3>
+              <p className="sfc-sub">Tell us about your business. We'll reach out when we launch in your service area.</p>
+              {ctDone ? (
+                <div className="sfc-success">
+                  <CheckCircle size={22} color="#4A7820"/>
+                  <div>
+                    <p className="sfc-s-title">Application received.</p>
+                    <p className="sfc-s-desc">We'll review your details and be in touch soon.</p>
+                  </div>
+                </div>
+              ) : (
+                <form onSubmit={submitContractor} className="sfc-form">
+                  <div className="sfc-row">
+                    <input name="first_name"    type="text" placeholder="First name"    required/>
+                    <input name="last_name"     type="text" placeholder="Last name"     required/>
+                  </div>
+                  <input name="business_name"   type="text" placeholder="Business name"  required/>
+                  <input name="trade"           type="text" placeholder="Trade / service type" required/>
+                  <input name="service_area"    type="text" placeholder="Service area (city / province)" required/>
+                  <input name="email"           type="email" placeholder="Business email" required/>
+                  <input name="phone"           type="tel"   placeholder="Phone number (optional)"/>
+                  <button type="submit" className="pill-dark" style={{ width:'100%', justifyContent:'center' }}>
+                    Apply to Partner <ArrowRight size={15}/>
+                  </button>
+                  {ctErr && <p className="sfc-err">Something went wrong — please try again.</p>}
+                  <p className="sfc-fine">We review every application. No spam, ever.</p>
+                </form>
+              )}
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -620,10 +669,8 @@ export default function App() {
         <div className="wrap footer-inner">
           <div className="footer-brand">
             <a href="#hero" className="footer-logo">
-              <span className="footer-logo-icon">
-                <img src="/indro-logo.png" alt="Indro Labs" style={{ width:16, height:16, objectFit:'contain' }}/>
-              </span>
-              Indro <em>Labs</em>
+              <img src="/indro-logo.png" alt="Indro Labs" className="footer-logo-img"/>
+              Indro Labs
             </a>
             <p>Building the network behind healthier homes in Canada.</p>
           </div>
@@ -631,17 +678,17 @@ export default function App() {
             <div className="footer-col">
               <p className="footer-col-head">PRODUCT</p>
               <a href="#how-it-works">How it works</a>
-              <a href="#quiz-section">Take the quiz</a>
-              <a href="#home-health">Home health</a>
+              <a href="#home-health-quiz">Home health quiz</a>
+              <a href="#home-health">Built around you</a>
             </div>
             <div className="footer-col">
-              <p className="footer-col-head">NETWORK</p>
-              <a href="#contact-section">Partners</a>
-              <a href="#contact-section">Professionals</a>
+              <p className="footer-col-head">JOIN</p>
+              <a href="#quiz-section">Homeowners</a>
+              <a href="#contractors">Contractors</a>
             </div>
             <div className="footer-col">
               <p className="footer-col-head">COMPANY</p>
-              <a href="#contact-section">Contact us</a>
+              <a href="#quiz-section">Contact us</a>
               <a href="mailto:info@indrolabs.ca">info@indrolabs.ca</a>
             </div>
           </div>

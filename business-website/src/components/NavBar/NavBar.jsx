@@ -9,20 +9,18 @@ export default function NavBar() {
     <header className="navbar">
       <div className="navbar-inner">
         <a href="#hero" className="navbar-logo" onClick={close}>
-          <span className="logo-icon">
-            <img src="/indro-logo.png" alt="Indro Labs" className="logo-img"/>
-          </span>
-          <span className="logo-wordmark">Indro <em>Labs</em></span>
+          <img src="/indro-logo.png" alt="Indro Labs" className="logo-img-main"/>
+          <span className="logo-wordmark">Indro Labs</span>
         </a>
 
         <nav className="nav-links">
           <a href="#how-it-works">How it works</a>
           <a href="#home-health">Home health</a>
-          <a href="#contact-section">Get matched</a>
+          <a href="#quiz-section">Get matched</a>
         </nav>
 
         <div className="nav-right">
-          <a href="#contact-section" className="nav-signin">Sign in</a>
+          <a href="#quiz-section" className="nav-signin">Join Waitlist</a>
           <a href="#quiz-section" className="nav-pill">Take the quiz</a>
         </div>
 
@@ -35,7 +33,7 @@ export default function NavBar() {
         <nav className="nav-mobile">
           <a href="#how-it-works" onClick={close}>How it works</a>
           <a href="#home-health" onClick={close}>Home health</a>
-          <a href="#contact-section" onClick={close}>Get matched</a>
+          <a href="#quiz-section" onClick={close}>Get matched</a>
           <a href="#quiz-section" className="nav-mobile-cta" onClick={close}>Take the quiz →</a>
         </nav>
       )}

@@ -1016,7 +1016,7 @@ export default function App() {
                   <CheckCircle size={22} color="#4A7820"/>
                   <div>
                     <p className="sfc-s-title">Application received.</p>
-                    <p className="sfc-s-desc">We'll review your details and be in touch soon.</p>
+                    <p className="sfc-s-desc">We'll review you details and be in touch soon.</p>
                   </div>
                 </div>
               ) : (

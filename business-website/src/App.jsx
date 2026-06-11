@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar'
 import './App.css'
 import { ArrowRight, CheckCircle } from 'lucide-react'
@@ -35,16 +36,17 @@ function HeroCarousel() {
 ──────────────────────────────────────────────── */
 const AB_REGIONS = [
   {
-    id: 'north',
-    name: 'Northern Alberta',
-    status: 'future',
-    tag: 'Future expansion',
-    cities: ['Fort McMurray', 'Peace River', 'Grande Prairie', 'High Level'],
-    services: ['Planning underway'],
-    desc: 'Service expansion into Northern Alberta communities is in the planning phase.',
-    path: 'M 58,10 L 390,10 L 390,206 L 48,206 L 54,100 Z',
-    labelX: 200, labelY: 108,
-    pins: [{ name: 'Ft McMurray', cx: 318, cy: 168 }],
+    id: 'calgary',
+    name: 'Greater Calgary',
+    status: 'serving',
+    tag: 'Serving now',
+    cities: ['Calgary', 'Airdrie', 'Okotoks', 'Cochrane', 'Chestermere'],
+    services: ['Paratransit', 'Microtransit', 'On-demand'],
+    desc: 'Full-service coverage across the greater Calgary area — live and expanding.',
+    photo: '/calgarypic.jpg',
+    path: 'M 30,427 L 390,427 L 390,500 L 22,500 L 26,465 Z',
+    labelX: 185, labelY: 467,
+    pins: [{ name: 'Calgary', cx: 221, cy: 455 }, { name: 'Airdrie', cx: 223, cy: 443 }],
   },
   {
     id: 'edmonton',
@@ -54,6 +56,7 @@ const AB_REGIONS = [
     cities: ['Edmonton', 'St. Albert', 'Leduc', 'Spruce Grove', 'Sherwood Park'],
     services: ['Paratransit', 'On-demand'],
     desc: 'Paratransit and on-demand service launches across the Edmonton Capital Region in 2027.',
+    photo: '/Edmontonregion.png',
     path: 'M 48,206 L 390,206 L 390,353 L 38,353 L 42,280 Z',
     labelX: 195, labelY: 278,
     pins: [{ name: 'Edmonton', cx: 242, cy: 324 }],
@@ -66,24 +69,10 @@ const AB_REGIONS = [
     cities: ['Red Deer', 'Lacombe', 'Innisfail', 'Sylvan Lake'],
     services: ['Microtransit', 'On-demand'],
     desc: 'Central Alberta expansion starts with Red Deer in 2027.',
+    photo: '/Sylvanlake.png',
     path: 'M 38,353 L 390,353 L 390,427 L 30,427 L 34,390 Z',
     labelX: 192, labelY: 394,
     pins: [{ name: 'Red Deer', cx: 231, cy: 387 }],
-  },
-  {
-    id: 'calgary',
-    name: 'Calgary Metro',
-    status: 'serving',
-    tag: 'Active now',
-    cities: ['Calgary', 'Airdrie', 'Okotoks', 'Cochrane', 'Chestermere'],
-    services: ['Paratransit', 'Microtransit', 'On-demand'],
-    desc: 'Full-service coverage across the greater Calgary area — live and expanding.',
-    path: 'M 30,427 L 390,427 L 390,500 L 22,500 L 26,465 Z',
-    labelX: 185, labelY: 467,
-    pins: [
-      { name: 'Calgary', cx: 221, cy: 455 },
-      { name: 'Airdrie', cx: 223, cy: 443 },
-    ],
   },
   {
     id: 'south',
@@ -93,12 +82,23 @@ const AB_REGIONS = [
     cities: ['Lethbridge', 'Medicine Hat', 'Brooks', 'Taber'],
     services: ['On-demand', 'Paratransit'],
     desc: 'Southern Alberta communities are on the expansion roadmap.',
+    photo: '/Southernalberta.png',
     path: 'M 22,500 L 390,500 L 390,552 L 36,552 Z',
     labelX: 192, labelY: 530,
-    pins: [
-      { name: 'Lethbridge',   cx: 266, cy: 516 },
-      { name: 'Medicine Hat', cx: 346, cy: 510 },
-    ],
+    pins: [{ name: 'Lethbridge', cx: 266, cy: 516 }, { name: 'Medicine Hat', cx: 346, cy: 510 }],
+  },
+  {
+    id: 'north',
+    name: 'Northern Alberta',
+    status: 'future',
+    tag: 'Future expansion',
+    cities: ['Fort McMurray', 'Peace River', 'Grande Prairie', 'High Level'],
+    services: ['Planning underway'],
+    desc: 'Service expansion into Northern Alberta communities is in the planning phase.',
+    photo: '/NorthernAlberta.png',
+    path: 'M 58,10 L 390,10 L 390,206 L 48,206 L 54,100 Z',
+    labelX: 200, labelY: 108,
+    pins: [{ name: 'Ft McMurray', cx: 318, cy: 168 }],
   },
 ]
 
@@ -155,60 +155,67 @@ function RegionMap({ onHover }) {
 }
 
 function WhereWeOperate() {
-  const [hovered, setHovered] = useState(null)
-  const r = hovered
+  const [active, setActive] = useState('calgary')
+  const r = AB_REGIONS.find(x => x.id === active)
 
   return (
     <section id="where" className="where-section">
-      <div className="where-inner">
-        <div className="where-grid">
+      <div className="c">
 
-          {/* Left panel — updates on hover */}
-          <div className="where-panel">
-            {r ? (
-              <div className="where-detail-view" key={r.id}>
-                <span className={`where-status-badge ${r.status}`}>
-                  {r.status === 'serving' ? '● Active now' : r.tag}
-                </span>
-                <h2 className="where-region-name">{r.name}</h2>
-                <p className="where-region-desc">{r.desc}</p>
-
-                <div className="where-info-block">
-                  <p className="where-info-label">Cities</p>
-                  <div className="where-chips">
-                    {r.cities.map(c => <span key={c} className="where-chip">{c}</span>)}
-                  </div>
-                </div>
-
-                <div className="where-info-block">
-                  <p className="where-info-label">Services</p>
-                  <div className="where-chips">
-                    {r.services.map(s => <span key={s} className={`where-chip svc ${r.status}`}>{s}</span>)}
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className="where-default-view">
-                <p className="label">Where we operate</p>
-                <h2 className="where-title">Built for Calgary.<br/>Expanding across Alberta.</h2>
-                <p className="where-sub">We're live across the greater Calgary area and expanding north, south, and east. Hover a region on the map to explore.</p>
-                <div className="where-legend">
-                  <span className="legend-item">
-                    <span className="legend-pip serving" />Active now
-                  </span>
-                  <span className="legend-item">
-                    <span className="legend-pip soon" />Coming soon
-                  </span>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Right — map */}
-          <div className="where-map-col">
-            <RegionMap onHover={setHovered} />
-          </div>
+        {/* Header */}
+        <div className="where-hd">
+          <p className="label">Where we operate</p>
+          <h2 className="section-title">Built for Calgary.<br/>Expanding across Alberta.</h2>
         </div>
+
+        {/* Tabs */}
+        <div className="where-tabs">
+          {AB_REGIONS.map(reg => (
+            <button
+              key={reg.id}
+              className={`where-tab${active === reg.id ? ' active' : ''}${reg.status === 'serving' ? ' serving' : ''}`}
+              onClick={() => setActive(reg.id)}
+            >
+              {reg.status === 'serving' && <span className="tab-dot" />}
+              {reg.name}
+            </button>
+          ))}
+        </div>
+
+        {/* Info panel — fades on switch */}
+        <div className="where-panel" key={active}>
+          {/* Left: text */}
+          <div className="where-panel-left">
+            <h3 className="where-region-h">{r.name}</h3>
+            <p className="where-region-desc">{r.desc}</p>
+
+            <div className="where-block">
+              <p className="where-block-label">Communities</p>
+              <div className="where-chips">
+                {r.cities.map(c => <span key={c} className="where-chip">{c}</span>)}
+              </div>
+            </div>
+
+            <div className="where-block">
+              <p className="where-block-label">How we serve them</p>
+              <div className="where-chips">
+                {r.services.map(s => (
+                  <span key={s} className={`where-chip svc ${r.status}`}>{s}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Right: full bleed photo */}
+          {r.photo && (
+            <div className="where-photo-card">
+              <img src={r.photo} alt={r.name} className="where-photo-img" />
+              <div className="where-photo-overlay" />
+              <p className="where-photo-label">{r.name}</p>
+            </div>
+          )}
+        </div>
+
       </div>
     </section>
   )
@@ -322,6 +329,278 @@ function PartnerForm() {
   )
 }
 
+/* ── FEATURE ACCORDION ────────────────────────── */
+const FEATURES = [
+  {
+    id: 'live-tracking',
+    title: 'Live GPS tracking',
+    tag: 'Riders & families',
+    summary: 'See exactly where the vehicle is — in real time.',
+    detail: 'A live map updates every few seconds so riders, family members, and care coordinators always know where the vehicle is. No more "is it almost here?" calls — just a quiet, accurate map anyone can check from their phone.',
+    visual: {
+      label: 'Live tracking',
+      status: 'active',
+      rows: [
+        { key: 'Vehicle', val: 'Accessible Van #4' },
+        { key: 'ETA', val: '4 min away' },
+        { key: 'Driver', val: 'James R.' },
+        { key: 'Status', val: 'En route', highlight: true },
+      ],
+    },
+  },
+  {
+    id: 'notifications',
+    title: 'Automatic notifications',
+    tag: 'Family & care teams',
+    summary: 'Alerts go out before and after every trip — no setup required.',
+    detail: 'Indro sends a heads-up when the driver is en route, again 3 minutes before arrival, and a confirmation once the rider is dropped off safely. Notifications go to anyone you add — family, caregivers, care coordinators.',
+    visual: {
+      label: 'Trip alerts',
+      status: 'sent',
+      rows: [
+        { key: 'Rider', val: 'Margaret L.' },
+        { key: 'Alert 1', val: 'Driver en route — sent' },
+        { key: 'Alert 2', val: '3 min away — sent' },
+        { key: 'Alert 3', val: 'Arrived safely — sent', highlight: true },
+      ],
+    },
+  },
+  {
+    id: 'booking',
+    title: 'Easy ride booking',
+    tag: 'Riders',
+    summary: 'Book by app or phone. Confirmation arrives instantly.',
+    detail: 'Schedule a ride through the Indro app or by calling in — whichever works best. You get an instant confirmation with driver details, pickup time, and a shareable link for anyone who wants to follow the trip.',
+    visual: {
+      label: 'Booking confirmed',
+      status: 'confirmed',
+      rows: [
+        { key: 'Pickup', val: 'Tue, Jun 17 · 9:30 AM' },
+        { key: 'From', val: '142 Oakdale Cres SW' },
+        { key: 'To', val: 'Foothills Medical Centre' },
+        { key: 'Confirmation', val: 'Sent to rider + family', highlight: true },
+      ],
+    },
+  },
+  {
+    id: 'caregiver-access',
+    title: 'Caregiver & family access',
+    tag: 'Families',
+    summary: 'Add anyone to a trip — they get the same visibility you do.',
+    detail: 'Add a family member, care coordinator, or nurse to any trip with one tap. They\'ll receive all the same notifications and can view the live map without needing their own account. Peace of mind, shared.',
+    visual: {
+      label: 'Trip access',
+      status: 'shared',
+      rows: [
+        { key: 'Rider', val: 'Margaret L.' },
+        { key: 'Shared with', val: 'Susan L. (daughter)' },
+        { key: 'Also shared', val: 'Dr. A. Reeves' },
+        { key: 'Access level', val: 'Live map + alerts', highlight: true },
+      ],
+    },
+  },
+  {
+    id: 'fleet-ops',
+    title: 'Fleet & operator tools',
+    tag: 'Operators',
+    summary: 'Manage your entire fleet from one dashboard.',
+    detail: 'Operators get a real-time dispatch dashboard, driver assignment tools, and automated trip logging. Reduce no-shows with automated reminders, and export reports for billing, compliance, and service planning — all in one place.',
+    visual: {
+      label: 'Fleet overview',
+      status: 'live',
+      rows: [
+        { key: 'Active trips', val: '12 in progress' },
+        { key: 'Pending', val: '3 scheduled today' },
+        { key: 'No-show rate', val: 'Down 34% this month' },
+        { key: 'Report', val: 'June summary ready', highlight: true },
+      ],
+    },
+  },
+]
+
+function FeatureVisual({ id }) {
+  if (id === 'live-tracking') return (
+    <div className="fv fv-track">
+      <div className="fv-track-header fv-card-in" style={{animationDelay:'0ms'}}>
+        <div className="fv-track-pulse"><span className="fv-pulse-dot"/></div>
+        <div>
+          <p className="fv-track-title">Van #4 is on the way</p>
+          <p className="fv-track-sub">Accessible van · James R.</p>
+        </div>
+        <span className="fv-track-eta">4 min</span>
+      </div>
+      <div className="fv-track-steps">
+        {[
+          { label: 'Ride confirmed', done: true },
+          { label: 'Driver assigned', done: true },
+          { label: 'En route to pickup', done: true, active: true },
+          { label: 'Arrived at destination', done: false },
+        ].map((s, i) => (
+          <div key={i} className={`fv-tstep fv-card-in${s.active ? ' fv-tstep-active' : ''}${s.done ? ' fv-tstep-done' : ''}`} style={{animationDelay:`${i*70}ms`}}>
+            <div className="fv-tstep-dot"/>
+            {i < 3 && <div className="fv-tstep-line"/>}
+            <span className="fv-tstep-label">{s.label}</span>
+            {s.done && <svg className="fv-tstep-check" width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.5" fill={s.active ? '#F6901A' : 'rgba(255,255,255,0.15)'}/><path d="M4 7l2.2 2.2L10 5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+          </div>
+        ))}
+      </div>
+      <div className="fv-track-footer fv-card-in" style={{animationDelay:'320ms'}}>
+        <span className="fv-track-share">Share live location</span>
+        <span className="fv-track-dest">Foothills Medical Centre</span>
+      </div>
+    </div>
+  )
+
+  if (id === 'notifications') return (
+    <div className="fv fv-notifs">
+      {[
+        { bg: '#FEF0DC', icon: '🚐', title: "Margaret's driver is on the way", sub: 'Just now', new: true },
+        { bg: '#FEF0DC', icon: '⏱', title: "Margaret's ride is 3 min away", sub: '3 min ago' },
+        { bg: '#EDFAF3', icon: '✓', title: 'Margaret arrived safely', sub: '9:51 AM', check: true },
+        { bg: '#F0F4FF', icon: '👤', title: 'Trip summary sent to care team', sub: '9:51 AM' },
+      ].map((n, i) => (
+        <div key={i} className={`fv-notif-row fv-card-in${n.new ? ' fv-notif-new' : ''}`} style={{ animationDelay: `${i * 90}ms`, background: n.bg }}>
+          <span className="fv-notif-icon">{n.icon}</span>
+          <div className="fv-notif-text">
+            <p className="fv-notif-title">{n.title}</p>
+            <p className="fv-notif-sub">Indro Transit · {n.sub}</p>
+          </div>
+          {n.new && <span className="fv-notif-badge">New</span>}
+          {n.check && <span className="fv-check">✓</span>}
+        </div>
+      ))}
+    </div>
+  )
+
+  if (id === 'booking') return (
+    <div className="fv fv-booking">
+      <div className="fv-booking-card fv-card-in" style={{animationDelay:'0ms'}}>
+        <div className="fv-booking-header">
+          <span className="fv-booking-badge">Confirmed</span>
+          <span className="fv-booking-date">Tue, Jun 17 · 9:30 AM</span>
+        </div>
+        <div className="fv-booking-route">
+          <div className="fv-booking-stop">
+            <span className="fv-stop-dot origin"/>
+            <div><p className="fv-stop-label">Pickup</p><p className="fv-stop-addr">142 Oakdale Cres SW</p></div>
+          </div>
+          <div className="fv-booking-line"/>
+          <div className="fv-booking-stop">
+            <span className="fv-stop-dot dest"/>
+            <div><p className="fv-stop-label">Drop-off</p><p className="fv-stop-addr">Foothills Medical Centre</p></div>
+          </div>
+        </div>
+        <div className="fv-booking-footer">
+          <span className="fv-booking-driver">Driver: James R.</span>
+          <span className="fv-booking-share">Share trip →</span>
+        </div>
+      </div>
+      <div className="fv-booking-sms fv-card-in" style={{animationDelay:'180ms'}}>
+        <p className="fv-sms-label">Text confirmation sent</p>
+        <p className="fv-sms-msg">"Your Indro ride is confirmed for Tue 9:30 AM. Tap to track: indro.ca/t/4f8x"</p>
+      </div>
+    </div>
+  )
+
+  if (id === 'caregiver-access') return (
+    <div className="fv fv-access">
+      <div className="fv-access-header fv-card-in" style={{animationDelay:'0ms'}}>
+        <p className="fv-access-title">Shared trip — Margaret L.</p>
+        <p className="fv-access-sub">All contacts below receive live updates</p>
+      </div>
+      {[
+        { initials: 'SL', name: 'Susan L.', role: 'Daughter', status: 'Notified', color: '#FEF0DC', tc: '#B86200' },
+        { initials: 'AR', name: 'Dr. A. Reeves', role: 'Care coordinator', status: 'Notified', color: '#EDFAF3', tc: '#1A7A42' },
+        { initials: 'RN', name: 'Sunrise Care Home', role: 'Nursing staff', status: 'Watching', color: '#F0F4FF', tc: '#3B5BDB' },
+      ].map((p, i) => (
+        <div key={i} className="fv-person fv-card-in" style={{ animationDelay: `${80 + i * 80}ms` }}>
+          <div className="fv-person-avatar" style={{ background: p.color, color: p.tc }}>{p.initials}</div>
+          <div className="fv-person-info">
+            <p className="fv-person-name">{p.name}</p>
+            <p className="fv-person-role">{p.role}</p>
+          </div>
+          <span className="fv-person-status" style={{ background: p.color, color: p.tc }}>{p.status}</span>
+        </div>
+      ))}
+    </div>
+  )
+
+  return (
+    <div className="fv fv-fleet">
+      <div className="fv-fleet-header fv-card-in" style={{animationDelay:'0ms'}}>
+        <p className="fv-fleet-title">Today's dispatch</p>
+        <span className="fv-fleet-live">Live</span>
+      </div>
+      {[
+        { van: 'Van #2', driver: 'Priya S.', status: 'En route', stops: '2 stops left', bar: 60 },
+        { van: 'Van #4', driver: 'James R.', status: 'En route', stops: '1 stop left', bar: 80 },
+        { van: 'Van #7', driver: 'Nikki T.', status: 'Completed', stops: 'All done today', bar: 100 },
+        { van: 'Van #9', driver: 'Omar T.', status: 'Scheduled', stops: 'Starts at 2 PM', bar: 0 },
+      ].map((v, i) => (
+        <div key={i} className="fv-van-row fv-card-in" style={{ animationDelay: `${60 + i * 70}ms` }}>
+          <div className="fv-van-info">
+            <p className="fv-van-name">{v.van} <span>· {v.driver}</span></p>
+            <p className="fv-van-stops">{v.stops}</p>
+          </div>
+          <div className="fv-van-right">
+            <span className={`fv-van-status ${v.status === 'Completed' ? 'done' : v.status === 'Scheduled' ? 'sched' : 'active'}`}>{v.status}</span>
+            <div className="fv-van-bar"><div className="fv-van-fill" style={{ width: `${v.bar}%` }}/></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function FeatureAccordion() {
+  const [active, setActive] = useState(FEATURES[0].id)
+  const f = FEATURES.find(x => x.id === active)
+
+  return (
+    <section className="feat-section">
+      <div className="c">
+        <div className="feat-hd">
+          <p className="label">Built with care</p>
+          <h2 className="section-title">Everything riders and operators need.</h2>
+        </div>
+        <div className="feat-layout">
+
+          {/* Left: feature list */}
+          <div className="feat-list">
+            {FEATURES.map(feat => (
+              <button
+                key={feat.id}
+                className={`feat-item${active === feat.id ? ' active' : ''}`}
+                onClick={() => setActive(feat.id)}
+              >
+                <div className="feat-item-top">
+                  <span className="feat-item-tag">{feat.tag}</span>
+                  {active === feat.id && <span className="feat-active-dot" />}
+                </div>
+                <p className="feat-item-title">{feat.title}</p>
+                <p className="feat-item-summary">{feat.summary}</p>
+              </button>
+            ))}
+          </div>
+
+          {/* Right: detail panel */}
+          <div className="feat-panel" key={active}>
+            <div className="feat-panel-visual">
+              <FeatureVisual id={active} />
+            </div>
+            <div className="feat-panel-body">
+              <span className="feat-panel-tag">{f.tag}</span>
+              <h3 className="feat-panel-title">{f.title}</h3>
+              <p className="feat-panel-detail">{f.detail}</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  )
+}
+
 /* ── APP ──────────────────────────────────────── */
 export default function App() {
   return (
@@ -379,30 +658,6 @@ export default function App() {
       {/* WHERE WE OPERATE — interactive region map */}
       <WhereWeOperate />
 
-      {/* HOW IT WORKS */}
-      <section id="how" className="section">
-        <div className="c">
-          <div className="section-head centered">
-            <p className="label">How the platform works</p>
-            <h2 className="section-title">Simple from start to finish.</h2>
-          </div>
-          <div className="steps">
-            {[
-              { n: '01', t: 'Book your ride', d: 'Schedule through the app or by phone. Instant confirmation — no hold music, no guesswork.' },
-              { n: '02', t: 'Track in real time', d: 'See your vehicle on a live map. Know exactly when to head to the door.' },
-              { n: '03', t: 'Get notified when close', d: 'A heads-up goes to you and anyone you choose — minutes before arrival.' },
-              { n: '04', t: 'Arrive, confirmed', d: 'Drop-off is logged automatically. Family and care teams know you made it safely.' },
-            ].map((s, i, arr) => (
-              <div key={s.n} className={`step${i < arr.length - 1 ? ' step-sep' : ''}`}>
-                <p className="step-n">{s.n}</p>
-                <p className="step-t">{s.t}</p>
-                <p className="step-d">{s.d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* FOR OPERATORS */}
       <section id="operators" className="section bg-tint">
         <div className="c">
@@ -431,35 +686,22 @@ export default function App() {
         </div>
       </section>
 
-      {/* ABOUT */}
-      <section id="about" className="section">
-        <div className="c">
-          <div className="about-intro">
+      {/* FEATURES */}
+      <FeatureAccordion />
+
+      {/* ABOUT TEASER */}
+      <section id="about" className="section about-teaser">
+        <div className="c about-teaser-inner">
+          <div className="about-teaser-text">
             <p className="label">Our story</p>
-            <h2 className="section-title">Started at UCalgary.<br />Built with riders.</h2>
-            <p className="about-body">Indro Transit began at the University of Calgary AI Bootcamp. After months of conversations with Transit Access riders, caregivers, and operators, one ask kept surfacing: <strong>just tell us where the ride is.</strong> We're building the platform around that — starting with Calgary in 2026 and growing across southern Alberta.</p>
+            <h2 className="section-title">Started at UCalgary.<br/>Built with riders.</h2>
+            <p className="section-sub" style={{ marginTop: 12, marginBottom: 28 }}>
+              We spent months talking to Transit Access riders, caregivers, and care operators before writing a single line of code. One ask came up every time: <em>just tell us where the ride is.</em>
+            </p>
+            <Link to="/about" className="btn-primary">Read our full story <ArrowRight size={14}/></Link>
           </div>
-          <div className="stat-row">
-            <StatCard number="40+" label="Riders & caregivers interviewed" />
-            <StatCard number="12" label="Partner conversations underway" />
-            <StatCard number="2026" label="Calgary pilot launch" />
-          </div>
-          <div className="press-grid">
-            {[
-              { tag: 'Feature', outlet: 'UCalgary News', title: 'AI Bootcamp helps students design their own futures', desc: 'UCalgary featured our work on accessible transit technology for southern Alberta.', href: '#' },
-              { tag: 'Video', outlet: 'Instagram · Reel', title: 'Indro Transit in motion', desc: "A short video on what we're building and why it matters for Alberta's riders.", href: 'https://www.instagram.com/indrotransit' },
-              { tag: 'Outreach', outlet: 'Community', title: 'Listening sessions with Transit Access riders', desc: 'Highlights from sessions with paratransit riders, caregivers, and long-term care providers.', href: 'https://www.instagram.com/indrotransit' },
-            ].map(a => (
-              <a key={a.title} href={a.href} target="_blank" rel="noopener noreferrer" className="press-card">
-                <div className="press-top">
-                  <span className="press-tag">{a.tag}</span>
-                  <span className="press-outlet">{a.outlet}</span>
-                </div>
-                <p className="press-title">{a.title}</p>
-                <p className="press-desc">{a.desc}</p>
-                <span className="press-link">Read more →</span>
-              </a>
-            ))}
+          <div className="about-teaser-img-wrap">
+            <img src="/pexels-jsme-mila-523821574-18429374.jpg" alt="Care worker with elderly resident" className="about-teaser-img" />
           </div>
         </div>
       </section>
@@ -487,16 +729,25 @@ export default function App() {
       <footer className="footer">
         <div className="c footer-inner">
           <a href="#top" className="footer-brand">
-            <img src="/Indro Transit.png" alt="Indro Transit" className="footer-logo" />
+            <img src="/orange-transparent.png" alt="Indro Transit" className="footer-logo" />
           </a>
           <nav className="footer-nav">
             <a href="#services">Services</a>
-            <a href="#where">Where we operate</a>
-            <a href="#how">How it works</a>
-            <a href="#operators">For operators</a>
+            <a href="#where">Coverage</a>
+            <a href="#operators">Operators</a>
             <a href="#about">About</a>
           </nav>
-          <p className="footer-copy">© 2026 Indro Transit · Calgary, Alberta</p>
+          <div className="footer-right">
+            <div className="footer-social">
+              <a href="https://www.linkedin.com/company/indro-labs" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="LinkedIn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.36 4.24 5.43v6.31zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+              </a>
+              <a href="mailto:info@indrolabs.ca" className="footer-social-link" aria-label="Email">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+              </a>
+            </div>
+            <p className="footer-copy">© 2026 Indro Transit · Calgary, Alberta</p>
+          </div>
         </div>
       </footer>
     </>

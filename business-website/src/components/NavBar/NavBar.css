@@ -1,8 +1,6 @@
 .navbar {
   position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
-  background: rgba(255,255,255,0.96);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid #ECEAE6;
+  background: white;
 }
 .navbar-inner {
   max-width: 1200px; margin: 0 auto; padding: 0 48px;
@@ -11,7 +9,7 @@
 @media (max-width: 600px) { .navbar-inner { padding: 0 20px; } }
 
 .navbar-logo { display: inline-flex; align-items: center; text-decoration: none; }
-.logo-img { height: 34px; width: auto; display: block; }
+.logo-img { height: 68px; width: auto; display: block; }
 
 .nav-links { display: flex; align-items: center; gap: 28px; }
 .nav-links a { font-size: 14px; color: #7A7A7A; font-weight: 500; transition: color 0.15s; }

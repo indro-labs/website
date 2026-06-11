@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "indrotransit",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd /Users/priyatiwari/Documents/IndroLabs/Technical/MainWebsite/indro-labs-website/business-website && npm run dev"],
       "port": 5173
     }
   ]

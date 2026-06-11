@@ -95,16 +95,6 @@
 
 .carousel-img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-.carousel-dots {
-  position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
-  display: flex; gap: 6px; z-index: 5;
-}
-.cdot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: rgba(255,255,255,0.4); border: none; cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
-}
-.cdot.on { background: white; transform: scale(1.25); }
 
 /* ─────────────────────────────────────────────
    TICKER
@@ -125,11 +115,7 @@
 }
 .ticker-item {
   font-family: var(--serif); font-size: 18px; color: #AEABA5;
-  padding: 0 32px; position: relative;
-}
-.ticker-item::after {
-  content: '·'; position: absolute; right: 0;
-  color: var(--orange); opacity: 0.5;
+  padding: 0 40px;
 }
 @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
@@ -172,79 +158,83 @@
 /* ─────────────────────────────────────────────
    WHERE WE OPERATE
 ───────────────────────────────────────────── */
+.where-section { background: #F7F6F3; padding: 100px 0; }
+.where-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+@media (max-width: 600px) { .where-inner { padding: 0 20px; } }
+
 .where-grid {
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: 80px; align-items: start;
+  gap: 64px; align-items: center; min-height: 520px;
 }
-@media (max-width: 860px) { .where-grid { grid-template-columns: 1fr; gap: 48px; } }
+@media (max-width: 860px) { .where-grid { grid-template-columns: 1fr; gap: 40px; } }
 
-.where-text .section-title { margin-bottom: 32px; }
+/* Left panel */
+.where-panel { display: flex; align-items: flex-start; }
 
-.city-group { margin-bottom: 28px; }
-.city-group-label {
+/* Default view */
+.where-default-view { width: 100%; }
+.where-title {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(28px, 3.5vw, 46px);
+  color: var(--ink); line-height: 1.1; margin-bottom: 16px;
+}
+.where-sub { font-size: 16px; line-height: 1.75; color: var(--muted); margin-bottom: 28px; }
+.where-legend { display: flex; gap: 20px; }
+.legend-item { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--muted); font-weight: 500; }
+.legend-pip { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.legend-pip.serving { background: var(--orange); }
+.legend-pip.soon { background: #C8C4BC; }
+
+/* Detail view — shown on hover */
+.where-detail-view {
+  width: 100%;
+  animation: fadeUp 0.22s ease;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.where-status-badge {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.5px; padding: 4px 12px; border-radius: 999px;
+  margin-bottom: 14px;
+}
+.where-status-badge.serving { background: #FEF0DC; color: var(--orange); }
+.where-status-badge.soon    { background: #ECEAE6; color: #7A7A7A; }
+.where-status-badge.future  { background: #ECEAE6; color: #7A7A7A; }
+
+.where-region-name {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(26px, 3vw, 42px);
+  color: var(--ink); line-height: 1.1; margin-bottom: 12px;
+}
+.where-region-desc { font-size: 15px; line-height: 1.75; color: var(--muted); margin-bottom: 28px; }
+
+.where-info-block { margin-bottom: 20px; }
+.where-info-label {
   font-size: 10px; font-weight: 700; letter-spacing: 1.8px;
-  text-transform: uppercase; color: #AEABA5; margin-bottom: 12px;
+  text-transform: uppercase; color: #AEABA5; margin-bottom: 10px;
 }
-.city-row {
-  display: flex; align-items: flex-start; gap: 10px;
-  padding: 8px 0; border-bottom: 1px solid #ECEAE6;
+.where-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.where-chip {
+  font-size: 13px; font-weight: 500; padding: 5px 13px;
+  border-radius: 999px; background: white;
+  color: var(--ink); border: 1px solid #E2E0DC;
 }
-.city-row:last-child { border-bottom: none; }
-.city-dot {
-  width: 7px; height: 7px; border-radius: 50%;
-  flex-shrink: 0; margin-top: 5px;
-}
-.city-dot.active { background: var(--orange); }
-.city-dot.soon { background: #D0CFC9; }
-.city-name { display: block; font-size: 14px; font-weight: 600; color: var(--ink); }
-.city-detail { display: block; font-size: 12px; color: var(--muted); margin-top: 1px; }
-.city-when {
-  display: inline-block; font-size: 11px; font-weight: 600;
-  color: #AEABA5; background: #ECEAE6;
-  padding: 2px 8px; border-radius: 999px; margin-top: 3px;
-}
+.where-chip.svc.serving { background: #FEF0DC; color: var(--orange); border-color: transparent; }
+.where-chip.svc.soon    { background: #ECEAE6; color: #7A7A7A;       border-color: transparent; }
+.where-chip.svc.future  { background: #ECEAE6; color: #7A7A7A;       border-color: transparent; }
 
-/* ─────────────────────────────────────────────
-   ALBERTA MAP SVG
-───────────────────────────────────────────── */
-.where-map-col { position: relative; }
-
-.ab-wrap {
-  position: relative; width: 100%; max-width: 360px;
-  margin: 0 auto;
+/* Right map column */
+.where-map-col {
+  background: white; border-radius: 20px;
+  padding: 32px 24px; display: flex;
+  align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
-@media (max-width: 860px) { .ab-wrap { max-width: 280px; } }
-
+.ab-wrap { position: relative; width: 100%; max-width: 320px; margin: 0 auto; }
 .ab-svg { width: 100%; height: auto; display: block; }
-
-.ab-province {
-  fill: #EDE9E1; stroke: #C8C2B6; stroke-width: 1.5;
-  stroke-linejoin: round;
-}
-
-.ab-label {
-  font-size: 8px; fill: #7A7570;
-  font-family: 'DM Sans', sans-serif; font-weight: 600;
-}
-
-.map-hint {
-  text-align: center; font-size: 12px; color: #AEABA5;
-  margin-top: 12px; font-style: italic;
-}
-
-/* Map tooltip */
-.ab-tooltip {
-  position: absolute; z-index: 20;
-  background: white; border-radius: 10px;
-  padding: 10px 14px; min-width: 150px; max-width: 200px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.06);
-  pointer-events: none;
-}
-.ab-tt-name { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
-.ab-tt-status { font-size: 11px; font-weight: 600; letter-spacing: 0.3px; margin-bottom: 4px; }
-.ab-tt-status.serving { color: var(--orange); }
-.ab-tt-status.soon { color: #AEABA5; }
-.ab-tt-detail { font-size: 11px; color: var(--muted); margin: 0; line-height: 1.5; }
 
 /* ─────────────────────────────────────────────
    HOW IT WORKS

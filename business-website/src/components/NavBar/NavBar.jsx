@@ -9,12 +9,12 @@ export default function NavBar() {
   const isHome = pathname === '/'
 
   // On about page, home links go to /#section
-  const href = (hash) => isHome ? hash : `/${hash}`
+const href = (hash) => `/${hash}`
 
   return (
     <header className="navbar">
       <div className="navbar-inner">
-        <Link to="/" className="navbar-logo" onClick={close}>
+        <Link to="/#hero" className="navbar-logo" onClick={close}>
           <img src="/orange-transparent.png" alt="Indro Transit" className="logo-img"/>
         </Link>
         <nav className="nav-links">

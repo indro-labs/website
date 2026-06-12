@@ -750,12 +750,28 @@ function FeatureAccordion() {
 }
 
 /* ── APP ──────────────────────────────────────── */
+import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+
 export default function App() {
+  const location = useLocation()
+
+  useEffect(() => {
+    if (!location.hash) return
+
+    const id = location.hash.replace('#', '')
+
+    const el = document.getElementById(id)
+    if (!el) return
+
+    setTimeout(() => {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 100)
+  }, [location.hash])
+
   return (
     <>
       <NavBar />
-
-      {/* HERO */}
       <section id="hero" className="hero">
         
         <div className="c hero-inner">

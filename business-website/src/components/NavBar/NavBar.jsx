@@ -25,7 +25,7 @@ export default function NavBar() {
         </nav>
         <div className="nav-right">
           <a href={href('#waitlist')} className="nav-wait">Join waitlist</a>
-          <a href={href('#partner')} className="nav-partner">Partner</a>
+          <a href={href('#partner')} className="nav-partner">Become partner</a>
         </div>
         <button className="nav-hamburger" onClick={() => setOpen(!open)}>{open ? '✕' : '☰'}</button>
       </div>

@@ -42,7 +42,7 @@ const AB_REGIONS = [
     tag: 'Serving now',
     cities: ['Calgary', 'Airdrie', 'Okotoks', 'Cochrane', 'Chestermere'],
     services: ['Paratransit', 'Microtransit', 'On-demand'],
-    desc: 'Full-service coverage across the greater Calgary area — live and expanding.',
+    desc: 'Active deployments with partner organizations across the greater Calgary area.',
     photo: '/calgarypic.jpg',
     path: 'M 30,427 L 390,427 L 390,500 L 22,500 L 26,465 Z',
     labelX: 185, labelY: 467,
@@ -55,7 +55,7 @@ const AB_REGIONS = [
     tag: 'Launching 2027',
     cities: ['Edmonton', 'St. Albert', 'Leduc', 'Spruce Grove', 'Sherwood Park'],
     services: ['Paratransit', 'On-demand'],
-    desc: 'Paratransit and on-demand service launches across the Edmonton Capital Region in 2027.',
+    desc: 'Expansion planning underway with organizations in the Edmonton Capital Region.',
     photo: '/Edmontonregion.png',
     path: 'M 48,206 L 390,206 L 390,353 L 38,353 L 42,280 Z',
     labelX: 195, labelY: 278,
@@ -68,7 +68,7 @@ const AB_REGIONS = [
     tag: 'Launching 2027',
     cities: ['Red Deer', 'Lacombe', 'Innisfail', 'Sylvan Lake'],
     services: ['Microtransit', 'On-demand'],
-    desc: 'Central Alberta expansion starts with Red Deer in 2027.',
+    desc: 'Planned expansion beginning with Central Alberta communities.',
     photo: '/Sylvanlake.png',
     path: 'M 38,353 L 390,353 L 390,427 L 30,427 L 34,390 Z',
     labelX: 192, labelY: 394,
@@ -81,7 +81,7 @@ const AB_REGIONS = [
     tag: 'Future expansion',
     cities: ['Lethbridge', 'Medicine Hat', 'Brooks', 'Taber'],
     services: ['On-demand', 'Paratransit'],
-    desc: 'Southern Alberta communities are on the expansion roadmap.',
+    desc: 'Southern Alberta communities included in long-term expansion plans.',
     photo: '/Southernalberta.png',
     path: 'M 22,500 L 390,500 L 390,552 L 36,552 Z',
     labelX: 192, labelY: 530,
@@ -94,7 +94,7 @@ const AB_REGIONS = [
     tag: 'Future expansion',
     cities: ['Fort McMurray', 'Peace River', 'Grande Prairie', 'High Level'],
     services: ['Planning underway'],
-    desc: 'Service expansion into Northern Alberta communities is in the planning phase.',
+    desc: 'Northern Alberta included in long-term rollout roadmap.',
     photo: '/NorthernAlberta.png',
     path: 'M 58,10 L 390,10 L 390,206 L 48,206 L 54,100 Z',
     labelX: 200, labelY: 108,
@@ -165,7 +165,7 @@ function WhereWeOperate() {
         {/* Header */}
         <div className="where-hd">
           <p className="label">Where we operate</p>
-          <h2 className="section-title">Built for Calgary.<br/>Expanding across Alberta.</h2>
+          <h2 className="section-title">Built in Calgary.<br/>Expanding across Alberta.</h2>
         </div>
 
         {/* Tabs */}
@@ -612,10 +612,10 @@ export default function App() {
         <div className="c hero-inner">
           <div className="hero-text">
             <h1 className="hero-h1">Transit that meets<br />people <em>where they are.</em></h1>
-            <p className="hero-sub">The software platform behind paratransit, microtransit, and on-demand rides across southern Alberta — simple, dignified, and reliable.</p>
+            <p className="hero-sub">The software platform behind paratransit, microtransit, and on-demand rides across Alberta. Helping communities deliver accessible, reliable transportation for everyone.</p>
             <div className="hero-actions">
-              <a href="#waitlist" className="btn-primary">Join the waitlist</a>
-              <a href="#partner" className="btn-ghost">Partner with us <ArrowRight size={14} /></a>
+              <a href="#waitlist" className="btn-primary">Join waitlist</a>
+              <a href="#partner" className="btn-ghost">Become partner</a>
             </div>
           </div>
           <div className="hero-media">
@@ -636,9 +636,11 @@ export default function App() {
           </div>
           <div className="cards-3">
             {[
-              { img: '/on-demandservices.jpg', tag: 'On-demand', title: 'Rides when you need them.', desc: 'Request a ride on your schedule. No fixed routes — just flexible, point-to-point service that fits your life.' },
-              { img: '/microtransit.jpeg', tag: 'Microtransit', title: 'Shared rides. Smarter routes.', desc: 'Efficient shared-ride service for communities between cities. Affordable, frequent, and fully trackable.' },
-              { img: '/paratransit.jpeg', tag: 'Paratransit', title: 'Calgary Transit Access — powered by Indro.', desc: "The city's accessible transit service, now with real-time tracking, arrival alerts, and caregiver visibility." },
+              { img: '/ondemand.png', tag: 'On-demand', title: 'Rides when you need them.', desc: 'A booking and dispatch platform that helps organizations offer flexible, on-demand transportation without fixed schedules or routes.' },
+              { img: '/microtransit.jpg', tag: 'Microtransit', title: 'Shared rides. Smarter routes.', desc: 'Dynamic routing and rider management tools that help communities deliver efficient, affordable shared transportation.' },
+              { img: '/paratransit.jpg', tag: 'Paratransit',   title: 'Accessible transportation, modernized.',
+                  desc: 'Real-time tracking, arrival alerts, and caregiver visibility designed for accessible transportation providers and their riders.'
+                },
             ].map(c => (
               <div key={c.tag} className="svc-card">
                 <div className="svc-img-wrap">

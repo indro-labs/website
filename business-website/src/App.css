@@ -196,6 +196,7 @@
   overflow: hidden; min-height: 320px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.06);
   animation: panelFade 0.22s ease;
+  height: 400px;
 }
 @media (max-width: 760px) { .where-panel { grid-template-columns: 1fr; } }
 @keyframes panelFade {

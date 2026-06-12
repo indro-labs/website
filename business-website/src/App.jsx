@@ -69,7 +69,7 @@ const AB_REGIONS = [
     cities: ['Red Deer', 'Lacombe', 'Innisfail', 'Sylvan Lake'],
     services: ['Microtransit', 'On-demand'],
     desc: 'Planned expansion beginning with Central Alberta communities.',
-    photo: '/Sylvanlake.png',
+    photo: '/sylvanlake.png',
     path: 'M 38,353 L 390,353 L 390,427 L 30,427 L 34,390 Z',
     labelX: 192, labelY: 394,
     pins: [{ name: 'Red Deer', cx: 231, cy: 387 }],

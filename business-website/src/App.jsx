@@ -13,6 +13,23 @@ const SLIDES = [
   { src: '/pexels-tima-miroshnichenko-5591283.jpg',   alt: 'Transit driver assisting passenger' },
 ]
 
+function Home() {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      // Small delay to ensure the DOM is painted before scrolling
+      const element = document.getElementById(hash.replace('#', ''));
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [hash]);
+
+}
+
 function HeroCarousel() {
   const [active, setActive] = useState(0)
   useEffect(() => {

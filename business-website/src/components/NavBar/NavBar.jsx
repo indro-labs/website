@@ -24,8 +24,7 @@ export default function NavBar() {
           <Link to="/about" onClick={close}>About</Link>
         </nav>
         <div className="nav-right">
-          <a href={href('#waitlist')} className="nav-wait">Join waitlist</a>
-          <a href={href('#partner')} className="nav-partner">Become partner</a>
+          <Link className="nav-partner" to="/contact">Contact us</Link>
         </div>
         <button className="nav-hamburger" onClick={() => setOpen(!open)}>{open ? '✕' : '☰'}</button>
       </div>
@@ -33,9 +32,9 @@ export default function NavBar() {
         <nav className="nav-mobile">
           <a href={href('#services')} onClick={close}>Services</a>
           <a href={href('#where')} onClick={close}>Regions</a>
-          <a href={href('#operators')} onClick={close}>Operators</a>
+          <a href={href('#operators')} onClick={close}>Organizations</a>
           <Link to="/about" onClick={close}>About</Link>
-          <a href={href('#waitlist')} className="nav-mobile-cta" onClick={close}>Join waitlist →</a>
+             <Link className="nav-mobile-cta" onClick={close} to="/contact">Contact us</Link>
         </nav>
       )}
     </header>

@@ -712,11 +712,14 @@ export default function App() {
         <div className="c about-teaser-inner">
           <div className="about-teaser-text">
             <p className="label">Our story</p>
-            <h2 className="section-title">Started at UCalgary.<br/>Built with riders.</h2>
+            <h2 className="section-title">
+              Built from <span className="highlight">real needs</span>.<br/>
+              Shaped by lived experience.
+            </h2>
             <p className="section-sub" style={{ marginTop: 12, marginBottom: 28 }}>
-              We spent months talking to Transit Access riders, caregivers, and care operators before writing a single line of code. One ask came up every time: <em>just tell us where the ride is.</em>
+              We spent months talking to Transit Access riders, caregivers, and care operators before writing a single line of code. One request came up again and again:  <em>just tell us where the ride is.</em>
             </p>
-            <Link to="/about" className="btn-primary">Read our full story <ArrowRight size={14}/></Link>
+            <Link to="/about" className="btn-primary">Read our full story</Link>
           </div>
           <div className="about-teaser-img-wrap">
             <img src="/pexels-jsme-mila-523821574-18429374.jpg" alt="Care worker with elderly resident" className="about-teaser-img" />

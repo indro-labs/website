@@ -49,12 +49,15 @@ export default function About() {
         <div className="ap-c ap-origin-grid">
           <div className="ap-origin-text">
             <p className="ap-label">Where it began</p>
-            <h2 className="ap-h2">UCalgary AI Bootcamp, 2024.</h2>
+            <h2 className="ap-h2">Built during Calgary’s AI Bootcamp, 2025.</h2>
             <p className="ap-body">
-              Our team came together at the University of Calgary's AI Bootcamp with one goal: solve a real problem for real people. We chose accessible transit — not because it was trendy, but because someone we cared about needed it.
+              Our team came together at the University of Calgary's AI Bootcamp with one goal: solve a real problem for real people. 
+         
             </p>
+            <p className='ap-body'>     
+              We chose accessible transit. Not because it was trendy, but because someone we cared about needed it.</p>
             <p className="ap-body">
-              We spent months in the field before writing a single line of code. We rode along on Calgary Transit Access vehicles. We sat with riders in waiting rooms, spoke to care workers at shift changes, and called caregivers at 7 am to understand their mornings.
+              We spent months in the field before writing a single line of code. We sat with riders, spoke to care workers, and contacted healthcare workers to understand their experience.
             </p>
             <p className="ap-body">
               Every conversation — every single one — came back to the same frustration.
@@ -63,11 +66,12 @@ export default function About() {
               "We just want to know where the ride is."
             </blockquote>
             <p className="ap-body">
-              No live tracking. No arrival alerts. No way to tell an elderly woman with limited mobility whether her van was two minutes away or twenty. That was the gap. That became Indro Transit.
+              This was their current reality. No live tracking, no arrival alerts, and no way to tell an elderly woman with limited mobility whether her van was six minutes away or sixty.
             </p>
+            <p className='ap-body'> That uncertainty was the gap — and it became Indro Transit.</p>
           </div>
           <div className="ap-origin-img-wrap">
-            <img src="/pexels-jsme-mila-523821574-18429374.jpg" alt="Care worker with elderly resident" className="ap-origin-img" />
+            <img src="/about-image.jpg" alt="Care worker with elderly resident" className="ap-origin-img" />
           </div>
         </div>
       </section>
@@ -75,10 +79,10 @@ export default function About() {
       {/* ── STATS ── */}
       <div className="ap-stats-band">
         <div className="ap-c ap-stats-grid">
-          <StatCard number="40+"  label="Riders & caregivers interviewed" />
+          <StatCard number="55+"  label="Riders & caregivers interviewed" />
           <StatCard number="12"   label="Partner conversations underway" />
           <StatCard number="2026" label="Calgary pilot launch" />
-          <StatCard number="5+"   label="Communities served today" />
+          <StatCard number="5+"   label="Communities engaged" />
         </div>
       </div>
 
@@ -115,7 +119,7 @@ export default function About() {
                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="#F6901A" strokeWidth="1.5"/><path d="M10 18c0-2.2 1.8-4 4-4s4 1.8 4 4M14 13a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" stroke="#F6901A" strokeWidth="1.8" strokeLinecap="round"/></svg>
               </div>
               <h3 className="ap-principle-title">Built with, not for.</h3>
-              <p className="ap-principle-body">We spent months in the field before writing a single line of code. Riders, caregivers, and operators shaped what Indro is — and what it prioritises.</p>
+              <p className="ap-principle-body">We spent months in the field before writing a single line of code. Riders, caregivers, and operators shaped what Indro Transit is — and what it prioritises.</p>
             </div>
           </div>
         </div>
@@ -136,9 +140,9 @@ export default function About() {
           <p className="ap-label">In the news & community</p>
           <div className="ap-press-grid">
             {[
-              { tag: 'Feature',  outlet: 'UCalgary News',    title: 'AI Bootcamp helps students design their own futures',      desc: 'UCalgary featured the Indro Transit team\'s work on accessible transit technology for southern Alberta.',           href: '#' },
-              { tag: 'Video',    outlet: 'Instagram · Reel', title: 'Indro Transit in motion — what we\'re building and why',   desc: 'A short video on the platform and why accessible transit matters for Alberta\'s riders and their families.',       href: 'https://www.instagram.com/indrotransit' },
-              { tag: 'Outreach', outlet: 'Community',        title: 'Listening sessions with Transit Access riders',             desc: 'Highlights from our sessions with paratransit riders, caregivers, and long-term care providers across Calgary.', href: 'https://www.instagram.com/indrotransit' },
+              { tag: 'Feature',  outlet: 'UCalgary News',    title: 'AI Bootcamp helps students design their own futures',      desc: 'UCalgary featured the Indro Transit team\'s work on accessible transit technology for southern Alberta.',           href: 'https://www.ucalgary.ca/news/ai-bootcamp-helps-students-design-their-own-futures' },
+              { tag: 'Video',    outlet: 'Instagram · Reel', title: 'Indro Transit — what we\'re building and why',   desc: 'A short video introduction to Indro Transit and the problem we’re solving for accessible transportation across Alberta.',       href: 'https://www.instagram.com/p/DY7hX7HNP28/' },
+              
             ].map(a => (
               <a key={a.title} href={a.href} target="_blank" rel="noopener noreferrer" className="ap-press-card">
                 <div className="ap-press-top">
@@ -160,8 +164,8 @@ export default function About() {
           <h2 className="ap-cta-h">Ready to be part of it?</h2>
           <p className="ap-cta-sub">Whether you're a rider, a caregiver, or an operator — there's a place for you in what we're building.</p>
           <div className="ap-cta-actions">
-            <Link to="/#waitlist" className="ap-btn-primary">Join the waitlist</Link>
-            <Link to="/#partner"  className="ap-btn-ghost">Partner with us</Link>
+            <Link to="/#waitlist" className="ap-btn-primary">Join waitlist</Link>
+            <Link to="/#partner"  className="ap-btn-ghost">Become partner</Link>
           </div>
         </div>
       </section>

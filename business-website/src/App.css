@@ -890,3 +890,8 @@
   margin: 0;
   max-width: 500px;
 }
+
+.highlight {
+
+    font-style: italic;
+}

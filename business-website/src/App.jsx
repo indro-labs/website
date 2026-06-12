@@ -13,38 +13,6 @@ const SLIDES = [
   { src: '/pexels-tima-miroshnichenko-5591283.jpg',   alt: 'Transit driver assisting passenger' },
 ]
 
-
-function Home() {
-  const location = useLocation();
-
-  useEffect(() => {
-    const hash = location.hash;
-    if (!hash) return;
-
-    const id = hash.replace('#', '');
-    
-    // We use a small delay + requestAnimationFrame to ensure the component is painted
-    const scroll = () => {
-      const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    };
-
-    // Wait for the render cycle to finish
-    const timer = setTimeout(scroll, 300);
-    return () => clearTimeout(timer);
-  }, [location.hash]);
-
-  return (
-    <>
-      {/* Ensure your <section id="waitlist"> and <section id="partner"> 
-          actually exist in the return block below */}
-    </>
-  )
-}
-
-
 function HeroCarousel() {
   const [active, setActive] = useState(0)
   useEffect(() => {
@@ -102,7 +70,7 @@ const AB_REGIONS = [
     cities: ['Red Deer', 'Lacombe', 'Innisfail', 'Sylvan Lake'],
     services: ['Microtransit', 'On-demand'],
     desc: 'Planned expansion beginning with Central Alberta communities.',
-    photo: '/sylvanlake.png',
+    photo: '/Sylvanlake.png',
     path: 'M 38,353 L 390,353 L 390,427 L 30,427 L 34,390 Z',
     labelX: 192, labelY: 394,
     pins: [{ name: 'Red Deer', cx: 231, cy: 387 }],
@@ -771,7 +739,8 @@ export default function App() {
       <NavBar />
 
       {/* HERO */}
-      <section id="top" className="hero">
+      <section id="hero" className="hero">
+        
         <div className="c hero-inner">
           <div className="hero-text">
             <h1 className="hero-h1">Transit that meets<br />people <em>where they are.</em></h1>

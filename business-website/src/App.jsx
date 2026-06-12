@@ -660,33 +660,49 @@ export default function App() {
       {/* WHERE WE OPERATE — interactive region map */}
       <WhereWeOperate />
 
-      {/* FOR OPERATORS */}
-      <section id="operators" className="section bg-tint">
-        <div className="c">
-          <div className="section-head">
-            <p className="label">For cities &amp; operators</p>
-            <h2 className="section-title">The organizations we work with.</h2>
-            <p className="section-sub">Indro works alongside teams already moving people who depend on accessible, reliable transportation.</p>
+    <section id="operators" className="section bg-tint about-teaser">
+  <div className="c">
+    <div className="op-section-head center-content">
+      <p className="label">Who we help</p>
+      <h2 className="section-title">Built for organizations that move people.</h2>
+
+    </div>
+
+    <div className="op-cases">
+      {[
+        {
+          img: '/Long-term care & senior living.jpg',
+          tag: 'Senior living',
+          title: 'Long-term care & senior living',
+          desc: 'Coordinate resident transportation, reduce missed appointments, and give families real-time visibility into trips.'
+        },
+        {
+          img: '/Transit authorities & private operators.jpg',
+          tag: 'Transit operators',
+          title: 'Transit authorities & private operators',
+          desc: 'Add live tracking, dispatch tools, and rider coordination to your existing fleet without changing your operations.'
+        },
+        {
+          img: '/Disability & community services.jpg',
+          tag: 'Accessibility services',
+          title: 'Disability & community services',
+          desc: 'Give riders and caregivers predictable, reliable transportation with better communication and trip visibility.'
+        }
+      ].map((c, i) => (
+        <div key={c.title} className={`op-case ${i % 2 === 1 ? 'reverse' : ''}`}>
+          <div className="op-case-img">
+            <img src={c.img} alt={c.title} />
           </div>
-          <div className="cards-3">
-            {[
-              { img: '/Long-term care & senior living.jpg', title: 'Long-term care & senior living', desc: 'Coordinate resident rides, reduce missed appointments, and give families real-time peace of mind.' },
-              { img: '/Transit authorities & private operators.jpg', title: 'Transit authorities & private operators', desc: 'Layer live tracking and caregiver alerts onto your existing fleet — no new hardware required.' },
-              { img: '/Disability & community services.jpg', title: 'Disability & community services', desc: 'Give clients and their support networks the predictability and independence they deserve.' },
-            ].map(c => (
-              <div key={c.title} className="op-card">
-                <div className="op-img-wrap">
-                  <img src={c.img} alt={c.title} className="op-img" />
-                </div>
-                <div className="op-body">
-                  <h3 className="op-title">{c.title}</h3>
-                  <p className="op-desc">{c.desc}</p>
-                </div>
-              </div>
-            ))}
+          <div className="op-case-text">
+            <span className="op-tag">{c.tag}</span>
+            <h3 className="op-title">{c.title}</h3>
+            <p className="op-desc">{c.desc}</p>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* FEATURES */}
       <FeatureAccordion />

@@ -19,8 +19,8 @@ export default function NavBar() {
         </Link>
         <nav className="nav-links">
           <a href={href('#services')}>Services</a>
-          <a href={href('#where')}>Coverage</a>
-          <a href={href('#operators')}>Operators</a>
+          <a href={href('#where')}>Regions</a>
+          <a href={href('#operators')}>Organizations</a>
           <Link to="/about" onClick={close}>About</Link>
         </nav>
         <div className="nav-right">
@@ -32,7 +32,7 @@ export default function NavBar() {
       {open && (
         <nav className="nav-mobile">
           <a href={href('#services')} onClick={close}>Services</a>
-          <a href={href('#where')} onClick={close}>Coverage</a>
+          <a href={href('#where')} onClick={close}>Regions</a>
           <a href={href('#operators')} onClick={close}>Operators</a>
           <Link to="/about" onClick={close}>About</Link>
           <a href={href('#waitlist')} className="nav-mobile-cta" onClick={close}>Join waitlist →</a>

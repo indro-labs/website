@@ -2,7 +2,8 @@ import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar'
 import './App.css'
-import { ArrowRight, CheckCircle } from 'lucide-react'
+import {CheckCircle } from 'lucide-react'
+import { useLocation } from 'react-router-dom';
 
 /* ── HERO CAROUSEL ────────────────────────────── */
 const SLIDES = [
@@ -11,6 +12,38 @@ const SLIDES = [
   { src: '/pexels-bertellifotografia-13871043.jpg',    alt: 'Senior couple smiling outdoors' },
   { src: '/pexels-tima-miroshnichenko-5591283.jpg',   alt: 'Transit driver assisting passenger' },
 ]
+
+
+function Home() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const hash = location.hash;
+    if (!hash) return;
+
+    const id = hash.replace('#', '');
+    
+    // We use a small delay + requestAnimationFrame to ensure the component is painted
+    const scroll = () => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+
+    // Wait for the render cycle to finish
+    const timer = setTimeout(scroll, 300);
+    return () => clearTimeout(timer);
+  }, [location.hash]);
+
+  return (
+    <>
+      {/* Ensure your <section id="waitlist"> and <section id="partner"> 
+          actually exist in the return block below */}
+    </>
+  )
+}
+
 
 function HeroCarousel() {
   const [active, setActive] = useState(0)
@@ -261,13 +294,23 @@ function WaitlistForm() {
   const [email, setEmail] = useState('')
   const [done, setDone] = useState(false)
   const [err, setErr] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const submit = async e => {
     e.preventDefault()
     setErr(false)
 
+    const endpoint = import.meta.env.VITE_FORMSPREE_WAITLIST_URL
+    if (!endpoint) {
+      console.error('Missing Formspree endpoint')
+      setErr(true)
+      return
+    }
+
+    setLoading(true)
+
     try {
-      const r = await fetch(import.meta.env.VITE_FORMSPREE_WAITLIST_URL, {
+      const r = await fetch(endpoint, {
         method: 'POST',
         body: JSON.stringify({ name, email, role }),
         headers: {
@@ -276,10 +319,19 @@ function WaitlistForm() {
         },
       })
 
-      r.ok ? setDone(true) : setErr(true)
+      if (r.ok) {
+        setDone(true)
+        setName('')
+        setEmail('')
+        setRole('Rider')
+      } else {
+        setErr(true)
+      }
 
     } catch {
       setErr(true)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -327,8 +379,12 @@ function WaitlistForm() {
         ))}
       </div>
 
-      <button type="submit" className="btn-primary w-full">
-        Join the waitlist <ArrowRight size={14} />
+      <button type="submit" className="btn-primary w-full" disabled={loading}>
+        {loading ? 'Submitting...' : (
+          <>
+            Join  waitlist
+          </>
+        )}
       </button>
 
       {err && <p className="ferr">Something went wrong — please try again.</p>}
@@ -341,25 +397,67 @@ function WaitlistForm() {
 function PartnerForm() {
   const [done, setDone] = useState(false)
   const [err, setErr] = useState(false)
+  const [loading, setLoading] = useState(false)
+
   const submit = async e => {
-    e.preventDefault(); setErr(false)
+    e.preventDefault()
+    setErr(false)
+
+    const endpoint = import.meta.env.VITE_FORMSPREE_PARTNER_URL
+    if (!endpoint) {
+      console.error('Missing Formspree partner endpoint')
+      setErr(true)
+      return
+    }
+
     const data = Object.fromEntries(new FormData(e.currentTarget))
+
+    setLoading(true)
+
     try {
-      const r = await fetch(import.meta.env.VITE_FORMSPREE_PARTNER_URL || 'https://formspree.io/f/placeholder', {
-        method: 'POST', body: JSON.stringify(data),
-        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+      const r = await fetch(endpoint, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
       })
-      r.ok ? setDone(true) : setErr(true)
-    } catch { setErr(true) }
+
+      if (r.ok) {
+        setDone(true)
+        e.currentTarget.reset()
+      } else {
+        setErr(true)
+      }
+
+    } catch {
+      setErr(true)
+    } finally {
+      setLoading(false)
+    }
   }
-  if (done) return <div className="form-ok"><CheckCircle size={18} color="var(--orange)" /><div><p className="fok-t">Message received.</p><p className="fok-s">We'll be in touch shortly.</p></div></div>
+
+  if (done)
+    return (
+      <div className="form-ok">
+        <CheckCircle size={18} color="var(--orange)" />
+        <div>
+          <p className="fok-t">Message received.</p>
+          <p className="fok-s">We'll be in touch shortly.</p>
+        </div>
+      </div>
+    )
+
   return (
     <form onSubmit={submit} className="the-form">
       <div className="form-row">
         <input name="name" type="text" placeholder="Your name" required />
         <input name="org" type="text" placeholder="Organization name" required />
       </div>
+
       <input name="email" type="email" placeholder="Email address" required />
+
       <select name="type" defaultValue="">
         <option value="" disabled>Type of organization</option>
         <option>Municipal transit authority</option>
@@ -370,8 +468,25 @@ function PartnerForm() {
         <option>Non-profit transport</option>
         <option>Other</option>
       </select>
-      <textarea name="message" placeholder="Tell us about your service area and what you're looking for." rows={4} />
-      <button type="submit" className="btn-primary w-full">Send message <ArrowRight size={14} /></button>
+
+      <textarea
+        name="message"
+        placeholder="Tell us about your service area and what you're looking for."
+        rows={4}
+      />
+
+      <button
+        type="submit"
+        className="btn-primary w-full"
+        disabled={loading}
+      >
+        {loading ? 'Sending...' : (
+          <>
+            Become partner
+          </>
+        )}
+      </button>
+
       {err && <p className="ferr">Something went wrong — please try again.</p>}
     </form>
   )
@@ -786,9 +901,9 @@ export default function App() {
           </div>
           <div className="cta-divider" />
           <div id="partner" className="cta-col">
-            <p className="label">For cities &amp; operators</p>
+            <p className="label">For communities &amp; operators</p>
             <h2 className="cta-h">Partner with us.</h2>
-            <p className="cta-p">Operating transit in southern Alberta? Let's talk.</p>
+            <p className="cta-p">Operating transit in Alberta? Let's talk.</p>
             <PartnerForm />
           </div>
         </div>
@@ -802,8 +917,8 @@ export default function App() {
           </a>
           <nav className="footer-nav">
             <a href="#services">Services</a>
-            <a href="#where">Coverage</a>
-            <a href="#operators">Operators</a>
+            <a href="#where">Regions</a>
+            <a href="#operators">Organizations</a>
             <a href="#about">About</a>
           </nav>
           <div className="footer-right">

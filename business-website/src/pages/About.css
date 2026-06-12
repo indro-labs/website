@@ -187,7 +187,7 @@
   font-size: clamp(30px, 4vw, 52px);
   color: white; margin-bottom: 16px;
 }
-.ap-cta-sub { font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.6); margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto; }
+.ap-cta-sub { font-size: 16px; line-height: 1.75; color: white; margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto; }
 .ap-cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 .ap-btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
@@ -259,4 +259,51 @@
   .ap-footer-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
   .ap-footer-right { align-items: flex-start; }
   .ap-footer-nav { gap: 18px; }
+}
+
+
+.rchip {
+  /* Existing styles */
+  background-color: #1a1a1a; /* Dark background to match the new dark mode theme */
+  border: 1px solid #333333;
+  color: #ffffff; /* White text */
+  padding: 8px 16px;
+  border-radius: 999px; /* Pill shape */
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Style for the active/selected button */
+.rchip.on {
+  background-color: var(--orange); /* Keep your orange accent when selected */
+  color: #ffffff; /* Ensure text remains white when selected */
+  border-color: var(--orange);
+}
+
+/* Optional: Subtle hover effect */
+.rchip:hover {
+  border-color: #555555;
+}
+
+/* Ensure the success container doesn't have a white background */
+.form-ok {
+  background: transparent !important; /* Forces transparency so it matches your current page background */
+  border: 1px solid #ECEAE6;         /* Keeps a clean border consistent with your design */
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* Ensure text remains visible */
+.fok-t {
+  color: white !important;      /* Keeps the text dark/visible */
+  font-weight: 600;
+  margin: 0;
+}
+
+.fok-s {
+  color: white !important;    /* Keeps the sub-text readable */
+  margin: 0;
 }

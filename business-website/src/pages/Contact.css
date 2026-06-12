@@ -1,26 +1,159 @@
-.contact-page { padding: 120px 48px; max-width: 1100px; margin: 0 auto; }
+/* 1. Page Container */
 
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
+/* 1. Full-width background wrapper */
+.contact-page-wrapper {
+  background-color: #F7F6F3;
+  padding: 150px 48px; /* Move padding here */
 }
 
-/* Responsive adjustment */
+/* 2. Constrained inner content */
+.contact-page-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* 3. Responsive Adjustments */
 @media (max-width: 768px) {
-  .contact-grid { grid-template-columns: 1fr; gap: 48px; }
-  .contact-page { padding: 60px 20px; }
+  .contact-page-wrapper { padding: 60px 20px; }
 }
 
-/* Info styling */
-.contact-info h1 { font-family: var(--serif); font-size: 48px; margin-bottom: 20px; }
-.contact-sub { font-size: 18px; line-height: 1.7; color: var(--muted); margin-bottom: 32px; }
-.contact-links { display: flex; flex-direction: column; gap: 12px; }
-.contact-links a { color: var(--orange); font-weight: 600; text-decoration: none; }
+/* Update your grid to ensure it sits nicely inside the inner wrapper */
+.contact-grid { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 100px; 
+  align-items: start; 
+}
+.contact-page { 
+    padding: 120px 48px; max-width: 1200px; margin: 0 auto;}
 
-/* Form styling */
-.contact-form { display: flex; flex-direction: column; gap: 16px; }
-.contact-form input, .contact-form textarea {
-  padding: 16px; border: 1px solid #ECEAE6; border-radius: 8px; width: 100%;
+/* 2. Grid Layout (Desktop) */
+.contact-grid { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 100px; 
+  align-items: start; 
+}
+
+/* 3. Responsive Adjustments */
+@media (max-width: 768px) {
+    .contact-page-wrapper {
+  padding: 90px 20px; /* Move padding here */
+}
+  .contact-page { padding: 60px 20px; }
+  .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+  .contact-card { padding: 24px; } /* Smaller padding on mobile cards */
+}
+
+/* 4. Left Side Text Styling */
+.contact-info h1 { font-family: var(--serif); font-size: 48px; margin-bottom: 20px; }
+.contact-overline { font-size: 12px; letter-spacing: 2px; color: var(--orange); font-weight: 700; margin-bottom: 20px; text-transform: uppercase; }
+.contact-sub { font-size: 18px; line-height: 1.7; color: var(--muted); margin-bottom: 32px; }
+
+.meta-label { font-size: 11px; letter-spacing: 1.5px; color: #9CA3AF; margin-top: 24px; margin-bottom: 8px; font-weight: 700; text-transform: uppercase; }
+.meta-link { color: var(--orange); font-weight: 500; text-decoration: none; display: block; }
+
+.linkedin-btn { 
+  display: inline-flex; align-items: center; margin-top: 12px;
+  padding: 10px 16px; border: 1px solid #E5E7EB; border-radius: 8px; 
+  text-decoration: none; color: #374151; font-weight: 500; 
+}
+
+/* 5. Right Side Card & Form Styling */
+.contact-card { 
+  background: white; 
+  padding: 40px; 
+  border-radius: 16px; 
+  box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); 
+  border: 1px solid #F3F4F6;
+}
+
+.contact-form { display: flex; flex-direction: column; gap: 12px; }
+
+.contact-form label { 
+  display: block; font-size: 14px; font-weight: 600; 
+  margin: 8px 0 2px 0; /* Tight spacing between labels */
+}
+
+.contact-form input, .contact-form textarea { 
+  width: 100%; 
+  padding: 12px; 
+  border: 1px solid #E5E7EB; 
+  border-radius: 6px; 
+  font-size: 16px; /* Improves readability on mobile */
+}
+
+/* Update the header inside the card */
+.contact-card h2 {
+  margin-top: 0;
+  margin-bottom: 10px; /* Increase this value for more space */
+}
+
+/* Ensure the subtitle doesn't have an oversized margin pushing it down */
+.card-sub {
+  margin-top: 0;
+  margin-bottom: 20px; /* This will now be the space between the subtitle and the first label */
+  color: #6B7280;      /* Optional: softer color to distinguish from the title */
+  font-size: 15px;
+}
+
+.btn-primary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.linkedin-btn { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 10px; /* Space between icon and text */
+  padding: 10px 16px; 
+  border: 1px solid #E5E7EB; 
+  border-radius: 8px; 
+  text-decoration: none; 
+  color: #374151; 
+  font-weight: 500; 
+  transition: all 0.2s;
+  background: white;
+}
+
+.linkedin-btn:hover {
+  background-color: #F9FAFB;
+  border-color: #D1D5DB;
+}
+
+.linkedin-icon {
+  width: 18px;  /* Matches the visual weight of the text */
+  height: 18px;
+}
+
+#message {
+  resize: vertical;      /* Only allow vertical resizing */
+  min-height: 100px;     /* Set a comfortable starting height */
+  max-height: 200px;     /* Prevent it from expanding too far */
+}
+
+/* Updated Success message style */
+.form-ok { 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px; /* Reduces vertical height and ensures inner spacing */
+  min-height: 90px; 
+}
+
+.form-ok h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.form-ok p {
+  color: #6B7280;
+  margin: 0;
 }

@@ -335,15 +335,15 @@ const FEATURES = [
     id: 'live-tracking',
     title: 'Live GPS tracking',
     tag: 'Riders & families',
-    summary: 'See exactly where the vehicle is — in real time.',
-    detail: 'A live map updates every few seconds so riders, family members, and care coordinators always know where the vehicle is. No more "is it almost here?" calls — just a quiet, accurate map anyone can check from their phone.',
+    summary: 'See exactly where the vehicle is in real time.',
+    detail: 'A live map updates every few seconds so riders, family members, and care coordinators can see vehicle location in real time. Eliminates uncertainty around arrival times and reduces inbound status calls.',
     visual: {
       label: 'Live tracking',
       status: 'active',
       rows: [
         { key: 'Vehicle', val: 'Accessible Van #4' },
         { key: 'ETA', val: '4 min away' },
-        { key: 'Driver', val: 'James R.' },
+        { key: 'Driver', val: 'James B.' },
         { key: 'Status', val: 'En route', highlight: true },
       ],
     },
@@ -351,9 +351,9 @@ const FEATURES = [
   {
     id: 'notifications',
     title: 'Automatic notifications',
-    tag: 'Family & care teams',
-    summary: 'Alerts go out before and after every trip — no setup required.',
-    detail: 'Indro sends a heads-up when the driver is en route, again 3 minutes before arrival, and a confirmation once the rider is dropped off safely. Notifications go to anyone you add — family, caregivers, care coordinators.',
+    tag: 'Care teams',
+    summary: 'Alerts go out before and after every trip, no setup required.',
+    detail: 'Automated alerts are sent when a driver is en route, shortly before arrival, and once the rider has been dropped off. Notifications can be shared with family members, caregivers, or care coordinators.',
     visual: {
       label: 'Trip alerts',
       status: 'sent',
@@ -370,7 +370,7 @@ const FEATURES = [
     title: 'Easy ride booking',
     tag: 'Riders',
     summary: 'Book by app or phone. Confirmation arrives instantly.',
-    detail: 'Schedule a ride through the Indro app or by calling in — whichever works best. You get an instant confirmation with driver details, pickup time, and a shareable link for anyone who wants to follow the trip.',
+    detail: 'Schedule a ride through the Indro app or by phone. Riders receive instant confirmation with pickup details, driver information, and a shareable tracking link.',
     visual: {
       label: 'Booking confirmed',
       status: 'confirmed',
@@ -386,8 +386,8 @@ const FEATURES = [
     id: 'caregiver-access',
     title: 'Caregiver & family access',
     tag: 'Families',
-    summary: 'Add anyone to a trip — they get the same visibility you do.',
-    detail: 'Add a family member, care coordinator, or nurse to any trip with one tap. They\'ll receive all the same notifications and can view the live map without needing their own account. Peace of mind, shared.',
+    summary: 'Add anyone to a trip: they get the same visibility you do.',
+    detail: 'Add a family member, care coordinator, or clinician to any trip. They receive the same updates and can view live trip status without needing their own account.',
     visual: {
       label: 'Trip access',
       status: 'shared',
@@ -404,7 +404,7 @@ const FEATURES = [
     title: 'Fleet & operator tools',
     tag: 'Operators',
     summary: 'Manage your entire fleet from one dashboard.',
-    detail: 'Operators get a real-time dispatch dashboard, driver assignment tools, and automated trip logging. Reduce no-shows with automated reminders, and export reports for billing, compliance, and service planning — all in one place.',
+    detail: 'Operators get a real-time dispatch dashboard, driver assignment tools, and automated trip logging. Reduce missed trips with automated reminders and export operational reports for billing, compliance, and planning.',
     visual: {
       label: 'Fleet overview',
       status: 'live',
@@ -454,11 +454,11 @@ function FeatureVisual({ id }) {
   if (id === 'notifications') return (
     <div className="fv fv-notifs">
       {[
-        { bg: '#FEF0DC', icon: '🚐', title: "Margaret's driver is on the way", sub: 'Just now', new: true },
-        { bg: '#FEF0DC', icon: '⏱', title: "Margaret's ride is 3 min away", sub: '3 min ago' },
-        { bg: '#EDFAF3', icon: '✓', title: 'Margaret arrived safely', sub: '9:51 AM', check: true },
-        { bg: '#F0F4FF', icon: '👤', title: 'Trip summary sent to care team', sub: '9:51 AM' },
-      ].map((n, i) => (
+          { bg: '#F0F4FF', icon: '👤', title: 'Trip summary sent to care team', sub: 'Just now',  new: true  },
+          { bg: '#EDFAF3', icon: '✓', title: 'Margaret arrived safely', sub: '1 min ago', },
+          { bg: '#FEF0DC', icon: '⏱', title: "Margaret's ride is arriving in 5 minutes", sub: '8 min ago' },
+          { bg: '#FEF0DC', icon: '🚐', title: "Margaret's driver is on the way", sub: '15 min ago',},
+        ].map((n, i) => (
         <div key={i} className={`fv-notif-row fv-card-in${n.new ? ' fv-notif-new' : ''}`} style={{ animationDelay: `${i * 90}ms`, background: n.bg }}>
           <span className="fv-notif-icon">{n.icon}</span>
           <div className="fv-notif-text">
@@ -532,9 +532,9 @@ function FeatureVisual({ id }) {
         <span className="fv-fleet-live">Live</span>
       </div>
       {[
-        { van: 'Van #2', driver: 'Priya S.', status: 'En route', stops: '2 stops left', bar: 60 },
+        { van: 'Van #2', driver: 'Priya T.', status: 'En route', stops: '2 stops left', bar: 60 },
         { van: 'Van #4', driver: 'James R.', status: 'En route', stops: '1 stop left', bar: 80 },
-        { van: 'Van #7', driver: 'Nikki T.', status: 'Completed', stops: 'All done today', bar: 100 },
+        { van: 'Van #7', driver: 'Nikki K.', status: 'Completed', stops: 'All done today', bar: 100 },
         { van: 'Van #9', driver: 'Omar T.', status: 'Scheduled', stops: 'Starts at 2 PM', bar: 0 },
       ].map((v, i) => (
         <div key={i} className="fv-van-row fv-card-in" style={{ animationDelay: `${60 + i * 70}ms` }}>

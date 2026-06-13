@@ -17,11 +17,11 @@
   text-transform: uppercase; color: var(--orange); margin-bottom: 12px;
 }
 .section-title {
-  font-family: var(--serif); font-size: clamp(28px, 3.5vw, 46px);
-  color: var(--ink); line-height: 1.1; margin-bottom: 16px; font-weight: 400;
+  font-family: var(--sans); font-size: clamp(28px, 3.5vw, 46px);
+  color: var(--ink); line-height: 1.08; margin-bottom: 16px; font-weight: 800; letter-spacing: -0.5px;
 }
 .section-sub {
-  font-size: 18px; line-height: 1.8; color: var(--muted); max-width: 700px;
+  font-size: 18px; line-height: 1.8; color: var(--ink); max-width: 700px;
 }
 .section-head { margin-bottom: 52px; }
 .section-head.centered { text-align: center; }
@@ -67,7 +67,7 @@
 }
 
 .hero-h1 {
-  font-family: var(--serif); font-weight: 400;
+  font-family: var(--sans); font-weight: 800;
   font-size: clamp(38px, 5vw, 66px);
   line-height: 1.06; letter-spacing: -1.5px;
   color: var(--ink); margin-bottom: 20px;
@@ -75,8 +75,8 @@
 .hero-h1 em { color: var(--orange); font-style: normal; }
 
 .hero-sub {
-  font-size: 19px; line-height: 1.75; color: var(--muted);
-  max-width: 460px; margin-bottom: 36px;
+  font-size: 21px; line-height: 1.75; color: var(--ink);
+  max-width: 520px; margin-bottom: 36px;
 }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
@@ -187,8 +187,8 @@
   transform: translateY(0); opacity: 1;
 }
 .svc-overlay-title {
-  font-family: var(--serif); font-size: 26px; font-weight: 400;
-  color: white; line-height: 1.2; margin: 0 0 10px;
+  font-family: var(--sans); font-size: 26px; font-weight: 800;
+  color: white; line-height: 1.2; margin: 0 0 10px; letter-spacing: -0.5px;
 }
 .svc-overlay-desc {
   font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.82); margin: 0;
@@ -208,9 +208,9 @@
 }
 .where-tab {
   display: inline-flex; align-items: center; gap: 7px;
-  padding: 10px 20px; border-radius: 999px; border: 1.5px solid #E2E0DC;
-  font-size: 15px; font-weight: 600; color: var(--muted);
-  background: white; cursor: pointer;
+  padding: 10px 22px; border-radius: 999px; border: 1.5px solid #E2E0DC;
+  font-size: 17px; font-weight: 600; color: var(--ink);
+  background: white; cursor: pointer; font-family: var(--sans);
   transition: all 0.2s ease;
 }
 .where-tab:hover {
@@ -264,20 +264,20 @@
 }
 
 .where-region-h {
-  font-family: var(--serif); font-weight: 400;
-  font-size: clamp(22px, 2.5vw, 34px);
-  color: var(--ink); line-height: 1.1; margin-bottom: 10px;
+  font-family: var(--sans); font-weight: 800;
+  font-size: clamp(26px, 2.5vw, 38px);
+  color: var(--ink); line-height: 1.08; letter-spacing: -0.5px; margin-bottom: 10px;
 }
-.where-region-desc { font-size: 16px; line-height: 1.75; color: var(--muted); margin-bottom: 24px; }
+.where-region-desc { font-size: 18px; line-height: 1.8; color: var(--ink); margin-bottom: 24px; }
 
 .where-block { margin-bottom: 16px; }
 .where-block-label {
-  font-size: 12px; font-weight: 700; letter-spacing: 1.8px;
-  text-transform: uppercase; color: #AEABA5; margin-bottom: 9px;
+  font-size: 14px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: #AEABA5; margin-bottom: 10px;
 }
 .where-chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .where-chip {
-  font-size: 14px; font-weight: 500; padding: 4px 12px;
+  font-size: 16px; font-weight: 500; padding: 5px 14px;
   border-radius: 999px; background: #F7F6F3;
   color: var(--ink); border: none;
 }
@@ -568,6 +568,62 @@
 }
 
 /* ─────────────────────────────────────────────
+   BENEFITS GRID
+───────────────────────────────────────────── */
+.benefits-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+@media (max-width: 860px) { .benefits-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 540px) { .benefits-grid { grid-template-columns: 1fr; } }
+
+.benefit-card {
+  background: var(--bg-soft); border-radius: 14px;
+  padding: 32px 28px;
+  border: 1.5px solid #EAE6E0;
+}
+.benefit-icon { font-size: 28px; display: block; margin-bottom: 16px; }
+.benefit-title {
+  font-size: 18px; font-weight: 700; color: var(--ink);
+  margin: 0 0 10px; line-height: 1.3;
+}
+.benefit-desc { font-size: 16px; line-height: 1.7; color: var(--muted); margin: 0; }
+
+/* ─────────────────────────────────────────────
+   WHO WE HELP GRID
+───────────────────────────────────────────── */
+.who-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+@media (max-width: 860px) { .who-grid { grid-template-columns: 1fr; } }
+
+.who-card {
+  border-radius: 14px; overflow: hidden; background: white;
+  border: 1.5px solid #EAE6E0;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.who-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+}
+.who-img-wrap { height: 220px; overflow: hidden; }
+.who-img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.5s ease;
+}
+.who-card:hover .who-img { transform: scale(1.04); }
+.who-body { padding: 24px 24px 28px; }
+.who-tag {
+  font-size: 12px; font-weight: 700; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--orange); display: block; margin-bottom: 8px;
+}
+.who-title {
+  font-family: var(--serif); font-size: 22px; font-weight: 400;
+  color: var(--ink); margin: 0 0 10px; line-height: 1.25;
+}
+.who-desc { font-size: 16px; line-height: 1.7; color: var(--ink); margin: 0; }
+
+/* ─────────────────────────────────────────────
    OPERATOR CARDS
 ───────────────────────────────────────────── */
 .op-card {
@@ -730,10 +786,10 @@
   box-shadow: 0 2px 12px rgba(0,0,0,0.04);
 }
 .cta-h {
-  font-family: var(--serif); font-size: clamp(28px, 3.5vw, 44px);
-  color: var(--ink); margin-bottom: 10px; font-weight: 400;
+  font-family: var(--sans); font-size: clamp(24px, 2.5vw, 36px);
+  color: var(--ink); margin-bottom: 10px; font-weight: 800; letter-spacing: -0.5px;
 }
-.cta-p { font-size: 17px; line-height: 1.7; color: var(--muted); margin-bottom: 24px; }
+.cta-p { font-size: 17px; line-height: 1.7; color: var(--ink); margin-bottom: 24px; }
 
 /* ─────────────────────────────────────────────
    FORMS
@@ -782,6 +838,14 @@
 .footer {
   background: white; border-top: 1px solid #ECEAE6; padding: 32px 0;
 }
+.footer--dark {
+  background: #1A1A1A; border-top: none;
+}
+.footer--dark .footer-nav a,
+.footer--dark .footer-copy { color: rgba(255,255,255,0.55); }
+.footer--dark .footer-nav a:hover { color: white; }
+.footer--dark .footer-social-link { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); }
+.footer--dark .footer-social-link:hover { background: var(--orange); color: white; }
 .footer-inner {
   display: flex; align-items: center; justify-content: space-between;
   flex-wrap: wrap; gap: 20px;
@@ -1015,3 +1079,302 @@
 
     font-style: italic;
 }
+
+/* ─────────────────────────────────────────────
+   HOMEPAGE SECTION SYSTEM (new rebuild)
+───────────────────────────────────────────── */
+.hp-section { padding: 100px 0; }
+@media (max-width: 640px) { .hp-section { padding: 64px 0; } }
+
+.hp-label {
+  font-size: 13px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--orange); margin-bottom: 16px; display: block;
+}
+.hp-head { margin-bottom: 56px; }
+.hp-head--center { text-align: center; }
+.hp-title {
+  font-family: var(--sans); font-weight: 800;
+  font-size: clamp(34px, 4.5vw, 58px);
+  color: var(--ink); line-height: 1.08; letter-spacing: -1px;
+  margin: 0;
+}
+.hp-head--center .hp-title { max-width: 680px; margin-left: auto; margin-right: auto; }
+
+/* ─────────────────────────────────────────────
+   BENEFITS GRID (image cards)
+───────────────────────────────────────────── */
+.ben-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+}
+@media (max-width: 960px) { .ben-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 540px) { .ben-grid { grid-template-columns: 1fr; } }
+
+.ben-card { display: flex; flex-direction: column; gap: 16px; }
+.ben-img-wrap {
+  border-radius: 14px; overflow: hidden; aspect-ratio: 3/4;
+}
+.ben-img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.5s ease;
+}
+.ben-card:hover .ben-img { transform: scale(1.04); }
+.ben-title {
+  font-family: var(--sans); font-size: clamp(22px, 2vw, 28px); font-weight: 800;
+  color: var(--orange); line-height: 1.2; margin: 0; letter-spacing: -0.3px;
+}
+.ben-desc { font-size: 18px; line-height: 1.75; color: var(--ink); margin: 0; }
+
+/* ─────────────────────────────────────────────
+   PILOTING IN CALGARY
+───────────────────────────────────────────── */
+.pilot-section { background: var(--bg-soft); overflow: hidden; }
+.pilot-text-wrap {
+  padding: 80px 0 56px; text-align: center;
+}
+.pilot-title {
+  font-family: var(--sans); font-weight: 800;
+  font-size: clamp(32px, 4vw, 56px);
+  color: var(--ink); line-height: 1.1; letter-spacing: -1px; margin: 16px 0 20px;
+}
+.pilot-sub {
+  font-size: 19px; line-height: 1.8; color: var(--ink);
+  max-width: 580px; margin: 0 auto;
+}
+.pilot-media {
+  position: relative; height: 480px; overflow: hidden;
+}
+@media (max-width: 640px) { .pilot-media { height: 280px; } }
+.pilot-img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(0.72) saturate(0.85);
+}
+.pilot-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.25);
+  display: flex; align-items: center; justify-content: center;
+}
+.pilot-play {
+  width: 68px; height: 68px; border-radius: 50%;
+  background: rgba(255,255,255,0.18); border: 2px solid rgba(255,255,255,0.55);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; backdrop-filter: blur(4px);
+  transition: background 0.2s, transform 0.2s;
+}
+.pilot-play:hover { background: var(--orange); transform: scale(1.07); border-color: var(--orange); }
+.pilot-play svg { margin-left: 4px; }
+
+/* ─────────────────────────────────────────────
+   ABOUT SPLIT
+───────────────────────────────────────────── */
+.about-split {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+@media (max-width: 860px) { .about-split { grid-template-columns: 1fr; gap: 40px; } }
+.about-split-img {
+  border-radius: 20px; overflow: hidden; aspect-ratio: 4/3;
+}
+.about-split-photo {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(0.9) saturate(0.9);
+  transition: transform 0.6s ease;
+}
+.about-split-img:hover .about-split-photo { transform: scale(1.03); }
+.about-split-text { display: flex; flex-direction: column; }
+.about-body {
+  font-size: 18px; line-height: 1.85; color: var(--ink); margin: 20px 0 0;
+}
+
+/* ─────────────────────────────────────────────
+   WHY CHOOSE INDRO
+───────────────────────────────────────────── */
+.why-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+@media (max-width: 640px) { .why-grid { grid-template-columns: 1fr; gap: 24px; } }
+
+.why-card {
+  background: var(--bg-soft); border-radius: 16px;
+  padding: 36px 32px; border: 1.5px solid #EAE6E0;
+}
+.why-dot {
+  display: block; width: 10px; height: 10px; border-radius: 50%;
+  background: var(--orange); margin-bottom: 20px;
+}
+.why-title {
+  font-family: var(--sans); font-size: 21px; font-weight: 700;
+  color: var(--ink); line-height: 1.25; margin: 0 0 12px;
+}
+.why-desc { font-size: 18px; line-height: 1.75; color: var(--ink); margin: 0; }
+
+/* ─────────────────────────────────────────────
+   OUR SERVICES 2×3 GRID
+───────────────────────────────────────────── */
+.srv-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+@media (max-width: 860px) { .srv-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 540px) { .srv-grid { grid-template-columns: 1fr; } }
+
+.srv-card {
+  display: flex; flex-direction: column; gap: 14px;
+  background: white; border-radius: 16px;
+  padding: 0 0 24px; overflow: hidden;
+  border: 1.5px solid #EAE6E0;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.srv-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.1); }
+.srv-img-wrap { height: 200px; overflow: hidden; }
+.srv-img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.5s ease;
+}
+.srv-card:hover .srv-img { transform: scale(1.04); }
+.srv-title {
+  font-family: var(--sans); font-size: 20px; font-weight: 700;
+  color: var(--ink); line-height: 1.2; margin: 4px 24px 0;
+}
+.srv-desc { font-size: 16px; line-height: 1.65; color: var(--ink); margin: 0 24px; }
+
+/* ─────────────────────────────────────────────
+   CTA WITH BACKGROUND IMAGE
+───────────────────────────────────────────── */
+.cta-hero {
+  position: relative; overflow: hidden;
+  padding: 0;
+}
+.cta-hero-img-wrap {
+  position: absolute; inset: 0;
+}
+.cta-hero-img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(0.35) saturate(0.7);
+}
+.cta-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.65) 100%);
+}
+.cta-hero-inner {
+  position: relative; z-index: 2;
+  padding-top: 100px; padding-bottom: 100px;
+  text-align: center;
+}
+.cta-hero-title {
+  font-family: var(--sans); font-weight: 800;
+  font-size: clamp(32px, 4.5vw, 58px);
+  color: white; line-height: 1.1; letter-spacing: -1px; margin-bottom: 16px;
+}
+.cta-hero-sub {
+  font-size: 19px; line-height: 1.75; color: rgba(255,255,255,0.8);
+  max-width: 520px; margin: 0 auto 56px;
+}
+.cta-hero-forms {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 24px; text-align: left;
+}
+@media (max-width: 760px) { .cta-hero-forms { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .cta-hero-inner { padding-top: 64px; padding-bottom: 64px; } }
+
+/* Services subtext */
+.srv-sub {
+  font-size: 20px; line-height: 1.75; color: var(--ink);
+  max-width: 640px; margin: 20px auto 0; text-align: center;
+}
+
+/* ─────────────────────────────────────────────
+   WHY CHOOSE INDRO — split layout
+───────────────────────────────────────────── */
+.why-split {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: start;
+}
+@media (max-width: 900px) { .why-split { grid-template-columns: 1fr; gap: 48px; } }
+
+.why-split-img {
+  border-radius: 20px; overflow: hidden;
+  position: sticky; top: 100px;
+}
+@media (max-width: 900px) { .why-split-img { position: static; } }
+.why-photo {
+  width: 100%; display: block; object-fit: cover;
+  aspect-ratio: 3/4;
+}
+@media (max-width: 900px) { .why-photo { aspect-ratio: 4/3; } }
+
+.why-intro {
+  font-size: 19px; line-height: 1.8; color: var(--ink);
+  margin: 24px 0 40px;
+}
+.why-list { display: flex; flex-direction: column; gap: 22px; }
+.why-item { display: flex; gap: 16px; align-items: center; }
+.why-item .why-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--orange); flex-shrink: 0;
+}
+.why-title {
+  font-family: var(--sans); font-size: 22px; font-weight: 700;
+  color: var(--ink); line-height: 1.25; margin: 0;
+}
+
+/* ─────────────────────────────────────────────
+   OUR SERVICES — plain grid (no cards)
+───────────────────────────────────────────── */
+.srv-plain-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 40px 32px;
+}
+@media (max-width: 860px) { .srv-plain-grid { grid-template-columns: 1fr 1fr; gap: 32px 24px; } }
+@media (max-width: 540px) { .srv-plain-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+.srv-plain-item { display: flex; flex-direction: column; gap: 16px; }
+.srv-plain-img-wrap {
+  border-radius: 16px; overflow: hidden; aspect-ratio: 4/5;
+  background: var(--bg-soft);
+}
+.srv-plain-img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.5s ease;
+}
+.srv-plain-item:hover .srv-plain-img { transform: scale(1.04); }
+.srv-plain-title {
+  font-family: var(--sans); font-size: clamp(22px, 2vw, 28px); font-weight: 800;
+  color: var(--orange); line-height: 1.2; margin: 0; letter-spacing: -0.3px;
+}
+.srv-plain-desc { font-size: 18px; line-height: 1.7; color: var(--ink); margin: 0; }
+
+/* ─────────────────────────────────────────────
+   WHO WE SERVE — alternating rows
+───────────────────────────────────────────── */
+.who-alt-list { display: flex; flex-direction: column; gap: 80px; }
+
+.who-alt-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 72px; align-items: center;
+}
+.who-alt-row--reverse { direction: rtl; }
+.who-alt-row--reverse > * { direction: ltr; }
+@media (max-width: 860px) {
+  .who-alt-row, .who-alt-row--reverse { grid-template-columns: 1fr; direction: ltr; gap: 32px; }
+}
+
+.who-alt-img-wrap {
+  border-radius: 20px; overflow: hidden; aspect-ratio: 4/3;
+}
+.who-alt-img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.6s ease;
+}
+.who-alt-row:hover .who-alt-img { transform: scale(1.03); }
+
+.who-alt-text { display: flex; flex-direction: column; gap: 16px; }
+.who-tag {
+  font-size: 17px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--orange); display: block;
+}
+.who-alt-title {
+  font-family: var(--sans); font-size: clamp(26px, 3vw, 38px); font-weight: 800;
+  color: var(--ink); line-height: 1.1; letter-spacing: -0.5px; margin: 0;
+}
+.who-alt-desc { font-size: 19px; line-height: 1.8; color: var(--ink); margin: 0; }

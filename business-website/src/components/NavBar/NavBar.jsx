@@ -19,8 +19,8 @@ const href = (hash) => `/${hash}`
         </Link>
         <nav className="nav-links">
           <a href={href('#services')}>Services</a>
-          <a href={href('#where')}>Regions</a>
-          <a href={href('#operators')}>Organizations</a>
+          <a href={href('#operators')}>Who we help</a>
+          <a href={href('#waitlist')}>Get started</a>
           <Link to="/about" onClick={close}>About</Link>
         </nav>
         <div className="nav-right">
@@ -31,8 +31,8 @@ const href = (hash) => `/${hash}`
       {open && (
         <nav className="nav-mobile">
           <a href={href('#services')} onClick={close}>Services</a>
-          <a href={href('#where')} onClick={close}>Regions</a>
-          <a href={href('#operators')} onClick={close}>Organizations</a>
+          <a href={href('#operators')} onClick={close}>Who we help</a>
+          <a href={href('#waitlist')} onClick={close}>Get started</a>
           <Link to="/about" onClick={close}>About</Link>
              <Link className="nav-mobile-cta" onClick={close} to="/contact">Contact us</Link>
         </nav>

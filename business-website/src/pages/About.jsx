@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import NavBar from '../components/NavBar/NavBar'
+import Footer from '../components/Footer/Footer'
 import { WaitlistForm, PartnerForm } from '../components/Forms'
 import './About.css'
 
@@ -97,7 +98,7 @@ export default function About() {
                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="#F6901A" strokeWidth="1.5"/><path d="M9 14.5l3.5 3.5 6.5-7" stroke="#F6901A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </div>
               <h3 className="ap-principle-title">Dignity first.</h3>
-              <p className="ap-principle-body">Every rider should know their ride is coming. Every family should have peace of mind without needing to call. Every care team should have clarity without manual tracking.</p>
+              <p className="ap-principle-body">Every rider deserves to know their ride is coming — and every family deserves peace of mind without making a single phone call.</p>
             </div>
             <div className="ap-principle-divider"/>
             <div className="ap-principle">
@@ -105,7 +106,7 @@ export default function About() {
                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="#F6901A" strokeWidth="1.5"/><path d="M14 8v6l4 2" stroke="#F6901A" strokeWidth="2" strokeLinecap="round"/></svg>
               </div>
               <h3 className="ap-principle-title">Safety, always.</h3>
-              <p className="ap-principle-body">Riders are confirmed as arrived. Families are notified automatically. Care teams always know where their clients are. No gaps, no guesswork — just quiet certainty at every step.</p>
+              <p className="ap-principle-body">Automatic confirmations and notifications at every step of the trip — no gaps, no guesswork, just quiet certainty.</p>
             </div>
             <div className="ap-principle-divider"/>
             <div className="ap-principle">
@@ -113,7 +114,7 @@ export default function About() {
                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="#F6901A" strokeWidth="1.5"/><path d="M10 18c0-2.2 1.8-4 4-4s4 1.8 4 4M14 13a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" stroke="#F6901A" strokeWidth="1.8" strokeLinecap="round"/></svg>
               </div>
               <h3 className="ap-principle-title">Built with, not for.</h3>
-              <p className="ap-principle-body">We spent months in the field before writing a single line of code. Riders, caregivers, and operators shaped what Indro Transit is — and what it prioritises.</p>
+              <p className="ap-principle-body">We spent months with riders, caregivers, and operators before writing a single line of code — their needs shaped everything.</p>
             </div>
           </div>
         </div>
@@ -173,31 +174,7 @@ export default function About() {
       </section>
       
 
-      {/* ── FOOTER ── */}
-      <footer className="ap-footer">
-        <div className="c ap-footer-inner">
-          <Link to="/" className="ap-footer-brand">
-            <img src="/brand/logo.png" alt="Indro Transit" className="ap-footer-logo" />
-          </Link>
-          <nav className="ap-footer-nav">
-            <Link to="/">Home</Link>
-            <Link to="/#services">Services</Link>
-            <Link to="/#where">Coverage</Link>
-            <Link to="/about">About</Link>
-          </nav>
-          <div className="ap-footer-right">
-            <div className="footer-social">
-              <a href="https://www.linkedin.com/company/indro-labs" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="LinkedIn">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.36 4.24 5.43v6.31zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
-              </a>
-              <a href="mailto:info@indrolabs.ca" className="footer-social-link" aria-label="Email">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
-              </a>
-            </div>
-            <p className="ap-footer-copy">© 2026 Indro Transit · Calgary, Alberta</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </>
   )
 }

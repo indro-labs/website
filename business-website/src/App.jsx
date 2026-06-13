@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar'
+import Footer from './components/Footer/Footer'
 import { WaitlistForm, PartnerForm } from './components/Forms'
 import './App.css'
 
@@ -164,8 +165,7 @@ function WhereWeOperate() {
 
         {/* Header */}
         <div className="where-hd">
-          <p className="label">Where we operate</p>
-          <h2 className="section-title">Built in Calgary.<br/>Expanding across Alberta.</h2>
+          <h2 className="hp-title">Where we operate</h2>
         </div>
 
         {/* Tabs */}
@@ -536,34 +536,57 @@ function FeatureAccordion() {
 
 /* ── APP ──────────────────────────────────────── */
 
+const HP_BENEFITS = [
+  { img: '/images/hero/caregiver-van.jpg',              title: 'Know ride location',      desc: 'Live GPS tracking means no more waiting and wondering. Riders see their vehicle in real time.' },
+  { img: '/images/hero/care-worker-elderly.jpg',        title: 'Family peace of mind',   desc: 'Caregivers and family members receive automatic updates at pickup and drop-off — no calls needed.' },
+  { img: '/images/operators/transit-operators.jpg',     title: 'Operator control',        desc: 'One dashboard for dispatch, routing, and fleet management. Fewer calls. Fewer missed trips.' },
+  { img: '/images/hero/senior-couple.jpg',              title: 'Community access',        desc: 'Reliable transportation that expands mobility for seniors and people with disabilities.' },
+]
+
+const HP_SERVICES = [
+  { img: '/images/hero/caregiver-van.jpg',              title: 'Real-time tracking',          desc: 'Riders, families, and staff see exactly where the vehicle is — live, on any device.' },
+  { img: '/images/hero/care-worker-elderly.jpg',        title: 'Automatic notifications',     desc: 'Updates sent at booking, pickup, en route, and arrival. No phone calls needed.' },
+  { img: '/images/hero/senior-couple.jpg',              title: 'Simple booking',              desc: 'Riders and coordinators can schedule trips online in minutes, from any device.' },
+  { img: '/images/operators/senior-living.jpg',         title: 'Family & caregiver access',   desc: 'Give family members and caregivers the same live visibility as your internal staff.' },
+  { img: '/images/operators/transit-operators.jpg',     title: 'Fleet & dispatch tools',      desc: 'Operators manage their entire fleet, routing, and dispatch from one simple dashboard.' },
+  { img: '/images/operators/disability-services.jpg',   title: 'Trip records & reporting',    desc: 'Automatic trip logs and performance data — everything you need for compliance and billing.' },
+]
+
+const HP_WHO = [
+  { img: '/images/operators/senior-living.jpg',         tag: 'Senior living',          title: 'Long-term care & senior living',          desc: 'Coordinate resident transportation with less manual work and fewer missed appointments, while giving families real-time visibility.' },
+  { img: '/images/operators/transit-operators.jpg',     tag: 'Transit operators',       title: 'Transit authorities & private operators',  desc: 'Add live tracking, dispatch tools, and rider coordination to your existing fleet — no operational overhaul required.' },
+  { img: '/images/operators/disability-services.jpg',   tag: 'Accessibility services',  title: 'Disability & community services',          desc: 'Give riders and caregivers reliable transportation with clear, real-time trip updates from pickup to drop-off.' },
+]
+
+const HP_WHY = [
+  { title: 'Designed for vulnerable riders',      desc: 'Every feature is built with seniors, people with disabilities, and their caregivers in mind — not just fleet managers.' },
+  { title: 'Built for Alberta communities',       desc: 'We started in Calgary and understand the specific needs of Alberta\'s transit landscape, providers, and regulations.' },
+  { title: 'Real-time, all the time',             desc: 'No manual check-ins. No phone calls. Indro sends automatic updates to riders, families, and staff at every step.' },
+  { title: 'Simple to set up, easy to use',       desc: 'Operators are up and running quickly. Riders and families don\'t need an app or technical knowledge — just a phone.' },
+]
+
 export default function App() {
   const location = useLocation()
-
   useEffect(() => {
     if (!location.hash) return
-
-    const id = location.hash.replace('#', '')
-
-    const el = document.getElementById(id)
+    const el = document.getElementById(location.hash.replace('#', ''))
     if (!el) return
-
-    setTimeout(() => {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }, 100)
+    setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100)
   }, [location.hash])
 
   return (
     <>
       <NavBar />
+
+      {/* ── 1. HERO ── */}
       <section id="hero" className="hero">
-        
         <div className="c hero-inner">
           <div className="hero-text">
-            <h1 className="hero-h1">Transit that meets<br />people <em>where they are.</em></h1>
-            <p className="hero-sub">The platform that keeps riders informed, families at ease, and operators in control — built for paratransit, senior living, and community transit.</p>
+            <h1 className="hero-h1">Transit that meets people <em>where they are.</em></h1>
+            <p className="hero-sub">Real-time tracking, easy booking, and family visibility — built for paratransit, senior living, and community transit in Alberta.</p>
             <div className="hero-actions">
-              <a href="#waitlist" className="btn-primary">Join waitlist</a>
-              <a href="#partner" className="btn-ghost">Become partner</a>
+              <a href="#waitlist" className="btn-primary">Join the waitlist</a>
+              <a href="#partner" className="btn-ghost">Become a partner</a>
             </div>
           </div>
           <div className="hero-media">
@@ -572,27 +595,24 @@ export default function App() {
         </div>
       </section>
 
-      {/* TICKER */}
+      {/* ── 2. TICKER ── */}
       <CityTicker />
 
-      {/* SERVICES */}
-      <section id="services" className="section bg-tint">
+      {/* ── 3. WHAT WE OFFER ── */}
+      <section id="services" className="hp-section bg-tint">
         <div className="c">
-          <div className="section-head">
-            <p className="label">What we offer</p>
-            <h2 className="section-title">Three ways we support transportation providers.</h2>
+          <div className="hp-head hp-head--center">
+            <h2 className="hp-title">What we offer</h2>
           </div>
           <div className="cards-3">
             {[
-              { img: '/images/services/ondemand.png',   label: 'ON-DEMAND',    title: 'Rides when you need them.', desc: 'A booking and dispatch platform that helps organizations offer flexible, on-demand transportation without fixed schedules or routes.' },
-              { img: '/images/services/microtransit.jpg', label: 'MICROTRANSIT', title: 'Shared rides. Smarter routes.', desc: 'Dynamic routing and rider management tools that help communities deliver efficient, affordable shared transportation.' },
-              { img: '/images/services/paratransit.jpg',  label: 'PARATRANSIT',  title: 'Accessible transportation, modernized.', desc: 'Real-time tracking, arrival alerts, and caregiver visibility designed for accessible transportation providers and their riders.' },
+              { img: '/images/services/ondemand.png',     label: 'ON-DEMAND',    title: 'Rides when you need them.',       desc: 'Flexible, on-demand trips without fixed schedules. Book and dispatch from one platform.' },
+              { img: '/images/services/microtransit.jpg', label: 'MICROTRANSIT', title: 'Shared rides. Smarter routes.',    desc: 'Dynamic routing and rider management that makes shared trips efficient and affordable.' },
+              { img: '/images/services/paratransit.jpg',  label: 'PARATRANSIT',  title: 'Accessible transit, modernized.', desc: 'Real-time tracking and caregiver visibility designed for accessible transportation providers.' },
             ].map(c => (
               <div key={c.label} className="svc-card svc-card--overlay">
                 <img src={c.img} alt={c.label} className="svc-img" />
-                <div className="svc-overlay-static">
-                  <span className="svc-overlay-label">{c.label}</span>
-                </div>
+                <div className="svc-overlay-static"><span className="svc-overlay-label">{c.label}</span></div>
                 <div className="svc-overlay-hover">
                   <h3 className="svc-overlay-title">{c.title}</h3>
                   <p className="svc-overlay-desc">{c.desc}</p>
@@ -603,117 +623,114 @@ export default function App() {
         </div>
       </section>
 
-      {/* WHERE WE OPERATE — interactive region map */}
+      {/* ── 4. OUR BENEFITS ── */}
+      <section className="hp-section bg-tint">
+        <div className="c">
+          <div className="hp-head hp-head--center">
+            <h2 className="hp-title">Our benefits</h2>
+          </div>
+          <div className="ben-grid">
+            {HP_BENEFITS.map(b => (
+              <div key={b.title} className="ben-card">
+                <div className="ben-img-wrap">
+                  <img src={b.img} alt={b.title} className="ben-img" />
+                </div>
+                <h3 className="ben-title">{b.title}</h3>
+                <p className="ben-desc">{b.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 6. OUR SERVICES ── */}
+      <section className="hp-section bg-tint" id="services-grid">
+        <div className="c">
+          <div className="hp-head hp-head--center">
+            <h2 className="hp-title">Our services</h2>
+            <p className="srv-sub">We offer a range of transit technology solutions — from real-time tracking and on-demand booking to accessible transport management — designed to work for every type of provider and community.</p>
+          </div>
+          <div className="srv-plain-grid">
+            {HP_SERVICES.map(s => (
+              <div key={s.title} className="srv-plain-item">
+                <div className="srv-plain-img-wrap">
+                  <img src={s.img} alt={s.title} className="srv-plain-img" />
+                </div>
+                <h3 className="srv-plain-title">{s.title}</h3>
+                <p className="srv-plain-desc">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 7. WHO WE SERVE ── */}
+      <section className="hp-section" id="operators">
+        <div className="c">
+          <div className="hp-head">
+            <h2 className="hp-title">Who we serve</h2>
+          </div>
+          <div className="who-alt-list">
+            {HP_WHO.map((w, i) => (
+              <div key={w.title} className={`who-alt-row${i % 2 === 1 ? ' who-alt-row--reverse' : ''}`}>
+                <div className="who-alt-img-wrap">
+                  <img src={w.img} alt={w.title} className="who-alt-img" />
+                </div>
+                <div className="who-alt-text">
+                  <span className="who-tag">{w.tag}</span>
+                  <h3 className="who-alt-title">{w.title}</h3>
+                  <p className="who-alt-desc">{w.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 8. ABOUT US ── */}
+      <section className="hp-section bg-tint" id="about">
+        <div className="c about-split">
+          <div className="about-split-img">
+            <img src="/images/hero/care-worker-elderly.jpg" alt="Care worker with elderly resident" className="about-split-photo" />
+          </div>
+          <div className="about-split-text">
+            <h2 className="hp-title">About us</h2>
+            <p className="about-body">We started Indro after spending months with riders, families, care coordinators, and operators — and hearing the same thing: no one knew where the ride was when they needed to. We set out to fix that.</p>
+            <Link to="/about" className="btn-primary" style={{ marginTop: 32, display: 'inline-flex' }}>Read our full story</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 9. WHERE WE OPERATE ── */}
       <WhereWeOperate />
 
-    <section id="operators" className="section bg-tint about-teaser">
-  <div className="c">
-    <div className="op-section-head center-content">
-      <p className="label">Who we help</p>
-      <h2 className="section-title">Built for organizations that move people.</h2>
-
-    </div>
-
-    <div className="op-cases">
-      {[
-        {
-          img: '/images/operators/senior-living.jpg',
-          tag: 'Senior living',
-          title: 'Long-term care & senior living',
-          desc: 'Coordinate resident transportation with less manual work and fewer missed appointments, while giving families real-time visibility into every trip.'
-        },
-        {
-          img: '/images/operators/transit-operators.jpg',
-          tag: 'Transit operators',
-          title: 'Transit authorities & private operators',
-          desc: 'Add live tracking, dispatch tools, optimized routing, and rider coordination to your existing fleet without changing your operations.'
-        },
-        {
-          img: '/images/operators/disability-services.jpg',
-          tag: 'Accessibility services',
-          title: 'Disability & community services',
-          desc: 'Provide riders and caregivers with reliable transportation and clear, real-time trip updates from pickup to drop-off.'
-        }
-      ].map((c, i) => (
-        <div key={c.title} className={`op-case ${i % 2 === 1 ? 'reverse' : ''}`}>
-          <div className="op-case-img">
-            <img src={c.img} alt={c.title} />
-          </div>
-          <div className="op-case-text">
-            <span className="op-tag">{c.tag}</span>
-            <h3 className="op-title">{c.title}</h3>
-            <p className="op-desc">{c.desc}</p>
-          </div>
+      {/* ── 10. CTA WITH BACKGROUND IMAGE ── */}
+      <section className="cta-hero" id="waitlist">
+        <div className="cta-hero-img-wrap">
+          <img src="/images/hero/transit-driver.jpg" alt="Transit driver" className="cta-hero-img" />
+          <div className="cta-hero-overlay" />
         </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-      {/* FEATURES */}
-      <FeatureAccordion />
-
-      {/* ABOUT TEASER */}
-      <section id="about" className="section about-teaser">
-        <div className="c">
-          <div className="story-simple">
-            <div className="story-simple-img-wrap">
-              <img src="/images/hero/care-worker-elderly.jpg" alt="Care worker with elderly resident" className="story-simple-img" />
+        <div className="c cta-hero-inner">
+          <h2 className="cta-hero-title">Ready to modernize your transit?</h2>
+          <p className="cta-hero-sub">Join the waitlist or reach out to partner with us. We'd love to hear from you.</p>
+          <div className="cta-hero-forms">
+            <div className="cta-col">
+              <p className="label">For riders &amp; families</p>
+              <h3 className="cta-h">Join the waitlist.</h3>
+              <p className="cta-p">Be among the first when we launch in your community.</p>
+              <WaitlistForm />
             </div>
-            <div className="story-simple-text">
-              <p className="label">Our story</p>
-              <h2 className="section-title">Built for the teams behind every ride.</h2>
-              <p className="section-sub">We built Indro after hearing the same thing from riders, families, and care staff across Alberta — no one knew where the ride was when they needed to know. We set out to fix that.</p>
-              <Link to="/about" className="btn-primary" style={{ marginTop: 32, display: 'inline-flex' }}>Read our full story</Link>
+            <div className="cta-col" id="partner">
+              <p className="label">For communities &amp; operators</p>
+              <h3 className="cta-h">Partner with us.</h3>
+              <p className="cta-p">Operating transit in Alberta? Let's talk.</p>
+              <PartnerForm />
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section bg-tint">
-        <div className="c cta-grid">
-          <div id="waitlist" className="cta-col">
-            <p className="label">For riders &amp; families</p>
-            <h2 className="cta-h">Join the waitlist.</h2>
-            <p className="cta-p">Be among the first when we launch in your community.</p>
-            <WaitlistForm />
-          </div>
-          <div className="cta-divider" />
-          <div id="partner" className="cta-col">
-            <p className="label">For communities &amp; operators</p>
-            <h2 className="cta-h">Partner with us.</h2>
-            <p className="cta-p">Operating transit in Alberta? Let's talk.</p>
-            <PartnerForm />
-          </div>
-        </div>
-      </section>
-
-      {/* FOOTER */}
-      <footer className="footer">
-        <div className="c footer-inner">
-          <Link to="/" className="footer-brand">
-            <img src="/brand/logo.png" alt="Indro Transit" className="footer-logo" />
-          </Link>
-          <nav className="footer-nav">
-            <a href="#services">Services</a>
-            <a href="#where">Regions</a>
-            <a href="#operators">Organizations</a>
-            <Link to="/about">About</Link>
-          </nav>
-          <div className="footer-right">
-            <div className="footer-social">
-              <a href="https://www.linkedin.com/company/indro-labs" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="LinkedIn">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.36 4.24 5.43v6.31zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
-              </a>
-              <a href="mailto:info@indrolabs.ca" className="footer-social-link" aria-label="Email">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
-              </a>
-            </div>
-            <p className="footer-copy">© 2026 Indro Transit · Calgary, Alberta</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </>
   )
 }

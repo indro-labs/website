@@ -17,22 +17,12 @@
   .contact-page-wrapper { padding: 60px 20px; }
 }
 
-/* Update your grid to ensure it sits nicely inside the inner wrapper */
-.contact-grid { 
-  display: grid; 
-  grid-template-columns: 1fr 1fr; 
-  gap: 100px; 
-  align-items: start; 
-}
-.contact-page { 
-    padding: 120px 48px; max-width: 1200px; margin: 0 auto;}
-
 /* 2. Grid Layout (Desktop) */
-.contact-grid { 
-  display: grid; 
-  grid-template-columns: 1fr 1fr; 
-  gap: 100px; 
-  align-items: start; 
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: start;
 }
 
 /* 3. Responsive Adjustments */
@@ -52,12 +42,6 @@
 
 .meta-label { font-size: 11px; letter-spacing: 1.5px; color: #9CA3AF; margin-top: 24px; margin-bottom: 8px; font-weight: 700; text-transform: uppercase; }
 .meta-link { color: var(--orange); font-weight: 500; text-decoration: none; display: block; }
-
-.linkedin-btn { 
-  display: inline-flex; align-items: center; margin-top: 12px;
-  padding: 10px 16px; border: 1px solid #E5E7EB; border-radius: 8px; 
-  text-decoration: none; color: #374151; font-weight: 500; 
-}
 
 /* 5. Right Side Card & Form Styling */
 .contact-card { 

@@ -1,215 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import NavBar from '../components/NavBar/NavBar'
+import { WaitlistForm, PartnerForm } from '../components/Forms'
 import './About.css'
-import { CheckCircle } from 'lucide-react'
-
-
-
-/* ── FORMS ────────────────────────────────────── */
-function WaitlistForm() {
-  const [role, setRole] = useState('Rider')
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [done, setDone] = useState(false)
-  const [err, setErr] = useState(false)
-  const [loading, setLoading] = useState(false)
-
-  const submit = async e => {
-    e.preventDefault()
-    setErr(false)
-
-    const endpoint = import.meta.env.VITE_FORMSPREE_WAITLIST_URL
-    if (!endpoint) {
-      console.error('Missing Formspree endpoint')
-      setErr(true)
-      return
-    }
-
-    setLoading(true)
-
-    try {
-      const r = await fetch(endpoint, {
-        method: 'POST',
-        body: JSON.stringify({ name, email, role }),
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      })
-
-      if (r.ok) {
-        setDone(true)
-        setName('')
-        setEmail('')
-        setRole('Rider')
-      } else {
-        setErr(true)
-      }
-
-    } catch {
-      setErr(true)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  if (done)
-    return (
-      <div className="form-ok">
-        <CheckCircle size={18} color="var(--orange)" />
-        <div>
-          <p className="fok-t">You're on the list.</p>
-          <p className="fok-s">We'll reach out soon.</p>
-        </div>
-      </div>
-    )
-
-  return (
-    <form onSubmit={submit} className="the-form">
-      <div className="form-row">
-        <input
-          type="text"
-          placeholder="Your name"
-          value={name}
-          onChange={e => setName(e.target.value)}
-          required
-        />
-
-        <input
-          type="email"
-          placeholder="Email address"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          required
-        />
-      </div>
-
-      <div className="role-row">
-        {['Rider', 'Caregiver', 'Care facility', 'Other'].map(r => (
-          <button
-            key={r}
-            type="button"
-            className={`rchip${role === r ? ' on' : ''}`}
-            onClick={() => setRole(r)}
-          >
-            {r}
-          </button>
-        ))}
-      </div>
-
-      <button type="submit" className="btn-primary w-full" disabled={loading}>
-        {loading ? 'Submitting...' : (
-          <>
-            Join  waitlist
-          </>
-        )}
-      </button>
-
-      {err && <p className="ferr">Something went wrong — please try again.</p>}
-
-      <p className="fnote">No spam. Updates only when it matters.</p>
-    </form>
-  )
-}
-
-function PartnerForm() {
-  const [done, setDone] = useState(false)
-  const [err, setErr] = useState(false)
-  const [loading, setLoading] = useState(false)
-
-  const submit = async e => {
-    e.preventDefault()
-    setErr(false)
-
-    const endpoint = import.meta.env.VITE_FORMSPREE_PARTNER_URL
-    if (!endpoint) {
-      console.error('Missing Formspree partner endpoint')
-      setErr(true)
-      return
-    }
-
-    const data = Object.fromEntries(new FormData(e.currentTarget))
-
-    setLoading(true)
-
-    try {
-      const r = await fetch(endpoint, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      })
-
-      if (r.ok) {
-        setDone(true)
-        e.currentTarget.reset()
-      } else {
-        setErr(true)
-      }
-
-    } catch {
-      setErr(true)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  if (done)
-    return (
-      <div className="form-ok">
-        <CheckCircle size={18} color="var(--orange)" />
-        <div>
-          <p className="fok-t">Message received.</p>
-          <p className="fok-s">We'll be in touch shortly.</p>
-        </div>
-      </div>
-    )
-
-  return (
-    <form onSubmit={submit} className="the-form">
-      <div className="form-row">
-        <input name="name" type="text" placeholder="Your name" required />
-        <input name="org" type="text" placeholder="Organization name" required />
-      </div>
-
-      <input name="email" type="email" placeholder="Email address" required />
-
-      <select name="type" defaultValue="">
-        <option value="" disabled>Type of organization</option>
-        <option>Municipal transit authority</option>
-        <option>Long-term care home</option>
-        <option>Disability service provider</option>
-        <option>Senior living community</option>
-        <option>Healthcare facility</option>
-        <option>Non-profit transport</option>
-        <option>Other</option>
-      </select>
-
-      <textarea
-        name="message"
-        placeholder="Tell us about your service area and what you're looking for."
-        rows={4}
-      />
-
-      <button
-        type="submit"
-        className="btn-primary w-full"
-        disabled={loading}
-      >
-        {loading ? 'Sending...' : (
-          <>
-            Become partner
-          </>
-        )}
-      </button>
-
-      {err && <p className="ferr">Something went wrong — please try again.</p>}
-    </form>
-  )
-}
 
 /* ── Animated stat ── */
 function StatCard({ number, label }) {
@@ -237,7 +30,7 @@ export default function About() {
 
       {/* ── HERO ── */}
       <section className="ap-hero">
-        <div className="ap-c">
+        <div className="c">
           <p className="ap-label">Our story</p>
           <h1 className="ap-hero-h">
             A question nobody<br />could answer.
@@ -247,46 +40,39 @@ export default function About() {
           </p>
         </div>
         <div className="ap-hero-img-wrap">
-          <img src="/calgarytower.png" alt="Calgary Tower" className="ap-hero-img" />
+          <img src="/images/about/calgarytower.png" alt="Calgary Tower" className="ap-hero-img" />
           <div className="ap-hero-overlay" />
         </div>
       </section>
 
       {/* ── ORIGIN STORY ── */}
       <section className="ap-section ap-origin">
-        <div className="ap-c ap-origin-grid">
+        <div className="c ap-origin-grid">
           <div className="ap-origin-text">
             <p className="ap-label">Where it began</p>
-            <h2 className="ap-h2">Built during Calgary’s AI Bootcamp, 2025.</h2>
+            <h2 className="ap-h2">Started at UCalgary. Built with the people who actually use it.</h2>
             <p className="ap-body">
-              Our team came together at the University of Calgary's AI Bootcamp with one goal: solve a real problem for real people. 
-         
-            </p>
-            <p className='ap-body'>     
-              We chose accessible transit. Not because it was trendy, but because someone we cared about needed it.</p>
-            <p className="ap-body">
-              We spent months in the field before writing a single line of code. We sat with riders, spoke to care workers, and contacted healthcare workers to understand their experience.
+              Our team came together at the University of Calgary's AI Bootcamp in 2025 with one goal: solve a real problem for real people. We chose accessible transit because someone we cared about needed it.
             </p>
             <p className="ap-body">
-              Every conversation — every single one — came back to the same frustration.
+              We spent months in the field before writing a line of code — sitting with riders, talking to care workers, and speaking with the staff who coordinate transportation every day. Every single conversation came back to the same frustration.
             </p>
             <blockquote className="ap-quote">
               "We just want to know where the ride is."
             </blockquote>
             <p className="ap-body">
-              This was their current reality. No live tracking, no arrival alerts, and no way to tell an elderly woman with limited mobility whether her van was six minutes away or sixty.
+              That was the gap. That became Indro.
             </p>
-            <p className='ap-body'> That uncertainty was the gap — and it became Indro Transit.</p>
           </div>
           <div className="ap-origin-img-wrap">
-            <img src="/about-image.jpg" alt="Care worker with elderly resident" className="ap-origin-img" />
+            <img src="/images/about/care-team.jpg" alt="Care worker with elderly resident" className="ap-origin-img" />
           </div>
         </div>
       </section>
 
       {/* ── STATS ── */}
       <div className="ap-stats-band">
-        <div className="ap-c ap-stats-grid">
+        <div className="c ap-stats-grid">
           <StatCard number="55+"  label="Riders & caregivers interviewed" />
           <StatCard number="12"   label="Partner conversations underway" />
           <StatCard number="2026" label="Calgary pilot launch" />
@@ -296,7 +82,7 @@ export default function About() {
 
       {/* ── MISSION ── */}
       <section className="ap-section ap-mission">
-        <div className="ap-c">
+        <div className="c">
           <div className="ap-mission-header">
             <p className="ap-label">What we're building toward</p>
             <h2 className="ap-h2">Transit that doesn't<br />leave anyone behind.</h2>
@@ -311,7 +97,7 @@ export default function About() {
                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="#F6901A" strokeWidth="1.5"/><path d="M9 14.5l3.5 3.5 6.5-7" stroke="#F6901A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </div>
               <h3 className="ap-principle-title">Dignity first.</h3>
-              <p className="ap-principle-body">Every rider deserves to know their ride is coming. Every family deserves peace of mind. That's not a feature — it's the foundation of everything we build.</p>
+              <p className="ap-principle-body">Every rider should know their ride is coming. Every family should have peace of mind without needing to call. Every care team should have clarity without manual tracking.</p>
             </div>
             <div className="ap-principle-divider"/>
             <div className="ap-principle">
@@ -335,7 +121,7 @@ export default function About() {
 
       {/* ── PHOTO BREAK ── */}
       <div className="ap-photo-break">
-        <img src="/pexels-raquel-hawks-22734884-7260030.jpg" alt="Caregiver helping rider" className="ap-break-img" />
+        <img src="/images/hero/caregiver-van.jpg" alt="Caregiver helping rider" className="ap-break-img" />
         <div className="ap-break-overlay" />
         <div className="ap-break-text">
           <p className="ap-break-quote">"Starting with Calgary in 2026 — and growing across Alberta, one community at a time."</p>
@@ -344,12 +130,12 @@ export default function About() {
 
       {/* ── PRESS ── */}
       <section className="ap-section ap-press">
-        <div className="ap-c">
+        <div className="c">
           <p className="ap-label">In the news & community</p>
           <div className="ap-press-grid">
             {[
               { tag: 'Feature',  outlet: 'UCalgary News',    title: 'AI Bootcamp helps students design their own futures',      desc: 'UCalgary featured the Indro Transit team\'s work on accessible transit technology for southern Alberta.',           href: 'https://www.ucalgary.ca/news/ai-bootcamp-helps-students-design-their-own-futures' },
-              { tag: 'Video',    outlet: 'Instagram · Reel', title: 'Indro Transit — what we\'re building and why',   desc: 'A short video introduction to Indro Transit and the problem we’re solving for accessible transportation across Alberta.',       href: 'https://www.instagram.com/p/DY7hX7HNP28/' },
+              { tag: 'Video',    outlet: 'Instagram · Reel', title: "Indro Transit — what we're building and why",   desc: "A short video introduction to Indro Transit and the problem we're solving for accessible transportation across Alberta.",       href: 'https://www.instagram.com/p/DY7hX7HNP28/' },
               
             ].map(a => (
               <a key={a.title} href={a.href} target="_blank" rel="noopener noreferrer" className="ap-press-card">
@@ -368,19 +154,19 @@ export default function About() {
 
 
             {/* CTA */}
-      <section className="ap-cta bg-tint">
+      <section className="cta bg-tint">
         <div className="c cta-grid">
           <div id="waitlist" className="cta-col">
             <p className="label">For riders &amp; families</p>
-            <h2 className="ap-cta-h">Join the waitlist.</h2>
-            <p className="ap-cta-sub">Be among the first when we launch in your community.</p>
+            <h2 className="cta-h">Join the waitlist.</h2>
+            <p className="cta-sub">Be among the first when we launch in your community.</p>
             <WaitlistForm />
           </div>
           <div className="cta-divider" />
           <div id="partner" className="cta-col">
             <p className="label">For communities &amp; operators</p>
-            <h2 className="ap-cta-h">Partner with us.</h2>
-            <p className="ap-cta-sub">Operating transit in Alberta? Let's talk.</p>
+            <h2 className="cta-h">Partner with us.</h2>
+            <p className="cta-sub">Operating transit in Alberta? Let's talk.</p>
             <PartnerForm />
           </div>
         </div>
@@ -389,9 +175,9 @@ export default function About() {
 
       {/* ── FOOTER ── */}
       <footer className="ap-footer">
-        <div className="ap-c ap-footer-inner">
+        <div className="c ap-footer-inner">
           <Link to="/" className="ap-footer-brand">
-            <img src="/orange-transparent.png" alt="Indro Transit" className="ap-footer-logo" />
+            <img src="/brand/logo.png" alt="Indro Transit" className="ap-footer-logo" />
           </Link>
           <nav className="ap-footer-nav">
             <Link to="/">Home</Link>

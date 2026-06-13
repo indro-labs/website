@@ -5,14 +5,16 @@ import './index.css'
 import App from './App.jsx'
 import About from './pages/About.jsx'
 import Contact from './pages/Contact.jsx'
+import NotFound from './pages/NotFound.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/"       element={<App />} />
-        <Route path="/about"  element={<About />} />
-        <Route path="/contact"  element={<Contact />} />
+        <Route path="/"        element={<App />} />
+        <Route path="/about"   element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="*"        element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

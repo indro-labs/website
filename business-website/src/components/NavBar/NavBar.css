@@ -1,12 +1,16 @@
 .navbar {
   position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
-  background: white;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 .navbar-inner {
   max-width: 1200px; margin: 0 auto; padding: 0 48px;
   height: 64px; display: flex; align-items: center; justify-content: space-between;
 }
-@media (max-width: 600px) { .navbar-inner { padding: 0 20px; } }
+@media (max-width: 1024px) { .navbar-inner { padding: 0 40px; } }
+@media (max-width: 768px)  { .navbar-inner { padding: 0 32px; } }
+@media (max-width: 480px)  { .navbar-inner { padding: 0 20px; } }
 
 .navbar-logo { display: inline-flex; align-items: center; text-decoration: none; }
 .logo-img { height: 68px; width: auto; display: block; }

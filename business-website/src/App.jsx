@@ -1,34 +1,16 @@
 import { useState, useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar'
+import { WaitlistForm, PartnerForm } from './components/Forms'
 import './App.css'
-import {CheckCircle } from 'lucide-react'
-import { useLocation } from 'react-router-dom';
 
 /* ── HERO CAROUSEL ────────────────────────────── */
 const SLIDES = [
-  { src: '/pexels-raquel-hawks-22734884-7260030.jpg', alt: 'Caregiver helping elderly woman out of van' },
-  { src: '/pexels-jsme-mila-523821574-18429374.jpg',  alt: 'Care worker with elderly resident' },
-  { src: '/pexels-bertellifotografia-13871043.jpg',    alt: 'Senior couple smiling outdoors' },
-  { src: '/pexels-tima-miroshnichenko-5591283.jpg',   alt: 'Transit driver assisting passenger' },
+  { src: '/images/hero/caregiver-van.jpg',       alt: 'Caregiver helping elderly woman out of van' },
+  { src: '/images/hero/care-worker-elderly.jpg', alt: 'Care worker with elderly resident' },
+  { src: '/images/hero/senior-couple.jpg',       alt: 'Senior couple smiling outdoors' },
+  { src: '/images/hero/transit-driver.jpg',      alt: 'Transit driver assisting passenger' },
 ]
-
-function Home() {
-  const { hash } = useLocation();
-
-  useEffect(() => {
-    if (hash) {
-      // Small delay to ensure the DOM is painted before scrolling
-      const element = document.getElementById(hash.replace('#', ''));
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      }
-    }
-  }, [hash]);
-
-}
 
 function HeroCarousel() {
   const [active, setActive] = useState(0)
@@ -61,7 +43,7 @@ const AB_REGIONS = [
     cities: ['Calgary', 'Airdrie', 'Okotoks', 'Cochrane', 'Chestermere'],
     services: ['Paratransit', 'Microtransit', 'On-demand'],
     desc: 'Active deployments with partner organizations across the greater Calgary area.',
-    photo: '/calgarypic.jpg',
+    photo: '/images/regions/calgary.jpg',
     path: 'M 30,427 L 390,427 L 390,500 L 22,500 L 26,465 Z',
     labelX: 185, labelY: 467,
     pins: [{ name: 'Calgary', cx: 221, cy: 455 }, { name: 'Airdrie', cx: 223, cy: 443 }],
@@ -74,7 +56,7 @@ const AB_REGIONS = [
     cities: ['Edmonton', 'St. Albert', 'Leduc', 'Spruce Grove', 'Sherwood Park'],
     services: ['Paratransit', 'On-demand'],
     desc: 'Expansion planning underway with organizations in the Edmonton Capital Region.',
-    photo: '/Edmontonregion.png',
+    photo: '/images/regions/edmonton.png',
     path: 'M 48,206 L 390,206 L 390,353 L 38,353 L 42,280 Z',
     labelX: 195, labelY: 278,
     pins: [{ name: 'Edmonton', cx: 242, cy: 324 }],
@@ -87,7 +69,7 @@ const AB_REGIONS = [
     cities: ['Red Deer', 'Lacombe', 'Innisfail', 'Sylvan Lake'],
     services: ['Microtransit', 'On-demand'],
     desc: 'Planned expansion beginning with Central Alberta communities.',
-    photo: '/Sylvanlake.png',
+    photo: '/images/regions/central-alberta.png',
     path: 'M 38,353 L 390,353 L 390,427 L 30,427 L 34,390 Z',
     labelX: 192, labelY: 394,
     pins: [{ name: 'Red Deer', cx: 231, cy: 387 }],
@@ -100,7 +82,7 @@ const AB_REGIONS = [
     cities: ['Lethbridge', 'Medicine Hat', 'Brooks', 'Taber'],
     services: ['On-demand', 'Paratransit'],
     desc: 'Southern Alberta communities included in long-term expansion plans.',
-    photo: '/Southernalberta.png',
+    photo: '/images/regions/southern-alberta.png',
     path: 'M 22,500 L 390,500 L 390,552 L 36,552 Z',
     labelX: 192, labelY: 530,
     pins: [{ name: 'Lethbridge', cx: 266, cy: 516 }, { name: 'Medicine Hat', cx: 346, cy: 510 }],
@@ -113,7 +95,7 @@ const AB_REGIONS = [
     cities: ['Fort McMurray', 'Peace River', 'Grande Prairie', 'High Level'],
     services: ['Planning underway'],
     desc: 'Northern Alberta included in long-term rollout roadmap.',
-    photo: '/NorthernAlberta.png',
+    photo: '/images/regions/northern-alberta.png',
     path: 'M 58,10 L 390,10 L 390,206 L 48,206 L 54,100 Z',
     labelX: 200, labelY: 108,
     pins: [{ name: 'Ft McMurray', cx: 318, cy: 168 }],
@@ -204,7 +186,12 @@ function WhereWeOperate() {
         <div className="where-panel" key={active}>
           {/* Left: text */}
           <div className="where-panel-left">
-            <h3 className="where-region-h">{r.name}</h3>
+            <div className="where-status-row">
+              <h3 className="where-region-h">{r.name}</h3>
+              <span className={`where-status-badge ${r.status}`}>
+                {r.status === 'serving' ? 'Serving now' : r.status === 'soon' ? 'Coming 2027' : 'Planned'}
+              </span>
+            </div>
             <p className="where-region-desc">{r.desc}</p>
 
             <div className="where-block">
@@ -215,7 +202,7 @@ function WhereWeOperate() {
             </div>
 
             <div className="where-block">
-              <p className="where-block-label">How we serve them</p>
+              <p className="where-block-label">{r.status === 'serving' ? 'Services operating' : 'Planned services'}</p>
               <div className="where-chips">
                 {r.services.map(s => (
                   <span key={s} className={`where-chip svc ${r.status}`}>{s}</span>
@@ -248,7 +235,9 @@ function CityTicker() {
       <div className="ticker-label">Coming soon to communities across Alberta</div>
       <div className="ticker-track-wrap">
         <div className="ticker-track">
-          {items.map((c, i) => <span key={i} className="ticker-item">{c}</span>)}
+          {items.map((c, i) => (
+            <span key={i} className="ticker-item" tabIndex={0}>{c}</span>
+          ))}
         </div>
       </div>
     </div>
@@ -269,211 +258,6 @@ function StatCard({ number, label }) {
       <p className="stat-n">{number}</p>
       <p className="stat-l">{label}</p>
     </div>
-  )
-}
-
-/* ── FORMS ────────────────────────────────────── */
-function WaitlistForm() {
-  const [role, setRole] = useState('Rider')
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [done, setDone] = useState(false)
-  const [err, setErr] = useState(false)
-  const [loading, setLoading] = useState(false)
-
-  const submit = async e => {
-    e.preventDefault()
-    setErr(false)
-
-    const endpoint = import.meta.env.VITE_FORMSPREE_WAITLIST_URL
-    if (!endpoint) {
-      console.error('Missing Formspree endpoint')
-      setErr(true)
-      return
-    }
-
-    setLoading(true)
-
-    try {
-      const r = await fetch(endpoint, {
-        method: 'POST',
-        body: JSON.stringify({ name, email, role }),
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      })
-
-      if (r.ok) {
-        setDone(true)
-        setName('')
-        setEmail('')
-        setRole('Rider')
-      } else {
-        setErr(true)
-      }
-
-    } catch {
-      setErr(true)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  if (done)
-    return (
-      <div className="form-ok">
-        <CheckCircle size={18} color="var(--orange)" />
-        <div>
-          <p className="fok-t">You're on the list.</p>
-          <p className="fok-s">We'll reach out soon.</p>
-        </div>
-      </div>
-    )
-
-  return (
-    <form onSubmit={submit} className="the-form">
-      <div className="form-row">
-        <input
-          type="text"
-          placeholder="Your name"
-          value={name}
-          onChange={e => setName(e.target.value)}
-          required
-        />
-
-        <input
-          type="email"
-          placeholder="Email address"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          required
-        />
-      </div>
-
-      <div className="role-row">
-        {['Rider', 'Caregiver', 'Care facility', 'Other'].map(r => (
-          <button
-            key={r}
-            type="button"
-            className={`rchip${role === r ? ' on' : ''}`}
-            onClick={() => setRole(r)}
-          >
-            {r}
-          </button>
-        ))}
-      </div>
-
-      <button type="submit" className="btn-primary w-full" disabled={loading}>
-        {loading ? 'Submitting...' : (
-          <>
-            Join  waitlist
-          </>
-        )}
-      </button>
-
-      {err && <p className="ferr">Something went wrong — please try again.</p>}
-
-      <p className="fnote">No spam. Updates only when it matters.</p>
-    </form>
-  )
-}
-
-function PartnerForm() {
-  const [done, setDone] = useState(false)
-  const [err, setErr] = useState(false)
-  const [loading, setLoading] = useState(false)
-
-  const submit = async e => {
-    e.preventDefault()
-    setErr(false)
-
-    const endpoint = import.meta.env.VITE_FORMSPREE_PARTNER_URL
-    if (!endpoint) {
-      console.error('Missing Formspree partner endpoint')
-      setErr(true)
-      return
-    }
-
-    const data = Object.fromEntries(new FormData(e.currentTarget))
-
-    setLoading(true)
-
-    try {
-      const r = await fetch(endpoint, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      })
-
-      if (r.ok) {
-        setDone(true)
-        e.currentTarget.reset()
-      } else {
-        setErr(true)
-      }
-
-    } catch {
-      setErr(true)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  if (done)
-    return (
-      <div className="form-ok">
-        <CheckCircle size={18} color="var(--orange)" />
-        <div>
-          <p className="fok-t">Message received.</p>
-          <p className="fok-s">We'll be in touch shortly.</p>
-        </div>
-      </div>
-    )
-
-  return (
-    <form onSubmit={submit} className="the-form">
-      <div className="form-row">
-        <input name="name" type="text" placeholder="Your name" required />
-        <input name="org" type="text" placeholder="Organization name" required />
-      </div>
-
-      <input name="email" type="email" placeholder="Email address" required />
-
-      <select name="type" defaultValue="">
-        <option value="" disabled>Type of organization</option>
-        <option>Municipal transit authority</option>
-        <option>Long-term care home</option>
-        <option>Disability service provider</option>
-        <option>Senior living community</option>
-        <option>Healthcare facility</option>
-        <option>Non-profit transport</option>
-        <option>Other</option>
-      </select>
-
-      <textarea
-        name="message"
-        placeholder="Tell us about your service area and what you're looking for."
-        rows={4}
-      />
-
-      <button
-        type="submit"
-        className="btn-primary w-full"
-        disabled={loading}
-      >
-        {loading ? 'Sending...' : (
-          <>
-            Become partner
-          </>
-        )}
-      </button>
-
-      {err && <p className="ferr">Something went wrong — please try again.</p>}
-    </form>
   )
 }
 
@@ -498,7 +282,7 @@ const FEATURES = [
   },
   {
     id: 'notifications',
-    title: 'Automatic notifications',
+    title: 'Automated trip updates',
     tag: 'Care teams',
     summary: 'Alerts go out before and after every trip, no setup required.',
     detail: 'Automated alerts are sent when a driver is en route, shortly before arrival, and once the rider has been dropped off. Notifications can be shared with family members, caregivers, or care coordinators.',
@@ -515,7 +299,7 @@ const FEATURES = [
   },
   {
     id: 'booking',
-    title: 'Easy ride booking',
+    title: 'Simple ride booking',
     tag: 'Riders',
     summary: 'Book by app or phone. Confirmation arrives instantly.',
     detail: 'Schedule a ride through the Indro app or by phone. Riders receive instant confirmation with pickup details, driver information, and a shareable tracking link.',
@@ -709,7 +493,8 @@ function FeatureAccordion() {
       <div className="c">
         <div className="feat-hd">
           <p className="label">Built with care</p>
-          <h2 className="section-title">Everything riders and operators need.</h2>
+          <h2 className="section-title">Everyone involved in a ride stays informed in real time.</h2>
+          <p className="feat-intro">Indro gives riders, families, care teams, and operators the visibility they need throughout every trip — from booking to arrival.</p>
         </div>
         <div className="feat-layout">
 
@@ -775,7 +560,7 @@ export default function App() {
         <div className="c hero-inner">
           <div className="hero-text">
             <h1 className="hero-h1">Transit that meets<br />people <em>where they are.</em></h1>
-            <p className="hero-sub">The software platform behind paratransit, microtransit, and on-demand rides across Alberta. Helping communities deliver accessible, reliable transportation for everyone.</p>
+            <p className="hero-sub">The platform that keeps riders informed, families at ease, and operators in control — built for paratransit, senior living, and community transit.</p>
             <div className="hero-actions">
               <a href="#waitlist" className="btn-primary">Join waitlist</a>
               <a href="#partner" className="btn-ghost">Become partner</a>
@@ -795,13 +580,13 @@ export default function App() {
         <div className="c">
           <div className="section-head">
             <p className="label">What we offer</p>
-            <h2 className="section-title">Three ways we move people.</h2>
+            <h2 className="section-title">Three ways we support transportation providers.</h2>
           </div>
           <div className="cards-3">
             {[
-              { img: '/ondemand.png', tag: 'On-demand', title: 'Rides when you need them.', desc: 'A booking and dispatch platform that helps organizations offer flexible, on-demand transportation without fixed schedules or routes.' },
-              { img: '/microtransit.jpg', tag: 'Microtransit', title: 'Shared rides. Smarter routes.', desc: 'Dynamic routing and rider management tools that help communities deliver efficient, affordable shared transportation.' },
-              { img: '/paratransit.jpg', tag: 'Paratransit',   title: 'Accessible transportation, modernized.',
+              { img: '/images/services/ondemand.png', tag: 'On-demand', title: 'Rides when you need them.', desc: 'A booking and dispatch platform that helps organizations offer flexible, on-demand transportation without fixed schedules or routes.' },
+              { img: '/images/services/microtransit.jpg', tag: 'Microtransit', title: 'Shared rides. Smarter routes.', desc: 'Dynamic routing and rider management tools that help communities deliver efficient, affordable shared transportation.' },
+              { img: '/images/services/paratransit.jpg', tag: 'Paratransit',   title: 'Accessible transportation, modernized.',
                   desc: 'Real-time tracking, arrival alerts, and caregiver visibility designed for accessible transportation providers and their riders.'
                 },
             ].map(c => (
@@ -834,22 +619,22 @@ export default function App() {
     <div className="op-cases">
       {[
         {
-          img: '/Long-term care & senior living.jpg',
+          img: '/images/operators/senior-living.jpg',
           tag: 'Senior living',
           title: 'Long-term care & senior living',
-          desc: 'Coordinate resident transportation, reduce missed appointments, and give families real-time visibility into trips.'
+          desc: 'Coordinate resident transportation with less manual work and fewer missed appointments, while giving families real-time visibility into every trip.'
         },
         {
-          img: '/Transit authorities & private operators.jpg',
+          img: '/images/operators/transit-operators.jpg',
           tag: 'Transit operators',
           title: 'Transit authorities & private operators',
-          desc: 'Add live tracking, dispatch tools, and rider coordination to your existing fleet without changing your operations.'
+          desc: 'Add live tracking, dispatch tools, optimized routing, and rider coordination to your existing fleet without changing your operations.'
         },
         {
-          img: '/Disability & community services.jpg',
+          img: '/images/operators/disability-services.jpg',
           tag: 'Accessibility services',
           title: 'Disability & community services',
-          desc: 'Give riders and caregivers predictable, reliable transportation with better communication and trip visibility.'
+          desc: 'Provide riders and caregivers with reliable transportation and clear, real-time trip updates from pickup to drop-off.'
         }
       ].map((c, i) => (
         <div key={c.title} className={`op-case ${i % 2 === 1 ? 'reverse' : ''}`}>
@@ -872,20 +657,33 @@ export default function App() {
 
       {/* ABOUT TEASER */}
       <section id="about" className="section about-teaser">
-        <div className="c about-teaser-inner">
-          <div className="about-teaser-text">
-            <p className="label">Our story</p>
-            <h2 className="section-title">
-              Built from <span className="highlight">real needs</span>.<br/>
-              Shaped by lived experience.
-            </h2>
-            <p className="section-sub" style={{ marginTop: 12, marginBottom: 28 }}>
-              We spent months talking to Transit Access riders, caregivers, and care operators before writing a single line of code. One request came up again and again:  <em>just tell us where the ride is.</em>
-            </p>
-            <Link to="/about" className="btn-primary">Read our full story</Link>
-          </div>
-          <div className="about-teaser-img-wrap">
-            <img src="/pexels-jsme-mila-523821574-18429374.jpg" alt="Care worker with elderly resident" className="about-teaser-img" />
+        <div className="c">
+          <div className="story-grid">
+            <div className="story-left">
+              <p className="label">Our story</p>
+              <h2 className="section-title">Built for the people who coordinate transportation every day.</h2>
+              <div className="story-body">
+                <p>We spent months speaking with senior living staff, care coordinators, riders, and transportation operators to understand a simple but constant challenge:</p>
+                <p className="story-highlight">no one knows where the ride is when they need to know.</p>
+                <ul className="story-list">
+                  <li>Staff were fielding constant calls about arrival times.</li>
+                  <li>Care teams were tracking trips manually.</li>
+                  <li>Families were left guessing when a loved one would arrive back from their trip.</li>
+                </ul>
+                <p>We built Indro to remove that uncertainty — by giving everyone who cares real-time visibility into every ride.</p>
+              </div>
+              <Link to="/about" className="btn-primary" style={{ marginTop: 32, display: 'inline-flex' }}>Read our full story</Link>
+            </div>
+            <div className="story-right">
+              <div className="story-quote-card">
+                <p className="story-quote-label">What we heard most often</p>
+                <blockquote className="story-quote">"Just tell us where the ride is."</blockquote>
+                <p className="story-quote-attribution">— Transit Access rider, Calgary</p>
+              </div>
+              <div className="about-teaser-img-wrap" style={{ marginTop: 24 }}>
+                <img src="/images/hero/care-worker-elderly.jpg" alt="Care worker with elderly resident" className="about-teaser-img" />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -912,14 +710,14 @@ export default function App() {
       {/* FOOTER */}
       <footer className="footer">
         <div className="c footer-inner">
-          <a href="#top" className="footer-brand">
-            <img src="/orange-transparent.png" alt="Indro Transit" className="footer-logo" />
-          </a>
+          <Link to="/" className="footer-brand">
+            <img src="/brand/logo.png" alt="Indro Transit" className="footer-logo" />
+          </Link>
           <nav className="footer-nav">
             <a href="#services">Services</a>
             <a href="#where">Regions</a>
             <a href="#operators">Organizations</a>
-            <a href="#about">About</a>
+            <Link to="/about">About</Link>
           </nav>
           <div className="footer-right">
             <div className="footer-social">

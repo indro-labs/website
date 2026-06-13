@@ -16,8 +16,14 @@ export default function Contact() {
     setErr(false)
     setLoading(true)
 
-    const endpoint = import.meta.env.VITE_FORMSPREE_GENERAL_URL 
-    
+    const endpoint = import.meta.env.VITE_FORMSPREE_GENERAL_URL
+    if (!endpoint) {
+      console.error('Missing Formspree general endpoint')
+      setErr(true)
+      setLoading(false)
+      return
+    }
+
     try {
       const r = await fetch(endpoint, {
         method: 'POST',
@@ -54,7 +60,7 @@ export default function Contact() {
               <p className="contact-overline">CONTACT US</p>
               <h1>Let's talk.</h1>
               <p className="contact-sub">
-                Whether you’re a transit operator, care organization, or community provider — we’d love to hear from you.
+                Whether you’re a senior living facility, paratransit provider, caregiving organization, or community transit operator — we’d love to hear from you.
               </p>
 
               <div className="contact-meta">
@@ -100,7 +106,7 @@ export default function Contact() {
                     {loading ? 'Sending...' : 'Send message'}
                   </button>
                   
-                  {err && <p className="ferr" style={{ color: 'red', marginTop: '10px' }}>Something went wrong — please try again.</p>}
+                  {err && <p className="ferr">Something went wrong — please try again.</p>}
                 </form>
               )}
             </div>
@@ -112,7 +118,7 @@ export default function Contact() {
       <footer className="footer">
         <div className="c footer-inner">
           <a href="#top" className="footer-brand">
-            <img src="/orange-transparent.png" alt="Indro Transit" className="footer-logo" />
+            <img src="/brand/logo.png" alt="Indro Transit" className="footer-logo" />
           </a>
           <nav className="footer-nav">
             <a href="/#services">Services</a>

@@ -15,7 +15,7 @@ const href = (hash) => `/${hash}`
     <header className="navbar">
       <div className="navbar-inner">
         <Link to="/#hero" className="navbar-logo" onClick={close}>
-          <img src="/orange-transparent.png" alt="Indro Transit" className="logo-img"/>
+          <img src="/brand/logo.png" alt="Indro Transit" className="logo-img"/>
         </Link>
         <nav className="nav-links">
           <a href={href('#services')}>Services</a>
@@ -26,7 +26,7 @@ const href = (hash) => `/${hash}`
         <div className="nav-right">
           <Link className="nav-partner" to="/contact">Contact us</Link>
         </div>
-        <button className="nav-hamburger" onClick={() => setOpen(!open)}>{open ? '✕' : '☰'}</button>
+        <button className="nav-hamburger" onClick={() => setOpen(!open)} aria-label={open ? 'Close menu' : 'Open menu'}>{open ? '✕' : '☰'}</button>
       </div>
       {open && (
         <nav className="nav-mobile">

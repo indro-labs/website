@@ -13,6 +13,7 @@ const SLIDES = [
   { src: '/images/hero/transit-driver.jpg',      alt: 'Transit driver assisting passenger' },
 ]
 
+
 function HeroCarousel() {
   const [active, setActive] = useState(0)
   useEffect(() => {
@@ -619,6 +620,37 @@ export default function App() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── INTRO SECTION ───────────────────────────── */}
+      <section className="intro-section">
+        <div className="c">
+          <div className="intro-content">
+            <h2 className="hp-title">
+              Transportation software built for people who care.
+            </h2>
+
+            <p className="intro-sub">
+              Indro Transit helps organizations coordinate paratransit,
+              microtransit, and on-demand transportation with live tracking,
+              automated notifications, and real-time rider visibility.
+              Families stay informed, operators reduce status calls,
+              and riders know where their ride is.
+            </p>
+          </div>
+
+          <div className="intro-video-wrap">
+            <video
+              className="intro-video"
+              autoPlay
+              muted
+              loop
+              playsInline
+            >
+              <source src="/videos/senior-laughing.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
       </section>

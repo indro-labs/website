@@ -1,6 +1,6 @@
 .ap-section { padding: 100px 0; }
 .ap-label {
-  font-size: 11px; font-weight: 700; letter-spacing: 1.8px;
+  font-size: 13px; font-weight: 700; letter-spacing: 1.8px;
   text-transform: uppercase; color: var(--orange); margin-bottom: 14px;
 }
 .ap-h2 {
@@ -9,7 +9,7 @@
   color: var(--ink); line-height: 1.1; margin-bottom: 28px;
 }
 .ap-body {
-  font-size: 16px; line-height: 1.85; color: var(--muted); margin-bottom: 18px;
+  font-size: 18px; line-height: 1.85; color: var(--muted); margin-bottom: 18px;
 }
 
 /* ── Hero ── */
@@ -39,7 +39,7 @@
   color: white; line-height: 1.05; margin-bottom: 20px;
 }
 .ap-hero-sub {
-  font-size: 18px; line-height: 1.75;
+  font-size: 20px; line-height: 1.75;
   color: rgba(255,255,255,0.7); max-width: 520px;
 }
 
@@ -93,13 +93,13 @@
   font-family: var(--serif); font-size: 48px; line-height: 1;
   color: var(--orange); margin-bottom: 8px; font-weight: 400;
 }
-.astat-l { font-size: 14px; color: var(--muted); line-height: 1.4; }
+.astat-l { font-size: 16px; color: var(--muted); line-height: 1.4; }
 
 /* ── Mission ── */
 .ap-mission { background: white; }
 .ap-mission-header { margin-bottom: 56px; }
 .ap-mission-intro {
-  font-size: 17px; line-height: 1.8; color: var(--muted);
+  font-size: 19px; line-height: 1.8; color: var(--muted);
   max-width: 620px; margin-top: 20px;
 }
 
@@ -121,7 +121,7 @@
   font-family: var(--serif); font-size: 26px; font-weight: 400;
   color: var(--ink); line-height: 1.15; margin-bottom: 14px;
 }
-.ap-principle-body { font-size: 15px; line-height: 1.8; color: var(--muted); margin: 0; }
+.ap-principle-body { font-size: 17px; line-height: 1.8; color: var(--muted); margin: 0; }
 
 /* ── Photo break ── */
 .ap-photo-break {
@@ -165,14 +165,14 @@
 .ap-press-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,0.09); }
 .ap-press-top { display: flex; align-items: center; gap: 8px; }
 .ap-press-tag {
-  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
   background: #FEF3E6; color: var(--orange);
   padding: 3px 9px; border-radius: 999px;
 }
-.ap-press-outlet { font-size: 12px; color: var(--muted); }
-.ap-press-title { font-size: 14px; font-weight: 700; color: var(--ink); line-height: 1.35; }
-.ap-press-desc { font-size: 13px; color: var(--muted); line-height: 1.6; flex: 1; }
-.ap-press-link { font-size: 12px; color: var(--orange); font-weight: 600; }
+.ap-press-outlet { font-size: 14px; color: var(--muted); }
+.ap-press-title { font-size: 16px; font-weight: 700; color: var(--ink); line-height: 1.35; }
+.ap-press-desc { font-size: 15px; color: var(--muted); line-height: 1.6; flex: 1; }
+.ap-press-link { font-size: 14px; color: var(--orange); font-weight: 600; }
 
 /* ── CTA ── */
 .ap-cta { background: var(--ink); padding: 96px 0; }
@@ -182,12 +182,12 @@
   font-size: clamp(30px, 4vw, 52px);
   color: white; margin-bottom: 16px;
 }
-.ap-cta-sub { font-size: 16px; line-height: 1.75; color: white; margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto; }
+.ap-cta-sub { font-size: 18px; line-height: 1.75; color: white; margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto; }
 .ap-cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 .ap-btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 13px 26px; background: var(--orange); color: white;
-  border-radius: 999px; font-size: 14px; font-weight: 600;
+  border-radius: 999px; font-size: 16px; font-weight: 600;
   text-decoration: none; transition: opacity 0.15s;
 }
 .ap-btn-primary:hover { opacity: 0.88; }
@@ -195,7 +195,7 @@
   display: inline-flex; align-items: center; gap: 6px;
   padding: 13px 24px; background: transparent; color: white;
   border: 1.5px solid rgba(255,255,255,0.3); border-radius: 999px;
-  font-size: 14px; font-weight: 500; text-decoration: none;
+  font-size: 16px; font-weight: 500; text-decoration: none;
   transition: border-color 0.15s;
 }
 .ap-btn-ghost:hover { border-color: white; }
@@ -206,9 +206,9 @@
 .ap-footer-brand { display: inline-flex; align-items: center; }
 .ap-footer-logo { height: 52px; width: auto; }
 .ap-footer-nav { display: flex; gap: 28px; flex-wrap: wrap; }
-.ap-footer-nav a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.15s; }
+.ap-footer-nav a { font-size: 15px; color: var(--muted); text-decoration: none; transition: color 0.15s; }
 .ap-footer-nav a:hover { color: var(--ink); }
-.ap-footer-copy { font-size: 12px; color: #AEABA5; }
+.ap-footer-copy { font-size: 14px; color: #AEABA5; }
 .ap-footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
 
 /* ─────────────────────────────────────────────
@@ -219,7 +219,7 @@
   /* Hero */
   .ap-hero { min-height: 55vh; }
   .ap-hero .ap-c { padding-bottom: 48px; }
-  .ap-hero-sub { font-size: 15px; }
+  .ap-hero-sub { font-size: 17px; }
 
   /* Sections */
   .ap-section { padding: 60px 0; }
@@ -237,7 +237,7 @@
 
   /* Mission */
   .ap-mission-header { margin-bottom: 40px; }
-  .ap-mission-intro { font-size: 15px; }
+  .ap-mission-intro { font-size: 17px; }
 
   /* Photo break */
   .ap-photo-break { height: 220px; }

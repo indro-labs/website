@@ -16,19 +16,19 @@
 .logo-img { height: 68px; width: auto; display: block; }
 
 .nav-links { display: flex; align-items: center; gap: 28px; }
-.nav-links a { font-size: 14px; color: #7A7A7A; font-weight: 500; transition: color 0.15s; }
+.nav-links a { font-size: 16px; color: #7A7A7A; font-weight: 500; transition: color 0.15s; }
 .nav-links a:hover { color: #1C1C1C; }
 
 .nav-right { display: flex; align-items: center; gap: 10px; }
 .nav-wait {
   padding: 8px 18px; border: 1.5px solid #E2E0DC; border-radius: 999px;
-  font-size: 13px; font-weight: 600; color: #1C1C1C; transition: border-color 0.15s;
+  font-size: 15px; font-weight: 600; color: #1C1C1C; transition: border-color 0.15s;
   text-decoration: none;
 }
 .nav-wait:hover { border-color: #1C1C1C; }
 .nav-partner {
   padding: 8px 18px; background: #F6901A; border-radius: 999px;
-  font-size: 13px; font-weight: 600; color: white; transition: opacity 0.15s;
+  font-size: 15px; font-weight: 600; color: white; transition: opacity 0.15s;
   text-decoration: none;
 }
 .nav-partner:hover { opacity: 0.88; }

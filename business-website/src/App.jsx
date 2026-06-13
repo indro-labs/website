@@ -576,7 +576,7 @@ export default function App() {
       <CityTicker />
 
       {/* SERVICES */}
-      <section id="services" className="section">
+      <section id="services" className="section bg-tint">
         <div className="c">
           <div className="section-head">
             <p className="label">What we offer</p>
@@ -584,20 +584,18 @@ export default function App() {
           </div>
           <div className="cards-3">
             {[
-              { img: '/images/services/ondemand.png', tag: 'On-demand', title: 'Rides when you need them.', desc: 'A booking and dispatch platform that helps organizations offer flexible, on-demand transportation without fixed schedules or routes.' },
-              { img: '/images/services/microtransit.jpg', tag: 'Microtransit', title: 'Shared rides. Smarter routes.', desc: 'Dynamic routing and rider management tools that help communities deliver efficient, affordable shared transportation.' },
-              { img: '/images/services/paratransit.jpg', tag: 'Paratransit',   title: 'Accessible transportation, modernized.',
-                  desc: 'Real-time tracking, arrival alerts, and caregiver visibility designed for accessible transportation providers and their riders.'
-                },
+              { img: '/images/services/ondemand.png',   label: 'ON-DEMAND',    title: 'Rides when you need them.', desc: 'A booking and dispatch platform that helps organizations offer flexible, on-demand transportation without fixed schedules or routes.' },
+              { img: '/images/services/microtransit.jpg', label: 'MICROTRANSIT', title: 'Shared rides. Smarter routes.', desc: 'Dynamic routing and rider management tools that help communities deliver efficient, affordable shared transportation.' },
+              { img: '/images/services/paratransit.jpg',  label: 'PARATRANSIT',  title: 'Accessible transportation, modernized.', desc: 'Real-time tracking, arrival alerts, and caregiver visibility designed for accessible transportation providers and their riders.' },
             ].map(c => (
-              <div key={c.tag} className="svc-card">
-                <div className="svc-img-wrap">
-                  <img src={c.img} alt={c.tag} className="svc-img" />
+              <div key={c.label} className="svc-card svc-card--overlay">
+                <img src={c.img} alt={c.label} className="svc-img" />
+                <div className="svc-overlay-static">
+                  <span className="svc-overlay-label">{c.label}</span>
                 </div>
-                <div className="svc-body">
-                  <span className="svc-tag">{c.tag}</span>
-                  <h3 className="svc-title">{c.title}</h3>
-                  <p className="svc-desc">{c.desc}</p>
+                <div className="svc-overlay-hover">
+                  <h3 className="svc-overlay-title">{c.title}</h3>
+                  <p className="svc-overlay-desc">{c.desc}</p>
                 </div>
               </div>
             ))}
@@ -658,31 +656,15 @@ export default function App() {
       {/* ABOUT TEASER */}
       <section id="about" className="section about-teaser">
         <div className="c">
-          <div className="story-grid">
-            <div className="story-left">
-              <p className="label">Our story</p>
-              <h2 className="section-title">Built for the people who coordinate transportation every day.</h2>
-              <div className="story-body">
-                <p>We spent months speaking with senior living staff, care coordinators, riders, and transportation operators to understand a simple but constant challenge:</p>
-                <p className="story-highlight">no one knows where the ride is when they need to know.</p>
-                <ul className="story-list">
-                  <li>Staff were fielding constant calls about arrival times.</li>
-                  <li>Care teams were tracking trips manually.</li>
-                  <li>Families were left guessing when a loved one would arrive back from their trip.</li>
-                </ul>
-                <p>We built Indro to remove that uncertainty — by giving everyone who cares real-time visibility into every ride.</p>
-              </div>
-              <Link to="/about" className="btn-primary" style={{ marginTop: 32, display: 'inline-flex' }}>Read our full story</Link>
+          <div className="story-simple">
+            <div className="story-simple-img-wrap">
+              <img src="/images/hero/care-worker-elderly.jpg" alt="Care worker with elderly resident" className="story-simple-img" />
             </div>
-            <div className="story-right">
-              <div className="story-quote-card">
-                <p className="story-quote-label">What we heard most often</p>
-                <blockquote className="story-quote">"Just tell us where the ride is."</blockquote>
-                <p className="story-quote-attribution">— Transit Access rider, Calgary</p>
-              </div>
-              <div className="about-teaser-img-wrap" style={{ marginTop: 24 }}>
-                <img src="/images/hero/care-worker-elderly.jpg" alt="Care worker with elderly resident" className="about-teaser-img" />
-              </div>
+            <div className="story-simple-text">
+              <p className="label">Our story</p>
+              <h2 className="section-title">Built for the teams behind every ride.</h2>
+              <p className="section-sub">We built Indro after hearing the same thing from riders, families, and care staff across Alberta — no one knew where the ride was when they needed to know. We set out to fix that.</p>
+              <Link to="/about" className="btn-primary" style={{ marginTop: 32, display: 'inline-flex' }}>Read our full story</Link>
             </div>
           </div>
         </div>

@@ -154,7 +154,7 @@ export default function About() {
 
 
             {/* CTA */}
-      <section className="cta bg-tint">
+      <section className="section bg-tint">
         <div className="c cta-grid">
           <div id="waitlist" className="cta-col">
             <p className="label">For riders &amp; families</p>

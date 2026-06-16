@@ -53,9 +53,11 @@ function Hero() {
         <div className="hero-overlay" />
         <div className="hero-content">
           <h1 className="hero-h1">
-            Nobody should have to wonder<br /><em>where their ride is.</em>
+            Transportation operations
+            <br />
+            <em>made simple.</em>
           </h1>
-          <p className="hero-sub">Real-time tracking, easy booking, and family visibility — built for paratransit, senior living, on-site shuttles, and community transit across Alberta.</p>
+          <p className="hero-sub">Transportation management for senior living communities, paratransit providers, and on-site shuttle services — keeping riders, families, and operators connected.</p>
           <div className="hero-actions">
             <a href="#waitlist" className="btn-hero-cta">Get early access →</a>
           </div>

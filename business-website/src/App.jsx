@@ -33,10 +33,11 @@ function StackPanel({ children, style }) {
 
 /* ── HERO ─────────────────────────────────────── */
 const SLIDES = [
+  { src: '/images/hero/senior-couple-smile.jpg',        alt: 'Senior couple smiling at laptop' },
   { src: '/images/hero/care-worker-elderly.jpg',  alt: 'Care worker with elderly resident' },
   { src: '/images/hero/senior-couple.jpg',         alt: 'Senior couple smiling' },
   { src: '/images/hero/caregiver-van.jpg',         alt: 'Caregiver helping passenger from van' },
-  { src: '/images/hero/transit-driver.jpg',        alt: 'Transit driver assisting passenger' },
+  
 ]
 function Hero() {
   const [active, setActive] = useState(0)
@@ -48,7 +49,7 @@ function Hero() {
     <div className="hero-outer">
       <div className="hero-card">
         {SLIDES.map((s, i) => (
-          <img key={i} src={s.src} alt={s.alt} className={`hero-bg-img${i === active ? ' active' : ''}`} />
+          <img key={i} src={s.src} alt={s.alt} className={`hero-bg-img${i === active ? ' active' : ''}`} fetchpriority={i === 0 ? 'high' : 'low'} loading={i === 0 ? 'eager' : 'lazy'} />
         ))}
         <div className="hero-overlay" />
         <div className="hero-content">

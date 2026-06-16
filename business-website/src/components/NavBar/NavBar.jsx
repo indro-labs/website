@@ -14,14 +14,13 @@ const href = (hash) => `/${hash}`
   return (
     <header className="navbar">
       <div className="navbar-inner">
-        <Link to="/#hero" className="navbar-logo" onClick={close}>
+        <Link to="/" className="navbar-logo" onClick={() => { close(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
           <img src="/brand/logo.png" alt="Indro Transit" className="logo-img"/>
         </Link>
         <nav className="nav-links">
           <a href={href('#services')}>Services</a>
           <a href={href('#operators')}>Who we help</a>
           <a href={href('#waitlist')}>Get started</a>
-          <Link to="/about" onClick={close}>About</Link>
         </nav>
         <div className="nav-right">
           <Link className="nav-partner" to="/contact">Contact us</Link>
@@ -33,7 +32,6 @@ const href = (hash) => `/${hash}`
           <a href={href('#services')} onClick={close}>Services</a>
           <a href={href('#operators')} onClick={close}>Who we help</a>
           <a href={href('#waitlist')} onClick={close}>Get started</a>
-          <Link to="/about" onClick={close}>About</Link>
              <Link className="nav-mobile-cta" onClick={close} to="/contact">Contact us</Link>
         </nav>
       )}

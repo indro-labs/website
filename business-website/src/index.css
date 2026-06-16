@@ -1,28 +1,38 @@
-:root {
-  --orange:  #f6901a;
-  --orange-lt: #FEF3E6;
-  --black:   #111111;
-  --ink:     #1A1A1A;
-  --muted:   #666666;
-  --border:  #E8E8E4;
-  --bg:      #FFFFFF;
-  --bg-soft: #F9F8F6;
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800;900&display=swap');
 
-  --sans:  'DM Sans', system-ui, sans-serif;
-  --serif: 'DM Serif Display', Georgia, serif;
+:root {
+  --orange:    #E8850F;
+  --orange-lt: #FEF3E6;
+  --black:     #0C0C0C;
+  --ink:       #111111;
+  --muted:     #4A4A4A;
+  --border:    #E0DDD8;
+  --bg:        #F7F4EF;
+  --bg-soft:   #F7F4EF;
+
+  --sans:  'Nunito Sans', system-ui, sans-serif;
+  --serif: 'Nunito Sans', system-ui, sans-serif;
 
   font-family: var(--sans);
-  font-size: 18px;
-  line-height: 1.6;
+  font-size: 17px;
+  line-height: 1.75;
   color: var(--ink);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 *, *::before, *::after { box-sizing: border-box; }
-html { overflow-y: scroll; scrollbar-gutter: stable; }
-body { margin: 0; overflow-x: hidden; }
+html { overflow-y: scroll; scrollbar-gutter: stable; overflow-x: clip; }
+body { margin: 0; overflow-x: clip; }
 #root { width: 100%; min-height: 100svh; display: flex; flex-direction: column; }
-h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0; line-height: 1.08; }
+h1, h2, h3 {
+  font-family: var(--sans);
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
 p { margin: 0; }
 a { text-decoration: none; color: inherit; }
 button { font-family: var(--sans); cursor: pointer; border: none; background: none; }

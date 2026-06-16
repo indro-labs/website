@@ -28,7 +28,6 @@ export default function Footer() {
         <div className="footer-col">
           <p className="footer-col-label">Company</p>
           <nav className="footer-links">
-            <Link to="/about">About us</Link>
             <Link to="/contact">Contact</Link>
             <a href="/#services">Services</a>
             <a href="/#operators">Who we serve</a>
@@ -42,7 +41,6 @@ export default function Footer() {
             <a href="/#services">Paratransit</a>
             <a href="/#services">On-demand transit</a>
             <a href="/#services">Microtransit</a>
-            <a href="/#where">Coverage areas</a>
           </nav>
         </div>
 
@@ -51,17 +49,12 @@ export default function Footer() {
           <p className="footer-col-label">Get in touch</p>
           <div className="footer-contact-items">
             <div className="footer-contact-item">
-              <span className="footer-contact-icon">📍</span>
               <span>Calgary, Alberta</span>
             </div>
             <div className="footer-contact-item">
-              <span className="footer-contact-icon">✉️</span>
               <a href="mailto:info@indrolabs.ca">info@indrolabs.ca</a>
             </div>
-            <div className="footer-contact-item">
-              <span className="footer-contact-icon">🕐</span>
-              <span>Available 24/7 for partners</span>
-            </div>
+  
           </div>
           <a href="/#waitlist" className="footer-cta">Join the waitlist →</a>
         </div>
@@ -70,11 +63,8 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <div className="c footer-bottom-inner">
-          <p className="footer-copy">© 2026 Indro Transit Inc. · Calgary, Alberta · All rights reserved.</p>
-          <div className="footer-bottom-links">
-            <Link to="/contact">Privacy</Link>
-            <Link to="/contact">Terms</Link>
-          </div>
+          <p className="footer-copy">© 2026 Indro Transit Inc. · 🍁 Calgary, Alberta · All rights reserved.</p>
+      
         </div>
       </div>
     </footer>

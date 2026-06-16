@@ -55,7 +55,7 @@ function Hero() {
           <h1 className="hero-h1">
             Nobody should have to wonder<br /><em>where their ride is.</em>
           </h1>
-          <p className="hero-sub">Real-time tracking, easy booking, and family visibility — built for paratransit, senior living, and community transit across Alberta.</p>
+          <p className="hero-sub">Real-time tracking, easy booking, and family visibility — built for paratransit, senior living, on-site shuttles, and community transit across Alberta.</p>
           <div className="hero-actions">
             <a href="#waitlist" className="btn-hero-cta">Get early access →</a>
           </div>
@@ -153,12 +153,15 @@ function Challenge() {
 
 /* ── IMPACT / SOLUTION CARDS ──────────────────── */
 const IMPACT = [
-  { img: '/images/hero/care-worker-elderly.jpg',        title: 'Travel with dignity',         desc: 'Riders know exactly where their vehicle is, so every trip feels safe, predictable, and respected.' },
-  { img: '/images/hero/senior-couple.jpg',               title: 'Peace of mind for families',  desc: 'Loved ones are updated automatically at pickup and arrival — no anxious phone calls.' },
-  { img: '/images/operators/senior-living.jpg',          title: 'Facility-wide coordination',  desc: 'Care coordinators manage all riders, trips, and schedules from a single, simple dashboard.' },
-  { img: '/images/hero/caregiver-van.jpg',               title: 'Always know where they are',  desc: 'Live GPS tracking gives caregivers, family, and staff real-time vehicle visibility on any device.' },
-  { img: '/images/operators/transit-operators.jpg',      title: 'Freed from the phone',        desc: 'Automatic alerts at every stage eliminate the constant stream of "where is the bus?" calls.' },
-  { img: '/images/operators/disability-services.jpg',    title: 'Independence, enabled',       desc: 'Riders with disabilities travel confidently — and care teams trust they are safe, every time.' },
+  { img: '/images/hero/receptionist-smiling.jpg',          title: 'Facility-wide coordination',  desc: 'Care coordinators manage all riders, trips, and schedules from a single, simple dashboard.' },
+  { img: '/images/hero/free-man.jpg',      title: 'Freed from the phone',        desc: 'Automatic alerts at every stage eliminate the constant stream of "where is the bus?" calls.' },
+  { img: '/images/hero/smiling-at-phone.jpg',               title: 'Always know where they are',  desc: 'Live GPS tracking gives caregivers, family, and staff real-time vehicle visibility on any device.' },
+  { img: '/images/hero/senior-car-smiling.jpg',        title: 'Riders travel with dignity',         desc: 'Riders know exactly where their vehicle is, so every trip feels safe, predictable, and respected.' },
+  { img: '/images/hero/senior-family-smile.jpg',               title: 'Peace of mind for families',  desc: 'Loved ones are updated automatically at pickup and arrival — no anxious phone calls.' },
+  
+
+ 
+  { img: '/images/hero/wheelchair-woman.jpg',    title: 'Independence, enabled',       desc: 'Riders with disabilities travel confidently — and care teams trust they are safe, every time.' },
 ]
 function ImpactCards() {
   return (

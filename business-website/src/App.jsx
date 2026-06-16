@@ -34,7 +34,6 @@ function StackPanel({ children, style }) {
 /* ── HERO ─────────────────────────────────────── */
 const SLIDES = [
   { src: '/images/hero/senior-couple-smile.jpg',        alt: 'Senior couple smiling at laptop' },
-  { src: '/images/hero/care-worker-elderly.jpg',  alt: 'Care worker with elderly resident' },
   { src: '/images/hero/senior-couple.jpg',         alt: 'Senior couple smiling' },
   { src: '/images/hero/caregiver-van.jpg',         alt: 'Caregiver helping passenger from van' },
   

@@ -451,7 +451,7 @@ function FAQ() {
         <div className="faq-left">
           <p className="eyebrow">FAQ</p>
           <h2 className="sec-h2">Common questions</h2>
-          <p className="faq-sub">Can't find your answer? <a href="/#waitlist" className="faq-link">Get in touch</a> and we'll help.</p>
+          <p className="faq-sub">Can't find your answer? <a href="/contact" className="faq-link">Get in touch</a> and we'll help.</p>
         </div>
         <div className="faq-list">
           {FAQS.map((f, i) => (

@@ -428,7 +428,7 @@ function FinalCTA() {
           <div className="final-cta-form" id="partner">
             <WaitlistForm />
           </div>
-          <p className="final-cta-note">Not a transit operator? <a href="mailto:hello@indrotransit.ca" className="final-cta-link">Email us directly.</a></p>
+          <p className="final-cta-note">Not a transit operator? <a href="mailto:info@indrolabs.ca" className="final-cta-link">Email us directly.</a></p>
         </div>
       </div>
     </section>

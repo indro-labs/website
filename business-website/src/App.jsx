@@ -31,7 +31,7 @@ function StackPanel({ children, style }) {
   )
 }
 
-/* ── HERO ─────────────────────────────────────── */
+/* ── HERO! ─────────────────────────────────────── */
 const SLIDES = [
   { src: '/images/hero/senior-couple-smile.jpg',        alt: 'Senior couple smiling at laptop' },
   { src: '/images/hero/senior-couple.jpg',         alt: 'Senior couple smiling' },

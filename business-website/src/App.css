@@ -560,6 +560,18 @@
   position: relative; overflow: hidden;
   animation: cardIn 0.38s cubic-bezier(0.22,1,0.36,1);
 }
+@media (max-width: 639px) {
+  .popup-overlay {
+    align-items: flex-start;
+    padding: 16px 16px 24px;
+    overflow-y: auto;
+  }
+  .popup-card {
+    padding: 48px 24px 28px;
+    border-radius: 16px;
+    margin: auto 0;
+  }
+}
 .popup-overlay.closing .popup-card { animation: cardOut 0.28s ease forwards; }
 .popup-card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
@@ -707,6 +719,8 @@
 
 @media (max-width: 400px) {
   .traction-inner { grid-template-columns: 1fr; }
-  .traction-item { border-right: none !important; }
+  .traction-item,
+  .traction-item:nth-last-child(2) { border-right: none !important; border-bottom: 1px solid var(--border); }
+  .traction-item:last-child { border-bottom: none; }
   .where-tabs { grid-template-columns: 1fr; }
 }

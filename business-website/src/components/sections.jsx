@@ -7,21 +7,29 @@ import {
 import { CATEGORIES } from '../data/categories'
 /* ── CALENDLY ─────────────────────────────────── */
 // Replace this with your real Calendly scheduling link.
-export const CALENDLY_URL = 'https://calendly.com/indrolabs/demo'
+export const CALENDLY_URL = 'https://calendly.com/indrolabs-info/product-general-inquiry-call'
 export function CalendlyEmbed({ url = CALENDLY_URL }) {
+  const ref = useRef(null)
   useEffect(() => {
     const id = 'calendly-widget-script'
+    const init = () => {
+      if (window.Calendly && ref.current) {
+        ref.current.innerHTML = ''
+        window.Calendly.initInlineWidget({ url, parentElement: ref.current })
+      }
+    }
     if (!document.getElementById(id)) {
       const s = document.createElement('script')
       s.id = id
       s.src = 'https://assets.calendly.com/assets/external/widget.js'
       s.async = true
+      s.onload = init
       document.body.appendChild(s)
-    } else if (window.Calendly) {
-      window.Calendly.initInlineWidgets()
+    } else {
+      init()
     }
   }, [url])
-  return <div className="calendly-inline-widget" data-url={url} style={{ minWidth: '320px', height: '700px' }} />
+  return <div ref={ref} style={{ minWidth: '320px', height: '700px' }} />
 }
 
 /* ── HERO (split — text left, stacked images right) ── */

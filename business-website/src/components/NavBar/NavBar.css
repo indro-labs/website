@@ -1,6 +1,7 @@
 .navbar {
   position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
-  background: rgba(247,244,239,0.95);
+  background: rgba(255,255,255,0.92);
+  border-bottom: 1px solid #EFEFEC;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
@@ -15,23 +16,56 @@
 .navbar-logo { display: inline-flex; align-items: center; text-decoration: none; }
 .logo-img { height: 68px; width: auto; display: block; }
 
-.nav-links { display: flex; align-items: center; gap: 28px; }
-.nav-links a { font-size: 15px; color: #777; font-weight: 400; letter-spacing: 0.1px; transition: color 0.15s; }
-.nav-links a:hover { color: #1C1C1C; }
+.nav-links { display: flex; align-items: center; gap: 8px; }
+
+/* ── Dropdown ── */
+.nav-dd { position: relative; }
+.nav-dd-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 8px 14px; font-size: 15px; color: #555; font-weight: 500;
+  background: none; border: none; cursor: pointer; border-radius: 8px;
+  transition: color 0.15s, background 0.15s;
+}
+.nav-dd-btn:hover { color: #1C1C1C; background: rgba(0,0,0,0.04); }
+.nav-dd-chev { transition: transform 0.18s; opacity: 0.7; }
+.nav-dd:hover .nav-dd-chev { transform: rotate(180deg); }
+
+.nav-link {
+  display: inline-flex; align-items: center;
+  padding: 8px 14px; font-size: 15px; color: #555; font-weight: 500;
+  border-radius: 8px; text-decoration: none; transition: color 0.15s, background 0.15s;
+}
+.nav-link:hover { color: #1C1C1C; background: rgba(0,0,0,0.04); }
+
+.nav-dd-panel {
+  position: absolute; top: calc(100% + 10px); left: 0;
+  min-width: 320px; padding: 8px;
+  background: #fff; border: 1px solid var(--border); border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(12,12,12,0.12);
+  display: flex; flex-direction: column; gap: 2px;
+  animation: ddIn 0.16s ease;
+}
+/* invisible bridge so the panel stays open while the cursor crosses the gap */
+.nav-dd-panel::before {
+  content: ''; position: absolute; top: -12px; left: 0; right: 0; height: 12px;
+}
+@keyframes ddIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+.nav-dd-item {
+  display: flex; flex-direction: column; gap: 2px;
+  padding: 11px 14px; border-radius: 10px; text-decoration: none;
+  transition: background 0.14s;
+}
+.nav-dd-item:hover { background: var(--orange-lt); }
+.nav-dd-title { font-size: 15px; font-weight: 700; color: var(--ink); }
+.nav-dd-desc { font-size: 13px; color: var(--muted); line-height: 1.4; }
 
 .nav-right { display: flex; align-items: center; gap: 10px; }
-.nav-wait {
-  padding: 9px 20px; border: 1px solid #DDD8D0; border-radius: 6px;
-  font-size: 14px; font-weight: 500; color: #444; transition: border-color 0.15s, color 0.15s;
-  text-decoration: none;
-}
-.nav-wait:hover { border-color: #1C1C1C; color: #1C1C1C; }
 .nav-partner {
-  padding: 9px 20px; background: #F6901A; border-radius: 6px;
-  font-size: 14px; font-weight: 600; color: white; transition: background 0.18s;
+  padding: 10px 22px; background: var(--orange); border-radius: 999px;
+  font-size: 14px; font-weight: 700; color: white; transition: background 0.18s, box-shadow 0.18s;
   text-decoration: none;
 }
-.nav-partner:hover { background: #df7e10; }
+.nav-partner:hover { background: #c97009; box-shadow: 0 4px 16px rgba(232,133,15,0.3); }
 
 .nav-hamburger { display: none; font-size: 20px; color: #1C1C1C; padding: 4px; }
 .nav-mobile { display: none; }
@@ -42,11 +76,19 @@
   .nav-hamburger { display: block; }
   .nav-mobile {
     display: flex; flex-direction: column;
-    background: white; border-top: 1px solid #ECEAE6; padding: 4px 0 12px;
+    background: white; border-top: 1px solid #ECEAE6; padding: 8px 0 16px;
+  }
+  .nav-mobile-label {
+    padding: 14px 24px 6px; margin: 0; font-size: 11px; font-weight: 700;
+    letter-spacing: 1.4px; text-transform: uppercase; color: var(--orange);
   }
   .nav-mobile a {
-    padding: 15px 24px; font-size: 16px; color: #1C1C1C;
-    border-bottom: 1px solid #ECEAE6;
+    padding: 12px 24px; font-size: 16px; color: #1C1C1C; text-decoration: none;
   }
-  .nav-mobile-cta { color: #F6901A !important; font-weight: 600 !important; border-bottom: none !important; }
+  .nav-mobile a:active { background: var(--orange-lt); }
+  .nav-mobile-cta {
+    margin: 14px 24px 0; padding: 14px 24px !important;
+    background: var(--orange); color: #fff !important; font-weight: 700 !important;
+    border-radius: 999px; text-align: center;
+  }
 }

@@ -7,8 +7,9 @@
   --ink:       #111111;
   --muted:     #4A4A4A;
   --border:    #E0DDD8;
-  --bg:        #F7F4EF;
-  --bg-soft:   #F7F4EF;
+  --bg:        #FFFFFF;
+  --bg-soft:   #FFFFFF;
+  --bg-alt:    #F6F6F4;
 
   --sans:  'Nunito Sans', system-ui, sans-serif;
   --serif: 'Nunito Sans', system-ui, sans-serif;

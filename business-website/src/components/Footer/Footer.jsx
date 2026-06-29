@@ -24,23 +24,25 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Navigation */}
-        <div className="footer-col">
-          <p className="footer-col-label">Company</p>
-          <nav className="footer-links">
-            <Link to="/contact">Contact</Link>
-            <a href="/#services">Services</a>
-            <a href="/#operators">Who we serve</a>
-          </nav>
-        </div>
-
         {/* Services */}
         <div className="footer-col">
           <p className="footer-col-label">Services</p>
           <nav className="footer-links">
-            <a href="/#services">Paratransit</a>
-            <a href="/#services">On-demand transit</a>
-            <a href="/#services">Microtransit</a>
+            <Link to="/services/youth-education">Youth & Education</Link>
+            <Link to="/services/senior-care">Senior & Care</Link>
+            <Link to="/services/private-shuttles">Private Shuttles</Link>
+            <Link to="/services/paratransit">Paratransit</Link>
+            <Link to="/services">All services</Link>
+          </nav>
+        </div>
+
+        {/* Company */}
+        <div className="footer-col">
+          <p className="footer-col-label">Company</p>
+          <nav className="footer-links">
+            <Link to="/about">About us</Link>
+            <Link to="/newsroom">Newsroom</Link>
+            <Link to="/contact">Contact</Link>
           </nav>
         </div>
 
@@ -54,9 +56,8 @@ export default function Footer() {
             <div className="footer-contact-item">
               <a href="mailto:info@indrolabs.ca">info@indrolabs.ca</a>
             </div>
-  
           </div>
-          <a href="/#waitlist" className="footer-cta">Join the waitlist →</a>
+          <Link to="/contact" className="footer-cta">Book a demo →</Link>
         </div>
 
       </div>

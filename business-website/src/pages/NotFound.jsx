@@ -1,10 +1,8 @@
 import { Link } from 'react-router-dom'
-import NavBar from '../components/NavBar/NavBar'
 
 export default function NotFound() {
   return (
     <>
-      <NavBar />
       <div style={{
         minHeight: '80vh',
         display: 'flex',

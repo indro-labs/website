@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import NavBar from '../components/NavBar/NavBar'
-import Footer from '../components/Footer/Footer'
-import { WaitlistForm, PartnerForm } from '../components/Forms'
+import { GetInTouch } from '../components/sections'
 import './About.css'
 
 /* ── Animated stat ── */
@@ -27,8 +25,6 @@ export default function About() {
 
   return (
     <>
-      <NavBar />
-
       {/* ── HERO ── */}
       <section className="ap-hero">
         <div className="c">
@@ -120,12 +116,13 @@ export default function About() {
         </div>
       </section>
 
-      {/* ── PHOTO BREAK ── */}
+      {/* ── TEAM PHOTO + VISION ── */}
       <div className="ap-photo-break">
-        <img src="/images/hero/caregiver-van.jpg" alt="Caregiver helping rider" className="ap-break-img" />
+        <img src="/brand/groupphoto.jpeg" alt="The Indro Transit team" className="ap-break-img" />
         <div className="ap-break-overlay" />
         <div className="ap-break-text">
-          <p className="ap-break-quote">"Starting with Calgary in 2026 — and growing across Alberta, one community at a time."</p>
+          <p className="ap-break-quote">"We're building a world where no one is left waiting at the curb, wondering if their ride is coming."</p>
+          <p className="ap-break-by">— The Indro Transit team · Calgary</p>
         </div>
       </div>
 
@@ -154,27 +151,22 @@ export default function About() {
       </section>
 
 
-            {/* CTA */}
-      <section className="section bg-tint">
-        <div className="c cta-grid">
-          <div id="waitlist" className="cta-col">
-            <p className="label">For riders &amp; families</p>
-            <h2 className="cta-h">Join the waitlist.</h2>
-            <p className="cta-sub">Be among the first when we launch in your community.</p>
-            <WaitlistForm />
+      {/* ── HIRING ── */}
+      <section className="ap-section ap-hiring">
+        <div className="c ap-hiring-inner">
+          <div className="ap-hiring-text">
+            <p className="ap-label">Join the team</p>
+            <h2 className="ap-h2">We're a small team with a big mission — and we're hiring.</h2>
+            <p className="ap-body">If you care about building technology that gives people dignity, independence, and peace of mind, we'd love to meet you. We hire for heart as much as for skill — and there's a lot to build.</p>
           </div>
-          <div className="cta-divider" />
-          <div id="partner" className="cta-col">
-            <p className="label">For communities &amp; operators</p>
-            <h2 className="cta-h">Partner with us.</h2>
-            <p className="cta-sub">Operating transit in Alberta? Let's talk.</p>
-            <PartnerForm />
+          <div className="ap-hiring-cta">
+            <Link to="/contact" className="btn-primary">Get in touch →</Link>
+            <a href="mailto:info@indrolabs.ca" className="ap-hiring-mail">info@indrolabs.ca</a>
           </div>
         </div>
       </section>
-      
 
-      <Footer />
+      <GetInTouch />
     </>
   )
 }

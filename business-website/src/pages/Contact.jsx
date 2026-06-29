@@ -1,67 +1,18 @@
-import { useState } from 'react'
-import NavBar from '../components/NavBar/NavBar'
-import Footer from '../components/Footer/Footer'
+import { CalendlyEmbed } from '../components/sections'
 import './Contact.css'
 
 export default function Contact() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [subject, setSubject] = useState('')
-  const [message, setMessage] = useState('')
-  const [done, setDone] = useState(false)
-  const [err, setErr] = useState(false)
-  const [loading, setLoading] = useState(false)
-
-  const submit = async (e) => {
-    e.preventDefault()
-    setErr(false)
-    setLoading(true)
-
-    const endpoint = import.meta.env.VITE_FORMSPREE_GENERAL_URL
-    if (!endpoint) {
-      console.error('Missing Formspree general endpoint')
-      setErr(true)
-      setLoading(false)
-      return
-    }
-
-    try {
-      const r = await fetch(endpoint, {
-        method: 'POST',
-        body: JSON.stringify({ name, email, subject, message }),
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      })
-
-      if (r.ok) {
-        setDone(true)
-        setName('')
-        setEmail('')
-        setSubject('')
-        setMessage('')
-      } else {
-        setErr(true)
-      }
-    } catch {
-      setErr(true)
-    } finally {
-      setLoading(false)
-    }
-  }
   return (
     <>
-      <NavBar />
       <div className="contact-page-wrapper">
         <div className="contact-page-inner">
           <div className="contact-grid">
             {/* LEFT: Text & Meta */}
             <div className="contact-info">
-              <p className="contact-overline">CONTACT US</p>
-              <h1>Let's talk.</h1>
+              <p className="contact-overline">BOOK A DEMO</p>
+              <h1>Book a demo with us.</h1>
               <p className="contact-sub">
-                Whether you’re a senior living facility, paratransit provider, caregiving organization, or community transit operator — we’d love to hear from you.
+                See how Indro coordinates accessible and on-demand transit in real time. Pick a time below and we'll walk you through it — no pressure, no sales script.
               </p>
 
               <div className="contact-meta">
@@ -81,41 +32,13 @@ export default function Contact() {
               </div>
             </div>
 
-          <div className="contact-card">
-            <h2>Send us a message</h2>
-              <p className="card-sub">We typically respond within one business day.</p>
-              {done ? (
-                <div className="form-ok">
-            
-                  <p>Thanks for reaching out. We'll be in touch shortly.</p>
-                </div>
-              ) : (
-                <form onSubmit={submit} className="contact-form">
-                  <label htmlFor="name">Name *</label>
-                  <input type="text" value={name} onChange={e => setName(e.target.value)} required />
-                  
-                  <label htmlFor="email">Email *</label>
-                  <input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
-                  
-                  <label htmlFor="subject">Subject</label>
-                  <input type="text" value={subject} onChange={e => setSubject(e.target.value)} />
-                  
-                  <label htmlFor="message">Message *</label>
-                  <textarea id="message" value={message} onChange={e => setMessage(e.target.value)} rows="6" required />
-                  
-                  <button type="submit" className="btn-primary" disabled={loading}>
-                    {loading ? 'Sending...' : 'Send message'}
-                  </button>
-                  
-                  {err && <p className="ferr">Something went wrong — please try again.</p>}
-                </form>
-              )}
+            {/* RIGHT: Calendly booking */}
+            <div className="contact-card contact-card--cal">
+              <CalendlyEmbed />
             </div>
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   )
 }

@@ -16,7 +16,7 @@
 .ap-hero {
   position: relative; min-height: 70vh;
   display: flex; align-items: flex-end;
-  padding-top: 64px; overflow: hidden;
+  padding-top: 72px; overflow: hidden;
 }
 .ap-hero-img-wrap {
   position: absolute; inset: 0;
@@ -219,7 +219,7 @@
 @media (max-width: 640px) {
 
   /* Hero */
-  .ap-hero { min-height: 55vh; }
+  .ap-hero { min-height: 75vh; padding-top: 100px; }
   .ap-hero .ap-c { padding-bottom: 48px; }
   .ap-hero-sub { font-size: 17px; }
 

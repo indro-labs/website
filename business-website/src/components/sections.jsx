@@ -34,9 +34,9 @@ export function CalendlyEmbed({ url = CALENDLY_URL }) {
 
 /* ── HERO (split — text left, stacked images right) ── */
 const SLIDES = [
-  { src: '/images/hero/senior-couple-smile.jpg', alt: 'Senior couple smiling' },
-  { src: '/images/hero/caregiver-van.jpg',       alt: 'Caregiver helping a passenger from a van' },
-  { src: '/images/hero/wheelchair-woman.jpg',    alt: 'Rider boarding an accessible vehicle' },
+  { src: '/images/hero/senior-transportation2.jpg', alt: 'Senior couple smiling' },
+  { src: '/images/hero/kid-worker-wave.jpg',       alt: 'Caregiver helping a passenger from a van' },
+  { src: '/images/hero/kids-smiling3.jpg',    alt: 'Kids boarding a school bus' },
 ]
 export function Hero() {
   const [active, setActive] = useState(0)

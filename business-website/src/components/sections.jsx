@@ -163,17 +163,23 @@ export function CorePillars({ cat }) {
 export function ProductHighlights({ cat }) {
   return (
     <section className="highlights-section">
-      <div className="c">
-        <div className="sec-hd centered">
+      <div className="c highlights-split">
+        <div className="highlights-left">
           <p className="eyebrow">Key product highlights</p>
-          <h2 className="sec-h2">Built for how you actually operate.</h2>
+          <h2 className="highlights-left-h">Built for how you actually operate.</h2>
+          <p className="highlights-left-sub">Every feature is purpose-built for the real-world complexity of specialized transit — not adapted from a generic logistics tool.</p>
+          <Link to="/contact" className="btn-primary highlights-left-cta">Get in touch</Link>
         </div>
-        <div className="highlights-grid">
+        <div className="highlights-right">
           {cat.highlights.map(h => (
-            <div key={h.title} className="highlight-card">
-              <div className="highlight-dot" />
-              <h3 className="highlight-title">{h.title}</h3>
-              <p className="highlight-body">{h.body}</p>
+            <div key={h.title} className="highlight-row">
+              <div className="highlight-icon-wrap">
+                <h.Icon size={26} strokeWidth={1.8} />
+              </div>
+              <div>
+                <h3 className="highlight-title">{h.title}</h3>
+                <p className="highlight-body">{h.body}</p>
+              </div>
             </div>
           ))}
         </div>

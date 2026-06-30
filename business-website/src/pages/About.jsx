@@ -47,18 +47,21 @@ export default function About() {
         <div className="c ap-origin-grid">
           <div className="ap-origin-text">
             <p className="ap-label">Where it began</p>
-            <h2 className="ap-h2">Started at UCalgary. Built with the people who actually use it.</h2>
+            <h2 className="ap-h2">Built in Calgary. Shaped by the people who use it.</h2>
             <p className="ap-body">
-              Our team came together at the University of Calgary's AI Bootcamp in 2025 with one goal: solve a real problem for real people. We chose accessible transit because someone we cared about needed it.
+              In 2025, Indro Transit began with a simple question: why is accessible transportation still harder to navigate than it needs to be?
             </p>
             <p className="ap-body">
-              We spent months in the field before writing a line of code — sitting with riders, talking to care workers, and speaking with the staff who coordinate transportation every day. Every single conversation came back to the same frustration.
+              What started as a project exploring real-world transportation challenges quickly became a deeper look into how riders, care teams, and transportation providers experience the system every day.
+            </p>
+            <p className="ap-body">
+              Before building technology, we spent time listening — speaking with riders, care workers, and the teams responsible for coordinating transportation. Across every conversation, one challenge stood out: people needed better visibility, communication, and confidence throughout the ride experience.
             </p>
             <blockquote className="ap-quote">
               "We just want to know where the ride is."
             </blockquote>
             <p className="ap-body">
-              That was the gap. That became Indro.
+              That insight became the foundation for Indro Transit.
             </p>
           </div>
           <div className="ap-origin-img-wrap">

@@ -57,7 +57,7 @@ export default function Footer() {
               <a href="mailto:info@indrolabs.ca">info@indrolabs.ca</a>
             </div>
           </div>
-          <Link to="/contact" className="footer-cta">Book a demo →</Link>
+          <Link to="/contact" className="footer-cta">Book a demo</Link>
         </div>
 
       </div>

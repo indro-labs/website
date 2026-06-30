@@ -11,7 +11,7 @@ export const CATEGORIES = [
     tags: ['After-School Programs', 'Youth Academies', 'Student Transportation'],
     headline: 'Total visibility for busy parents and youth providers.',
     body: 'Streamline daily pick-ups and drop-offs for your childcare, sports, or specialized youth programs. Our platform eliminates tracking chaos by giving parents live vehicle locations and automated text alerts when the ride is near, while giving your drivers simple digital check-in manifests.',
-    cta: 'Learn More',
+    cta: 'Learn more',
     pillars: [
       { title: 'Absolute safeguards & visibility', body: 'No more panicked phone calls asking where the van is. Parents get an automated SMS with a secure tracking link when the vehicle is five minutes away, and instant confirmation when their child is safely onboard.' },
       { title: 'Frictionless attendance tracking', body: 'Ditch the clipboards and paper lists. Drivers use a dead-simple, large-button tablet interface to check students in and out, instantly updating the central dashboard in real time.' },
@@ -36,7 +36,7 @@ export const CATEGORIES = [
     tags: ['Senior Living Facilities', 'Specialized Care Vans', 'Resident Programs'],
     headline: 'Safe, dignified, and reliable specialized transit.',
     body: 'Built for private senior living developments and care facilities that require a premium touch. Easily coordinate resident outings, medical appointments, or campus shuttles with an intuitive interface that prioritizes passenger comfort, custom safety notes, and precise arrival timing.',
-    cta: 'Learn More',
+    cta: 'Learn more',
     pillars: [
       { title: 'Dignified & accommodating booking', body: 'Residents can book autonomously through a simplified portal, or front-desk staff can manage rides instantly from a central concierge dashboard.' },
       { title: 'Caregiver & family peace of mind', body: 'Automatically keep designated family members or medical staff in the loop with arrival and departure notifications, ensuring seamless handoffs at appointments.' },
@@ -61,7 +61,7 @@ export const CATEGORIES = [
     tags: ['Corporate Campuses', 'Residential Communities', 'Private Van Shuttles'],
     headline: 'Professional transportation that protects your brand identity.',
     body: 'Designed for organizations moving passengers between specific buildings, business parks, or transit hubs. Replace rigid, inefficient schedules with a modern, white-labeled on-demand system that adapts seamlessly to your daily operational hours.',
-    cta: 'Learn More',
+    cta: 'Learn more',
     pillars: [
       { title: 'Your brand, front and center', body: 'Unlike generic third-party platforms, our system is entirely white-labeled. The passenger interface, live maps, and text notifications feature your logo and colors.' },
       { title: 'On-demand fleet optimization', body: 'Switch from rigid, empty hourly loops to a high-efficiency, rider-driven model that automatically groups passengers traveling along similar paths.' },
@@ -86,7 +86,7 @@ export const CATEGORIES = [
     tags: ['Municipal Transit Agencies', 'Public Accessibility', 'Regulated NEMT'],
     headline: 'Smart, demand-responsive routing built for strict regulations.',
     body: 'Power your regional or municipal specialized transit networks with a robust, enterprise-grade dispatch engine. Automatically pool rider requests, optimize driver routes in real time, and easily handle complex scheduling and compliance rules without sacrificing passenger care.',
-    cta: 'Learn More',
+    cta: 'Learn more',
     pillars: [
       { title: 'Automated regulatory compliance', body: 'Simplify the complexities of public and accessible transit with advanced scheduling logic, dynamic capacity constraints like wheelchair-to-seat ratios, and automated reporting.' },
       { title: 'Equitable accessibility', body: 'Independent riders book via web portals, while dispatchers log call-in requests from a single interface — all integrated into the live driver manifests.' },
@@ -111,7 +111,7 @@ export const CATEGORIES = [
     tags: ['Unique Workflows', 'Modular Dispatch', 'Bespoke Fleets'],
     headline: 'If you have a unique fleet, we have the flexible software to run it.',
     body: "Don't see your specific industry or vehicle type listed? Our platform is built from the ground up to be completely modular. We can configure custom dispatch logic, unique driver interfaces, and tailored passenger booking systems to fit exactly how your business moves.",
-    cta: 'Talk to an Expert',
+    cta: 'Talk to an expert',
     pillars: [
       { title: 'Modular architecture', body: 'We don’t force your unique operation into a rigid template. Every component — from dispatcher rules to passenger notifications — can be toggled and tweaked to match your exact workflow.' },
       { title: 'Bespoke API & hardware integration', body: 'Connect your transit data to the software you already use — internal HR systems, specialized medical booking platforms, or specific vehicle telematics.' },

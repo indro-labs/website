@@ -70,30 +70,32 @@
 
 /* ── Stats band ── */
 .ap-stats-band {
-  background: white;
+  background: var(--bg-alt);
   border-top: 1px solid #ECEAE6;
   border-bottom: 1px solid #ECEAE6;
-  padding: 64px 0;
+  padding: 84px 0;
 }
 .ap-stats-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+  display: grid; grid-template-columns: repeat(4, 1fr);
 }
 @media (max-width: 700px) { .ap-stats-grid { grid-template-columns: 1fr 1fr; } }
 
 .astat-card {
-  background: white; border-radius: 12px; padding: 32px 28px;
-  opacity: 0; transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  display: flex; flex-direction: column; gap: 10px;
+  align-items: center; text-align: center; padding: 8px 24px;
+  border-right: 1px solid var(--border);
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(.2,.7,.2,1);
 }
 .astat-card:nth-child(2) { transition-delay: 0.08s; }
 .astat-card:nth-child(3) { transition-delay: 0.16s; }
-.astat-card:nth-child(4) { transition-delay: 0.24s; }
+.astat-card:nth-child(4) { transition-delay: 0.24s; border-right: none; }
 .astat-card.in { opacity: 1; transform: none; }
 .astat-n {
-  font-family: var(--serif); font-size: 48px; line-height: 1;
-  color: var(--orange); margin-bottom: 8px; font-weight: 400;
+  font-family: var(--sans); font-size: 48px; font-weight: 800;
+  color: var(--orange); line-height: 1; letter-spacing: -0.03em; margin-bottom: 0;
 }
-.astat-l { font-size: 16px; color: var(--muted); line-height: 1.4; }
+.astat-l { font-family: var(--sans); font-size: 15px; font-weight: 600; color: var(--muted); line-height: 1.5; max-width: 150px; }
 
 /* ── Mission ── */
 .ap-mission { background: white; }
@@ -118,10 +120,10 @@
 .ap-principle { padding: 4px 0; }
 .ap-principle-icon { margin-bottom: 22px; }
 .ap-principle-title {
-  font-family: var(--serif); font-size: 26px; font-weight: 400;
-  color: var(--ink); line-height: 1.15; margin-bottom: 14px;
+  font-family: var(--sans); font-size: 28px; font-weight: 800;
+  letter-spacing: -0.02em; color: var(--ink); line-height: 1.15; margin-bottom: 14px;
 }
-.ap-principle-body { font-size: 19px; line-height: 1.8; color: var(--ink); margin: 0; }
+.ap-principle-body { font-family: var(--sans); font-size: 17px; line-height: 1.8; color: var(--muted); margin: 0; }
 
 /* ── Photo break ── */
 .ap-photo-break {

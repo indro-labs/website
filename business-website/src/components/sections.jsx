@@ -54,8 +54,8 @@ export function Hero() {
           </h1>
           <p className="hero2-sub">Run your fleet on the modern on-demand dispatch platform built to eliminate tracking chaos, save valuable time, and bring complete peace of mind to every passenger.</p>
           <div className="hero2-actions">
-            <Link to="/contact" className="btn-primary">Contact us →</Link>
-            <Link to="/services" className="btn-text btn-text--light">Explore services →</Link>
+            <Link to="/contact" className="btn-primary">Contact us</Link>
+            <Link to="/services" className="btn-text btn-text--light">Explore services</Link>
           </div>
         </div>
         <div className="hero2-stack">
@@ -109,7 +109,7 @@ export function OfferTabs() {
             </div>
             <h3 className="offer-h">{cur.headline}</h3>
             <p className="offer-body">{cur.body}</p>
-            <Link to={`/services/${cur.slug}`} className="btn-primary offer-cta">{cur.cta} →</Link>
+            <Link to={`/services/${cur.slug}`} className="btn-primary offer-cta">{cur.cta}</Link>
           </div>
         </div>
       </div>
@@ -130,7 +130,7 @@ export function CategoryHero({ cat }) {
             <h1 className="cat-hero-h">{cat.headline}</h1>
             <p className="cat-hero-sub">{cat.body}</p>
             <div className="page-hero-actions">
-              <Link to="/contact" className="btn-primary">{cat.cta} →</Link>
+              <Link to="/contact" className="btn-primary">{cat.cta}</Link>
             </div>
           </div>
           <div className="cat-hero-media"><img src={cat.img} alt={cat.label} /></div>
@@ -216,7 +216,7 @@ export function GetInTouch() {
         <p className="getintouch-eyebrow">Get in touch</p>
         <h2 className="getintouch-h">Ready to bring clarity to every ride?</h2>
         <p className="getintouch-sub">See Indro in action. Reach out and we'll show you exactly how it fits your fleet — no pressure, no sales script.</p>
-        <Link to="/contact" className="getintouch-btn">Contact us →</Link>
+        <Link to="/contact" className="getintouch-btn">Contact us</Link>
       </div>
     </section>
   )
@@ -243,8 +243,8 @@ export function PageHero({ eyebrow, title, sub, primary, secondary }) {
 
 /* ── TRACTION BAR (scroll-revealed) ───────────── */
 const STATS = [
-  { n: '50+',  l: 'Riders, families & caregivers interviewed' },
-  { n: '8',    l: 'Care organizations waitlisted for the pilot' },
+  { n: '55+',  l: 'Riders, families & caregivers interviewed' },
+  { n: '12',    l: 'Partner conversations underway' },
   { n: '4',    l: 'Organizations confirmed for 2026' },
   { n: '2026', l: 'Calgary pilot launching this year' },
 ]
@@ -296,7 +296,7 @@ export function WhyIndro() {
         </div>
         <div className="why-cta">
           <span className="why-cta-line" />
-          <Link to="/services" className="btn-primary">Explore our services →</Link>
+          <Link to="/services" className="btn-primary">Explore our services</Link>
           <span className="why-cta-line" />
         </div>
       </div>
@@ -341,7 +341,7 @@ export function ServicesOverview({ heading = true }) {
                 <ul className="svc-ov-bullets">
                   {c.bullets.map(b => <li key={b}>{b}</li>)}
                 </ul>
-                <span className="svc-ov-more">Learn more <ArrowRight size={16} /></span>
+                <span className="svc-ov-more">Learn more</span>
               </div>
             </Link>
           ))}

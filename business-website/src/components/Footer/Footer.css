@@ -11,9 +11,9 @@
 .footer-logo { height: 52px; width: auto; display: block; filter: brightness(0) invert(1); margin-bottom: 20px; }
 
 .footer-tagline {
-  font-size: 16px; line-height: 1.8;
+  font-size: 18px; line-height: 1.8;
   color: rgba(255,255,255,0.5); margin: 0 0 28px;
-  max-width: 280px;
+  max-width: 300px;
 }
 
 .footer-social { display: flex; gap: 10px; }
@@ -26,7 +26,7 @@
 .footer-social-link:hover { background: #f6901a; color: white; }
 
 .footer-col-label {
-  font-size: 12px; font-weight: 700; letter-spacing: 2px;
+  font-size: 13px; font-weight: 700; letter-spacing: 2px;
   text-transform: uppercase; color: rgba(255,255,255,0.35);
   margin: 0 0 20px; display: block;
 }
@@ -35,7 +35,7 @@
   display: flex; flex-direction: column; gap: 12px;
 }
 .footer-links a {
-  font-size: 16px; color: rgba(255,255,255,0.6);
+  font-size: 17px; color: rgba(255,255,255,0.6);
   text-decoration: none; transition: color 0.15s;
 }
 .footer-links a:hover { color: white; }
@@ -45,7 +45,7 @@
 }
 .footer-contact-item {
   display: flex; align-items: flex-start; gap: 10px;
-  font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.5;
+  font-size: 17px; color: rgba(255,255,255,0.6); line-height: 1.5;
 }
 .footer-contact-icon { flex-shrink: 0; font-size: 16px; }
 .footer-contact-item a {
@@ -55,7 +55,7 @@
 
 .footer-cta {
   display: inline-flex; align-items: center;
-  font-size: 16px; font-weight: 600; color: #f6901a;
+  font-size: 17px; font-weight: 600; color: #f6901a;
   text-decoration: none; transition: opacity 0.15s;
 }
 .footer-cta:hover { opacity: 0.8; }
@@ -67,10 +67,10 @@
   display: flex; align-items: center; justify-content: center; gap: 40px;
   padding-top: 32px; padding-bottom: 36px; flex-wrap: wrap; gap: 12px;
 }
-.footer-copy { font-size: 14px; color: rgba(255,255,255,0.3); margin: 10px; }
+.footer-copy { font-size: 15px; color: rgba(255,255,255,0.3); margin: 10px; }
 .footer-bottom-links { display: flex; gap: 20px; }
 .footer-bottom-links a {
-  font-size: 14px; color: rgba(255,255,255,0.35);
+  font-size: 15px; color: rgba(255,255,255,0.35);
   text-decoration: none; transition: color 0.15s;
 }
 .footer-bottom-links a:hover { color: rgba(255,255,255,0.7); }

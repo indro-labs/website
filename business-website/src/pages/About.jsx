@@ -156,11 +156,11 @@ export default function About() {
         <div className="c ap-hiring-inner">
           <div className="ap-hiring-text">
             <p className="ap-label">Join the team</p>
-            <h2 className="ap-h2">We're a small team with a big mission — and we're hiring.</h2>
+            <h2 className="ap-h2">We're a small team with a big mission, and we're hiring.</h2>
             <p className="ap-body">If you care about building technology that gives people dignity, independence, and peace of mind, we'd love to meet you. We hire for heart as much as for skill — and there's a lot to build.</p>
           </div>
           <div className="ap-hiring-cta">
-            <Link to="/contact" className="btn-primary">Get in touch →</Link>
+            <Link to="/contact" className="btn-primary">Get in touch</Link>
             <a href="mailto:info@indrolabs.ca" className="ap-hiring-mail">info@indrolabs.ca</a>
           </div>
         </div>

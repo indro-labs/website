@@ -8,6 +8,30 @@ import { CATEGORIES } from '../data/categories'
 /* ── CALENDLY ─────────────────────────────────── */
 // Replace this with your real Calendly scheduling link.
 export const CALENDLY_URL = 'https://calendly.com/indrolabs-info/product-general-inquiry-call'
+const PARTNERS = [
+  { name: 'Platform Calgary', logo: '/images/partners/platform-calgary.svg', url: 'https://www.platformcalgary.com', dark: true },
+  { name: 'Google Cloud for Startups', logo: '/images/partners/Google-Cloud-Logo.png', url: 'https://cloud.google.com/startup', tall: true },
+  { name: 'Hunter Hub', logo: '/images/partners/hunter-hub.svg', url: 'https://www.ucalgary.ca/hunter-hub', invert: false },
+]
+
+export function BackedBy() {
+  // Duplicate 6× so the marquee never shows a gap with only 3 items
+  const items = [...PARTNERS, ...PARTNERS, ...PARTNERS, ...PARTNERS, ...PARTNERS, ...PARTNERS]
+  return (
+    <div className="backed-wrap">
+      <div className="backed-track-outer">
+        <div className="backed-track">
+          {items.map((p, i) => (
+            <a key={i} href={p.url} target="_blank" rel="noopener noreferrer" className={`backed-item${p.dark ? ' backed-item--dark' : ''}`} aria-label={p.name}>
+              <img src={p.logo} alt={p.name} className={`backed-logo${p.tall ? ' backed-logo--tall' : ''}${p.noFilter ? ' backed-logo--color' : ''}`} />
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export function CalendlyEmbed({ url = CALENDLY_URL }) {
   const ref = useRef(null)
   useEffect(() => {

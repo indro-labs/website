@@ -169,6 +169,36 @@
 /* ─────────────────────────────────────────────
    TRACTION BAR
 ───────────────────────────────────────────── */
+/* ── Backed By Ticker ── */
+.backed-wrap {
+  background: var(--bg); padding: 56px 0;
+}
+.backed-track-outer {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+.backed-track {
+  display: flex; align-items: center; gap: 20px;
+  animation: backed-scroll 36s linear infinite;
+  width: max-content;
+}
+.backed-track:hover { animation-play-state: paused; }
+@keyframes backed-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.backed-item {
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+  padding: 0 56px;
+  opacity: 0.55; transition: opacity 0.2s;
+}
+.backed-item--dark .backed-logo { filter: brightness(0); }
+.backed-item:hover { opacity: 1; }
+.backed-logo { height: 44px; width: auto; filter: brightness(0); }
+.backed-logo--tall { height: 80px; }
+.backed-logo--color { filter: none; }
+
 .traction-bar { padding: 84px 0; background: var(--bg-alt); margin-top: 72px; }
 .traction-inner {
   display: grid; grid-template-columns: repeat(4, 1fr);

@@ -6,6 +6,7 @@ export const CATEGORIES = [
   {
     slug: 'youth-education',
     label: 'Youth & Education',
+    enabled: false,
     Icon: GraduationCap,
     img: '/images/services/microtransit.jpg',
     tags: ['After-School Programs', 'Youth Academies', 'Student Transportation'],
@@ -31,6 +32,7 @@ export const CATEGORIES = [
   {
     slug: 'senior-care',
     label: 'Senior & Care',
+    enabled: false,
     Icon: HeartHandshake,
     img: '/images/hero/senior-car-smiling.jpg',
     tags: ['Senior Living Facilities', 'Specialized Care Vans', 'Resident Programs'],
@@ -56,6 +58,7 @@ export const CATEGORIES = [
   {
     slug: 'private-shuttles',
     label: 'Private Shuttles',
+    enabled: false,
     Icon: Building2,
     img: '/images/operators/transit-operators.jpg',
     tags: ['Corporate Campuses', 'Residential Communities', 'Private Van Shuttles'],
@@ -81,6 +84,7 @@ export const CATEGORIES = [
   {
     slug: 'paratransit',
     label: 'Paratransit',
+    enabled: false,
     Icon: Accessibility,
     img: '/images/services/paratransit.jpg',
     tags: ['Municipal Transit Agencies', 'Public Accessibility', 'Regulated NEMT'],
@@ -106,6 +110,7 @@ export const CATEGORIES = [
   {
     slug: 'custom',
     label: 'Custom',
+    enabled: false,
     Icon: Puzzle,
     img: '/images/services/ondemand.png',
     tags: ['Unique Workflows', 'Modular Dispatch', 'Bespoke Fleets'],
@@ -128,6 +133,139 @@ export const CATEGORIES = [
       { tag: 'Bespoke fleets', title: 'Bespoke & mixed fleets', desc: "Custom driver interfaces and booking flows for fleets that don't fit a template.", img: '/images/hero/smiling-at-phone.jpg' },
     ],
   },
+  {
+  slug: 'families',
+  label: 'Families',
+  enabled: true,
+  Icon: Users,
+  img: '/images/hero/senior-family-smile.jpg',
+  tags: ['Family Members', 'Caregivers', 'Resident Support'],
+  headline: 'Peace of mind for every ride your loved one takes.',
+  whoForHeading: 'Made for the people who care.',
+  body: 'Stay connected to your loved one’s transportation journey with real-time ride tracking, arrival updates, and notifications. Know when their ride is arriving without needing to call the facility or transit provider.',
+  cta: 'Learn more',
+
+  pillars: [
+    {
+      title: 'Real-time ride visibility',
+      body: 'See where the vehicle is and when your loved one will arrive with simple, live updates from pickup to drop-off.'
+    },
+    {
+      title: 'Automatic arrival updates',
+      body: 'Receive notifications when a ride is approaching, arriving, or completed—keeping families informed without extra coordination.'
+    },
+    {
+      title: 'Confidence from anywhere',
+      body: 'Whether you are at work or across town, stay connected to every important journey.'
+    },
+  ],
+
+  highlights: [
+    {
+      Icon: MapPin,
+      title: 'Live tracking',
+      body: 'View vehicle location and estimated arrival times in real time.'
+    },
+    {
+      Icon: Clock,
+      title: 'Arrival notifications',
+      body: 'Know when rides are approaching without waiting or calling.'
+    },
+    {
+      Icon: HeartHandshake,
+      title: 'Peace of mind',
+      body: 'Stay informed and confident throughout your loved one’s journey.'
+    },
+  ],
+
+  whoFor: [
+    {
+      tag: 'Family members',
+      title: 'Families supporting loved ones',
+      desc: 'Stay connected to transportation updates and know when your loved one arrives safely.',
+      img: '/images/hero/wheelchair-woman.jpg'
+    },
+    {
+      tag: 'Remote family members',
+      title: 'Stay connected from anywhere',
+      desc: 'Follow important rides remotely and have confidence that your loved one is supported throughout their journey.',
+      img: '/images/hero/person-smiling.jpg'
+    },
+    
+    {
+      tag: 'Guardians',
+      title: 'Peace of mind for guardians',
+      desc: 'Receive timely transportation updates and stay informed without needing to call for status updates.',
+      img: '/images/hero/guardians-wheelchair.jpg'
+    },
+  ],
+},
+{
+  slug: 'care-facilities',
+  label: 'Care Facilities',
+  enabled: true,
+  Icon: HeartHandshake,
+  img: '/images/operators/senior-living.jpg',
+  tags: ['Senior Living', 'Disability Services', 'Care Homes'],
+  headline: 'Coordinate every resident journey with confidence.',
+  whoForHeading: 'Made for the teams supporting every resident journey.',
+  body: 'Give staff a complete view of resident transportation with a centralized dashboard for tracking rides, monitoring arrivals, and keeping families informed. Reduce manual coordination while improving the resident experience.',
+  cta: 'Learn more',
+
+  pillars: [
+    {
+      title: 'One dashboard for every ride',
+      body: 'Track resident transportation, upcoming arrivals, and ride status from one simple interface.'
+    },
+    {
+      title: 'Less phone tag, more care',
+      body: 'Reduce time spent calling drivers, families, and transit providers by giving everyone access to the information they need.'
+    },
+    {
+      title: 'Built for accessibility',
+      body: 'Designed around seniors and people with disabilities, including mobility considerations and care requirements.'
+    },
+  ],
+
+  highlights: [
+    {
+      Icon: LayoutDashboard,
+      title: 'Caregiver dashboard',
+      body: 'Monitor resident trips, ETAs, and transportation status in one place.'
+    },
+    {
+      Icon: ClipboardList,
+      title: 'Resident information',
+      body: 'Keep important accessibility notes and ride details organized.'
+    },
+    {
+      Icon: Users,
+      title: 'Family communication',
+      body: 'Keep families informed with automatic updates and shared visibility.'
+    },
+  ],
+
+  whoFor: [
+    {
+      tag: 'Senior living',
+      title: 'Senior living communities',
+      desc: 'Coordinate resident appointments, outings, and transportation with confidence.',
+      img: '/images/operators/senior-living.jpg'
+    },
+    {
+      tag: 'Disability services',
+      title: 'Disability support organizations',
+      desc: 'Improve visibility for accessible transportation and resident mobility.',
+      img: '/images/operators/disability-services.jpg'
+    },
+    {
+      tag: 'Care homes',
+      title: 'Care homes & facilities',
+      desc: 'Give staff the tools they need to manage daily transportation smoothly.',
+      img: '/images/hero/receptionist-smile.jpg'
+    },
+  ],
+},
 ]
 
 export function getCategory(slug) {

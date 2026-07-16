@@ -5,7 +5,7 @@ import { CATEGORIES } from '../../data/categories'
 import './NavBar.css'
 
 const SERVICES = [
-  ...CATEGORIES.map(c => ({ to: `/services/${c.slug}`, title: c.label, desc: c.tags.slice(0, 2).join(' · ') })),
+  ...CATEGORIES.filter(c => c.enabled).map(c => ({ to: `/services/${c.slug}`, title: c.label, desc: c.tags.slice(0, 2).join(' · ') })),
   { to: '/services', title: 'All services', desc: 'See everything Indro offers' },
 ]
 

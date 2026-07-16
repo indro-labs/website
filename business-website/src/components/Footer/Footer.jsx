@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
+import { CATEGORIES } from '../../data/categories'
 import './Footer.css'
 
 export default function Footer() {
+  const services = CATEGORIES.filter(c => c.enabled)
   return (
     <footer className="site-footer">
       <div className="c footer-top">
@@ -28,10 +30,9 @@ export default function Footer() {
         <div className="footer-col">
           <p className="footer-col-label">Services</p>
           <nav className="footer-links">
-            <Link to="/services/youth-education">Youth & Education</Link>
-            <Link to="/services/senior-care">Senior & Care</Link>
-            <Link to="/services/private-shuttles">Private Shuttles</Link>
-            <Link to="/services/paratransit">Paratransit</Link>
+            {services.map(c => (
+              <Link key={c.slug} to={`/services/${c.slug}`}>{c.label}</Link>
+            ))}
             <Link to="/services">All services</Link>
           </nav>
         </div>

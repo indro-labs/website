@@ -106,18 +106,19 @@ export function Hero() {
 
 /* ── OFFER TABS (homepage "What we offer") ────── */
 export function OfferTabs() {
+  const OFFER_CATEGORIES = CATEGORIES.filter(c => c.enabled)
   const [active, setActive] = useState(0)
-  const cur = CATEGORIES[active]
+  const cur = OFFER_CATEGORIES[active]
   return (
     <section className="offer-section" id="services">
       <div className="c">
         <div className="sec-hd centered">
           <p className="eyebrow">What we offer</p>
-          <h2 className="sec-h2">One platform, tuned to who you move.</h2>
-          <p className="sec-intro">Indro adapts to your operation — from after-school vans to municipal paratransit. Choose who you serve.</p>
+          <h2 className="sec-h2">One platform, connecting everyone.</h2>
+          <p className="sec-intro">Built for the people who depend on accessible transportation—and the teams who support every journey.</p>
         </div>
         <div className="offer-tabs">
-          {CATEGORIES.map((c, i) => (
+          {OFFER_CATEGORIES.map((c, i) => (
             <button key={c.slug} className={`offer-tab${i === active ? ' active' : ''}`} onClick={() => setActive(i)}>
               <c.Icon size={18} strokeWidth={2} />
               <span>{c.label}</span>
@@ -218,7 +219,7 @@ export function CategoryWhoFor({ cat }) {
       <div className="c">
         <div className="sec-hd">
           <p className="eyebrow">Who it's for</p>
-          <h2 className="sec-h2">Made for the way<br />you move people.</h2>
+          <h2 className="sec-h2">{cat.whoForHeading}</h2>
         </div>
         <div className="who-alt-list">
           {cat.whoFor.map((w, i) => (
@@ -246,7 +247,7 @@ export function GetInTouch() {
       <div className="c">
         <p className="getintouch-eyebrow">Get in touch</p>
         <h2 className="getintouch-h">Ready to bring clarity to every ride?</h2>
-        <p className="getintouch-sub">See Indro in action. Reach out and we'll show you exactly how it fits your fleet — no pressure, no sales script.</p>
+        <p className="getintouch-sub">See Indro in action. We'll show you how care teams, families, and communities can stay connected to every paratransit journey.</p>
         <Link to="/contact" className="getintouch-btn">Contact us</Link>
       </div>
     </section>
@@ -303,10 +304,10 @@ export function TractionBar() {
 
 /* ── WHY INDRO (benefit cards) ────────────────── */
 const WHY = [
-  { Icon: Radar,         title: 'Real-time visibility',     desc: 'Live GPS tracking and automatic alerts mean riders, families, and staff always know where the ride is.' },
-  { Icon: Accessibility, title: 'Built for accessibility',  desc: 'Designed first for seniors and people with disabilities — dignity and safety are the baseline, not an add-on.' },
-  { Icon: PhoneOff,      title: 'Less manual coordination', desc: 'Booking, dispatch, and updates in one place — no more hours lost to phone tag and spreadsheets.' },
-  { Icon: Leaf,          title: 'Local & supported',        desc: 'Built in Calgary, with a team that works alongside you from pilot to full rollout.' },
+  { Icon: Radar,         title: 'Real-time visibility',     desc: 'Live GPS tracking, ETAs, and automatic alerts keep staff, caregivers, residents, and families informed from pickup to drop-off.' },
+  { Icon: Accessibility, title: 'Built for accessibility',  desc: 'Built for seniors and people with disabilities, with accessibility, dignity, and peace of mind at the center of every journey.' },
+  { Icon: PhoneOff,      title: 'Less manual, more care', desc: 'Track rides, receive arrival updates, and keep everyone informed from one simple dashboard—reducing phone calls, uncertainty, and manual follow-ups.' },
+  { Icon: Leaf,          title: 'Built with municipalities',        desc: 'Works with existing municipal paratransit, giving facilities and caregivers real-time visibility..' },
 ]
 export function WhyIndro() {
   return (
@@ -314,7 +315,7 @@ export function WhyIndro() {
       <div className="c">
         <div className="sec-hd centered">
           <p className="eyebrow">Why Indro</p>
-          <h2 className="sec-h2">Communities choose Indro to move people with confidence.</h2>
+          <h2 className="sec-h2">Care communities choose Indro to move people with confidence.</h2>
         </div>
         <div className="why-grid">
           {WHY.map(w => (
@@ -357,7 +358,7 @@ export function ServicesOverview({ heading = true }) {
         {heading && (
           <div className="sec-hd centered">
             <p className="eyebrow">What we offer</p>
-            <h2 className="sec-h2">Solutions for every community need.</h2>
+            <h2 className="sec-h2">One platform connecting every person involved in the journey.</h2>
             <p className="sec-intro">Two ways Indro moves your community — a full suite of managed on-demand programs, and accessible paratransit. One platform behind both.</p>
           </div>
         )}
@@ -665,14 +666,13 @@ export function FinalCTA() {
 
 /* ── FAQ ──────────────────────────────────────── */
 const FAQS = [
-  { q: 'What kinds of organizations use Indro?', a: 'Youth and education programs, senior living and care facilities, private and corporate shuttles, municipal paratransit agencies, and custom fleets. If you move people on a schedule or on demand, Indro fits.' },
-  { q: 'How do riders book a trip?', a: 'However suits them. Riders or coordinators can book through the Indro web portal or app, and dispatchers can log call-in requests for riders without a smartphone. Confirmation and driver details are sent immediately — no waiting for a callback.' },
-  { q: 'Can parents, families, or staff track a ride in real time?', a: 'Yes. Anyone you authorize — a parent, family member, care coordinator, or clinician — gets a secure live-tracking link and automated text alerts at pickup, when the vehicle is near, and at drop-off. No account or download required.' },
-  { q: 'Do drivers need special hardware?', a: 'No. Drivers use a simple, large-button app on a standard phone or tablet for digital manifests, check-in/check-out, and turn-by-turn routing. It updates your central dashboard in real time.' },
-  { q: 'What types of vehicles and fleets are supported?', a: 'Any vehicle — sedans, vans, wheelchair-accessible vehicles, shuttles, and mixed fleets. The dispatch engine tracks each vehicle’s real-time capacity so the right equipment matches every trip.' },
-  { q: 'Can it handle accessibility and compliance requirements?', a: 'Yes. Indro accounts for boarding buffer times, wheelchair-to-seat ratios, mandated pickup windows, and audit-ready reporting for regulated and NEMT services.' },
-  { q: 'Can the rider experience be branded as ours?', a: 'For private and corporate shuttles, the passenger interface, live maps, and notifications can be fully white-labeled with your logo and colors.' },
-  { q: 'How does an organization get started?', a: 'Reach out through our contact page and we’ll set up a walkthrough. We map your operation, configure your rules, and train your team — most operators are up and running within days, with no major IT overhaul.' },
+  { q: 'Who is Indro built for?', a: 'Care facilities — senior living communities, disability services, and group homes — along with the families and caregivers supporting residents’ paratransit journeys. If you need visibility into a loved one’s or resident’s ride, Indro fits.' },
+  { q: 'Can families and staff track a ride in real time?', a: 'Yes. Anyone you authorize — a family member, caregiver, or facility staffer — gets live GPS tracking and automated notifications at pickup, when the vehicle is near, and at drop-off. No account or download required.' },
+  { q: 'What does the facility dashboard show?', a: 'One centralized view of every resident’s transportation: live vehicle location, ETAs, and ride status — so staff aren’t stuck calling drivers or transit providers for updates.' },
+  { q: 'What kind of notifications will we get?', a: 'Automatic alerts when a ride is approaching, arriving, or completed, so families and facility staff stay informed without checking in manually.' },
+  { q: 'Do family members need to download an app?', a: 'No. Tracking links and notifications work right in a browser or text message — nothing to install for families or caregivers.' },
+  { q: 'Who can access a resident’s ride information?', a: 'Only the people your facility authorizes — family members, caregivers, or support staff — keeping resident transportation data private and controlled.' },
+  { q: 'How does an organization get started?', a: 'Reach out through our contact page and we’ll set up a walkthrough. We map your operation, configure access for your residents and families, and get your team live — usually within days.' },
 ]
 export function FAQ() {
   const [open, setOpen] = useState(null)

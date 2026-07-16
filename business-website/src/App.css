@@ -1088,7 +1088,7 @@
   .hero2-card { height: 340px; }
   .offer-panel { grid-template-columns: 1fr; }
   .offer-panel-media { min-height: 280px; }
-  .offer-panel-body { padding: 40px 32px; }
+  .offer-panel-body { padding: 40px 32px; min-height: 660px; }
   .cat-hero-grid { grid-template-columns: 1fr; gap: 40px; }
   .pillars-grid { grid-template-columns: 1fr; gap: 36px; }
   .pillar-col { border-left: none; padding: 0; }

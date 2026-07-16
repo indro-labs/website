@@ -10,7 +10,7 @@ import { CATEGORIES } from '../data/categories'
 export const CALENDLY_URL = 'https://calendly.com/indrolabs-info/product-general-inquiry-call'
 const PARTNERS = [
   { name: 'Platform Calgary', logo: '/images/partners/platform-calgary.svg', url: 'https://www.platformcalgary.com', dark: true },
-  { name: 'Google Cloud for Startups', logo: '/images/partners/Google-Cloud-Logo.png', url: 'https://cloud.google.com/startup', tall: true },
+  { name: 'Google Cloud for Startups', logo: '/images/partners/Google-Cloud-Logo.png', url: 'https://cloud.google.com/startup' },
   { name: 'Hunter Hub', logo: '/images/partners/hunter-hub.svg', url: 'https://www.ucalgary.ca/hunter-hub', invert: false },
 ]
 
@@ -58,9 +58,10 @@ export function CalendlyEmbed({ url = CALENDLY_URL }) {
 
 /* ── HERO (split — text left, stacked images right) ── */
 const SLIDES = [
-  { src: '/images/hero/senior-transportation2.jpg', alt: 'Senior couple smiling' },
-  { src: '/images/hero/kid-worker-wave.jpg',       alt: 'Caregiver helping a passenger from a van' },
-  { src: '/images/hero/kids-smiling3.jpg',    alt: 'Kids boarding a school bus' },
+  { src: '/images/hero/receptionist-smiling.jpg', alt: 'Worker is smiling' },
+  { src: '/images/hero/senior-couple-smile.jpg',       alt: 'Senior couple smiling' },
+  { src: '/images/hero/family-hugging-wheelchair.jpg',       alt: 'Family hugging, man is in a wheelchair' },
+  { src: '/images/hero/three-people-smile.jpg',    alt: 'Three people smiling at a phone together' },
 ]
 export function Hero() {
   const [active, setActive] = useState(0)
@@ -73,10 +74,10 @@ export function Hero() {
       <div className="c hero2-inner">
         <div className="hero2-text">
           <h1 className="hero2-h1">
-            <span className="hero2-orange">Connecting communities to the rides</span>{' '}
+            <span className="hero2-orange">Connecting care communities to the rides</span>{' '}
             <span className="hero2-white">they depend on.</span>
           </h1>
-          <p className="hero2-sub">Run your fleet on the modern on-demand dispatch platform built to eliminate tracking chaos, save valuable time, and bring complete peace of mind to every passenger.</p>
+          <p className="hero2-sub">Give care homes, families, and municipalities real-time visibility into every paratransit journey—bringing confidence, safety, and peace of mind from pickup to drop-off.</p>
           <div className="hero2-actions">
             <Link to="/contact" className="btn-primary">Contact us</Link>
             <Link to="/services" className="btn-text btn-text--light">Explore services</Link>

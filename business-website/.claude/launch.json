@@ -7,6 +7,13 @@
       "runtimeArgs": ["run", "dev"],
       "port": 5280,
       "autoPort": true
+    },
+    {
+      "name": "selnite-frontend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "/Users/nikkikim/Desktop/professional/Indro-invest-landingpage/frontend"],
+      "port": 3000,
+      "autoPort": true
     }
   ]
 }

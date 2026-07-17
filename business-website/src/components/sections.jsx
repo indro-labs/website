@@ -79,7 +79,7 @@ export function Hero() {
           </h1>
           <p className="hero2-sub">Give care homes, families, and municipalities real-time visibility into every paratransit journey—bringing confidence, safety, and peace of mind from pickup to drop-off.</p>
           <div className="hero2-actions">
-            <Link to="/contact" className="btn-primary">Contact us</Link>
+            <Link to="/contact" className="btn-primary">Book a demo</Link>
             <Link to="/services" className="btn-text btn-text--light">Explore services</Link>
           </div>
         </div>
@@ -115,7 +115,7 @@ export function OfferTabs() {
         <div className="sec-hd centered">
           <p className="eyebrow">What we offer</p>
           <h2 className="sec-h2">One platform, connecting everyone.</h2>
-          <p className="sec-intro">Built for the people who depend on accessible transportation—and the teams who support every journey.</p>
+          <p className="sec-intro">Built for the people who depend on paratransit—and the teams who support every journey.</p>
         </div>
         <div className="offer-tabs">
           {OFFER_CATEGORIES.map((c, i) => (
@@ -277,7 +277,7 @@ export function PageHero({ eyebrow, title, sub, primary, secondary }) {
 const STATS = [
   { n: '55+',  l: 'Riders, families & caregivers interviewed' },
   { n: '12',    l: 'Partner conversations underway' },
-  { n: '4',    l: 'Organizations confirmed for 2026' },
+  { n: '2',    l: 'Organizations confirmed for 2026' },
   { n: '2026', l: 'Calgary pilot launching this year' },
 ]
 export function TractionBar() {
@@ -666,7 +666,7 @@ export function FinalCTA() {
 
 /* ── FAQ ──────────────────────────────────────── */
 const FAQS = [
-  { q: 'Who is Indro built for?', a: 'Care facilities — senior living communities, disability services, and group homes — along with the families and caregivers supporting residents’ paratransit journeys. If you need visibility into a loved one’s or resident’s ride, Indro fits.' },
+  { q: 'Who is Indro built for?', a: 'Care facilities — senior living communities, disability services, and group homes — the families and caregivers supporting residents’ paratransit journeys, and individual riders who want visibility into their own trips. If you need clear visibility into a ride, Indro fits.' },
   { q: 'Can families and staff track a ride in real time?', a: 'Yes. Anyone you authorize — a family member, caregiver, or facility staffer — gets live GPS tracking and automated notifications at pickup, when the vehicle is near, and at drop-off. No account or download required.' },
   { q: 'What does the facility dashboard show?', a: 'One centralized view of every resident’s transportation: live vehicle location, ETAs, and ride status — so staff aren’t stuck calling drivers or transit providers for updates.' },
   { q: 'What kind of notifications will we get?', a: 'Automatic alerts when a ride is approaching, arriving, or completed, so families and facility staff stay informed without checking in manually.' },

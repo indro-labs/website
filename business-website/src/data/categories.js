@@ -1,4 +1,4 @@
-import { GraduationCap, HeartHandshake, Building2, Accessibility, Puzzle, Globe, UserCheck, Route, LayoutDashboard, ClipboardList, Clock, Palette, Users, MapPin, FileText, BarChart2, Truck, Sliders, PieChart, Headphones } from 'lucide-react'
+import { GraduationCap, HeartHandshake, Building2, Accessibility, Puzzle, Globe, UserCheck, Route, LayoutDashboard, ClipboardList, Clock, Palette, Users, User, MapPin, MapPinned, FileText, BarChart2, Truck, Sliders, PieChart, Headphones, Bell, ShieldCheck } from 'lucide-react'
 
 // Single source of truth for the 5 client categories.
 // Drives: homepage "What we offer" tabs, nav Services dropdown, and /services/:slug pages.
@@ -108,38 +108,68 @@ export const CATEGORIES = [
     ],
   },
   {
-    slug: 'custom',
-    label: 'Custom',
-    enabled: false,
-    Icon: Puzzle,
-    img: '/images/services/ondemand.png',
-    tags: ['Unique Workflows', 'Modular Dispatch', 'Bespoke Fleets'],
-    headline: 'If you have a unique fleet, we have the flexible software to run it.',
-    body: "Don't see your specific industry or vehicle type listed? Our platform is built from the ground up to be completely modular. We can configure custom dispatch logic, unique driver interfaces, and tailored passenger booking systems to fit exactly how your business moves.",
-    cta: 'Talk to an expert',
-    pillars: [
-      { title: 'Modular architecture', body: "We don't force your unique operation into a rigid template. Every component -- from dispatcher rules to passenger notifications -- can be toggled and tweaked to match your exact workflow." },
-      { title: 'Bespoke API & hardware integration', body: 'Connect your transit data to the software you already use -- internal HR systems, specialized medical booking platforms, or specific vehicle telematics.' },
-      { title: 'Co-designed deployment partnership', body: "You aren't figuring it out alone. We map your operational constraints, configure your rules, and hands-on train your dispatchers and drivers." },
-    ],
-    highlights: [
-      { Icon: Sliders, title: 'Custom rule engine', body: 'Define unique booking privileges, priority tiers, operational hours, and service parameters.' },
-      { Icon: PieChart, title: 'Tailored reporting', body: 'Build custom dashboards to track the specific KPIs that matter most to your board, stakeholders, or city council.' },
-      { Icon: Headphones, title: 'Dedicated onboarding', body: 'Local, white-glove setup and configuration support to guarantee a flawless launch day.' },
-    ],
-    whoFor: [
-      { tag: 'Unique workflows', title: 'Unique operational workflows', desc: 'Toggle and tune dispatch rules, notifications, and interfaces to match exactly how you move.', img: '/images/operators/transit-operators.jpg' },
-      { tag: 'Modular dispatch', title: 'Modular dispatch needs', desc: 'Mix and match components -- booking, routing, manifests -- into your own configuration.', img: '/images/services/microtransit.jpg' },
-      { tag: 'Bespoke fleets', title: 'Bespoke & mixed fleets', desc: "Custom driver interfaces and booking flows for fleets that don't fit a template.", img: '/images/hero/smiling-at-phone.jpg' },
-    ],
-  },
+  slug: 'individual-riders',
+  label: 'Individual riders',
+  enabled: true,
+  Icon: User,
+  img: '/images/services/ondemand.png',
+  tags: ['Live GPS', 'Trip tracking', 'Peace of mind'],
+  headline: 'Know exactly where your ride is, every step of the journey.',
+  body: 'Stop wondering when your vehicle will arrive. Get live GPS tracking, real-time ETAs, trip updates, and notifications that keep you informed from pickup to drop-off. Whether you ride regularly or occasionally, everything you need is in one simple app.',
+  cta: 'Get started',
+  pillars: [
+    {
+      title: 'Live vehicle tracking',
+      body: 'Watch your assigned vehicle approach in real time with an interactive map and accurate estimated arrival times.'
+    },
+    {
+      title: 'Real-time trip notifications',
+      body: 'Receive instant updates when your driver is on the way, arriving, delayed, or when your trip status changes.'
+    },
+    {
+      title: 'Simple, accessible experience',
+      body: 'Designed for riders of all ages with an intuitive interface, large touch targets, and easy-to-read trip information.'
+    },
+  ],
+  highlights: [
+    {
+      Icon: MapPinned,
+      title: 'Live GPS tracking',
+      body: 'See your vehicle move in real time instead of waiting without updates.'
+    },
+    {
+      Icon: Bell,
+      title: 'Arrival notifications',
+      body: 'Know exactly when your ride is approaching so you can be ready when it arrives.'
+    },
+    {
+      Icon: ShieldCheck,
+      title: 'Reliable trip information',
+      body: 'View your pickup, destination, driver status, and trip progress all in one place.'
+    },
+  ],
+  whoFor: [
+    {
+      tag: 'Paratransit riders',
+      title: 'People who rely on paratransit',
+      desc: 'Perfect for riders who want confidence that their vehicle is on the way.',
+      img: '/images/hero/caregiver-van.jpg'
+    },
+    {
+      tag: 'Older adults',
+      title: 'Seniors and accessible transit users',
+      desc: 'Easy-to-use tracking and notifications help reduce uncertainty and make every trip more comfortable.',
+      img: '/images/hero/senior-car-smiling.jpg'
+    },
+  ],
+},
   {
   slug: 'families',
   label: 'Families',
   enabled: true,
   Icon: Users,
   img: '/images/hero/senior-family-smile.jpg',
-  tags: ['Family Members', 'Caregivers', 'Resident Support'],
+  tags: ['Family members', 'Caregivers', 'Resident support'],
   headline: 'Peace of mind for every ride your loved one takes.',
   whoForHeading: 'Made for the people who care.',
   body: 'Stay connected to your loved one’s transportation journey with real-time ride tracking, arrival updates, and notifications. Know when their ride is arriving without needing to call the facility or transit provider.',
@@ -202,11 +232,11 @@ export const CATEGORIES = [
 },
 {
   slug: 'care-facilities',
-  label: 'Care Facilities',
+  label: 'Care facilities',
   enabled: true,
   Icon: HeartHandshake,
   img: '/images/operators/senior-living.jpg',
-  tags: ['Senior Living', 'Disability Services', 'Care Homes'],
+  tags: ['Senior living', 'Disability services', 'Care homes'],
   headline: 'Coordinate every resident journey with confidence.',
   whoForHeading: 'Made for the teams supporting every resident journey.',
   body: 'Give staff a complete view of resident transportation with a centralized dashboard for tracking rides, monitoring arrivals, and keeping families informed. Reduce manual coordination while improving the resident experience.',

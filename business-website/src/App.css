@@ -197,6 +197,7 @@
 .backed-item:hover { opacity: 1; }
 .backed-logo { height: 44px; width: auto; filter: brightness(0); }
 .backed-logo--tall { height: 80px; }
+.backed-logo--small { height: 30px; }
 .backed-logo--color { filter: none; }
 
 .traction-bar { padding: 84px 0; background: var(--bg-alt); margin-top: 72px; }

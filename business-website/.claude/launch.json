@@ -14,6 +14,13 @@
       "runtimeArgs": ["run", "dev", "--prefix", "/Users/nikkikim/Desktop/professional/Indro-invest-landingpage/frontend"],
       "port": 3000,
       "autoPort": true
+    },
+    {
+      "name": "letterbrew-web",
+      "runtimeExecutable": "/Users/nikkikim/.nvm/versions/node/v22.23.1/bin/node",
+      "runtimeArgs": ["/Users/nikkikim/.nvm/versions/node/v22.23.1/lib/node_modules/pnpm/bin/pnpm.cjs", "--filter", "web", "--dir", "/Users/nikkikim/Desktop/professional/LetterBrew", "dev"],
+      "port": 5173,
+      "autoPort": true
     }
   ]
 }

@@ -12,6 +12,7 @@ const PARTNERS = [
   { name: 'Platform Calgary', logo: '/images/partners/platform-calgary.svg', url: 'https://www.platformcalgary.com', dark: true },
   { name: 'Google Cloud for Startups', logo: '/images/partners/Google-Cloud-Logo.png', url: 'https://cloud.google.com/startup' },
   { name: 'Hunter Hub', logo: '/images/partners/hunter-hub.svg', url: 'https://www.ucalgary.ca/hunter-hub', invert: false },
+  { name: 'Movement51', logo: '/images/partners/movement51.png', url: 'https://www.movement51.org/founder-lab', small: true },
 ]
 
 export function BackedBy() {
@@ -23,7 +24,7 @@ export function BackedBy() {
         <div className="backed-track">
           {items.map((p, i) => (
             <a key={i} href={p.url} target="_blank" rel="noopener noreferrer" className={`backed-item${p.dark ? ' backed-item--dark' : ''}`} aria-label={p.name}>
-              <img src={p.logo} alt={p.name} className={`backed-logo${p.tall ? ' backed-logo--tall' : ''}${p.noFilter ? ' backed-logo--color' : ''}`} />
+              <img src={p.logo} alt={p.name} className={`backed-logo${p.tall ? ' backed-logo--tall' : ''}${p.small ? ' backed-logo--small' : ''}${p.noFilter ? ' backed-logo--color' : ''}`} />
             </a>
           ))}
         </div>

@@ -21,6 +21,16 @@
       "runtimeArgs": ["/Users/nikkikim/.nvm/versions/node/v22.23.1/lib/node_modules/pnpm/bin/pnpm.cjs", "--filter", "web", "--dir", "/Users/nikkikim/Desktop/professional/LetterBrew", "dev"],
       "port": 5173,
       "autoPort": true
+    },
+    {
+      "name": "letterbrew-app",
+      "runtimeExecutable": "/Users/nikkikim/.nvm/versions/node/v22.23.1/bin/node",
+      "runtimeArgs": ["/Users/nikkikim/.nvm/versions/node/v22.23.1/lib/node_modules/pnpm/bin/pnpm.cjs", "--filter", "app", "--dir", "/Users/nikkikim/Desktop/professional/LetterBrew", "dev"],
+      "port": 5175
+    },
+    {
+      "name": "private-transit-frontend",
+      "url": "http://localhost:5174"
     }
   ]
 }

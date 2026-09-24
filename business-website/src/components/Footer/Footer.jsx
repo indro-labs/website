@@ -47,6 +47,17 @@ export default function Footer() {
           </nav>
         </div>
 
+        {/* Legal */}
+        <div className="footer-col">
+          <p className="footer-col-label">Legal</p>
+          <nav className="footer-links" aria-label="Legal">
+            <Link to="/privacy">Privacy Policy</Link>
+            <Link to="/terms">Terms of Use</Link>
+            <Link to="/fr/privacy" lang="fr">Politique de confidentialité</Link>
+            <Link to="/fr/terms" lang="fr">Conditions d’utilisation</Link>
+          </nav>
+        </div>
+
         {/* Contact */}
         <div className="footer-col">
           <p className="footer-col-label">Get in touch</p>
@@ -65,8 +76,7 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <div className="c footer-bottom-inner">
-          <p className="footer-copy">© 2026 Indro Transit Inc. · 🍁 Calgary, Alberta · All rights reserved.</p>
-      
+          <p className="footer-copy">© 2026 Indro Labs Inc. · 🍁 Calgary, Alberta · All rights reserved.</p>
         </div>
       </div>
     </footer>

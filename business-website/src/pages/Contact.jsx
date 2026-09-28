@@ -1,9 +1,15 @@
 import { CalendlyEmbed } from '../components/sections'
+import Seo from '../components/Seo'
 import './Contact.css'
 
 export default function Contact() {
   return (
     <>
+      <Seo
+        title="Contact | Indro Labs"
+        description="Book a demo with Indro Labs and see how we coordinate accessible, on-demand transit in real time."
+        path="/contact"
+      />
       <div className="contact-page-wrapper">
         <div className="contact-page-inner">
           <div className="contact-grid">

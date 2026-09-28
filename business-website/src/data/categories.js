@@ -1,4 +1,4 @@
-import { GraduationCap, HeartHandshake, Building2, Accessibility, Puzzle, Globe, UserCheck, Route, LayoutDashboard, ClipboardList, Clock, Palette, Users, User, MapPin, MapPinned, FileText, BarChart2, Truck, Sliders, PieChart, Headphones, Bell, ShieldCheck } from 'lucide-react'
+import { GraduationCap, HeartHandshake, Building2, Accessibility, Puzzle, Globe, UserCheck, Route, LayoutDashboard, ClipboardList, Clock, Palette, Users, User, MapPin, MapPinned, FileText, BarChart2, Truck, Sliders, PieChart, Headphones, Bell, ShieldCheck, Stethoscope } from 'lucide-react'
 
 // Single source of truth for the 5 client categories.
 // Drives: homepage "What we offer" tabs, nav Services dropdown, and /services/:slug pages.
@@ -293,6 +293,72 @@ export const CATEGORIES = [
       title: 'Care homes & facilities',
       desc: 'Give staff the tools they need to manage daily transportation smoothly.',
       img: '/images/hero/receptionist-smile.jpg'
+    },
+  ],
+},
+{
+  slug: 'nemt',
+  label: 'NEMT providers',
+  enabled: true,
+  Icon: Stethoscope,
+  img: '/images/hero/senior-transportation2.jpg',
+  tags: ['Non-emergency medical transport', 'Dialysis & appointments', 'Own fleet & drivers'],
+  headline: 'Run your own NEMT fleet with total visibility.',
+  whoForHeading: 'Made for NEMT providers running their own fleet.',
+  body: 'Indro is built for non-emergency medical transportation providers who operate their own vehicles and drivers. Schedule, dispatch, and track any trip your riders need: appointments, dialysis, discharge, and more. Riders, drivers, and admins each get their own simple dashboard, with accessibility-aware scheduling, your own pricing calculated automatically per trip, and automatic rider notifications.',
+  cta: 'Learn more',
+
+  pillars: [
+    {
+      title: 'Built for your own fleet',
+      body: 'Whether you run a handful of vehicles or a growing fleet, dispatch every driver and vehicle from one system. No separate tools for scheduling, tracking, and communication.'
+    },
+    {
+      title: 'Your service area, your pricing',
+      body: "Define your service area: by province, county, city, postal code, or a radius around a point. Only the bookings you can actually serve come through. Set a fixed price for specific locations, like a regular dialysis center, if you'd rather not bill by distance."
+    },
+    {
+      title: 'Riders and families kept informed',
+      body: 'Automatic SMS and email updates mean fewer calls asking where the vehicle is, whether the trip is on the way, picked up, or arrived.'
+    },
+  ],
+
+  highlights: [
+    {
+      Icon: LayoutDashboard,
+      title: 'Role-based dashboards',
+      body: 'Drivers, admins, and riders each get their own dashboard, built around the specific tools their role actually needs. Kept simple and easy to use for anyone.'
+    },
+    {
+      Icon: Sliders,
+      title: 'Flexible pricing',
+      body: 'Bill by distance, set a fixed price for specific locations, or both — whatever fits how your organization charges.'
+    },
+    {
+      Icon: Bell,
+      title: 'Automatic notifications',
+      body: 'SMS and email updates for booking, driver en route, and arrival — sent without a dispatcher lifting a phone.'
+    },
+  ],
+
+  whoFor: [
+    {
+      tag: 'Senior transportation fleets',
+      title: 'Fleets serving seniors',
+      desc: 'Give senior riders the transportation they need, along with arrival updates on every trip for them and their families.',
+      img: '/images/hero/senior-couple.jpg'
+    },
+    {
+      tag: 'Specific transportation',
+      title: 'Riders who need specific vehicles',
+      desc: "Larger vehicles and extra-wait-time needs travel with the rider's record, so the right vehicle and enough time are ready.",
+      img: '/images/hero/caregiver-wheelchair.jpg'
+    },
+    {
+      tag: 'Dialysis & treatment transport',
+      title: 'Dialysis & recurring treatment',
+      desc: 'Coordinate treatment and appointment trips with the drivers and vehicles your organization already operates.',
+      img: '/images/hero/care-worker-elderly.jpg'
     },
   ],
 },

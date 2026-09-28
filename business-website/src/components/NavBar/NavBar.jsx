@@ -41,7 +41,7 @@ export default function NavBar() {
     <header className="navbar">
       <div className="navbar-inner">
         <Link to="/" className="navbar-logo" onClick={close}>
-          <img src="/brand/logo.png" alt="Indro Transit" className="logo-img" />
+          <img src="/brand/logo.png" alt="Indro" className="logo-img" />
         </Link>
 
         <nav className="nav-links">

@@ -78,7 +78,7 @@ export function Hero() {
             <span className="hero2-orange">Connecting care communities to the rides</span>{' '}
             <span className="hero2-white">they depend on.</span>
           </h1>
-          <p className="hero2-sub">Give care homes, families, and municipalities real-time visibility into every paratransit journey—bringing confidence, safety, and peace of mind from pickup to drop-off.</p>
+          <p className="hero2-sub">Give care homes, families, organizations, and municipalities real-time visibility into every paratransit journey—bringing confidence, safety, and peace of mind from pickup to drop-off.</p>
           <div className="hero2-actions">
             <Link to="/contact" className="btn-primary">Book a demo</Link>
             <Link to="/services" className="btn-text btn-text--light">Explore services</Link>
@@ -194,7 +194,7 @@ export function ProductHighlights({ cat }) {
         <div className="highlights-left">
           <p className="eyebrow">Key product highlights</p>
           <h2 className="highlights-left-h">Built for how you actually operate.</h2>
-          <p className="highlights-left-sub">Every feature is purpose-built for the real-world complexity of specialized transit — not adapted from a generic logistics tool.</p>
+          <p className="highlights-left-sub">Every feature is built with purpose for the real-world complexity of specialized transit — not adapted from a generic logistics tool.</p>
           <Link to="/contact" className="btn-primary highlights-left-cta">Get in touch</Link>
         </div>
         <div className="highlights-right">
@@ -278,7 +278,7 @@ export function PageHero({ eyebrow, title, sub, primary, secondary }) {
 const STATS = [
   { n: '55+',  l: 'Riders, families & caregivers interviewed' },
   { n: '12',    l: 'Partner conversations underway' },
-  { n: '2',    l: 'Organizations confirmed for 2026' },
+  { n: '3',    l: 'Organizations confirmed for 2026' },
   { n: '2026', l: 'Calgary pilot launching this year' },
 ]
 export function TractionBar() {

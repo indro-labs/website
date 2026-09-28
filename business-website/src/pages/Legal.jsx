@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import Seo from '../components/Seo'
 import privacy from '../content/legal/privacy.json'
 import privacyFr from '../content/legal/privacy_fr.json'
 import termsEn from '../content/legal/terms_en.json'
@@ -7,10 +7,10 @@ import termsFr from '../content/legal/terms_fr.json'
 import './Legal.css'
 
 const DOCS = {
-  privacy: { blocks: privacy, lang: 'en', alt: { to: '/fr/privacy', label: 'Lire en français', lang: 'fr' }, title: 'Privacy Policy | Indro Labs' },
-  privacyFr: { blocks: privacyFr, lang: 'fr', alt: { to: '/privacy', label: 'Read in English', lang: 'en' }, title: 'Politique de confidentialité | Indro Labs' },
-  terms: { blocks: termsEn, lang: 'en', alt: { to: '/fr/terms', label: 'Lire en français', lang: 'fr' }, title: 'Website Terms of Use | Indro Labs' },
-  termsFr: { blocks: termsFr, lang: 'fr', alt: { to: '/terms', label: 'Read in English', lang: 'en' }, title: 'Conditions d’utilisation du site Web | Indro Labs' },
+  privacy: { blocks: privacy, lang: 'en', alt: { to: '/fr/privacy', label: 'Lire en français', lang: 'fr' }, title: 'Privacy Policy | Indro Labs', description: 'How Indro Labs collects, uses, and protects personal information across its transportation operations platform.', path: '/privacy' },
+  privacyFr: { blocks: privacyFr, lang: 'fr', alt: { to: '/privacy', label: 'Read in English', lang: 'en' }, title: 'Politique de confidentialité | Indro Labs', description: 'Comment Indro Labs recueille, utilise et protège les renseignements personnels sur sa plateforme de gestion des opérations de transport.', path: '/fr/privacy' },
+  terms: { blocks: termsEn, lang: 'en', alt: { to: '/fr/terms', label: 'Lire en français', lang: 'fr' }, title: 'Website Terms of Use | Indro Labs', description: 'The terms of use governing access to the Indro Labs website and platform.', path: '/terms' },
+  termsFr: { blocks: termsFr, lang: 'fr', alt: { to: '/terms', label: 'Read in English', lang: 'en' }, title: 'Conditions d’utilisation du site Web | Indro Labs', description: "Les conditions d'utilisation régissant l'accès au site Web et à la plateforme d'Indro Labs.", path: '/fr/terms' },
 }
 
 const URL_RE = /(https?:\/\/[^\s)]+[^\s).,;])/g
@@ -29,8 +29,7 @@ function Text({ runs }) {
 }
 
 export default function Legal({ doc }) {
-  const { blocks, lang, title, alt } = DOCS[doc]
-  useEffect(() => { document.title = title }, [title])
+  const { blocks, lang, title, description, path, alt } = DOCS[doc]
 
   let l1 = 0
   let l2 = 0
@@ -78,6 +77,7 @@ export default function Legal({ doc }) {
 
   return (
     <div className="legal-wrapper">
+      <Seo title={title} description={description} path={path} />
       <article className="legal" lang={lang}>
         <p className="legal-alt"><Link to={alt.to} lang={alt.lang} hrefLang={alt.lang}>{alt.label}</Link></p>
         {out}

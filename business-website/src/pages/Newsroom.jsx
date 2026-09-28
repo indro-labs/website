@@ -1,16 +1,17 @@
 import { PageHero, FinalCTA } from '../components/sections'
+import Seo from '../components/Seo'
 
 const PRESS = [
   {
     tag: 'Feature', outlet: 'UCalgary News',
     title: 'AI Bootcamp helps students design their own futures',
-    desc: 'UCalgary featured the Indro Transit team\'s work on accessible transit technology for southern Alberta.',
+    desc: 'UCalgary featured the Indro team\'s work on accessible transit technology for southern Alberta.',
     href: 'https://www.ucalgary.ca/news/ai-bootcamp-helps-students-design-their-own-futures',
   },
   {
     tag: 'Video', outlet: 'Instagram · Reel',
-    title: "Indro Transit — what we're building and why",
-    desc: "A short video introduction to Indro Transit and the problem we're solving for accessible transportation across Alberta.",
+    title: "Indro — what we're building and why",
+    desc: "A short video introduction to Indro and the problem we're solving for accessible transportation across Alberta.",
     href: 'https://www.instagram.com/reel/DY7hX7HNP28/',
   },
 ]
@@ -18,10 +19,15 @@ const PRESS = [
 export default function Newsroom() {
   return (
     <>
+      <Seo
+        title="Newsroom | Indro Labs"
+        description="Press, media coverage, and updates from the Indro Labs team as we build accessible mobility technology across Alberta."
+        path="/newsroom"
+      />
       <PageHero
         eyebrow="Newsroom"
         title="Press, media & community."
-        sub="Stories, coverage, and updates from the Indro Transit team as we build accessible mobility across Alberta."
+        sub="Stories, coverage, and updates from the Indro team as we build accessible mobility across Alberta."
       />
       <div className="sections-wrap">
         <section className="news-section">

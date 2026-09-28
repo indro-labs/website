@@ -1,8 +1,14 @@
 import { PageHero, OfferTabs, FAQ, GetInTouch } from '../components/sections'
+import Seo from '../components/Seo'
 
 export default function ServicesPage() {
   return (
     <>
+      <Seo
+        title="Services | Indro Labs"
+        description="One universal transportation platform, tuned to who you move — solutions for individual riders, families, and care facilities across Alberta."
+        path="/services"
+      />
       <PageHero
         eyebrow="Services"
         title="Solutions for every community need."

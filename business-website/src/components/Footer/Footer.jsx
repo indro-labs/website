@@ -11,10 +11,10 @@ export default function Footer() {
         {/* Brand column */}
         <div className="footer-col footer-col--brand">
           <Link to="/">
-            <img src="/brand/logo.png" alt="Indro Transit" className="footer-logo" />
+            <img src="/brand/logo.png" alt="Indro" className="footer-logo" />
           </Link>
           <p className="footer-tagline">
-            Real-time transit software built for paratransit, senior living, and community transportation in Alberta.
+            Real-time transit software built for paratransit, NEMT, senior living, and community transportation in Alberta.
           </p>
           <div className="footer-social">
             <a href="https://www.linkedin.com/company/indro-labs" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="LinkedIn">

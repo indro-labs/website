@@ -5,13 +5,13 @@ const PRESS = [
   {
     tag: 'Feature', outlet: 'UCalgary News',
     title: 'AI Bootcamp helps students design their own futures',
-    desc: 'UCalgary featured the Indro team\'s work on accessible transit technology for southern Alberta.',
+    desc: 'UCalgary featured the Indro team\'s work on specialized transit technology for southern Alberta.',
     href: 'https://www.ucalgary.ca/news/ai-bootcamp-helps-students-design-their-own-futures',
   },
   {
     tag: 'Video', outlet: 'Instagram · Reel',
     title: "Indro — what we're building and why",
-    desc: "A short video introduction to Indro and the problem we're solving for accessible transportation across Alberta.",
+    desc: "A short video introduction to Indro and the problem we're solving for specialized transportation across Alberta.",
     href: 'https://www.instagram.com/reel/DY7hX7HNP28/',
   },
 ]
@@ -21,13 +21,13 @@ export default function Newsroom() {
     <>
       <Seo
         title="Newsroom | Indro Labs"
-        description="Press, media coverage, and updates from the Indro Labs team as we build accessible mobility technology across Alberta."
+        description="Press, media coverage, and updates from the Indro Labs team as we build specialized transit technology across Alberta."
         path="/newsroom"
       />
       <PageHero
         eyebrow="Newsroom"
         title="Press, media & community."
-        sub="Stories, coverage, and updates from the Indro team as we build accessible mobility across Alberta."
+        sub="Stories, coverage, and updates from the Indro team as we build specialized transit across Alberta."
       />
       <div className="sections-wrap">
         <section className="news-section">

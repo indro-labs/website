@@ -14,7 +14,7 @@ export default function Footer() {
             <img src="/brand/logo.png" alt="Indro" className="footer-logo" />
           </Link>
           <p className="footer-tagline">
-            Real-time transit software built for paratransit, NEMT, senior living, and community transportation in Alberta.
+            Real-time transportation software built for NEMT providers, senior living, and community transportation in Canada.
           </p>
           <div className="footer-social">
             <a href="https://www.linkedin.com/company/indro-labs" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="LinkedIn">
@@ -33,7 +33,6 @@ export default function Footer() {
             {services.map(c => (
               <Link key={c.slug} to={`/services/${c.slug}`}>{c.label}</Link>
             ))}
-            <Link to="/services">All services</Link>
           </nav>
         </div>
 

@@ -7,7 +7,7 @@ export default function Contact() {
     <>
       <Seo
         title="Contact | Indro Labs"
-        description="Book a demo with Indro Labs and see how we coordinate accessible, on-demand transit in real time."
+        description="Book a demo with Indro Labs and see how we coordinate specialized, on-demand transit in real time."
         path="/contact"
       />
       <div className="contact-page-wrapper">
@@ -18,7 +18,7 @@ export default function Contact() {
               <p className="contact-overline">BOOK A DEMO</p>
               <h1>Book a demo with us.</h1>
               <p className="contact-sub">
-                See how Indro coordinates accessible and on-demand transit in real time. Pick a time below and we'll walk you through it — no pressure, no sales script.
+                See how Indro coordinates on-demand transit in real time. Pick a time below and we'll walk you through it — no pressure, no sales script.
               </p>
 
               <div className="contact-meta">

@@ -202,7 +202,7 @@
 
 .traction-bar { padding: 84px 0; background: var(--bg-alt); margin-top: 72px; }
 .traction-inner {
-  display: grid; grid-template-columns: repeat(4, 1fr);
+  display: grid; grid-template-columns: repeat(3, 1fr);
 }
 .traction-item {
   display: flex; flex-direction: column; gap: 10px;
@@ -898,10 +898,7 @@
    RESPONSIVE — tablet
 ───────────────────────────────────────────── */
 @media (max-width: 960px) {
-  .traction-inner { grid-template-columns: 1fr 1fr; }
-  .traction-item { border-right: none; border-bottom: 1px solid var(--border); padding: 20px; }
-  .traction-item:nth-child(odd) { border-right: 1px solid var(--border); }
-  .traction-item:last-child, .traction-item:nth-last-child(2) { border-bottom: none; }
+  .traction-item { padding: 20px 12px; }
 
   .problem-split { grid-template-columns: 1fr; gap: 56px; }
   .challenge-grid { grid-template-columns: 1fr 1fr; }

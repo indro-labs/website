@@ -1,4 +1,4 @@
-import { GraduationCap, HeartHandshake, Building2, Accessibility, Puzzle, Globe, UserCheck, Route, LayoutDashboard, ClipboardList, Clock, Palette, Users, User, MapPin, MapPinned, FileText, BarChart2, Truck, Sliders, PieChart, Headphones, Bell, ShieldCheck, Stethoscope } from 'lucide-react'
+import { GraduationCap, HeartHandshake, Building2, Accessibility, Puzzle, Globe, UserCheck, Route, LayoutDashboard, ClipboardList, Clock, Palette, Users, User, MapPin, MapPinned, FileText, BarChart2, Truck, Sliders, PieChart, Headphones, Bell, ShieldCheck, Bus, MessageSquareText, Mail, CalendarCheck } from 'lucide-react'
 
 // Single source of truth for the 5 client categories.
 // Drives: homepage "What we offer" tabs, nav Services dropdown, and /services/:slug pages.
@@ -108,39 +108,116 @@ export const CATEGORIES = [
     ],
   },
   {
+  slug: 'nemt',
+  label: 'NEMT providers',
+  enabled: true,
+  Icon: Bus,
+  img: '/images/hero/senior-transportation2.jpg',
+  tags: ['Non-emergency medical transport', 'Own fleet & drivers', 'Round trips'],
+  headline: 'Run your own NEMT fleet with total visibility.',
+  whoForHeading: 'Made for NEMT providers running their own fleet.',
+  body: 'Indro is built for non-emergency medical transportation providers who operate their own vehicles and drivers. Schedule, dispatch, and manage every trip your riders need, from one-way rides to round trips. Riders, drivers, and admins each get their own simple dashboard, with scheduling built around each rider’s needs, your own pricing calculated automatically per trip, and automatic rider notifications.',
+  cta: 'Learn more',
+
+  pillars: [
+    {
+      title: 'Built for your own fleet',
+      body: 'Whether you run a handful of vehicles or a growing fleet, dispatch every driver and vehicle from one system. No separate tools for scheduling, dispatch, and communication.'
+    },
+    {
+      title: 'Your service area, your pricing',
+      body: "Define your service area: by province, county, city, postal code, or a radius around a point. Only the bookings you can actually serve come through. Set a fixed price for specific locations, like a place your riders visit regularly, if you'd rather not bill by distance."
+    },
+    {
+      title: 'Riders and families kept informed',
+      body: 'Automatic SMS updates mean fewer calls — riders hear when their trip is booked, when the driver is on the way, and when they’ve arrived, and families can get alerts at pickup and drop-off.'
+    },
+  ],
+
+  highlights: [
+    {
+      Icon: LayoutDashboard,
+      title: 'Role-based dashboards',
+      body: 'Drivers, admins, and riders each get their own dashboard, built around the specific tools their role actually needs. Kept simple and easy to use for anyone.'
+    },
+    {
+      Icon: Sliders,
+      title: 'Flexible pricing',
+      body: 'Bill by distance, set a fixed price for specific locations, or both — whatever fits how your organization charges.'
+    },
+    {
+      Icon: Bell,
+      title: 'Automatic notifications',
+      body: 'SMS updates for booking, driver en route, and arrival, plus email booking confirmations — sent without a dispatcher lifting a phone.'
+    },
+  ],
+
+  whoFor: [
+    {
+      tag: 'Senior transportation fleets',
+      title: 'Fleets serving seniors',
+      desc: 'Give senior riders the transportation they need, along with arrival updates on every trip for them and their families.',
+      img: '/images/hero/senior-couple.jpg'
+    },
+    {
+      tag: 'Specific transportation',
+      title: 'Riders who need specific vehicles',
+      desc: "Larger vehicles and extra-wait-time needs travel with the rider's record, so the right vehicle and enough time are ready.",
+      img: '/images/hero/caregiver-wheelchair.jpg'
+    },
+    {
+      tag: 'Round trips',
+      title: 'Round trip',
+      desc: 'Book the ride there and the ride home together, so every part of your ride is supported — with the drivers and vehicles your organization already operates.',
+      img: '/images/hero/care-worker-elderly.jpg'
+    },
+  ],
+
+  faqs: [
+    { q: 'Do we use our own vehicles and drivers?', a: 'Yes. Your organization runs the fleet — Indro gives you one place to schedule, dispatch, and manage every driver and vehicle.' },
+    { q: 'How do riders book a trip?', a: 'Through your organization’s own booking link — with or without an account — or your team books on their behalf from the admin dashboard.' },
+    { q: 'How do drivers receive their trips?', a: 'Drivers get a text when they’re assigned a trip and see every assigned trip in their own driver dashboard, where they update the status as they go — from on the way to dropped off.' },
+    { q: 'Can we limit where we accept bookings?', a: 'Yes. Define your service area by city, county, province, postal code prefix, or a distance around an address. Every booking is checked, and anyone outside your area is asked to contact you directly.' },
+    { q: 'How does pricing work?', a: 'Your pricing, calculated automatically on every trip: a base fare plus a per-kilometre rate, a flat fare for trips to or from specific locations, or both. You also set your own cancellation policy.' },
+    { q: 'How do riders pay?', a: 'Riders pay upfront when they book.' },
+    { q: 'How do we get started?', a: 'Book a demo or email us at info@indrolabs.ca and we’ll walk through your operation — service area, pricing, vehicles, and drivers — and get your team live.' },
+  ],
+},
+  {
   slug: 'individual-riders',
   label: 'Individual riders',
   enabled: true,
   Icon: User,
   img: '/images/services/ondemand.png',
-  tags: ['Live GPS', 'Trip tracking', 'Peace of mind'],
-  headline: 'Know exactly where your ride is, every step of the journey.',
-  body: 'Stop wondering when your vehicle will arrive. Get live GPS tracking, real-time ETAs, trip updates, and notifications that keep you informed from pickup to drop-off. Whether you ride regularly or occasionally, everything you need is in one simple app.',
+  tags: ['Easy booking', 'SMS alerts', 'Peace of mind'],
+  headline: 'Book in minutes, and know when your ride is coming.',
+  whoForHeading: 'Made for riders who count on every trip.',
+  body: 'Book a ride in a few simple steps — pick a time, enter your pickup and destination, and you’re set. Then get SMS alerts when your driver is assigned, on the way, and arrived, with an email confirmation for every booking. Whether you ride regularly or occasionally, everything you need is in one simple app.',
   cta: 'Get started',
   pillars: [
     {
-      title: 'Live vehicle tracking',
-      body: 'Watch your assigned vehicle approach in real time with an interactive map and accurate estimated arrival times.'
+      title: 'Book in a few simple steps',
+      body: 'Choose a date and time, enter your pickup and destination, and request your ride. Need to get there and back? Book a round trip in one go.'
     },
     {
-      title: 'Real-time trip notifications',
-      body: 'Receive instant updates when your driver is on the way, arriving, delayed, or when your trip status changes.'
+      title: 'SMS alerts at every step',
+      body: 'Get a text when your ride is booked, when a driver is assigned, when they’re on the way, and when they’ve arrived — so you’re ready at the door, not waiting outside.'
     },
     {
-      title: 'Simple, accessible experience',
+      title: 'Simple, easy-to-use experience',
       body: 'Designed for riders of all ages with an intuitive interface, large touch targets, and easy-to-read trip information.'
     },
   ],
   highlights: [
     {
-      Icon: MapPinned,
-      title: 'Live GPS tracking',
-      body: 'See your vehicle move in real time instead of waiting without updates.'
+      Icon: MessageSquareText,
+      title: 'SMS alerts',
+      body: 'A text when your driver is on the way and when your ride arrives, instead of waiting without updates.'
     },
     {
-      Icon: Bell,
-      title: 'Arrival notifications',
-      body: 'Know exactly when your ride is approaching so you can be ready when it arrives.'
+      Icon: Mail,
+      title: 'Email confirmations',
+      body: 'Booking confirmations and receipts arrive in your inbox, so every detail of your ride is easy to find.'
     },
     {
       Icon: ShieldCheck,
@@ -150,17 +227,102 @@ export const CATEGORIES = [
   ],
   whoFor: [
     {
-      tag: 'Paratransit riders',
-      title: 'People who rely on paratransit',
-      desc: 'Perfect for riders who want confidence that their vehicle is on the way.',
+      tag: 'Specialized transit riders',
+      title: 'People who rely on specialized transit',
+      desc: 'Perfect for riders who want confidence that their vehicle is on the way, and that it’s right for them and meets their needs.',
       img: '/images/hero/caregiver-van.jpg'
     },
     {
       tag: 'Older adults',
-      title: 'Seniors and accessible transit users',
-      desc: 'Easy-to-use tracking and notifications help reduce uncertainty and make every trip more comfortable.',
+      title: 'Seniors and older adults',
+      desc: 'Simple booking and clear SMS alerts help reduce uncertainty and make every trip more comfortable.',
       img: '/images/hero/senior-car-smiling.jpg'
     },
+  ],
+
+  faqs: [
+    { q: 'How do I book a ride?', a: 'Open your provider’s booking link, pick a date and time, enter your pickup and destination, and request your ride. If your provider charges for rides, you’ll pay securely online, and the ride is confirmed once payment goes through.' },
+    { q: 'Can I book a round trip?', a: 'Yes. Choose Round trip and pick a pickup time and a return time — it’s one booking and one payment. Or book the return separately later.' },
+    { q: 'Which texts will I get?', a: 'You can manage the notifications you wish to receive: ride booked, driver assigned, driver on the way, driver arrived, dropped off, and cancelled. You can opt out at any time.' },
+    { q: 'Will I get emails too?', a: 'Yes. Booking confirmations, receipts, and cancellations arrive by email, so every detail of your ride is easy to find.' },
+    { q: 'Can I change a ride after booking?', a: 'Rides can’t be edited once they’re booked. Check your provider’s cancellation policy to cancel the ride in time, and rebook.' },
+    { q: 'What are ride preferences?', a: 'Options like a larger vehicle or extra time at pickup. They help your provider send the right vehicle and leave enough time.' },
+    { q: 'How much will a ride cost?', a: 'Your provider sets the fare — usually a base fare plus a per-kilometre rate, or a flat fare for trips to or from certain places. You’ll see the fare before you pay.' },
+    { q: 'How do I keep a family member informed?', a: 'Add them as a family contact and choose the alerts they get — pickup, drop-off, or both. Alerts arrive by text.' },
+  ],
+},
+  {
+  slug: 'care-facilities',
+  label: 'Care facilities',
+  enabled: true,
+  Icon: HeartHandshake,
+  img: '/images/operators/senior-living.jpg',
+  tags: ['Senior living', 'Disability services', 'Care homes'],
+  headline: 'Coordinate every resident journey with confidence.',
+  whoForHeading: 'Made for the teams supporting every resident journey.',
+  body: 'Give staff a complete view of resident transportation with a centralized dashboard for managing rides, monitoring arrivals, and keeping families informed. Reduce manual coordination while improving the resident experience.',
+  cta: 'Learn more',
+
+  pillars: [
+    {
+      title: 'One dashboard for every ride',
+      body: 'Manage resident transportation, upcoming arrivals, and ride status from one simple interface.'
+    },
+    {
+      title: 'Less phone tag, more care',
+      body: 'Reduce time spent calling drivers, families, and transit providers by giving everyone access to the information they need.'
+    },
+    {
+      title: 'Built for specialized transit',
+      body: 'Designed to make transportation simpler for seniors and people with disabilities, with flexible ride preferences for a more comfortable journey.'
+    },
+  ],
+
+  highlights: [
+    {
+      Icon: LayoutDashboard,
+      title: 'Caregiver dashboard',
+      body: 'Monitor resident trips, pickup times, and transportation status in one place.'
+    },
+    {
+      Icon: ClipboardList,
+      title: 'Resident information',
+      body: 'Keep ride preferences and trip details organized.'
+    },
+    {
+      Icon: Users,
+      title: 'Family communication',
+      body: 'Keep families informed with automatic SMS alerts at pickup and drop-off.'
+    },
+  ],
+
+  whoFor: [
+    {
+      tag: 'Senior living',
+      title: 'Senior living communities',
+      desc: 'Coordinate resident appointments, outings, and transportation with confidence.',
+      img: '/images/operators/senior-living.jpg'
+    },
+    {
+      tag: 'Disability services',
+      title: 'Disability support organizations',
+      desc: 'Improve visibility for specialized transportation across your organization.',
+      img: '/images/operators/disability-services.jpg'
+    },
+    {
+      tag: 'Care homes',
+      title: 'Care homes & facilities',
+      desc: 'Give staff the tools they need to manage daily transportation smoothly.',
+      img: '/images/hero/receptionist-smile.jpg'
+    },
+  ],
+
+  faqs: [
+    { q: 'What does the facility dashboard show?', a: 'One centralized view of every resident’s transportation: upcoming rides, pickup times, and ride status — so staff aren’t stuck calling drivers or transportation providers for updates.' },
+    { q: 'Can staff book rides for residents?', a: 'Yes. Staff can book on a resident’s behalf from the dashboard in a few clicks, including round trips.' },
+    { q: 'How are families kept informed?', a: 'Families can be added as contacts and choose text alerts at pickup, drop-off, or both.' },
+    { q: 'Can we note a resident’s ride needs?', a: 'Yes. Preferences like a larger vehicle or extra time at pickup are saved on the resident’s record and shown to the driver on every trip.' },
+    { q: 'How does a facility get started?', a: 'Reach out through our contact page and we’ll set up a walkthrough. We map your operation, set up access for your staff, residents, and families, and get your team live.' },
   ],
 },
   {
@@ -172,17 +334,17 @@ export const CATEGORIES = [
   tags: ['Family members', 'Caregivers', 'Resident support'],
   headline: 'Peace of mind for every ride your loved one takes.',
   whoForHeading: 'Made for the people who care.',
-  body: 'Stay connected to your loved one’s transportation journey with real-time ride tracking, arrival updates, and notifications. Know when their ride is arriving without needing to call the facility or transit provider.',
+  body: 'Stay connected to your loved one’s transportation journey with SMS alerts at pickup and drop-off. Know they’ve arrived safely without needing to call the facility or transportation provider.',
   cta: 'Learn more',
 
   pillars: [
     {
       title: 'Real-time ride visibility',
-      body: 'See where the vehicle is and when your loved one will arrive with simple, live updates from pickup to drop-off.'
+      body: 'Know the moment your loved one is picked up and the moment they’re dropped off — no calls to the provider needed.'
     },
     {
-      title: 'Automatic arrival updates',
-      body: 'Receive notifications when a ride is approaching, arriving, or completed—keeping families informed without extra coordination.'
+      title: 'Pickup and drop-off alerts',
+      body: 'Choose the alerts you get — pickup, drop-off, or both — sent by text, keeping families informed without extra coordination.'
     },
     {
       title: 'Confidence from anywhere',
@@ -192,14 +354,14 @@ export const CATEGORIES = [
 
   highlights: [
     {
-      Icon: MapPin,
-      title: 'Live tracking',
-      body: 'View vehicle location and estimated arrival times in real time.'
+      Icon: MessageSquareText,
+      title: 'SMS alerts',
+      body: 'Get a text the moment your loved one is picked up and when they’re dropped off.'
     },
     {
-      Icon: Clock,
-      title: 'Arrival notifications',
-      body: 'Know when rides are approaching without waiting or calling.'
+      Icon: Users,
+      title: 'Easy to set up',
+      body: 'Your loved one adds you as a family contact with just a name and phone number.'
     },
     {
       Icon: HeartHandshake,
@@ -229,137 +391,13 @@ export const CATEGORIES = [
       img: '/images/hero/guardians-wheelchair.jpg'
     },
   ],
-},
-{
-  slug: 'care-facilities',
-  label: 'Care facilities',
-  enabled: true,
-  Icon: HeartHandshake,
-  img: '/images/operators/senior-living.jpg',
-  tags: ['Senior living', 'Disability services', 'Care homes'],
-  headline: 'Coordinate every resident journey with confidence.',
-  whoForHeading: 'Made for the teams supporting every resident journey.',
-  body: 'Give staff a complete view of resident transportation with a centralized dashboard for tracking rides, monitoring arrivals, and keeping families informed. Reduce manual coordination while improving the resident experience.',
-  cta: 'Learn more',
 
-  pillars: [
-    {
-      title: 'One dashboard for every ride',
-      body: 'Track resident transportation, upcoming arrivals, and ride status from one simple interface.'
-    },
-    {
-      title: 'Less phone tag, more care',
-      body: 'Reduce time spent calling drivers, families, and transit providers by giving everyone access to the information they need.'
-    },
-    {
-      title: 'Built for accessibility',
-      body: 'Designed around seniors and people with disabilities, including mobility considerations and care requirements.'
-    },
-  ],
-
-  highlights: [
-    {
-      Icon: LayoutDashboard,
-      title: 'Caregiver dashboard',
-      body: 'Monitor resident trips, ETAs, and transportation status in one place.'
-    },
-    {
-      Icon: ClipboardList,
-      title: 'Resident information',
-      body: 'Keep important accessibility notes and ride details organized.'
-    },
-    {
-      Icon: Users,
-      title: 'Family communication',
-      body: 'Keep families informed with automatic updates and shared visibility.'
-    },
-  ],
-
-  whoFor: [
-    {
-      tag: 'Senior living',
-      title: 'Senior living communities',
-      desc: 'Coordinate resident appointments, outings, and transportation with confidence.',
-      img: '/images/operators/senior-living.jpg'
-    },
-    {
-      tag: 'Disability services',
-      title: 'Disability support organizations',
-      desc: 'Improve visibility for accessible transportation and resident mobility.',
-      img: '/images/operators/disability-services.jpg'
-    },
-    {
-      tag: 'Care homes',
-      title: 'Care homes & facilities',
-      desc: 'Give staff the tools they need to manage daily transportation smoothly.',
-      img: '/images/hero/receptionist-smile.jpg'
-    },
-  ],
-},
-{
-  slug: 'nemt',
-  label: 'NEMT providers',
-  enabled: true,
-  Icon: Stethoscope,
-  img: '/images/hero/senior-transportation2.jpg',
-  tags: ['Non-emergency medical transport', 'Dialysis & appointments', 'Own fleet & drivers'],
-  headline: 'Run your own NEMT fleet with total visibility.',
-  whoForHeading: 'Made for NEMT providers running their own fleet.',
-  body: 'Indro is built for non-emergency medical transportation providers who operate their own vehicles and drivers. Schedule, dispatch, and track any trip your riders need: appointments, dialysis, discharge, and more. Riders, drivers, and admins each get their own simple dashboard, with accessibility-aware scheduling, your own pricing calculated automatically per trip, and automatic rider notifications.',
-  cta: 'Learn more',
-
-  pillars: [
-    {
-      title: 'Built for your own fleet',
-      body: 'Whether you run a handful of vehicles or a growing fleet, dispatch every driver and vehicle from one system. No separate tools for scheduling, tracking, and communication.'
-    },
-    {
-      title: 'Your service area, your pricing',
-      body: "Define your service area: by province, county, city, postal code, or a radius around a point. Only the bookings you can actually serve come through. Set a fixed price for specific locations, like a regular dialysis center, if you'd rather not bill by distance."
-    },
-    {
-      title: 'Riders and families kept informed',
-      body: 'Automatic SMS and email updates mean fewer calls asking where the vehicle is, whether the trip is on the way, picked up, or arrived.'
-    },
-  ],
-
-  highlights: [
-    {
-      Icon: LayoutDashboard,
-      title: 'Role-based dashboards',
-      body: 'Drivers, admins, and riders each get their own dashboard, built around the specific tools their role actually needs. Kept simple and easy to use for anyone.'
-    },
-    {
-      Icon: Sliders,
-      title: 'Flexible pricing',
-      body: 'Bill by distance, set a fixed price for specific locations, or both — whatever fits how your organization charges.'
-    },
-    {
-      Icon: Bell,
-      title: 'Automatic notifications',
-      body: 'SMS and email updates for booking, driver en route, and arrival — sent without a dispatcher lifting a phone.'
-    },
-  ],
-
-  whoFor: [
-    {
-      tag: 'Senior transportation fleets',
-      title: 'Fleets serving seniors',
-      desc: 'Give senior riders the transportation they need, along with arrival updates on every trip for them and their families.',
-      img: '/images/hero/senior-couple.jpg'
-    },
-    {
-      tag: 'Specific transportation',
-      title: 'Riders who need specific vehicles',
-      desc: "Larger vehicles and extra-wait-time needs travel with the rider's record, so the right vehicle and enough time are ready.",
-      img: '/images/hero/caregiver-wheelchair.jpg'
-    },
-    {
-      tag: 'Dialysis & treatment transport',
-      title: 'Dialysis & recurring treatment',
-      desc: 'Coordinate treatment and appointment trips with the drivers and vehicles your organization already operates.',
-      img: '/images/hero/care-worker-elderly.jpg'
-    },
+  faqs: [
+    { q: 'How will I know my loved one’s ride went smoothly?', a: 'You’ll get a text when they’re picked up and when they’re dropped off — so you know they’ve arrived without calling anyone.' },
+    { q: 'How do I start getting alerts?', a: 'Your loved one, or their provider, adds you as a family contact with your name and phone number, then chooses which alerts you get — pickup, drop-off, or both.' },
+    { q: 'Will I get a text for every update?', a: 'No. Family contacts only get the alerts chosen — pickup, drop-off, or both — so you stay informed without being flooded.' },
+    { q: 'Can I stop the alerts?', a: 'Yes. Reply STOP to any text at any time, or ask your loved one to remove you as a contact.' },
+    { q: 'Who can see my loved one’s trip information?', a: 'Only the people your loved one or their provider authorizes.' },
   ],
 },
 ]

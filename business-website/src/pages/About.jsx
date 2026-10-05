@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { GetInTouch } from '../components/sections'
 import Seo from '../components/Seo'
 import './About.css'
@@ -28,7 +27,7 @@ export default function About() {
     <>
       <Seo
         title="About | Indro Labs"
-        description="Indro Labs is building the software layer connecting riders, operators, and care teams — so accessible transit in Alberta stops being a source of anxiety."
+        description="Indro Labs is building the software layer connecting riders, operators, and care teams — so specialized transit in Alberta stops being a source of anxiety."
         path="/about"
       />
       {/* ── HERO ── */}
@@ -39,7 +38,7 @@ export default function About() {
             A question nobody<br />could answer.
           </h1>
           <p className="ap-hero-sub">
-            Indro was born out of a simple, maddening gap — accessible transit riders in Calgary had no way of knowing where their ride was. We set out to fix that.
+            Indro was born out of a simple, maddening gap — specialized transit riders in Calgary had no way of knowing where their ride was. We set out to fix that.
           </p>
         </div>
         <div className="ap-hero-img-wrap">
@@ -55,7 +54,7 @@ export default function About() {
             <p className="ap-label">Where it began</p>
             <h2 className="ap-h2">Built in Calgary. Shaped by the people who use it.</h2>
             <p className="ap-body">
-              In 2025, Indro began with a simple question: why is accessible transportation still harder to navigate than it needs to be?
+              In 2025, Indro began with a simple question: why is specialized transportation still harder to navigate than it needs to be?
             </p>
             <p className="ap-body">
               What started as a project exploring real-world transportation challenges quickly became a deeper look into how riders, care teams, and transportation providers experience the system every day.
@@ -81,8 +80,7 @@ export default function About() {
         <div className="c ap-stats-grid">
           <StatCard number="55+"  label="Riders & caregivers interviewed" />
           <StatCard number="12"   label="Partner conversations underway" />
-          <StatCard number="2026" label="Calgary pilot launch" />
-          <StatCard number="5+"   label="Communities engaged" />
+          <StatCard number="3"    label="Organizations confirmed for 2026" />
         </div>
       </div>
 
@@ -93,7 +91,7 @@ export default function About() {
             <p className="ap-label">What we're building toward</p>
             <h2 className="ap-h2">Transit that doesn't<br />leave anyone behind.</h2>
             <p className="ap-mission-intro">
-              Accessible transit in Canada is underfunded, fragmented, and invisible to the families who depend on it most. We're building the software layer that changes that — connecting riders, operators, and care teams so that getting somewhere safely stops being a source of anxiety.
+              Specialized transit in Canada is underfunded, fragmented, and invisible to the families who depend on it most. We're building the software layer that changes that — connecting riders, operators, and care teams so that getting somewhere safely stops being a source of anxiety.
             </p>
           </div>
 
@@ -141,8 +139,8 @@ export default function About() {
           <p className="ap-label">In the news & community</p>
           <div className="ap-press-grid">
             {[
-              { tag: 'Feature',  outlet: 'UCalgary News',    title: 'AI Bootcamp helps students design their own futures',      desc: 'UCalgary featured the Indro team\'s work on accessible transit technology for southern Alberta.',           href: 'https://www.ucalgary.ca/news/ai-bootcamp-helps-students-design-their-own-futures' },
-              { tag: 'Video',    outlet: 'Instagram · Reel', title: "Indro — what we're building and why",   desc: "A short video introduction to Indro and the problem we're solving for accessible transportation across Alberta.",       href: 'https://www.instagram.com/p/DY7hX7HNP28/' },
+              { tag: 'Feature',  outlet: 'UCalgary News',    title: 'AI Bootcamp helps students design their own futures',      desc: 'UCalgary featured the Indro team\'s work on specialized transit technology for southern Alberta.',           href: 'https://www.ucalgary.ca/news/ai-bootcamp-helps-students-design-their-own-futures' },
+              { tag: 'Video',    outlet: 'Instagram · Reel', title: "Indro — what we're building and why",   desc: "A short video introduction to Indro and the problem we're solving for specialized transportation across Alberta.",       href: 'https://www.instagram.com/p/DY7hX7HNP28/' },
               
             ].map(a => (
               <a key={a.title} href={a.href} target="_blank" rel="noopener noreferrer" className="ap-press-card">
@@ -169,7 +167,6 @@ export default function About() {
             <p className="ap-body">If you care about building technology that gives people dignity, independence, and peace of mind, we'd love to meet you. We hire for heart as much as for skill — and there's a lot to build.</p>
           </div>
           <div className="ap-hiring-cta">
-            <Link to="/contact" className="btn-primary">Get in touch</Link>
             <a href="mailto:info@indrolabs.ca" className="ap-hiring-mail">info@indrolabs.ca</a>
           </div>
         </div>

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Baby, Bus, Trophy, Star, Building2, MapPin, Bell, ShieldCheck, ArrowRight,
-  Radar, Accessibility, PhoneOff, Leaf, CalendarCheck, LayoutDashboard,
+  BellRing, Users, PhoneOff, Truck, CalendarCheck, LayoutDashboard,
 } from 'lucide-react'
 import { CATEGORIES } from '../data/categories'
 /* ── CALENDLY ─────────────────────────────────── */
@@ -78,10 +78,10 @@ export function Hero() {
             <span className="hero2-orange">Connecting care communities to the rides</span>{' '}
             <span className="hero2-white">they depend on.</span>
           </h1>
-          <p className="hero2-sub">Give care homes, families, organizations, and municipalities real-time visibility into every paratransit journey—bringing confidence, safety, and peace of mind from pickup to drop-off.</p>
+          <p className="hero2-sub">Give NEMT providers one platform to schedule, dispatch, and manage every trip—with real-time visibility and automatic updates that keep riders, families, and care teams informed from pickup to drop-off.</p>
           <div className="hero2-actions">
             <Link to="/contact" className="btn-primary">Book a demo</Link>
-            <Link to="/services" className="btn-text btn-text--light">Explore services</Link>
+            <a href="#services" className="btn-text btn-text--light">Explore services</a>
           </div>
         </div>
         <div className="hero2-stack">
@@ -116,7 +116,7 @@ export function OfferTabs() {
         <div className="sec-hd centered">
           <p className="eyebrow">What we offer</p>
           <h2 className="sec-h2">One platform, connecting everyone.</h2>
-          <p className="sec-intro">Built for the people who depend on paratransit—and the teams who support every journey.</p>
+          <p className="sec-intro">Built for NEMT providers—and the riders, families, and care teams who count on every trip.</p>
         </div>
         <div className="offer-tabs">
           {OFFER_CATEGORIES.map((c, i) => (
@@ -248,7 +248,7 @@ export function GetInTouch() {
       <div className="c">
         <p className="getintouch-eyebrow">Get in touch</p>
         <h2 className="getintouch-h">Ready to bring clarity to every ride?</h2>
-        <p className="getintouch-sub">See Indro in action. We'll show you how care teams, families, and communities can stay connected to every paratransit journey.</p>
+        <p className="getintouch-sub">See Indro in action. We'll show you how NEMT providers schedule, dispatch, and keep riders and families informed on every trip.</p>
         <Link to="/contact" className="getintouch-btn">Contact us</Link>
       </div>
     </section>
@@ -279,7 +279,6 @@ const STATS = [
   { n: '55+',  l: 'Riders, families & caregivers interviewed' },
   { n: '12',    l: 'Partner conversations underway' },
   { n: '3',    l: 'Organizations confirmed for 2026' },
-  { n: '2026', l: 'Calgary pilot launching this year' },
 ]
 export function TractionBar() {
   const ref = useRef(null)
@@ -305,10 +304,10 @@ export function TractionBar() {
 
 /* ── WHY INDRO (benefit cards) ────────────────── */
 const WHY = [
-  { Icon: Radar,         title: 'Real-time visibility',     desc: 'Live GPS tracking, ETAs, and automatic alerts keep staff, caregivers, residents, and families informed from pickup to drop-off.' },
-  { Icon: Accessibility, title: 'Built for accessibility',  desc: 'Built for seniors and people with disabilities, with accessibility, dignity, and peace of mind at the center of every journey.' },
-  { Icon: PhoneOff,      title: 'Less manual, more care', desc: 'Track rides, receive arrival updates, and keep everyone informed from one simple dashboard—reducing phone calls, uncertainty, and manual follow-ups.' },
-  { Icon: Leaf,          title: 'Built with municipalities',        desc: 'Works with existing municipal paratransit, giving facilities and caregivers real-time visibility..' },
+  { Icon: BellRing,      title: 'Real-time visibility',     desc: 'Automatic SMS alerts and email notifications keep staff, caregivers, residents, and families informed from pickup to drop-off.' },
+  { Icon: Users,         title: 'Designed for every rider', desc: 'Built to make transportation simpler and more reliable for seniors and people with disabilities, with dignity, reliability, and peace of mind at the center of every journey.' },
+  { Icon: PhoneOff,      title: 'Less manual, more care', desc: 'Manage rides, receive arrival updates, and keep everyone informed from one simple dashboard—reducing phone calls, uncertainty, and manual follow-ups.' },
+  { Icon: Truck,         title: 'Built for NEMT operators', desc: 'Scheduling, dispatch, pricing, and rider notifications in one place—made for providers running their own vehicles and drivers.' },
 ]
 export function WhyIndro() {
   return (
@@ -329,7 +328,7 @@ export function WhyIndro() {
         </div>
         <div className="why-cta">
           <span className="why-cta-line" />
-          <Link to="/services" className="btn-primary">Explore our services</Link>
+          <a href="#services" className="btn-primary">Explore our services</a>
           <span className="why-cta-line" />
         </div>
       </div>
@@ -656,7 +655,7 @@ export function FinalCTA() {
         <div className="final-cta-inner">
           <span className="final-cta-badge">Calgary · 2026</span>
           <h2 className="final-cta-h">Book a demo with us.</h2>
-          <p className="final-cta-p">See how Indro coordinates accessible and on-demand transit in real time. Pick a time that works for you — we'll walk you through it.</p>
+          <p className="final-cta-p">See how Indro coordinates specialized and on-demand transit in real time. Pick a time that works for you — we'll walk you through it.</p>
           <Link to="/contact" className="btn-primary final-cta-btn">Book a demo →</Link>
           <p className="final-cta-note">Prefer email? <a href="mailto:info@indrolabs.ca" className="final-cta-link">info@indrolabs.ca</a></p>
         </div>
@@ -667,15 +666,15 @@ export function FinalCTA() {
 
 /* ── FAQ ──────────────────────────────────────── */
 const FAQS = [
-  { q: 'Who is Indro built for?', a: 'Care facilities — senior living communities, disability services, and group homes — the families and caregivers supporting residents’ paratransit journeys, and individual riders who want visibility into their own trips. If you need clear visibility into a ride, Indro fits.' },
-  { q: 'Can families and staff track a ride in real time?', a: 'Yes. Anyone you authorize — a family member, caregiver, or facility staffer — gets live GPS tracking and automated notifications at pickup, when the vehicle is near, and at drop-off. No account or download required.' },
-  { q: 'What does the facility dashboard show?', a: 'One centralized view of every resident’s transportation: live vehicle location, ETAs, and ride status — so staff aren’t stuck calling drivers or transit providers for updates.' },
-  { q: 'What kind of notifications will we get?', a: 'Automatic alerts when a ride is approaching, arriving, or completed, so families and facility staff stay informed without checking in manually.' },
-  { q: 'Do family members need to download an app?', a: 'No. Tracking links and notifications work right in a browser or text message — nothing to install for families or caregivers.' },
-  { q: 'Who can access a resident’s ride information?', a: 'Only the people your facility authorizes — family members, caregivers, or support staff — keeping resident transportation data private and controlled.' },
-  { q: 'How does an organization get started?', a: 'Reach out through our contact page and we’ll set up a walkthrough. We map your operation, configure access for your residents and families, and get your team live — usually within days.' },
+  { q: 'Who is Indro built for?', a: 'Non-emergency medical transportation (NEMT) providers running their own vehicles and drivers — along with the riders they serve, the families who support them, and the care facilities coordinating resident trips. If you need clear visibility into every ride, Indro fits.' },
+  { q: 'How do riders book a trip?', a: 'Riders book through your organization’s own booking link — pick a date and time, enter a pickup and destination, and request the ride. Your team can also book on a rider’s behalf from the admin dashboard, and round trips can be booked together in one go.' },
+  { q: 'Can we limit where we accept bookings?', a: 'Yes. Set your service area by city, county, province, postal code prefix, or a distance around an address. Every booking is checked, and anyone outside your area is asked to contact you directly.' },
+  { q: 'What notifications do riders and families get?', a: 'Riders get automatic SMS alerts when their ride is booked, a driver is assigned, the driver is on the way, and the driver has arrived — plus email confirmations and receipts. Family contacts choose text alerts at pickup, drop-off, or both.' },
+  { q: 'How does pricing work?', a: 'You set your own pricing — a base fare plus a per-kilometre rate, or a flat fare for trips to or from specific locations.' },
+  { q: 'Can Indro handle riders who need a larger vehicle or extra time?', a: 'Yes. Riders can set preferences like a larger vehicle or extra time at pickup, so the right vehicle is sent and enough time is scheduled.' },
+  { q: 'How does an organization get started?', a: 'Reach out through our contact page or at info@indrolabs.ca and we’ll set up a walkthrough. We map your operation, configure your service area, pricing, vehicles, and drivers, and get your team live.' },
 ]
-export function FAQ() {
+export function FAQ({ faqs = FAQS }) {
   const [open, setOpen] = useState(null)
   return (
     <section className="faq-section">
@@ -686,7 +685,7 @@ export function FAQ() {
           <p className="faq-sub">Can't find your answer? <Link to="/contact" className="faq-link">Get in touch</Link> and we'll help.</p>
         </div>
         <div className="faq-list">
-          {FAQS.map((f, i) => (
+          {faqs.map((f, i) => (
             <div key={i} className={`faq-item${open === i ? ' open' : ''}`}>
               <button className="faq-q" onClick={() => setOpen(open === i ? null : i)}>
                 <span>{f.q}</span>

@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <Seo
         title="Indro Labs | Transportation Operations Platform"
-        description="Transportation operations software for senior living communities, care facilities, and community transit providers. Manage bookings, dispatching, vehicle tracking, and rider communication from a single platform."
+        description="Transportation operations software for NEMT providers, senior living communities, and care facilities. Manage bookings, dispatching, and rider communication from a single platform."
         path="/"
       />
       <Hero />

@@ -19,7 +19,7 @@ export default function ServiceCategory() {
         <CorePillars cat={cat} />
         <ProductHighlights cat={cat} />
         <CategoryWhoFor cat={cat} />
-        <FAQ />
+        <FAQ faqs={cat.faqs} />
         <GetInTouch />
       </div>
     </>

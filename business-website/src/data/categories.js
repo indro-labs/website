@@ -163,13 +163,13 @@ export const CATEGORIES = [
       tag: 'Specific transportation',
       title: 'Riders who need specific vehicles',
       desc: "Larger vehicles and extra-wait-time needs travel with the rider's record, so the right vehicle and enough time are ready.",
-      img: '/images/hero/caregiver-wheelchair.jpg'
+      img: '/images/hero/Nemt-services-specifictransportation.jpeg'
     },
     {
       tag: 'Round trips',
       title: 'Round trip',
       desc: 'Book the ride there and the ride home together, so every part of your ride is supported — with the drivers and vehicles your organization already operates.',
-      img: '/images/hero/care-worker-elderly.jpg'
+      img: '/images/hero/nemt-services-roundtrip.jpeg'
     },
   ],
 
@@ -375,7 +375,7 @@ export const CATEGORIES = [
       tag: 'Family members',
       title: 'Families supporting loved ones',
       desc: 'Stay connected to transportation updates and know when your loved one arrives safely.',
-      img: '/images/hero/wheelchair-woman.jpg'
+      img: '/images/hero/families-services-familymembers.jpeg'
     },
     {
       tag: 'Remote family members',
@@ -388,7 +388,7 @@ export const CATEGORIES = [
       tag: 'Guardians',
       title: 'Peace of mind for guardians',
       desc: 'Receive timely transportation updates and stay informed without needing to call for status updates.',
-      img: '/images/hero/guardians-wheelchair.jpg'
+      img: '/images/hero/families-services-guardians.jpeg'
     },
   ],
 

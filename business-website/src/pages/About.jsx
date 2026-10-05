@@ -70,7 +70,7 @@ export default function About() {
             </p>
           </div>
           <div className="ap-origin-img-wrap">
-            <img src="/images/about/care-team.jpg" alt="Care worker with elderly resident" className="ap-origin-img" />
+            <img src="/images/hero/about-image.jpeg" alt="Senior man waiting on a bench at a transit stop" className="ap-origin-img" />
           </div>
         </div>
       </section>

@@ -61,7 +61,7 @@ export function CalendlyEmbed({ url = CALENDLY_URL }) {
 const SLIDES = [
   { src: '/images/hero/receptionist-smiling.jpg', alt: 'Worker is smiling' },
   { src: '/images/hero/senior-couple-smile.jpg',       alt: 'Senior couple smiling' },
-  { src: '/images/hero/family-hugging-wheelchair.jpg',       alt: 'Family hugging, man is in a wheelchair' },
+  { src: '/images/hero/hero-carousel-image.jpeg',       alt: 'Smiling senior woman seated with a cane among family' },
   { src: '/images/hero/three-people-smile.jpg',    alt: 'Three people smiling at a phone together' },
 ]
 export function Hero() {
